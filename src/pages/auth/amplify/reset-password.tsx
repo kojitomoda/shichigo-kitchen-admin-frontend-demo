@@ -1,10 +1,10 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import { useRouter, useSearchParams } from 'next/navigation';
-import NextLink from 'next/link';
-import * as Yup from 'yup';
-import { useFormik } from 'formik';
-import { MuiOtpInput } from 'mui-one-time-password-input';
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import { useRouter, useSearchParams } from 'next/navigation'
+import NextLink from 'next/link'
+import * as Yup from 'yup'
+import { useFormik } from 'formik'
+import { MuiOtpInput } from 'mui-one-time-password-input'
 import {
   Box,
   Button,
@@ -16,33 +16,33 @@ import {
   FormLabel,
   Link,
   Stack,
-  TextField
-} from '@mui/material';
-import type { AuthContextType } from '../../../contexts/auth/amplify-context';
-import { GuestGuard } from '../../../guards/guest-guard';
-import { IssuerGuard } from '../../../guards/issuer-guard';
-import { useAuth } from '../../../hooks/use-auth';
-import { useMounted } from '../../../hooks/use-mounted';
-import { usePageView } from '../../../hooks/use-page-view';
-import { Layout as AuthLayout } from '../../../layouts/auth/classic-layout';
-import { paths } from '../../../paths';
-import { Issuer } from '../../../utils/auth';
+  TextField,
+} from '@mui/material'
+import type { AuthContextType } from '../../../contexts/auth/amplify-context'
+import { GuestGuard } from '../../../guards/guest-guard'
+import { IssuerGuard } from '../../../guards/issuer-guard'
+import { useAuth } from '../../../hooks/use-auth'
+import { useMounted } from '../../../hooks/use-mounted'
+import { usePageView } from '../../../hooks/use-page-view'
+import { Layout as AuthLayout } from '../../../layouts/auth/classic-layout'
+import { paths } from '../../../paths'
+import { Issuer } from '../../../utils/auth'
 
-const useParams = (): { username?: string; } => {
-  const searchParams = useSearchParams();
-  const username = searchParams.get('username') || undefined;
+const useParams = (): { username?: string } => {
+  const searchParams = useSearchParams()
+  const username = searchParams.get('username') || undefined
 
   return {
-    username
-  };
-};
+    username,
+  }
+}
 
 interface Values {
-  code: string;
-  email: string;
-  password: string;
-  passwordConfirm: string;
-  submit: null;
+  code: string
+  email: string
+  password: string
+  passwordConfirm: string
+  submit: null
 }
 
 const getInitialValues = (username?: string): Values => ({
@@ -50,110 +50,85 @@ const getInitialValues = (username?: string): Values => ({
   email: username || '',
   password: '',
   passwordConfirm: '',
-  submit: null
-});
+  submit: null,
+})
 
 const validationSchema = Yup.object({
-  code: Yup
-    .string()
-    .min(6)
-    .max(6)
-    .required('Code is required'),
-  email: Yup
-    .string()
-    .email('Must be a valid email')
-    .max(255)
-    .required('Email is required'),
-  password: Yup
-    .string()
-    .min(7, 'Must be at least 7 characters')
-    .max(255)
-    .required('Required'),
-  passwordConfirm: Yup
-    .string()
+  code: Yup.string().min(6).max(6).required('Code is required'),
+  email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+  password: Yup.string().min(7, 'Must be at least 7 characters').max(255).required('Required'),
+  passwordConfirm: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Required')
-});
+    .required('Required'),
+})
 
 const Page: NextPage = () => {
-  const isMounted = useMounted();
-  const router = useRouter();
-  const { username } = useParams();
-  const { forgotPasswordSubmit } = useAuth<AuthContextType>();
+  const isMounted = useMounted()
+  const router = useRouter()
+  const { username } = useParams()
+  const { forgotPasswordSubmit } = useAuth<AuthContextType>()
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: getInitialValues(username),
     validationSchema,
     onSubmit: async (values, helpers): Promise<void> => {
       try {
-        await forgotPasswordSubmit(values.email, values.code, values.password);
+        await forgotPasswordSubmit(values.email, values.code, values.password)
 
         if (isMounted()) {
-          router.push(paths.auth.amplify.login);
+          router.push(paths.auth.amplify.login)
         }
       } catch (err) {
-        console.error(err);
+        console.error(err)
 
         if (isMounted()) {
-          helpers.setStatus({ success: false });
-          helpers.setErrors({ submit: err.message });
-          helpers.setSubmitting(false);
+          helpers.setStatus({ success: false })
+          helpers.setErrors({ submit: err.message })
+          helpers.setSubmitting(false)
         }
       }
-    }
-  });
+    },
+  })
 
-  usePageView();
+  usePageView()
 
   return (
     <>
       <Head>
-        <title>
-          Reset Password | Devias Kit PRO
-        </title>
+        <title>Reset Password | Devias Kit PRO</title>
       </Head>
       <div>
         <Card elevation={16}>
-          <CardHeader
-            sx={{ pb: 0 }}
-            title="Reset Password"
-          />
+          <CardHeader sx={{ pb: 0 }}
+title='Reset Password' />
           <CardContent>
-            <form
-              noValidate
-              onSubmit={formik.handleSubmit}
-            >
+            <form noValidate
+onSubmit={formik.handleSubmit}>
               <Stack spacing={3}>
-                {
-                  username
-                    ? (
-                      <TextField
-                        disabled
-                        fullWidth
-                        label="Email"
-                        value={username}
-                      />
-                    )
-                    : (
-                      <TextField
-                        autoFocus
-                        error={!!(formik.touched.email && formik.errors.email)}
-                        fullWidth
-                        helperText={formik.touched.email && formik.errors.email}
-                        label="Email Address"
-                        name="email"
-                        onBlur={formik.handleBlur}
-                        onChange={formik.handleChange}
-                        type="email"
-                        value={formik.values.email}
-                      />
-                    )
-                }
+                {username ? (
+                  <TextField disabled
+fullWidth
+label='Email'
+value={username} />
+                ) : (
+                  <TextField
+                    autoFocus
+                    error={!!(formik.touched.email && formik.errors.email)}
+                    fullWidth
+                    helperText={formik.touched.email && formik.errors.email}
+                    label='Email Address'
+                    name='email'
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    type='email'
+                    value={formik.values.email}
+                  />
+                )}
                 <FormControl error={!!(formik.touched.code && formik.errors.code)}>
                   <FormLabel
                     sx={{
                       display: 'block',
-                      mb: 2
+                      mb: 2,
                     }}
                   >
                     Verification code
@@ -165,55 +140,51 @@ const Page: NextPage = () => {
                     onFocus={() => formik.setFieldTouched('code')}
                     sx={{
                       '& .MuiFilledInput-input': {
-                        p: '14px'
-                      }
+                        p: '14px',
+                      },
                     }}
                     value={formik.values.code}
                   />
                   {!!(formik.touched.code && formik.errors.code) && (
-                    <FormHelperText>
-                      {formik.errors.code}
-                    </FormHelperText>
+                    <FormHelperText>{formik.errors.code}</FormHelperText>
                   )}
                 </FormControl>
                 <TextField
                   error={!!(formik.touched.password && formik.errors.password)}
                   fullWidth
                   helperText={formik.touched.password && formik.errors.password}
-                  label="Password"
-                  name="password"
+                  label='Password'
+                  name='password'
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
-                  type="password"
+                  type='password'
                   value={formik.values.password}
                 />
                 <TextField
                   error={!!(formik.touched.passwordConfirm && formik.errors.passwordConfirm)}
                   fullWidth
                   helperText={formik.touched.passwordConfirm && formik.errors.passwordConfirm}
-                  label="Password Confirmation"
-                  name="passwordConfirm"
+                  label='Password Confirmation'
+                  name='passwordConfirm'
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
-                  type="password"
+                  type='password'
                   value={formik.values.passwordConfirm}
                 />
               </Stack>
               {formik.errors.submit && (
-                <FormHelperText
-                  error
-                  sx={{ mt: 3 }}
-                >
+                <FormHelperText error
+sx={{ mt: 3 }}>
                   {formik.errors.submit as string}
                 </FormHelperText>
               )}
               <Button
                 disabled={formik.isSubmitting}
                 fullWidth
-                size="large"
+                size='large'
                 sx={{ mt: 3 }}
-                type="submit"
-                variant="contained"
+                type='submit'
+                variant='contained'
               >
                 Reset Password
               </Button>
@@ -221,14 +192,14 @@ const Page: NextPage = () => {
                 sx={{
                   display: 'flex',
                   justifyContent: 'center',
-                  mt: 3
+                  mt: 3,
                 }}
               >
                 <Link
                   component={NextLink}
                   href={paths.auth.amplify.forgotPassword}
-                  underline="hover"
-                  variant="subtitle2"
+                  underline='hover'
+                  variant='subtitle2'
                 >
                   Did you not receive the code?
                 </Link>
@@ -238,17 +209,15 @@ const Page: NextPage = () => {
         </Card>
       </div>
     </>
-  );
-};
+  )
+}
 
 Page.getLayout = (page) => (
   <IssuerGuard issuer={Issuer.Amplify}>
     <GuestGuard>
-      <AuthLayout>
-        {page}
-      </AuthLayout>
+      <AuthLayout>{page}</AuthLayout>
     </GuestGuard>
   </IssuerGuard>
-);
+)
 
-export default Page;
+export default Page

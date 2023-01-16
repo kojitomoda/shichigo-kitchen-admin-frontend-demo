@@ -1,40 +1,38 @@
-import type { FC } from 'react';
-import { Box, ListItemIcon, ListItemText, MenuItem, Paper, Typography } from '@mui/material';
+import type { FC } from 'react'
+import { Box, ListItemIcon, ListItemText, MenuItem, Paper, Typography } from '@mui/material'
 
 interface LanguageOption {
-  icon: string;
-  label: string;
+  icon: string
+  label: string
 }
 
 const languageOptions: LanguageOption[] = [
   {
     icon: '/assets/flags/flag-uk.svg',
-    label: 'English'
+    label: 'English',
   },
   {
     icon: '/assets/flags/flag-de.svg',
-    label: 'German'
+    label: 'German',
   },
   {
     icon: '/assets/flags/flag-es.svg',
-    label: 'Spanish'
-  }
-];
+    label: 'Spanish',
+  },
+]
 
 export const Modal2: FC = () => (
   <Box
     sx={{
-      backgroundColor: (theme) => theme.palette.mode === 'dark'
-        ? 'neutral.800'
-        : 'neutral.100',
-      p: 3
+      backgroundColor: (theme) => (theme.palette.mode === 'dark' ? 'neutral.800' : 'neutral.100'),
+      p: 3,
     }}
   >
     <Paper
       elevation={12}
       sx={{
         width: 240,
-        mx: 'auto'
+        mx: 'auto',
       }}
     >
       {languageOptions.map((option) => (
@@ -46,25 +44,17 @@ export const Modal2: FC = () => (
                 height: 20,
                 width: 20,
                 '& img': {
-                  width: '100%'
-                }
+                  width: '100%',
+                },
               }}
             >
-              <img
-                alt={option.label}
-                src={option.icon}
-              />
+              <img alt={option.label}
+src={option.icon} />
             </Box>
           </ListItemIcon>
-          <ListItemText
-            primary={(
-              <Typography variant="subtitle2">
-                {option.label}
-              </Typography>
-            )}
-          />
+          <ListItemText primary={<Typography variant='subtitle2'>{option.label}</Typography>} />
         </MenuItem>
       ))}
     </Paper>
   </Box>
-);
+)

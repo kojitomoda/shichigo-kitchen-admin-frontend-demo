@@ -1,96 +1,77 @@
-import type { FC } from 'react';
-import { useCallback, useMemo, useRef, useState } from 'react';
-import { Chip, IconButton, Menu, MenuItem, Stack, SvgIcon } from '@mui/material';
-import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus';
-import PropTypes from 'prop-types';
+import type { FC } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
+import { Chip, IconButton, Menu, MenuItem, Stack, SvgIcon } from '@mui/material'
+import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus'
+import PropTypes from 'prop-types'
 
-const options: string[] = [
-  'Invoices',
-  'Work',
-  'Business',
-  'Planning',
-  'Frontend',
-  'Design'
-];
+const options: string[] = ['Invoices', 'Work', 'Business', 'Planning', 'Frontend', 'Design']
 
 interface ItemTagsProps {
-  onChange?: (tags: string[]) => void;
-  tags?: string[];
+  onChange?: (tags: string[]) => void
+  tags?: string[]
 }
 
 export const ItemTags: FC<ItemTagsProps> = (props) => {
-  const { onChange, tags = [] } = props;
-  const menuRef = useRef<HTMLButtonElement | null>(null);
-  const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const { onChange, tags = [] } = props
+  const menuRef = useRef<HTMLButtonElement | null>(null)
+  const [openMenu, setOpenMenu] = useState<boolean>(false)
   const availableOptions = useMemo(() => {
-    return options.filter((option) => !tags.includes(option));
-  }, [tags]);
+    return options.filter((option) => !tags.includes(option))
+  }, [tags])
 
-  const handleMenuOpen = useCallback(
-    (): void => {
-      setOpenMenu(true);
-    },
-    []
-  );
+  const handleMenuOpen = useCallback((): void => {
+    setOpenMenu(true)
+  }, [])
 
-  const handleMenuClose = useCallback(
-    (): void => {
-      setOpenMenu(false);
-    },
-    []
-  );
+  const handleMenuClose = useCallback((): void => {
+    setOpenMenu(false)
+  }, [])
 
   const handleDelete = useCallback(
     (label: string) => {
-      const newLabels = tags.filter((item) => item !== label);
+      const newLabels = tags.filter((item) => item !== label)
 
-      onChange?.(newLabels);
+      onChange?.(newLabels)
     },
-    [tags, onChange]
-  );
+    [tags, onChange],
+  )
 
   const handleToggle = useCallback(
     (label: string) => {
-      let newLabels: string[];
+      let newLabels: string[]
 
-      const found = tags.find((item) => item === label);
+      const found = tags.find((item) => item === label)
 
       if (found) {
-        newLabels = tags.filter((item) => item !== label);
+        newLabels = tags.filter((item) => item !== label)
       } else {
-        newLabels = [...tags, label];
+        newLabels = [...tags, label]
       }
 
-      setOpenMenu(false);
-      onChange?.(newLabels);
+      setOpenMenu(false)
+      onChange?.(newLabels)
     },
-    [tags, onChange]
-  );
+    [tags, onChange],
+  )
 
-  const canAdd = availableOptions.length > 0;
+  const canAdd = availableOptions.length > 0
 
   return (
     <>
-      <Stack
-        alignItems="center"
-        direction="row"
-        flexWrap="wrap"
-        gap={1}
-      >
+      <Stack alignItems='center'
+direction='row'
+flexWrap='wrap'
+gap={1}>
         {tags.map((label) => (
-          <Chip
-            key={label}
-            label={label}
-            onDelete={() => handleDelete(label)}
-            size="small"
-          />
+          <Chip key={label}
+label={label}
+onDelete={() => handleDelete(label)}
+size='small' />
         ))}
-        <IconButton
-          onClick={handleMenuOpen}
-          ref={menuRef}
-          disabled={!canAdd}
-        >
-          <SvgIcon fontSize="small">
+        <IconButton onClick={handleMenuOpen}
+ref={menuRef}
+disabled={!canAdd}>
+          <SvgIcon fontSize='small'>
             <PlusIcon />
           </SvgIcon>
         </IconButton>
@@ -99,29 +80,27 @@ export const ItemTags: FC<ItemTagsProps> = (props) => {
         anchorEl={menuRef.current}
         anchorOrigin={{
           horizontal: 'right',
-          vertical: 'bottom'
+          vertical: 'bottom',
         }}
         onClose={handleMenuClose}
         open={openMenu}
         transformOrigin={{
           horizontal: 'right',
-          vertical: 'top'
+          vertical: 'top',
         }}
       >
         {availableOptions.map((option) => (
-          <MenuItem
-            key={option}
-            onClick={() => handleToggle(option)}
-          >
+          <MenuItem key={option}
+onClick={() => handleToggle(option)}>
             {option}
           </MenuItem>
         ))}
       </Menu>
     </>
-  );
-};
+  )
+}
 
 ItemTags.propTypes = {
   onChange: PropTypes.func,
-  tags: PropTypes.arrayOf(PropTypes.string.isRequired)
-};
+  tags: PropTypes.arrayOf(PropTypes.string.isRequired),
+}

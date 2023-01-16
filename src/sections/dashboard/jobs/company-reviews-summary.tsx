@@ -1,71 +1,59 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import { Card, CardContent, Rating, Stack, Typography } from '@mui/material';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import { Card, CardContent, Rating, Stack, Typography } from '@mui/material'
 
 interface CompanyReviewsSummaryProps {
-  averageRating: number;
-  totalReviews: number;
+  averageRating: number
+  totalReviews: number
 }
 
 export const CompanyReviewsSummary: FC<CompanyReviewsSummaryProps> = (props) => {
-  const { averageRating, totalReviews } = props;
+  const { averageRating, totalReviews } = props
 
   return (
-    <Card variant="outlined">
+    <Card variant='outlined'>
       <CardContent>
         <Stack
           alignItems={{
             xs: 'flex-start',
-            sm: 'center'
+            sm: 'center',
           }}
           direction={{
             xs: 'column',
-            sm: 'row'
+            sm: 'row',
           }}
-          flexWrap="wrap"
+          flexWrap='wrap'
           gap={2}
         >
-          <Typography variant="subtitle2">
-            Overall reviews
-          </Typography>
-          <Stack
-            alignItems="center"
-            direction="row"
-            divider={<span>•</span>}
-            spacing={2}
-          >
-            <Stack
-              alignItems="center"
-              direction="row"
-              spacing={1}
-            >
-              <Rating
-                value={averageRating / 5}
-                precision={0.1}
-                readOnly
-                max={1}
-              />
-              <Typography
-                noWrap
-                variant="subtitle2"
-              >
+          <Typography variant='subtitle2'>Overall reviews</Typography>
+          <Stack alignItems='center'
+direction='row'
+divider={<span>•</span>}
+spacing={2}>
+            <Stack alignItems='center'
+direction='row'
+spacing={1}>
+              <Rating value={averageRating / 5}
+precision={0.1}
+readOnly
+max={1} />
+              <Typography noWrap
+variant='subtitle2'>
                 {averageRating}/5
               </Typography>
             </Stack>
-            <Typography
-              color="text.secondary"
-              variant="body2"
-            >
+            <Typography color='text.secondary'
+variant='body2'>
               {totalReviews} reviews in total
             </Typography>
           </Stack>
         </Stack>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
 CompanyReviewsSummary.propTypes = {
   averageRating: PropTypes.number.isRequired,
-  totalReviews: PropTypes.number.isRequired
-};
+  totalReviews: PropTypes.number.isRequired,
+}

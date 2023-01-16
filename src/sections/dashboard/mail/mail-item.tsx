@@ -1,11 +1,11 @@
-import type { ChangeEvent, FC } from 'react';
-import { useCallback } from 'react';
-import PropTypes from 'prop-types';
-import NextLink from 'next/link';
-import { format } from 'date-fns';
-import Attachment01Icon from '@untitled-ui/icons-react/build/esm/Attachment01';
-import BookmarkIcon from '@untitled-ui/icons-react/build/esm/Bookmark';
-import Star01Icon from '@untitled-ui/icons-react/build/esm/Star01';
+import type { ChangeEvent, FC } from 'react'
+import { useCallback } from 'react'
+import PropTypes from 'prop-types'
+import NextLink from 'next/link'
+import { format } from 'date-fns'
+import Attachment01Icon from '@untitled-ui/icons-react/build/esm/Attachment01'
+import BookmarkIcon from '@untitled-ui/icons-react/build/esm/Bookmark'
+import Star01Icon from '@untitled-ui/icons-react/build/esm/Star01'
 import {
   Avatar,
   Box,
@@ -14,38 +14,38 @@ import {
   IconButton,
   SvgIcon,
   Tooltip,
-  Typography
-} from '@mui/material';
-import type { Email } from '../../../types/mail';
-import { getInitials } from '../../../utils/get-initials';
+  Typography,
+} from '@mui/material'
+import type { Email } from '../../../types/mail'
+import { getInitials } from '../../../utils/get-initials'
 
 interface MailItemProps {
-  email: Email;
-  href: string;
-  onDeselect?: () => void;
-  onSelect?: () => void;
-  selected: boolean;
+  email: Email
+  href: string
+  onDeselect?: () => void
+  onSelect?: () => void
+  selected: boolean
 }
 
 export const MailItem: FC<MailItemProps> = (props) => {
-  const { email, onDeselect, onSelect, selected, href, ...other } = props;
+  const { email, onDeselect, onSelect, selected, href, ...other } = props
 
   const handleSelectToggle = useCallback(
     (event: ChangeEvent<HTMLInputElement>): void => {
-      const { checked } = event.target;
+      const { checked } = event.target
 
       if (checked) {
-        onSelect?.();
+        onSelect?.()
       } else {
-        onDeselect?.();
+        onDeselect?.()
       }
     },
-    [onSelect, onDeselect]
-  );
+    [onSelect, onDeselect],
+  )
 
-  const createdAt = format(email.createdAt, 'dd MMM');
-  const hasAnyAttachments = !!(email.attachments && email.attachments.length > 0);
-  const hasManyAttachments = !!(email.attachments && email.attachments.length > 1);
+  const createdAt = format(email.createdAt, 'dd MMM')
+  const hasAnyAttachments = !!(email.attachments && email.attachments.length > 0)
+  const hasManyAttachments = !!(email.attachments && email.attachments.length > 1)
 
   return (
     <Box
@@ -65,20 +65,20 @@ export const MailItem: FC<MailItemProps> = (props) => {
             left: 0,
             position: 'absolute',
             top: 0,
-            width: 4
+            width: 4,
           },
           '& $name, & $subject': {
-            fontWeight: 600
-          }
+            fontWeight: 600,
+          },
         }),
         ...(selected && {
-          backgroundColor: 'primary.lightest'
+          backgroundColor: 'primary.lightest',
         }),
         ...(!selected && {
           '&:hover': {
-            backgroundColor: 'action.hover'
-          }
-        })
+            backgroundColor: 'action.hover',
+          },
+        }),
       }}
       {...other}
     >
@@ -87,16 +87,14 @@ export const MailItem: FC<MailItemProps> = (props) => {
           alignItems: 'center',
           display: {
             md: 'flex',
-            xs: 'none'
+            xs: 'none',
           },
-          mr: 1
+          mr: 1,
         }}
       >
-        <Checkbox
-          checked={selected}
-          onChange={handleSelectToggle}
-        />
-        <Tooltip title="Starred">
+        <Checkbox checked={selected}
+onChange={handleSelectToggle} />
+        <Tooltip title='Starred'>
           <IconButton>
             <SvgIcon
               sx={{
@@ -104,16 +102,16 @@ export const MailItem: FC<MailItemProps> = (props) => {
                   color: 'warning.main',
                   '& path': {
                     fill: (theme) => theme.palette.warning.main,
-                    fillOpacity: 1
-                  }
-                })
+                    fillOpacity: 1,
+                  },
+                }),
               }}
             >
               <Star01Icon />
             </SvgIcon>
           </IconButton>
         </Tooltip>
-        <Tooltip title="Important">
+        <Tooltip title='Important'>
           <IconButton>
             <SvgIcon
               sx={{
@@ -121,9 +119,9 @@ export const MailItem: FC<MailItemProps> = (props) => {
                   color: 'warning.main',
                   '& path': {
                     fill: (theme) => theme.palette.warning.main,
-                    fillOpacity: 1
-                  }
-                })
+                    fillOpacity: 1,
+                  },
+                }),
               }}
             >
               <BookmarkIcon />
@@ -141,32 +139,30 @@ export const MailItem: FC<MailItemProps> = (props) => {
           flexGrow: 1,
           flexWrap: {
             xs: 'wrap',
-            md: 'nowrap'
+            md: 'nowrap',
           },
           minWidth: 1,
-          textDecoration: 'none'
+          textDecoration: 'none',
         }}
       >
         <Box
           sx={{
             alignItems: 'center',
-            display: 'flex'
+            display: 'flex',
           }}
         >
-          <Avatar src={email.from.avatar || undefined}>
-            {getInitials(email.from.name)}
-          </Avatar>
+          <Avatar src={email.from.avatar || undefined}>{getInitials(email.from.name)}</Avatar>
           <Typography
-            color="text.primary"
+            color='text.primary'
             sx={{
               width: 120,
               ml: 2,
               ...(!email.isUnread && {
-                fontWeight: 600
-              })
+                fontWeight: 600,
+              }),
             }}
             noWrap
-            variant="body2"
+            variant='body2'
           >
             {email.from.name}
           </Typography>
@@ -176,17 +172,17 @@ export const MailItem: FC<MailItemProps> = (props) => {
             flexGrow: 1,
             ml: {
               xs: 0,
-              md: 2
+              md: 2,
             },
             my: {
               xs: 2,
-              md: 0
+              md: 0,
             },
             overflow: 'hidden',
             width: {
               xs: '100%',
-              md: 'auto'
-            }
+              md: 'auto',
+            },
           }}
         >
           <Box
@@ -194,71 +190,64 @@ export const MailItem: FC<MailItemProps> = (props) => {
               alignItems: 'center',
               display: 'flex',
               maxWidth: 800,
-              width: '100%'
+              width: '100%',
             }}
           >
             <Typography
-              color="text.primary"
+              color='text.primary'
               sx={{
                 fontWeight: 600,
                 minWidth: 100,
                 maxWidth: 400,
-                mr: 1
+                mr: 1,
               }}
               noWrap
-              variant="body2"
+              variant='body2'
             >
               {email.subject}
             </Typography>
-            <Typography
-              color="text.secondary"
-              noWrap
-              variant="body2"
-            >
-              —
-              {email.message}
+            <Typography color='text.secondary'
+noWrap
+variant='body2'>
+              —{email.message}
             </Typography>
           </Box>
           {hasAnyAttachments && (
             <Box sx={{ mt: 1 }}>
               <Chip
-                icon={(
+                icon={
                   <SvgIcon>
                     <Attachment01Icon />
                   </SvgIcon>
-                )}
+                }
                 label={email.attachments![0].name}
-                size="small"
+                size='small'
               />
-              {hasManyAttachments && (
-                <Chip
-                  label="+1"
-                  size="small"
-                  sx={{ ml: 1 }}
-                />
-              )}
+              {hasManyAttachments && <Chip label='+1'
+size='small'
+sx={{ ml: 1 }} />}
             </Box>
           )}
         </Box>
         <Typography
-          color="text.secondary"
-          variant="caption"
+          color='text.secondary'
+          variant='caption'
           sx={{
             display: 'block',
             textAlign: {
               xs: 'left',
-              md: 'right'
+              md: 'right',
             },
             whiteSpace: 'nowrap',
-            width: 100
+            width: 100,
           }}
         >
           {createdAt}
         </Typography>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
 MailItem.propTypes = {
   // @ts-ignore
@@ -266,5 +255,5 @@ MailItem.propTypes = {
   href: PropTypes.string.isRequired,
   onDeselect: PropTypes.func,
   onSelect: PropTypes.func,
-  selected: PropTypes.bool.isRequired
-};
+  selected: PropTypes.bool.isRequired,
+}

@@ -1,12 +1,12 @@
-import type { ChangeEvent } from 'react';
-import { useCallback, useEffect, useState } from 'react';
-import type { NextPage } from 'next';
-import NextLink from 'next/link';
-import Head from 'next/head';
-import MessageChatSquareIcon from '@untitled-ui/icons-react/build/esm/MessageChatSquare';
-import DotsHorizontalIcon from '@untitled-ui/icons-react/build/esm/DotsHorizontal';
-import Image01Icon from '@untitled-ui/icons-react/build/esm/Image01';
-import UserPlus02Icon from '@untitled-ui/icons-react/build/esm/UserPlus02';
+import type { ChangeEvent } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import type { NextPage } from 'next'
+import NextLink from 'next/link'
+import Head from 'next/head'
+import MessageChatSquareIcon from '@untitled-ui/icons-react/build/esm/MessageChatSquare'
+import DotsHorizontalIcon from '@untitled-ui/icons-react/build/esm/DotsHorizontal'
+import Image01Icon from '@untitled-ui/icons-react/build/esm/Image01'
+import UserPlus02Icon from '@untitled-ui/icons-react/build/esm/UserPlus02'
 import {
   Avatar,
   Box,
@@ -19,168 +19,148 @@ import {
   Tab,
   Tabs,
   Tooltip,
-  Typography
-} from '@mui/material';
-import { blueGrey } from '@mui/material/colors';
-import { socialApi } from '../../../api/social';
-import { useMounted } from '../../../hooks/use-mounted';
-import { usePageView } from '../../../hooks/use-page-view';
-import { Layout as DashboardLayout } from '../../../layouts/dashboard';
-import { paths } from '../../../paths';
-import { SocialConnections } from '../../../sections/dashboard/social/social-connections';
-import { SocialTimeline } from '../../../sections/dashboard/social/social-timeline';
-import type { Connection, Post, Profile } from '../../../types/social';
+  Typography,
+} from '@mui/material'
+import { blueGrey } from '@mui/material/colors'
+import { socialApi } from '../../../api/social'
+import { useMounted } from '../../../hooks/use-mounted'
+import { usePageView } from '../../../hooks/use-page-view'
+import { Layout as DashboardLayout } from '../../../layouts/dashboard'
+import { paths } from '../../../paths'
+import { SocialConnections } from '../../../sections/dashboard/social/social-connections'
+import { SocialTimeline } from '../../../sections/dashboard/social/social-timeline'
+import type { Connection, Post, Profile } from '../../../types/social'
 
 const tabs = [
   { label: 'Timeline', value: 'timeline' },
-  { label: 'Connections', value: 'connections' }
-];
+  { label: 'Connections', value: 'connections' },
+]
 
 const useProfile = (): Profile | null => {
-  const isMounted = useMounted();
-  const [profile, setProfile] = useState<Profile | null>(null);
+  const isMounted = useMounted()
+  const [profile, setProfile] = useState<Profile | null>(null)
 
   const getProfile = useCallback(async () => {
     try {
-      const response = await socialApi.getProfile();
+      const response = await socialApi.getProfile()
 
       if (isMounted()) {
-        setProfile(response);
+        setProfile(response)
       }
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  }, [isMounted]);
+  }, [isMounted])
 
   useEffect(
     () => {
-      getProfile();
+      getProfile()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+    [],
+  )
 
-  return profile;
-};
+  return profile
+}
 
 const usePosts = (): Post[] => {
-  const isMounted = useMounted();
-  const [posts, setPosts] = useState<Post[]>([]);
+  const isMounted = useMounted()
+  const [posts, setPosts] = useState<Post[]>([])
 
-  const getPosts = useCallback(
-    async () => {
-      try {
-        const response = await socialApi.getPosts();
-
-        if (isMounted()) {
-          setPosts(response);
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    },
-    [isMounted]
-  );
-
-  useEffect(
-    () => {
-      getPosts();
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
-
-  return posts;
-};
-
-const useConnections = (search: string = ''): Connection[] => {
-  const [connections, setConnections] = useState<Connection[]>([]);
-  const isMounted = useMounted();
-
-  const getConnections = useCallback(
-    async () => {
-      const response = await socialApi.getConnections();
+  const getPosts = useCallback(async () => {
+    try {
+      const response = await socialApi.getPosts()
 
       if (isMounted()) {
-        setConnections(response);
+        setPosts(response)
       }
-    },
-    [isMounted]
-  );
+    } catch (err) {
+      console.error(err)
+    }
+  }, [isMounted])
 
   useEffect(
     () => {
-      getConnections();
+      getPosts()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [search]
-  );
+    [],
+  )
+
+  return posts
+}
+
+const useConnections = (search: string = ''): Connection[] => {
+  const [connections, setConnections] = useState<Connection[]>([])
+  const isMounted = useMounted()
+
+  const getConnections = useCallback(async () => {
+    const response = await socialApi.getConnections()
+
+    if (isMounted()) {
+      setConnections(response)
+    }
+  }, [isMounted])
+
+  useEffect(
+    () => {
+      getConnections()
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [search],
+  )
 
   return connections.filter((connection) => {
-    return connection.name?.toLowerCase().includes(search);
-  });
-};
+    return connection.name?.toLowerCase().includes(search)
+  })
+}
 
 export const SocialProfile: NextPage = () => {
-  const profile = useProfile();
-  const [currentTab, setCurrentTab] = useState<string>('timeline');
-  const [status, setStatus] = useState<string>('not_connected');
-  const posts = usePosts();
-  const [connectionsQuery, setConnectionsQuery] = useState<string>('');
-  const connections = useConnections(connectionsQuery);
+  const profile = useProfile()
+  const [currentTab, setCurrentTab] = useState<string>('timeline')
+  const [status, setStatus] = useState<string>('not_connected')
+  const posts = usePosts()
+  const [connectionsQuery, setConnectionsQuery] = useState<string>('')
+  const connections = useConnections(connectionsQuery)
 
-  usePageView();
+  usePageView()
 
-  const handleConnectionAdd = useCallback(
-    (): void => {
-      setStatus('pending');
-    },
-    []
-  );
+  const handleConnectionAdd = useCallback((): void => {
+    setStatus('pending')
+  }, [])
 
-  const handleConnectionRemove = useCallback(
-    (): void => {
-      setStatus('not_connected');
-    },
-    []
-  );
+  const handleConnectionRemove = useCallback((): void => {
+    setStatus('not_connected')
+  }, [])
 
-  const handleTabsChange = useCallback(
-    (event: ChangeEvent<{}>, value: string): void => {
-      setCurrentTab(value);
-    },
-    []
-  );
+  const handleTabsChange = useCallback((event: ChangeEvent<{}>, value: string): void => {
+    setCurrentTab(value)
+  }, [])
 
-  const handleConnectionsQueryChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>): void => {
-      setConnectionsQuery(event.target.value);
-    },
-    []
-  );
+  const handleConnectionsQueryChange = useCallback((event: ChangeEvent<HTMLInputElement>): void => {
+    setConnectionsQuery(event.target.value)
+  }, [])
 
   if (!profile) {
-    return null;
+    return null
   }
 
-  const showConnect = status === 'not_connected';
-  const showPending = status === 'pending';
+  const showConnect = status === 'not_connected'
+  const showPending = status === 'pending'
 
   return (
     <>
       <Head>
-        <title>
-          Dashboard: Social Profile | Devias Kit PRO
-        </title>
+        <title>Dashboard: Social Profile | Devias Kit PRO</title>
       </Head>
       <Box
-        component="main"
+        component='main'
         sx={{
           flexGrow: 1,
-          py: 8
+          py: 8,
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth='lg'>
           <div>
             <Box
               style={{ backgroundImage: `url(${profile.cover})` }}
@@ -193,102 +173,94 @@ export const SocialProfile: NextPage = () => {
                 position: 'relative',
                 '&:hover': {
                   '& button': {
-                    visibility: 'visible'
-                  }
-                }
+                    visibility: 'visible',
+                  },
+                },
               }}
             >
               <Button
-                startIcon={(
+                startIcon={
                   <SvgIcon>
                     <Image01Icon />
                   </SvgIcon>
-                )}
+                }
                 sx={{
                   backgroundColor: blueGrey[900],
                   bottom: {
                     lg: 24,
-                    xs: 'auto'
+                    xs: 'auto',
                   },
                   color: 'common.white',
                   position: 'absolute',
                   right: 24,
                   top: {
                     lg: 'auto',
-                    xs: 24
+                    xs: 24,
                   },
                   visibility: 'hidden',
                   '&:hover': {
-                    backgroundColor: blueGrey[900]
-                  }
+                    backgroundColor: blueGrey[900],
+                  },
                 }}
-                variant="contained"
+                variant='contained'
               >
                 Change Cover
               </Button>
             </Box>
-            <Stack
-              alignItems="center"
-              direction="row"
-              spacing={2}
-              sx={{ mt: 5 }}
-            >
-              <Stack
-                alignItems="center"
-                direction="row"
-                spacing={2}
-              >
+            <Stack alignItems='center'
+direction='row'
+spacing={2}
+sx={{ mt: 5 }}>
+              <Stack alignItems='center'
+direction='row'
+spacing={2}>
                 <Avatar
                   src={profile.avatar}
                   sx={{
                     height: 64,
-                    width: 64
+                    width: 64,
                   }}
                 />
                 <div>
-                  <Typography
-                    color="text.secondary"
-                    variant="overline"
-                  >
+                  <Typography color='text.secondary'
+variant='overline'>
                     {profile.bio}
                   </Typography>
-                  <Typography variant="h6">
-                    {profile.name}
-                  </Typography>
+                  <Typography variant='h6'>{profile.name}</Typography>
                 </div>
               </Stack>
               <Box sx={{ flexGrow: 1 }} />
               <Stack
-                alignItems="center"
-                direction="row"
+                alignItems='center'
+                direction='row'
                 spacing={2}
                 sx={{
                   display: {
                     md: 'block',
-                    xs: 'none'
-                  }
+                    xs: 'none',
+                  },
                 }}
               >
                 {showConnect && (
                   <Button
                     onClick={handleConnectionAdd}
-                    size="small"
-                    startIcon={(
+                    size='small'
+                    startIcon={
                       <SvgIcon>
                         <UserPlus02Icon />
                       </SvgIcon>
-                    )}
-                    variant="outlined"
+                    }
+                    variant='outlined'
                   >
                     Connect
                   </Button>
                 )}
                 {showPending && (
                   <Button
-                    color="primary"
+                    color='primary'
                     onClick={handleConnectionRemove}
-                    size="small"
-                    variant="outlined"
+                    size='small'
+                    variant='outlined'
                   >
                     Pending
                   </Button>
@@ -296,18 +268,18 @@ export const SocialProfile: NextPage = () => {
                 <Button
                   component={NextLink}
                   href={paths.dashboard.chat}
-                  size="small"
-                  startIcon={(
+                  size='small'
+                  startIcon={
                     <SvgIcon>
                       <MessageChatSquareIcon />
                     </SvgIcon>
-                  )}
-                  variant="contained"
+                  }
+                  variant='contained'
                 >
                   Send Message
                 </Button>
               </Stack>
-              <Tooltip title="More options">
+              <Tooltip title='More options'>
                 <IconButton>
                   <SvgIcon>
                     <DotsHorizontalIcon />
@@ -317,30 +289,24 @@ export const SocialProfile: NextPage = () => {
             </Stack>
           </div>
           <Tabs
-            indicatorColor="primary"
+            indicatorColor='primary'
             onChange={handleTabsChange}
-            scrollButtons="auto"
+            scrollButtons='auto'
             sx={{ mt: 5 }}
-            textColor="primary"
+            textColor='primary'
             value={currentTab}
-            variant="scrollable"
+            variant='scrollable'
           >
             {tabs.map((tab) => (
-              <Tab
-                key={tab.value}
-                label={tab.label}
-                value={tab.value}
-              />
+              <Tab key={tab.value}
+label={tab.label}
+value={tab.value} />
             ))}
           </Tabs>
           <Divider />
           <Box sx={{ mt: 3 }}>
-            {currentTab === 'timeline' && (
-              <SocialTimeline
-                posts={posts}
-                profile={profile}
-              />
-            )}
+            {currentTab === 'timeline' && <SocialTimeline posts={posts}
+profile={profile} />}
             {currentTab === 'connections' && (
               <SocialConnections
                 connections={connections}
@@ -352,13 +318,9 @@ export const SocialProfile: NextPage = () => {
         </Container>
       </Box>
     </>
-  );
-};
+  )
+}
 
-SocialProfile.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
+SocialProfile.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>
 
-export default SocialProfile;
+export default SocialProfile

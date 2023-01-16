@@ -1,19 +1,19 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import { useSearchParams } from 'next/navigation';
-import Menu01Icon from '@untitled-ui/icons-react/build/esm/Menu01';
-import type { Theme } from '@mui/material';
-import { Box, Divider, IconButton, SvgIcon, useMediaQuery } from '@mui/material';
-import { usePageView } from '../../hooks/use-page-view';
-import { Layout as DashboardLayout } from '../../layouts/dashboard';
-import { ChatBlank } from '../../sections/dashboard/chat/chat-blank';
-import { ChatComposer } from '../../sections/dashboard/chat/chat-composer';
-import { ChatContainer } from '../../sections/dashboard/chat/chat-container';
-import { ChatSidebar } from '../../sections/dashboard/chat/chat-sidebar';
-import { ChatThread } from '../../sections/dashboard/chat/chat-thread';
-import { useDispatch } from '../../store';
-import { thunks } from '../../thunks/chat';
+import { useCallback, useEffect, useRef, useState } from 'react'
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import { useSearchParams } from 'next/navigation'
+import Menu01Icon from '@untitled-ui/icons-react/build/esm/Menu01'
+import type { Theme } from '@mui/material'
+import { Box, Divider, IconButton, SvgIcon, useMediaQuery } from '@mui/material'
+import { usePageView } from '../../hooks/use-page-view'
+import { Layout as DashboardLayout } from '../../layouts/dashboard'
+import { ChatBlank } from '../../sections/dashboard/chat/chat-blank'
+import { ChatComposer } from '../../sections/dashboard/chat/chat-composer'
+import { ChatContainer } from '../../sections/dashboard/chat/chat-container'
+import { ChatSidebar } from '../../sections/dashboard/chat/chat-sidebar'
+import { ChatThread } from '../../sections/dashboard/chat/chat-thread'
+import { useDispatch } from '../../store'
+import { thunks } from '../../thunks/chat'
 
 /**
  * NOTE:
@@ -22,128 +22,107 @@ import { thunks } from '../../thunks/chat';
  * if threadKey does not exist, it means that the chat is in compose mode
  */
 
-const useParams = (): { compose: boolean; threadKey?: string; } => {
-  const searchParams = useSearchParams();
-  const compose = searchParams.get('compose') === 'true';
-  const threadKey = searchParams.get('threadKey') || undefined;
+const useParams = (): { compose: boolean; threadKey?: string } => {
+  const searchParams = useSearchParams()
+  const compose = searchParams.get('compose') === 'true'
+  const threadKey = searchParams.get('threadKey') || undefined
 
   return {
     compose,
-    threadKey
-  };
-};
+    threadKey,
+  }
+}
 
 const useThreads = (): void => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const getThreads = useCallback(
-    (): void => {
-      dispatch(thunks.getThreads());
-    },
-    [dispatch]
-  );
+  const getThreads = useCallback((): void => {
+    dispatch(thunks.getThreads())
+  }, [dispatch])
 
   useEffect(
     () => {
-      getThreads();
+      getThreads()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
-};
+    [],
+  )
+}
 
 const useSidebar = () => {
-  const searchParams = useSearchParams();
-  const mdUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'));
-  const [isOpen, setIsOpen] = useState(mdUp);
+  const searchParams = useSearchParams()
+  const mdUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
+  const [isOpen, setIsOpen] = useState(mdUp)
 
-  const handleScreenResize = useCallback(
-    (): void => {
-      if (!mdUp) {
-        setIsOpen(false);
-      } else {
-        setIsOpen(true);
-      }
-    },
-    [mdUp]
-  );
+  const handleScreenResize = useCallback((): void => {
+    if (!mdUp) {
+      setIsOpen(false)
+    } else {
+      setIsOpen(true)
+    }
+  }, [mdUp])
 
   useEffect(
     () => {
-      handleScreenResize();
+      handleScreenResize()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [mdUp]
-  );
+    [mdUp],
+  )
 
-  const handeParamsUpdate = useCallback(
-    (): void => {
-      if (!mdUp) {
-        setIsOpen(false);
-      }
-    },
-    [mdUp]
-  );
+  const handeParamsUpdate = useCallback((): void => {
+    if (!mdUp) {
+      setIsOpen(false)
+    }
+  }, [mdUp])
 
   useEffect(
     () => {
-      handeParamsUpdate();
+      handeParamsUpdate()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [searchParams]
-  );
+    [searchParams],
+  )
 
-  const handleToggle = useCallback(
-    (): void => {
-      setIsOpen((prevState) => !prevState);
-    },
-    []
-  );
+  const handleToggle = useCallback((): void => {
+    setIsOpen((prevState) => !prevState)
+  }, [])
 
-  const handleClose = useCallback(
-    (): void => {
-      setIsOpen(false);
-    },
-    []
-  );
+  const handleClose = useCallback((): void => {
+    setIsOpen(false)
+  }, [])
 
   return {
     isOpen,
     handleToggle,
-    handleClose
-  };
-};
+    handleClose,
+  }
+}
 
 const Page: NextPage = () => {
-  const rootRef = useRef<HTMLDivElement | null>(null);
-  const { compose, threadKey } = useParams();
-  const sidebar = useSidebar();
+  const rootRef = useRef<HTMLDivElement | null>(null)
+  const { compose, threadKey } = useParams()
+  const sidebar = useSidebar()
 
-  usePageView();
+  usePageView()
 
-  useThreads();
+  useThreads()
 
-  const view = threadKey
-    ? 'thread'
-    : compose
-      ? 'compose'
-      : 'blank';
+  const view = threadKey ? 'thread' : compose ? 'compose' : 'blank'
 
   return (
     <>
       <Head>
-        <title>
-          Dashboard: Chat | Devias Kit PRO
-        </title>
+        <title>Dashboard: Chat | Devias Kit PRO</title>
       </Head>
       <Divider />
       <Box
-        component="main"
+        component='main'
         sx={{
           backgroundColor: 'background.paper',
           flex: '1 1 auto',
           overflow: 'hidden',
-          position: 'relative'
+          position: 'relative',
         }}
       >
         <Box
@@ -154,7 +133,7 @@ const Page: NextPage = () => {
             left: 0,
             position: 'absolute',
             right: 0,
-            top: 0
+            top: 0,
           }}
         >
           <ChatSidebar
@@ -178,13 +157,9 @@ const Page: NextPage = () => {
         </Box>
       </Box>
     </>
-  );
-};
+  )
+}
 
-Page.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
+Page.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>
 
-export default Page;
+export default Page

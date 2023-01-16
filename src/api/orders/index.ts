@@ -1,35 +1,35 @@
-import type { Order } from '../../types/order';
-import { order, orders } from './data';
-import { deepCopy } from '../../utils/deep-copy';
-import { applyPagination } from '../../utils/apply-pagination';
-import { applySort } from '../../utils/apply-sort';
+import type { Order } from '../../types/order'
+import { order, orders } from './data'
+import { deepCopy } from '../../utils/deep-copy'
+import { applyPagination } from '../../utils/apply-pagination'
+import { applySort } from '../../utils/apply-sort'
 
 type GetOrdersRequest = {
   filters?: {
-    query?: string;
-    status?: string;
-  };
-  page?: number;
-  rowsPerPage?: number;
-  sortBy?: string;
-  sortDir?: 'asc' | 'desc';
-};
+    query?: string
+    status?: string
+  }
+  page?: number
+  rowsPerPage?: number
+  sortBy?: string
+  sortDir?: 'asc' | 'desc'
+}
 
 type GetOrdersResponse = Promise<{
-  data: Order[];
-  count: number;
-}>;
+  data: Order[]
+  count: number
+}>
 
-type GetOrderRequest = {};
+type GetOrderRequest = {}
 
-type GetOrderResponse = Promise<Order>;
+type GetOrderResponse = Promise<Order>
 
 class OrdersApi {
   getOrders(request: GetOrdersRequest = {}): GetOrdersResponse {
-    const { filters, page, rowsPerPage, sortBy, sortDir } = request;
+    const { filters, page, rowsPerPage, sortBy, sortDir } = request
 
-    let data = deepCopy(orders) as Order[];
-    let count = data.length;
+    let data = deepCopy(orders) as Order[]
+    let count = data.length
 
     if (typeof filters !== 'undefined') {
       data = data.filter((order) => {
@@ -38,43 +38,43 @@ class OrdersApi {
           // name, email, etc.
           const containsQuery = (order.number || '')
             .toLowerCase()
-            .includes(filters.query.toLowerCase());
+            .includes(filters.query.toLowerCase())
 
           if (!containsQuery) {
-            return false;
+            return false
           }
         }
 
         if (typeof filters.status !== 'undefined') {
-          const statusMatched = order.status === filters.status;
+          const statusMatched = order.status === filters.status
 
           if (!statusMatched) {
-            return false;
+            return false
           }
         }
 
-        return true;
-      });
-      count = data.length;
+        return true
+      })
+      count = data.length
     }
 
     if (typeof sortBy !== 'undefined' && typeof sortDir !== 'undefined') {
-      data = applySort(data, sortBy, sortDir);
+      data = applySort(data, sortBy, sortDir)
     }
 
     if (typeof page !== 'undefined' && typeof rowsPerPage !== 'undefined') {
-      data = applyPagination(data, page, rowsPerPage);
+      data = applyPagination(data, page, rowsPerPage)
     }
 
     return Promise.resolve({
       data,
-      count
-    });
+      count,
+    })
   }
 
   getOrder(request: GetOrderRequest = {}): GetOrderResponse {
-    return Promise.resolve(deepCopy(order));
+    return Promise.resolve(deepCopy(order))
   }
 }
 
-export const ordersApi = new OrdersApi();
+export const ordersApi = new OrdersApi()

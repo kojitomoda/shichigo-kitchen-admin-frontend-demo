@@ -1,80 +1,72 @@
-import type { FC } from 'react';
-import type { ApexOptions } from 'apexcharts';
-import numeral from 'numeral';
-import { Box, Card, CardContent, CardHeader, Container, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { Chart } from '../../../components/chart';
+import type { FC } from 'react'
+import type { ApexOptions } from 'apexcharts'
+import numeral from 'numeral'
+import { Box, Card, CardContent, CardHeader, Container, Typography } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
+import { Chart } from '../../../components/chart'
 
-type ChartSeries = number[];
+type ChartSeries = number[]
 
-const chartSeries: ChartSeries = [14859, 35690, 45120];
+const chartSeries: ChartSeries = [14859, 35690, 45120]
 
-const labels: string[] = ['Strategy', 'Outsourcing', 'Marketing'];
+const labels: string[] = ['Strategy', 'Outsourcing', 'Marketing']
 
 const useChartOptions = (): ApexOptions => {
-  const theme = useTheme();
+  const theme = useTheme()
 
   return {
     chart: {
       background: 'transparent',
       stacked: false,
       toolbar: {
-        show: false
-      }
+        show: false,
+      },
     },
-    colors: [
-      theme.palette.primary.main,
-      theme.palette.info.main,
-      theme.palette.warning.main
-    ],
+    colors: [theme.palette.primary.main, theme.palette.info.main, theme.palette.warning.main],
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     fill: {
       opacity: 1,
-      type: 'solid'
+      type: 'solid',
     },
     labels,
     legend: {
-      show: false
+      show: false,
     },
     stroke: {
       colors: [theme.palette.background.paper],
-      width: 1
+      width: 1,
     },
     theme: {
-      mode: theme.palette.mode
+      mode: theme.palette.mode,
     },
     tooltip: {
-      fillSeriesColor: false
-    }
-  };
-};
+      fillSeriesColor: false,
+    },
+  }
+}
 
 export const Chart10: FC = () => {
-  const chartOptions = useChartOptions();
+  const chartOptions = useChartOptions()
 
   return (
     <Box
       sx={{
-        backgroundColor: (theme) => theme.palette.mode === 'dark'
-          ? 'neutral.800'
-          : 'neutral.100',
-        p: 3
+        backgroundColor: (theme) => (theme.palette.mode === 'dark' ? 'neutral.800' : 'neutral.100'),
+        p: 3,
       }}
     >
-      <Container maxWidth="md">
+      <Container maxWidth='md'>
         <Card>
-          <CardHeader title="Cost Breakdown" />
+          <CardHeader title='Cost Breakdown' />
           <CardContent>
-            <Chart
-              height={260}
-              options={chartOptions}
-              series={chartSeries}
-              type="pie"
-            />
+            <Chart height={260}
+options={chartOptions}
+series={chartSeries}
+type='pie' />
             {chartSeries.map((item, index) => {
-              const amount = numeral(item).format('$0,0.00');
+              const amount = numeral(item).format('$0,0.00')
 
               return (
                 <Box
@@ -82,7 +74,7 @@ export const Chart10: FC = () => {
                   sx={{
                     alignItems: 'center',
                     display: 'flex',
-                    p: 1
+                    p: 1,
                   }}
                 >
                   <Box
@@ -90,28 +82,24 @@ export const Chart10: FC = () => {
                       backgroundColor: chartOptions.colors![index],
                       borderRadius: '50%',
                       height: 8,
-                      width: 8
+                      width: 8,
                     }}
                   />
-                  <Typography
-                    sx={{ ml: 2 }}
-                    variant="subtitle2"
-                  >
+                  <Typography sx={{ ml: 2 }}
+variant='subtitle2'>
                     {labels[index]}
                   </Typography>
                   <Box sx={{ flexGrow: 1 }} />
-                  <Typography
-                    color="text.secondary"
-                    variant="subtitle2"
-                  >
+                  <Typography color='text.secondary'
+variant='subtitle2'>
                     {amount}
                   </Typography>
                 </Box>
-              );
+              )
             })}
           </CardContent>
         </Card>
       </Container>
     </Box>
-  );
-};
+  )
+}

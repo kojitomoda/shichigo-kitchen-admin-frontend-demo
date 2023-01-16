@@ -1,8 +1,8 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import { formatDistanceStrict } from 'date-fns';
-import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight';
-import RefreshCcw01Icon from '@untitled-ui/icons-react/build/esm/RefreshCcw01';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import { formatDistanceStrict } from 'date-fns'
+import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight'
+import RefreshCcw01Icon from '@untitled-ui/icons-react/build/esm/RefreshCcw01'
 import {
   Avatar,
   Badge,
@@ -17,48 +17,44 @@ import {
   ListItemAvatar,
   ListItemText,
   SvgIcon,
-  Typography
-} from '@mui/material';
-import { customLocale } from '../../../utils/date-locale';
+  Typography,
+} from '@mui/material'
+import { customLocale } from '../../../utils/date-locale'
 
 interface Message {
-  id: string;
-  content: string;
-  createdAt: Date;
-  senderAvatar: string;
-  senderName: string;
-  senderOnline?: boolean;
+  id: string
+  content: string
+  createdAt: Date
+  senderAvatar: string
+  senderName: string
+  senderOnline?: boolean
 }
 
 interface OverviewInboxProps {
-  messages: Message[];
+  messages: Message[]
 }
 
 export const OverviewInbox: FC<OverviewInboxProps> = (props) => {
-  const { messages } = props;
+  const { messages } = props
 
   return (
     <Card>
       <CardHeader
-        title="Inbox"
-        action={(
-          <IconButton color="inherit">
-            <SvgIcon fontSize="small">
+        title='Inbox'
+        action={
+          <IconButton color='inherit'>
+            <SvgIcon fontSize='small'>
               <RefreshCcw01Icon />
             </SvgIcon>
           </IconButton>
-        )}
+        }
       />
       <List disablePadding>
         {messages.map((message) => {
-          const ago = formatDistanceStrict(
-            message.createdAt,
-            new Date(),
-            {
-              addSuffix: true,
-              locale: customLocale
-            }
-          );
+          const ago = formatDistanceStrict(message.createdAt, new Date(), {
+            addSuffix: true,
+            locale: customLocale,
+          })
 
           return (
             <ListItem
@@ -66,88 +62,82 @@ export const OverviewInbox: FC<OverviewInboxProps> = (props) => {
               sx={{
                 '&:hover': {
                   backgroundColor: 'action.hover',
-                  cursor: 'pointer'
-                }
+                  cursor: 'pointer',
+                },
               }}
             >
               <ListItemAvatar>
-                {
-                  message.senderOnline
-                    ? (
-                      <Badge
-                        anchorOrigin={{
-                          horizontal: 'right',
-                          vertical: 'bottom'
-                        }}
-                        color="success"
-                        variant="dot"
-                      >
-                        <Avatar src={message.senderAvatar} />
-                      </Badge>
-                    )
-                    : (
-                      <Avatar src={message.senderAvatar} />
-                    )
-                }
+                {message.senderOnline ? (
+                  <Badge
+                    anchorOrigin={{
+                      horizontal: 'right',
+                      vertical: 'bottom',
+                    }}
+                    color='success'
+                    variant='dot'
+                  >
+                    <Avatar src={message.senderAvatar} />
+                  </Badge>
+                ) : (
+                  <Avatar src={message.senderAvatar} />
+                )}
               </ListItemAvatar>
               <ListItemText
                 disableTypography
-                primary={(
+                primary={
                   <Typography
                     sx={{
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
-                      whiteSpace: 'nowrap'
+                      whiteSpace: 'nowrap',
                     }}
-                    variant="subtitle2"
+                    variant='subtitle2'
                   >
                     {message.senderName}
                   </Typography>
-                )}
-                secondary={(
+                }
+                secondary={
                   <Typography
-                    color="text.secondary"
+                    color='text.secondary'
                     sx={{
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
-                      whiteSpace: 'nowrap'
+                      whiteSpace: 'nowrap',
                     }}
-                    variant="body2"
+                    variant='body2'
                   >
                     {message.content}
                   </Typography>
-                )}
+                }
                 sx={{ pr: 2 }}
               />
-              <Typography
-                color="text.secondary"
-                sx={{ whiteSpace: 'nowrap' }}
-                variant="caption"
-              >
+              <Typography color='text.secondary'
+sx={{ whiteSpace: 'nowrap' }}
+variant='caption'>
                 {ago}
               </Typography>
             </ListItem>
-          );
+          )
         })}
       </List>
       <Divider />
       <CardActions>
         <Button
-          color="inherit"
-          endIcon={(
+          color='inherit'
+          endIcon={
             <SvgIcon>
               <ArrowRightIcon />
             </SvgIcon>
-          )}
-          size="small"
+          }
+          size='small'
         >
           Go to chat
         </Button>
       </CardActions>
     </Card>
-  );
-};
+  )
+}
 
 OverviewInbox.propTypes = {
-  messages: PropTypes.array.isRequired
-};
+  messages: PropTypes.array.isRequired,
+}

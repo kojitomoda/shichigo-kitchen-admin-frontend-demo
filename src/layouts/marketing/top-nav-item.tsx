@@ -1,39 +1,33 @@
-import type { FC, ReactNode } from 'react';
-import { useCallback, useState } from 'react';
-import PropTypes from 'prop-types';
-import NextLink from 'next/link';
-import ChevronDownIcon from '@untitled-ui/icons-react/build/esm/ChevronDown';
-import { Box, ButtonBase, Paper, Portal, SvgIcon, Typography } from '@mui/material';
-import { alpha } from '@mui/material/styles';
+import type { FC, ReactNode } from 'react'
+import { useCallback, useState } from 'react'
+import PropTypes from 'prop-types'
+import NextLink from 'next/link'
+import ChevronDownIcon from '@untitled-ui/icons-react/build/esm/ChevronDown'
+import { Box, ButtonBase, Paper, Portal, SvgIcon, Typography } from '@mui/material'
+import { alpha } from '@mui/material/styles'
 
-const TOP_NAV_HEIGHT: number = 64;
-const TOP_NAV_SPACE: number = 16;
-const OFFSET: number = 16;
+const TOP_NAV_HEIGHT: number = 64
+const TOP_NAV_SPACE: number = 16
+const OFFSET: number = 16
 
 interface TopNavItemProps {
-  active?: boolean;
-  children?: ReactNode;
-  path?: string;
-  title: string;
+  active?: boolean
+  children?: ReactNode
+  path?: string
+  title: string
 }
 
 export const TopNavItem: FC<TopNavItemProps> = (props) => {
-  const { active, children, path, title } = props;
-  const [open, setOpen] = useState<boolean>(false);
+  const { active, children, path, title } = props
+  const [open, setOpen] = useState<boolean>(false)
 
-  const handleMouseEnter = useCallback(
-    () => {
-      setOpen(true);
-    },
-    []
-  );
+  const handleMouseEnter = useCallback(() => {
+    setOpen(true)
+  }, [])
 
-  const handleMouseLeave = useCallback(
-    () => {
-      setOpen(false);
-    },
-    []
-  );
+  const handleMouseLeave = useCallback(() => {
+    setOpen(false)
+  }, [])
 
   // With mega-menu
 
@@ -41,11 +35,11 @@ export const TopNavItem: FC<TopNavItemProps> = (props) => {
     return (
       <>
         <Box
-          component="li"
+          component='li'
           sx={{
             display: 'flex',
             alignItems: 'center',
-            height: '100%'
+            height: '100%',
           }}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -61,23 +55,21 @@ export const TopNavItem: FC<TopNavItemProps> = (props) => {
               py: '8px',
               textAlign: 'left',
               '&:hover': {
-                backgroundColor: 'action.hover'
+                backgroundColor: 'action.hover',
               },
               ...(active && {
-                color: 'primary.main'
-              })
+                color: 'primary.main',
+              }),
             }}
           >
-            <Typography
-              component="span"
-              variant="subtitle2"
-            >
+            <Typography component='span'
+variant='subtitle2'>
               {title}
             </Typography>
             <SvgIcon
               sx={{
                 fontSize: 16,
-                ml: 1
+                ml: 1,
               }}
             >
               <ChevronDownIcon />
@@ -95,16 +87,16 @@ export const TopNavItem: FC<TopNavItemProps> = (props) => {
                 pt: OFFSET + 'px',
                 right: 0,
                 top: TOP_NAV_HEIGHT + TOP_NAV_SPACE,
-                zIndex: (theme) => theme.zIndex.appBar + 100
+                zIndex: (theme) => theme.zIndex.appBar + 100,
               }}
             >
               <Paper
                 elevation={16}
                 sx={{
-                  backgroundColor: (theme) => alpha(theme.palette.background.paper, 0.90),
+                  backgroundColor: (theme) => alpha(theme.palette.background.paper, 0.9),
                   backdropFilter: 'blur(6px)',
                   mx: 'auto',
-                  width: (theme) => theme.breakpoints.values.md
+                  width: (theme) => theme.breakpoints.values.md,
                 }}
               >
                 {children}
@@ -113,35 +105,35 @@ export const TopNavItem: FC<TopNavItemProps> = (props) => {
           </Portal>
         )}
       </>
-    );
+    )
   }
 
   // Simple
 
-  let linkProps: any = undefined;
+  let linkProps: any = undefined
 
   if (path) {
-    const isExternal = path.startsWith('http');
+    const isExternal = path.startsWith('http')
 
     linkProps = isExternal
       ? {
-        component: 'a',
-        href: path,
-        target: '_blank'
-      }
+          component: 'a',
+          href: path,
+          target: '_blank',
+        }
       : {
-        component: NextLink,
-        href: path
-      };
+          component: NextLink,
+          href: path,
+        }
   }
 
   return (
     <Box
-      component="li"
+      component='li'
       sx={{
         display: 'flex',
         alignItems: 'center',
-        height: '100%'
+        height: '100%',
       }}
     >
       <ButtonBase
@@ -155,28 +147,26 @@ export const TopNavItem: FC<TopNavItemProps> = (props) => {
           py: '8px',
           textAlign: 'left',
           '&:hover': {
-            backgroundColor: 'action.hover'
+            backgroundColor: 'action.hover',
           },
           ...(active && {
-            color: 'primary.main'
-          })
+            color: 'primary.main',
+          }),
         }}
         {...linkProps}
       >
-        <Typography
-          component="span"
-          variant="subtitle2"
-        >
+        <Typography component='span'
+variant='subtitle2'>
           {title}
         </Typography>
       </ButtonBase>
     </Box>
-  );
-};
+  )
+}
 
 TopNavItem.propTypes = {
   active: PropTypes.bool,
   children: PropTypes.any,
   path: PropTypes.string,
-  title: PropTypes.string.isRequired
-};
+  title: PropTypes.string.isRequired,
+}

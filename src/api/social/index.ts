@@ -1,39 +1,39 @@
-import type { Connection, Post, Profile } from '../../types/social';
-import { deepCopy } from '../../utils/deep-copy';
-import { connections, feed, posts, profile } from './data';
+import type { Connection, Post, Profile } from '../../types/social'
+import { deepCopy } from '../../utils/deep-copy'
+import { connections, feed, posts, profile } from './data'
 
-type GetProfileRequest = void;
+type GetProfileRequest = void
 
-type GetProfileResponse = Promise<Profile>;
+type GetProfileResponse = Promise<Profile>
 
-type GetConnectionsRequest = {};
+type GetConnectionsRequest = {}
 
-type GetConnectionsResponse = Promise<Connection[]>;
+type GetConnectionsResponse = Promise<Connection[]>
 
-type GetPostsRequest = {};
+type GetPostsRequest = {}
 
-type GetPostsResponse = Promise<Post[]>;
+type GetPostsResponse = Promise<Post[]>
 
-type GetFeedRequest = {};
+type GetFeedRequest = {}
 
 type GetFeedResponse = Promise<Post[]>
 
 class SocialApi {
   getProfile(request?: GetProfileRequest): GetProfileResponse {
-    return Promise.resolve(deepCopy(profile));
+    return Promise.resolve(deepCopy(profile))
   }
 
   getConnections(request?: GetConnectionsRequest): GetConnectionsResponse {
-    return Promise.resolve(deepCopy(connections));
+    return Promise.resolve(deepCopy(connections))
   }
 
   getPosts(request?: GetPostsRequest): GetPostsResponse {
-    return Promise.resolve(deepCopy(posts));
+    return Promise.resolve(deepCopy(posts))
   }
 
   getFeed(request?: GetFeedRequest): GetFeedResponse {
-    return Promise.resolve(deepCopy(feed));
+    return Promise.resolve(deepCopy(feed))
   }
 }
 
-export const socialApi = new SocialApi();
+export const socialApi = new SocialApi()

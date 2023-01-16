@@ -1,10 +1,10 @@
-import type { ChangeEvent, FC } from 'react';
-import { useCallback, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import PropTypes from 'prop-types';
-import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus';
-import XIcon from '@untitled-ui/icons-react/build/esm/X';
-import type { Theme } from '@mui/material';
+import type { ChangeEvent, FC } from 'react'
+import { useCallback, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import PropTypes from 'prop-types'
+import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus'
+import XIcon from '@untitled-ui/icons-react/build/esm/X'
+import type { Theme } from '@mui/material'
 import {
   Box,
   Button,
@@ -13,155 +13,140 @@ import {
   Stack,
   SvgIcon,
   Typography,
-  useMediaQuery
-} from '@mui/material';
-import { chatApi } from '../../../api/chat';
-import { Scrollbar } from '../../../components/scrollbar';
-import { useMockedUser } from '../../../hooks/use-mocked-user';
-import { paths } from '../../../paths';
-import { useSelector } from '../../../store';
-import type { Contact, Thread } from '../../../types/chat';
-import { ChatSidebarSearch } from './chat-sidebar-search';
-import { ChatThreadItem } from './chat-thread-item';
+  useMediaQuery,
+} from '@mui/material'
+import { chatApi } from '../../../api/chat'
+import { Scrollbar } from '../../../components/scrollbar'
+import { useMockedUser } from '../../../hooks/use-mocked-user'
+import { paths } from '../../../paths'
+import { useSelector } from '../../../store'
+import type { Contact, Thread } from '../../../types/chat'
+import { ChatSidebarSearch } from './chat-sidebar-search'
+import { ChatThreadItem } from './chat-thread-item'
 
 const getThreadKey = (thread: Thread, userId: string): string | undefined => {
-  let threadKey: string | undefined;
+  let threadKey: string | undefined
 
   if (thread.type === 'GROUP') {
-    threadKey = thread.id;
+    threadKey = thread.id
   } else {
     // We hardcode the current user ID because the mocked that is not in sync
     // with the auth provider.
     // When implementing this app with a real database, replace this
     // ID with the ID from Auth Context.
-    threadKey = thread.participantIds.find((participantId) => (
-      participantId !== userId
-    ));
+    threadKey = thread.participantIds.find((participantId) => participantId !== userId)
   }
 
-  return threadKey;
-};
+  return threadKey
+}
 
-const useThreads = (): { byId: Record<string, Thread>, allIds: string[] } => {
-  return useSelector((state) => state.chat.threads);
-};
+const useThreads = (): { byId: Record<string, Thread>; allIds: string[] } => {
+  return useSelector((state) => state.chat.threads)
+}
 
 const useCurrentThreadId = (): string | undefined => {
-  return useSelector((state) => state.chat.currentThreadId);
-};
+  return useSelector((state) => state.chat.currentThreadId)
+}
 
 interface ChatSidebarProps {
-  container?: HTMLDivElement | null;
-  onClose?: () => void;
-  open?: boolean;
+  container?: HTMLDivElement | null
+  onClose?: () => void
+  open?: boolean
 }
 
 export const ChatSidebar: FC<ChatSidebarProps> = (props) => {
-  const { container, onClose, open, ...other } = props;
-  const user = useMockedUser();
-  const router = useRouter();
-  const threads = useThreads();
-  const currentThreadId = useCurrentThreadId();
-  const [searchFocused, setSearchFocused] = useState(false);
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [searchResults, setSearchResults] = useState<Contact[]>([]);
-  const mdUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'));
+  const { container, onClose, open, ...other } = props
+  const user = useMockedUser()
+  const router = useRouter()
+  const threads = useThreads()
+  const currentThreadId = useCurrentThreadId()
+  const [searchFocused, setSearchFocused] = useState(false)
+  const [searchQuery, setSearchQuery] = useState<string>('')
+  const [searchResults, setSearchResults] = useState<Contact[]>([])
+  const mdUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
 
-  const handleCompose = useCallback(
-    (): void => {
-      router.push(paths.dashboard.chat + '?compose=true');
-    },
-    [router]
-  );
+  const handleCompose = useCallback((): void => {
+    router.push(paths.dashboard.chat + '?compose=true')
+  }, [router])
 
   const handleSearchChange = useCallback(
     async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
-      const { value } = event.target;
+      const { value } = event.target
 
-      setSearchQuery(value);
+      setSearchQuery(value)
 
       if (!value) {
-        setSearchResults([]);
-        return;
+        setSearchResults([])
+        return
       }
 
       try {
-        const contacts = await chatApi.getContacts({ query: value });
+        const contacts = await chatApi.getContacts({ query: value })
 
-        setSearchResults(contacts);
+        setSearchResults(contacts)
       } catch (err) {
-        console.error(err);
+        console.error(err)
       }
     },
-    []
-  );
+    [],
+  )
 
-  const handleSearchClickAway = useCallback(
-    (): void => {
-      if (searchFocused) {
-        setSearchFocused(false);
-        setSearchQuery('');
-      }
-    },
-    [searchFocused]
-  );
+  const handleSearchClickAway = useCallback((): void => {
+    if (searchFocused) {
+      setSearchFocused(false)
+      setSearchQuery('')
+    }
+  }, [searchFocused])
 
-  const handleSearchFocus = useCallback(
-    (): void => {
-      setSearchFocused(true);
-    },
-    []
-  );
+  const handleSearchFocus = useCallback((): void => {
+    setSearchFocused(true)
+  }, [])
 
   const handleSearchSelect = useCallback(
     (contact: Contact): void => {
       // We use the contact ID as a thread key
-      const threadKey = contact.id;
+      const threadKey = contact.id
 
-      setSearchFocused(false);
-      setSearchQuery('');
+      setSearchFocused(false)
+      setSearchQuery('')
 
-      router.push(paths.dashboard.chat + `?threadKey=${threadKey}`);
+      router.push(paths.dashboard.chat + `?threadKey=${threadKey}`)
     },
-    [router]
-  );
+    [router],
+  )
 
   const handleThreadSelect = useCallback(
     (threadId: string): void => {
-      const thread = threads.byId[threadId];
-      const threadKey = getThreadKey(thread, user.id);
+      const thread = threads.byId[threadId]
+      const threadKey = getThreadKey(thread, user.id)
 
       if (!threadKey) {
-        router.push(paths.dashboard.chat);
+        router.push(paths.dashboard.chat)
       } else {
-        router.push(paths.dashboard.chat + `?threadKey=${threadKey}`);
+        router.push(paths.dashboard.chat + `?threadKey=${threadKey}`)
       }
     },
-    [router, threads, user]
-  );
+    [router, threads, user],
+  )
 
   const content = (
     <div>
-      <Stack
-        alignItems="center"
-        direction="row"
-        spacing={2}
-        sx={{ p: 2 }}
-      >
-        <Typography
-          variant="h5"
-          sx={{ flexGrow: 1 }}
-        >
+      <Stack alignItems='center'
+direction='row'
+spacing={2}
+sx={{ p: 2 }}>
+        <Typography variant='h5'
+sx={{ flexGrow: 1 }}>
           Chats
         </Typography>
         <Button
           onClick={handleCompose}
-          startIcon={(
+          startIcon={
             <SvgIcon>
               <PlusIcon />
             </SvgIcon>
-          )}
-          variant="contained"
+          }
+          variant='contained'
         >
           Group
         </Button>
@@ -185,12 +170,12 @@ export const ChatSidebar: FC<ChatSidebarProps> = (props) => {
       <Box sx={{ display: searchFocused ? 'none' : 'block' }}>
         <Scrollbar>
           <Stack
-            component="ul"
+            component='ul'
             spacing={0.5}
             sx={{
               listStyle: 'none',
               m: 0,
-              p: 2
+              p: 2,
             }}
           >
             {threads.allIds.map((threadId) => (
@@ -205,38 +190,38 @@ export const ChatSidebar: FC<ChatSidebarProps> = (props) => {
         </Scrollbar>
       </Box>
     </div>
-  );
+  )
 
   if (mdUp) {
     return (
       <Drawer
-        anchor="left"
+        anchor='left'
         open={open}
         PaperProps={{
           sx: {
             position: 'relative',
-            width: 380
-          }
+            width: 380,
+          },
         }}
         SlideProps={{ container }}
-        variant="persistent"
+        variant='persistent'
         {...other}
       >
         {content}
       </Drawer>
-    );
+    )
   }
 
   return (
     <Drawer
-      anchor="left"
+      anchor='left'
       hideBackdrop
       ModalProps={{
         container,
         sx: {
           pointerEvents: 'none',
-          position: 'absolute'
-        }
+          position: 'absolute',
+        },
       }}
       onClose={onClose}
       open={open}
@@ -245,20 +230,20 @@ export const ChatSidebar: FC<ChatSidebarProps> = (props) => {
           maxWidth: '100%',
           width: 380,
           pointerEvents: 'auto',
-          position: 'absolute'
-        }
+          position: 'absolute',
+        },
       }}
       SlideProps={{ container }}
-      variant="temporary"
+      variant='temporary'
       {...other}
     >
       {content}
     </Drawer>
-  );
-};
+  )
+}
 
 ChatSidebar.propTypes = {
   container: PropTypes.any,
   onClose: PropTypes.func,
-  open: PropTypes.bool
-};
+  open: PropTypes.bool,
+}

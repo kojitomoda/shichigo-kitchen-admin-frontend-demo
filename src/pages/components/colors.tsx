@@ -1,48 +1,44 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import { Box, Container, Stack } from '@mui/material';
-import { usePageView } from '../../hooks/use-page-view';
-import { Layout as ComponentsLayout } from '../../layouts/components';
-import { Layout as MarketingLayout } from '../../layouts/marketing';
-import { Previewer } from '../../sections/components/previewer';
-import { Colors1 } from '../../sections/components/colors/colors-1';
-import { Colors2 } from '../../sections/components/colors/colors-2';
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import { Box, Container, Stack } from '@mui/material'
+import { usePageView } from '../../hooks/use-page-view'
+import { Layout as ComponentsLayout } from '../../layouts/components'
+import { Layout as MarketingLayout } from '../../layouts/marketing'
+import { Previewer } from '../../sections/components/previewer'
+import { Colors1 } from '../../sections/components/colors/colors-1'
+import { Colors2 } from '../../sections/components/colors/colors-2'
 
-const components: { element: JSX.Element; title: string; }[] = [
+const components: { element: JSX.Element; title: string }[] = [
   {
     element: <Colors1 />,
-    title: 'Main colors'
+    title: 'Main colors',
   },
   {
     element: <Colors2 />,
-    title: 'Severity colors'
-  }
-];
+    title: 'Severity colors',
+  },
+]
 
 const Page: NextPage = () => {
-  usePageView();
+  usePageView()
 
   return (
     <>
       <Head>
-        <title>
-          Components: Colors | Devias Kit PRO
-        </title>
+        <title>Components: Colors | Devias Kit PRO</title>
       </Head>
       <Box
-        component="main"
+        component='main'
         sx={{
           flexGrow: 1,
-          py: 8
+          py: 8,
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth='lg'>
           <Stack spacing={8}>
             {components.map((component) => (
-              <Previewer
-                key={component.title}
-                title={component.title}
-              >
+              <Previewer key={component.title}
+title={component.title}>
                 {component.element}
               </Previewer>
             ))}
@@ -50,15 +46,13 @@ const Page: NextPage = () => {
         </Container>
       </Box>
     </>
-  );
-};
+  )
+}
 
 Page.getLayout = (page) => (
   <MarketingLayout>
-    <ComponentsLayout title="Colors">
-      {page}
-    </ComponentsLayout>
+    <ComponentsLayout title='Colors'>{page}</ComponentsLayout>
   </MarketingLayout>
-);
+)
 
-export default Page;
+export default Page

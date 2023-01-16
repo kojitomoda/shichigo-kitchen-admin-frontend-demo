@@ -1,21 +1,21 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import { Stack } from '@mui/material';
-import type { Message, Participant } from '../../../types/chat';
-import { ChatMessage } from './chat-message';
-import { useMockedUser } from '../../../hooks/use-mocked-user';
-import type { User } from '../../../types/user';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import { Stack } from '@mui/material'
+import type { Message, Participant } from '../../../types/chat'
+import { ChatMessage } from './chat-message'
+import { useMockedUser } from '../../../hooks/use-mocked-user'
+import type { User } from '../../../types/user'
 
 const getAuthor = (message: Message, participants: Participant[], user: User) => {
-  const participant = participants.find((participant) => participant.id === message.authorId);
+  const participant = participants.find((participant) => participant.id === message.authorId)
 
   // This should never happen
   if (!participant) {
     return {
       name: 'Unknown',
       avatar: '',
-      isUser: false
-    };
+      isUser: false,
+    }
   }
 
   // Since chat mock db is not synced with external auth providers
@@ -24,34 +24,32 @@ const getAuthor = (message: Message, participants: Participant[], user: User) =>
     return {
       name: 'Me',
       avatar: user.avatar,
-      isUser: true
-    };
+      isUser: true,
+    }
   }
 
   return {
     avatar: participant!.avatar,
     name: participant!.name,
-    isUser: false
-  };
-};
+    isUser: false,
+  }
+}
 
 interface ChatMessagesProps {
-  messages: Message[];
-  participants: Participant[];
+  messages: Message[]
+  participants: Participant[]
 }
 
 export const ChatMessages: FC<ChatMessagesProps> = (props) => {
-  const { messages, participants, ...other } = props;
-  const user = useMockedUser();
+  const { messages, participants, ...other } = props
+  const user = useMockedUser()
 
   return (
-    <Stack
-      spacing={2}
-      sx={{ p: 3 }}
-      {...other}
-    >
+    <Stack spacing={2}
+sx={{ p: 3 }}
+{...other}>
       {messages.map((message) => {
-        const author = getAuthor(message, participants, user);
+        const author = getAuthor(message, participants, user)
 
         return (
           <ChatMessage
@@ -63,15 +61,15 @@ export const ChatMessages: FC<ChatMessagesProps> = (props) => {
             key={message.id}
             position={author.isUser ? 'right' : 'left'}
           />
-        );
+        )
       })}
     </Stack>
-  );
-};
+  )
+}
 
 ChatMessages.propTypes = {
   // @ts-ignore
   messages: PropTypes.array,
   // @ts-ignore
-  participants: PropTypes.array
-};
+  participants: PropTypes.array,
+}

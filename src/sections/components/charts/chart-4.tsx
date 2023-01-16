@@ -1,80 +1,80 @@
-import type { FC } from 'react';
-import type { ApexOptions } from 'apexcharts';
-import DotsHorizontalIcon from '@untitled-ui/icons-react/build/esm/DotsHorizontal';
-import { Box, Card, CardContent, CardHeader, IconButton, SvgIcon } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { Chart } from '../../../components/chart';
-import { Scrollbar } from '../../../components/scrollbar';
+import type { FC } from 'react'
+import type { ApexOptions } from 'apexcharts'
+import DotsHorizontalIcon from '@untitled-ui/icons-react/build/esm/DotsHorizontal'
+import { Box, Card, CardContent, CardHeader, IconButton, SvgIcon } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
+import { Chart } from '../../../components/chart'
+import { Scrollbar } from '../../../components/scrollbar'
 
 type ChartSeries = {
-  name: string;
-  data: number[];
-}[];
+  name: string
+  data: number[]
+}[]
 
 const chartSeries: ChartSeries = [
   {
     name: 'Performance',
-    data: [10, 5, 11, 20, 13, 28, 18, 4, 13, 12, 13, 5]
-  }
-];
+    data: [10, 5, 11, 20, 13, 28, 18, 4, 13, 12, 13, 5],
+  },
+]
 
 const useChartOptions = (): ApexOptions => {
-  const theme = useTheme();
+  const theme = useTheme()
 
   return {
     chart: {
       background: 'transparent',
       stacked: false,
       toolbar: {
-        show: false
+        show: false,
       },
       zoom: {
-        enabled: false
-      }
+        enabled: false,
+      },
     },
     colors: [theme.palette.primary.main],
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     fill: {
       gradient: {
         opacityFrom: 0.4,
         opacityTo: 0.1,
-        stops: [0, 100]
+        stops: [0, 100],
       },
-      type: 'gradient'
+      type: 'gradient',
     },
     grid: {
       borderColor: theme.palette.divider,
       strokeDashArray: 2,
       xaxis: {
         lines: {
-          show: false
-        }
+          show: false,
+        },
       },
       yaxis: {
         lines: {
-          show: true
-        }
-      }
+          show: true,
+        },
+      },
     },
     markers: {
       size: 6,
       strokeColors: theme.palette.background.default,
-      strokeWidth: 3
+      strokeWidth: 3,
     },
     stroke: {
-      curve: 'smooth'
+      curve: 'smooth',
     },
     theme: {
-      mode: theme.palette.mode
+      mode: theme.palette.mode,
     },
     xaxis: {
       axisBorder: {
-        show: false
+        show: false,
       },
       axisTicks: {
-        show: false
+        show: false,
       },
       categories: [
         'Jan',
@@ -88,49 +88,47 @@ const useChartOptions = (): ApexOptions => {
         'Sep',
         'Oct',
         'Nov',
-        'Dec'
+        'Dec',
       ],
       labels: {
         offsetY: 5,
         style: {
-          colors: theme.palette.text.secondary
-        }
-      }
+          colors: theme.palette.text.secondary,
+        },
+      },
     },
     yaxis: {
       labels: {
         formatter: (value) => (value > 0 ? `${value}K` : `${value}`),
         offsetX: -10,
         style: {
-          colors: theme.palette.text.secondary
-        }
-      }
-    }
-  };
-};
+          colors: theme.palette.text.secondary,
+        },
+      },
+    },
+  }
+}
 
 export const Chart4: FC = () => {
-  const chartOptions = useChartOptions();
+  const chartOptions = useChartOptions()
 
   return (
     <Box
       sx={{
-        backgroundColor: (theme) => theme.palette.mode === 'dark'
-          ? 'neutral.800'
-          : 'neutral.100',
-        p: 3
+        backgroundColor: (theme) => (theme.palette.mode === 'dark' ? 'neutral.800' : 'neutral.100'),
+        p: 3,
       }}
     >
       <Card>
         <CardHeader
-          action={(
+          action={
             <IconButton>
               <SvgIcon>
                 <DotsHorizontalIcon />
               </SvgIcon>
             </IconButton>
-          )}
-          title="Performance Over Time"
+          }
+          title='Performance Over Time'
         />
         <CardContent>
           <Scrollbar>
@@ -138,19 +136,17 @@ export const Chart4: FC = () => {
               sx={{
                 height: 375,
                 minWidth: 500,
-                position: 'relative'
+                position: 'relative',
               }}
             >
-              <Chart
-                height={350}
-                options={chartOptions}
-                series={chartSeries}
-                type="area"
-              />
+              <Chart height={350}
+options={chartOptions}
+series={chartSeries}
+type='area' />
             </Box>
           </Scrollbar>
         </CardContent>
       </Card>
     </Box>
-  );
-};
+  )
+}

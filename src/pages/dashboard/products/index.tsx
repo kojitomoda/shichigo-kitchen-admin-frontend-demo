@@ -1,8 +1,8 @@
-import { ChangeEvent, MouseEvent, useCallback, useEffect, useState } from 'react';
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import NextLink from 'next/link';
-import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus';
+import { ChangeEvent, MouseEvent, useCallback, useEffect, useState } from 'react'
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import NextLink from 'next/link'
+import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus'
 import {
   Box,
   Breadcrumbs,
@@ -12,29 +12,29 @@ import {
   Link,
   Stack,
   SvgIcon,
-  Typography
-} from '@mui/material';
-import { productsApi } from '../../../api/products';
-import { BreadcrumbsSeparator } from '../../../components/breadcrumbs-separator';
-import { useMounted } from '../../../hooks/use-mounted';
-import { usePageView } from '../../../hooks/use-page-view';
-import { Layout as DashboardLayout } from '../../../layouts/dashboard';
-import { paths } from '../../../paths';
-import { ProductListSearch } from '../../../sections/dashboard/product/product-list-search';
-import { ProductListTable } from '../../../sections/dashboard/product/product-list-table';
-import type { Product } from '../../../types/product';
+  Typography,
+} from '@mui/material'
+import { productsApi } from '../../../api/products'
+import { BreadcrumbsSeparator } from '../../../components/breadcrumbs-separator'
+import { useMounted } from '../../../hooks/use-mounted'
+import { usePageView } from '../../../hooks/use-page-view'
+import { Layout as DashboardLayout } from '../../../layouts/dashboard'
+import { paths } from '../../../paths'
+import { ProductListSearch } from '../../../sections/dashboard/product/product-list-search'
+import { ProductListTable } from '../../../sections/dashboard/product/product-list-table'
+import type { Product } from '../../../types/product'
 
 interface Filters {
-  name?: string;
-  category: string[];
-  status: string[];
-  inStock?: boolean;
+  name?: string
+  category: string[]
+  status: string[]
+  inStock?: boolean
 }
 
 interface Search {
-  filters: Filters;
-  page: number;
-  rowsPerPage: number;
+  filters: Filters
+  page: number
+  rowsPerPage: number
 }
 
 const useSearch = () => {
@@ -43,156 +43,144 @@ const useSearch = () => {
       name: undefined,
       category: [],
       status: [],
-      inStock: undefined
+      inStock: undefined,
     },
     page: 0,
-    rowsPerPage: 5
-  });
+    rowsPerPage: 5,
+  })
 
   return {
     search,
-    updateSearch: setSearch
-  };
-};
+    updateSearch: setSearch,
+  }
+}
 
-const useProducts = (search: Search): { products: Product[]; productsCount: number; } => {
-  const isMounted = useMounted();
+const useProducts = (search: Search): { products: Product[]; productsCount: number } => {
+  const isMounted = useMounted()
   const [state, setState] = useState<{
-    products: Product[];
-    productsCount: number;
+    products: Product[]
+    productsCount: number
   }>({
     products: [],
-    productsCount: 0
-  });
+    productsCount: 0,
+  })
 
   const getProducts = useCallback(async () => {
-      try {
-        const response = await productsApi.getProducts(search);
+    try {
+      const response = await productsApi.getProducts(search)
 
-        if (isMounted()) {
-          setState({
-            products: response.data,
-            productsCount: response.count
-          });
-        }
-      } catch (err) {
-        console.error(err);
+      if (isMounted()) {
+        setState({
+          products: response.data,
+          productsCount: response.count,
+        })
       }
-    },
-    [search, isMounted]
-  );
+    } catch (err) {
+      console.error(err)
+    }
+  }, [search, isMounted])
 
   useEffect(
     () => {
-      getProducts();
+      getProducts()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [search]
-  );
+    [search],
+  )
 
-  return state;
-};
+  return state
+}
 
 const ProductList: NextPage = () => {
-  const { search, updateSearch } = useSearch();
-  const { products, productsCount } = useProducts(search);
+  const { search, updateSearch } = useSearch()
+  const { products, productsCount } = useProducts(search)
 
-  usePageView();
+  usePageView()
 
   const handleFiltersChange = useCallback(
     (filters: Filters): void => {
       updateSearch((prevState) => ({
         ...prevState,
-        filters
-      }));
+        filters,
+      }))
     },
-    [updateSearch]
-  );
+    [updateSearch],
+  )
 
   const handlePageChange = useCallback(
     (event: MouseEvent<HTMLButtonElement> | null, page: number): void => {
       updateSearch((prevState) => ({
         ...prevState,
-        page
-      }));
+        page,
+      }))
     },
-    [updateSearch]
-  );
+    [updateSearch],
+  )
 
   const handleRowsPerPageChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>): void => {
       updateSearch((prevState) => ({
         ...prevState,
-        rowsPerPage: parseInt(event.target.value, 10)
-      }));
+        rowsPerPage: parseInt(event.target.value, 10),
+      }))
     },
-    [updateSearch]
-  );
+    [updateSearch],
+  )
 
   return (
     <>
       <Head>
-        <title>
-          Dashboard: Product List | Devias Kit PRO
-        </title>
+        <title>Dashboard: Product List | Devias Kit PRO</title>
       </Head>
       <Box
-        component="main"
+        component='main'
         sx={{
           flexGrow: 1,
-          py: 8
+          py: 8,
         }}
       >
-        <Container maxWidth="xl">
+        <Container maxWidth='xl'>
           <Stack spacing={4}>
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              spacing={4}
-            >
+            <Stack direction='row'
+justifyContent='space-between'
+spacing={4}>
               <Stack spacing={1}>
-                <Typography variant="h4">
-                  Products
-                </Typography>
+                <Typography variant='h4'>Products</Typography>
                 <Breadcrumbs separator={<BreadcrumbsSeparator />}>
                   <Link
-                    color="text.primary"
+                    color='text.primary'
                     component={NextLink}
                     href={paths.dashboard.index}
-                    variant="subtitle2"
+                    variant='subtitle2'
                   >
                     Dashboard
                   </Link>
                   <Link
-                    color="text.primary"
+                    color='text.primary'
                     component={NextLink}
                     href={paths.dashboard.products.index}
-                    variant="subtitle2"
+                    variant='subtitle2'
                   >
                     Products
                   </Link>
-                  <Typography
-                    color="text.secondary"
-                    variant="subtitle2"
-                  >
+                  <Typography color='text.secondary'
+variant='subtitle2'>
                     List
                   </Typography>
                 </Breadcrumbs>
               </Stack>
-              <Stack
-                alignItems="center"
-                direction="row"
-                spacing={3}
-              >
+              <Stack alignItems='center'
+direction='row'
+spacing={3}>
                 <Button
                   component={NextLink}
                   href={paths.dashboard.products.create}
-                  startIcon={(
+                  startIcon={
                     <SvgIcon>
                       <PlusIcon />
                     </SvgIcon>
-                  )}
-                  variant="contained"
+                  }
+                  variant='contained'
                 >
                   Add
                 </Button>
@@ -213,13 +201,9 @@ const ProductList: NextPage = () => {
         </Container>
       </Box>
     </>
-  );
-};
+  )
+}
 
-ProductList.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
+ProductList.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>
 
-export default ProductList;
+export default ProductList

@@ -1,9 +1,9 @@
-import type { FC } from 'react';
-import { useCallback, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import toast from 'react-hot-toast';
-import * as Yup from 'yup';
-import { useFormik } from 'formik';
+import type { FC } from 'react'
+import { useCallback, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
+import * as Yup from 'yup'
+import { useFormik } from 'formik'
 import {
   Box,
   Button,
@@ -16,55 +16,55 @@ import {
   Switch,
   TextField,
   Typography,
-  Unstable_Grid2 as Grid
-} from '@mui/material';
-import type { File } from '../../../components/file-dropzone';
-import { FileDropzone } from '../../../components/file-dropzone';
-import { QuillEditor } from '../../../components/quill-editor';
-import { paths } from '../../../paths';
+  Unstable_Grid2 as Grid,
+} from '@mui/material'
+import type { File } from '../../../components/file-dropzone'
+import { FileDropzone } from '../../../components/file-dropzone'
+import { QuillEditor } from '../../../components/quill-editor'
+import { paths } from '../../../paths'
 
 interface CategoryOption {
-  label: string;
-  value: string;
+  label: string
+  value: string
 }
 
 const categoryOptions: CategoryOption[] = [
   {
     label: 'Healthcare',
-    value: 'healthcare'
+    value: 'healthcare',
   },
   {
     label: 'Makeup',
-    value: 'makeup'
+    value: 'makeup',
   },
   {
     label: 'Dress',
-    value: 'dress'
+    value: 'dress',
   },
   {
     label: 'Skincare',
-    value: 'skincare'
+    value: 'skincare',
   },
   {
     label: 'Jewelry',
-    value: 'jewelry'
+    value: 'jewelry',
   },
   {
     label: 'Blouse',
-    value: 'blouse'
-  }
-];
+    value: 'blouse',
+  },
+]
 
 interface Values {
-  barcode: string;
-  category: string;
-  description: string;
-  images: string[];
-  name: string;
-  newPrice: number;
-  oldPrice: number;
-  sku: string;
-  submit: null;
+  barcode: string
+  category: string
+  description: string
+  images: string[]
+  name: string
+  newPrice: number
+  oldPrice: number
+  sku: string
+  submit: null
 }
 
 const initialValues: Values = {
@@ -76,8 +76,8 @@ const initialValues: Values = {
   newPrice: 0,
   oldPrice: 0,
   sku: 'IYV-8745',
-  submit: null
-};
+  submit: null,
+}
 
 const validationSchema = Yup.object({
   barcode: Yup.string().max(255),
@@ -87,111 +87,88 @@ const validationSchema = Yup.object({
   name: Yup.string().max(255).required(),
   newPrice: Yup.number().min(0).required(),
   oldPrice: Yup.number().min(0),
-  sku: Yup.string().max(255)
-});
+  sku: Yup.string().max(255),
+})
 
 export const ProductCreateForm: FC = (props) => {
-  const router = useRouter();
-  const [files, setFiles] = useState<File[]>([]);
+  const router = useRouter()
+  const [files, setFiles] = useState<File[]>([])
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: async (values, helpers): Promise<void> => {
       try {
         // NOTE: Make API request
-        toast.success('Product created');
-        router.push(paths.dashboard.products.index);
+        toast.success('Product created')
+        router.push(paths.dashboard.products.index)
       } catch (err) {
-        console.error(err);
-        toast.error('Something went wrong!');
-        helpers.setStatus({ success: false });
-        helpers.setErrors({ submit: err.message });
-        helpers.setSubmitting(false);
+        console.error(err)
+        toast.error('Something went wrong!')
+        helpers.setStatus({ success: false })
+        helpers.setErrors({ submit: err.message })
+        helpers.setSubmitting(false)
       }
-    }
-  });
-
-  const handleFilesDrop = useCallback(
-    (newFiles: File[]): void => {
-      setFiles((prevFiles) => {
-        return [...prevFiles, ...newFiles];
-      });
     },
-    []
-  );
+  })
 
-  const handleFileRemove = useCallback(
-    (file: File): void => {
-      setFiles((prevFiles) => {
-        return prevFiles.filter((_file) => _file.path !== file.path);
-      });
-    },
-    []
-  );
+  const handleFilesDrop = useCallback((newFiles: File[]): void => {
+    setFiles((prevFiles) => {
+      return [...prevFiles, ...newFiles]
+    })
+  }, [])
 
-  const handleFilesRemoveAll = useCallback(
-    (): void => {
-      setFiles([]);
-    },
-    []
-  );
+  const handleFileRemove = useCallback((file: File): void => {
+    setFiles((prevFiles) => {
+      return prevFiles.filter((_file) => _file.path !== file.path)
+    })
+  }, [])
+
+  const handleFilesRemoveAll = useCallback((): void => {
+    setFiles([])
+  }, [])
 
   return (
-    <form
-      onSubmit={formik.handleSubmit}
-      {...props}
-    >
+    <form onSubmit={formik.handleSubmit}
+{...props}>
       <Stack spacing={4}>
         <Card>
           <CardContent>
-            <Grid
-              container
-              spacing={3}
-            >
-              <Grid
-                xs={12}
-                md={4}
-              >
-                <Typography variant="h6">
-                  Basic details
-                </Typography>
+            <Grid container
+spacing={3}>
+              <Grid xs={12}
+md={4}>
+                <Typography variant='h6'>Basic details</Typography>
               </Grid>
-              <Grid
-                xs={12}
-                md={8}
-              >
+              <Grid xs={12}
+md={8}>
                 <Stack spacing={3}>
                   <TextField
                     error={!!(formik.touched.name && formik.errors.name)}
                     fullWidth
                     helperText={formik.touched.name && formik.errors.name}
-                    label="Product Name"
-                    name="name"
+                    label='Product Name'
+                    name='name'
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.name}
                   />
                   <div>
-                    <Typography
-                      color="text.secondary"
-                      sx={{ mb: 2 }}
-                      variant="subtitle2"
-                    >
+                    <Typography color='text.secondary'
+sx={{ mb: 2 }}
+variant='subtitle2'>
                       Description
                     </Typography>
                     <QuillEditor
                       onChange={(value: string): void => {
-                        formik.setFieldValue('description', value);
+                        formik.setFieldValue('description', value)
                       }}
-                      placeholder="Write something"
+                      placeholder='Write something'
                       sx={{ height: 400 }}
                       value={formik.values.description}
                     />
                     {!!(formik.touched.description && formik.errors.description) && (
                       <Box sx={{ mt: 2 }}>
-                        <FormHelperText error>
-                          {formik.errors.description}
-                        </FormHelperText>
+                        <FormHelperText error>{formik.errors.description}</FormHelperText>
                       </Box>
                     )}
                   </div>
@@ -202,33 +179,23 @@ export const ProductCreateForm: FC = (props) => {
         </Card>
         <Card>
           <CardContent>
-            <Grid
-              container
-              spacing={3}
-            >
-              <Grid
-                xs={12}
-                md={4}
-              >
+            <Grid container
+spacing={3}>
+              <Grid xs={12}
+md={4}>
                 <Stack spacing={1}>
-                  <Typography variant="h6">
-                    Images
-                  </Typography>
-                  <Typography
-                    color="text.secondary"
-                    variant="body2"
-                  >
+                  <Typography variant='h6'>Images</Typography>
+                  <Typography color='text.secondary'
+variant='body2'>
                     Images will appear in the store front of your website.
                   </Typography>
                 </Stack>
               </Grid>
-              <Grid
-                xs={12}
-                md={8}
-              >
+              <Grid xs={12}
+md={8}>
                 <FileDropzone
                   accept={{ 'image/*': [] }}
-                  caption="(SVG, JPG, PNG, or gif maximum 900x400)"
+                  caption='(SVG, JPG, PNG, or gif maximum 900x400)'
                   files={files}
                   onDrop={handleFilesDrop}
                   onRemove={handleFileRemove}
@@ -240,47 +207,39 @@ export const ProductCreateForm: FC = (props) => {
         </Card>
         <Card>
           <CardContent>
-            <Grid
-              container
-              spacing={3}
-            >
-              <Grid
-                xs={12}
-                md={4}
-              >
-                <Typography variant="h6">
-                  Pricing
-                </Typography>
+            <Grid container
+spacing={3}>
+              <Grid xs={12}
+md={4}>
+                <Typography variant='h6'>Pricing</Typography>
               </Grid>
-              <Grid
-                xs={12}
-                md={8}
-              >
+              <Grid xs={12}
+md={8}>
                 <Stack spacing={3}>
                   <TextField
                     error={!!(formik.touched.oldPrice && formik.errors.oldPrice)}
                     fullWidth
-                    label="Old price"
-                    name="oldPrice"
+                    label='Old price'
+                    name='oldPrice'
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
-                    type="number"
+                    type='number'
                     value={formik.values.oldPrice}
                   />
                   <TextField
                     error={!!(formik.touched.newPrice && formik.errors.newPrice)}
                     fullWidth
-                    label="New Price"
-                    name="newPrice"
+                    label='New Price'
+                    name='newPrice'
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
-                    type="number"
+                    type='number'
                     value={formik.values.newPrice}
                   />
                   <div>
                     <FormControlLabel
                       control={<Switch defaultChecked />}
-                      label="Keep selling when stock is empty"
+                      label='Keep selling when stock is empty'
                     />
                   </div>
                 </Stack>
@@ -290,38 +249,28 @@ export const ProductCreateForm: FC = (props) => {
         </Card>
         <Card>
           <CardContent>
-            <Grid
-              container
-              spacing={3}
-            >
-              <Grid
-                xs={12}
-                md={4}
-              >
-                <Typography variant="h6">
-                  Category
-                </Typography>
+            <Grid container
+spacing={3}>
+              <Grid xs={12}
+md={4}>
+                <Typography variant='h6'>Category</Typography>
               </Grid>
-              <Grid
-                xs={12}
-                md={8}
-              >
+              <Grid xs={12}
+md={8}>
                 <Stack spacing={3}>
                   <TextField
                     error={!!(formik.touched.category && formik.errors.category)}
                     fullWidth
-                    label="Category"
-                    name="category"
+                    label='Category'
+                    name='category'
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     select
                     value={formik.values.category}
                   >
                     {categoryOptions.map((option) => (
-                      <MenuItem
-                        key={option.value}
-                        value={option.value}
-                      >
+                      <MenuItem key={option.value}
+value={option.value}>
                         {option.label}
                       </MenuItem>
                     ))}
@@ -330,8 +279,8 @@ export const ProductCreateForm: FC = (props) => {
                     disabled
                     error={!!(formik.touched.barcode && formik.errors.barcode)}
                     fullWidth
-                    label="Barcode"
-                    name="barcode"
+                    label='Barcode'
+                    name='barcode'
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.barcode}
@@ -340,8 +289,8 @@ export const ProductCreateForm: FC = (props) => {
                     disabled
                     error={!!(formik.touched.sku && formik.errors.sku)}
                     fullWidth
-                    label="SKU"
-                    name="sku"
+                    label='SKU'
+                    name='sku'
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.sku}
@@ -351,23 +300,17 @@ export const ProductCreateForm: FC = (props) => {
             </Grid>
           </CardContent>
         </Card>
-        <Stack
-          alignItems="center"
-          direction="row"
-          justifyContent="flex-end"
-          spacing={1}
-        >
-          <Button color="inherit">
-            Cancel
-          </Button>
-          <Button
-            type="submit"
-            variant="contained"
-          >
+        <Stack alignItems='center'
+direction='row'
+justifyContent='flex-end'
+spacing={1}>
+          <Button color='inherit'>Cancel</Button>
+          <Button type='submit'
+variant='contained'>
             Create
           </Button>
         </Stack>
       </Stack>
     </form>
-  );
-};
+  )
+}

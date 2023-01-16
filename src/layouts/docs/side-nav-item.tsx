@@ -1,43 +1,31 @@
-import type { FC, ReactNode } from 'react';
-import { useCallback, useState } from 'react';
-import NextLink from 'next/link';
-import PropTypes from 'prop-types';
-import ChevronDownIcon from '@untitled-ui/icons-react/build/esm/ChevronDown';
-import ChevronRightIcon from '@untitled-ui/icons-react/build/esm/ChevronRight';
-import { Box, ButtonBase, Collapse, SvgIcon } from '@mui/material';
+import type { FC, ReactNode } from 'react'
+import { useCallback, useState } from 'react'
+import NextLink from 'next/link'
+import PropTypes from 'prop-types'
+import ChevronDownIcon from '@untitled-ui/icons-react/build/esm/ChevronDown'
+import ChevronRightIcon from '@untitled-ui/icons-react/build/esm/ChevronRight'
+import { Box, ButtonBase, Collapse, SvgIcon } from '@mui/material'
 
 interface SideNavItemProps {
-  active?: boolean;
-  children?: ReactNode;
-  depth?: number;
-  icon?: ReactNode;
-  label?: ReactNode;
-  open?: boolean;
-  path?: string;
-  title: string;
+  active?: boolean
+  children?: ReactNode
+  depth?: number
+  icon?: ReactNode
+  label?: ReactNode
+  open?: boolean
+  path?: string
+  title: string
 }
 
 export const SideNavItem: FC<SideNavItemProps> = (props) => {
-  const {
-    active,
-    children,
-    depth = 0,
-    icon,
-    label,
-    open: openProp,
-    path,
-    title
-  } = props;
-  const [open, setOpen] = useState<boolean>(!!openProp);
+  const { active, children, depth = 0, icon, label, open: openProp, path, title } = props
+  const [open, setOpen] = useState<boolean>(!!openProp)
 
-  const handleToggle = useCallback(
-    (): void => {
-      setOpen((prevOpen) => !prevOpen);
-    },
-    []
-  );
+  const handleToggle = useCallback((): void => {
+    setOpen((prevOpen) => !prevOpen)
+  }, [])
 
-  const offset = depth === 0 ? 0 : 8 * depth;
+  const offset = depth === 0 ? 0 : 8 * depth
 
   // Branch
 
@@ -54,13 +42,13 @@ export const SideNavItem: FC<SideNavItemProps> = (props) => {
             textAlign: 'left',
             width: '100%',
             '&:hover': {
-              backgroundColor: 'action.hover'
-            }
+              backgroundColor: 'action.hover',
+            },
           }}
         >
           {icon && (
             <Box
-              component="span"
+              component='span'
               sx={{
                 alignItems: 'center',
                 color: 'action.active',
@@ -68,15 +56,15 @@ export const SideNavItem: FC<SideNavItemProps> = (props) => {
                 justifyContent: 'center',
                 mr: 2,
                 ...(active && {
-                  color: 'primary.main'
-                })
+                  color: 'primary.main',
+                }),
               }}
             >
               {icon}
             </Box>
           )}
           <Box
-            component="span"
+            component='span'
             sx={{
               color: 'text.primary',
               flexGrow: 1,
@@ -87,46 +75,42 @@ export const SideNavItem: FC<SideNavItemProps> = (props) => {
               whiteSpace: 'nowrap',
               ...(active && {
                 color: 'primary.main',
-                fontWeight: 700
-              })
+                fontWeight: 700,
+              }),
             }}
           >
             {title}
           </Box>
-          <SvgIcon
-            fontSize="small"
-            sx={{ color: 'action.active' }}
-          >
+          <SvgIcon fontSize='small'
+sx={{ color: 'action.active' }}>
             {open ? <ChevronDownIcon /> : <ChevronRightIcon />}
           </SvgIcon>
         </ButtonBase>
-        <Collapse
-          in={open}
-          sx={{ mt: 0.5 }}
-        >
+        <Collapse in={open}
+sx={{ mt: 0.5 }}>
           {children}
         </Collapse>
       </li>
-    );
+    )
   }
 
   // Leaf
 
-  let linkProps: any = undefined;
+  let linkProps: any = undefined
 
   if (path) {
-    const isExternal = path.startsWith('http');
+    const isExternal = path.startsWith('http')
 
     linkProps = isExternal
       ? {
-        component: 'a',
-        href: path,
-        target: '_blank'
-      }
+          component: 'a',
+          href: path,
+          target: '_blank',
+        }
       : {
-        component: NextLink,
-        href: path
-      };
+          component: NextLink,
+          href: path,
+        }
   }
 
   return (
@@ -141,14 +125,14 @@ export const SideNavItem: FC<SideNavItemProps> = (props) => {
           textAlign: 'left',
           width: '100%',
           '&:hover': {
-            backgroundColor: 'action.hover'
-          }
+            backgroundColor: 'action.hover',
+          },
         }}
         {...linkProps}
       >
         {icon && (
           <Box
-            component="span"
+            component='span'
             sx={{
               alignItems: 'center',
               color: 'action.active',
@@ -156,8 +140,8 @@ export const SideNavItem: FC<SideNavItemProps> = (props) => {
               justifyContent: 'center',
               mr: 2,
               ...(active && {
-                color: 'primary.main'
-              })
+                color: 'primary.main',
+              }),
             }}
           >
             {icon}
@@ -174,24 +158,22 @@ export const SideNavItem: FC<SideNavItemProps> = (props) => {
             whiteSpace: 'nowrap',
             ...(active && {
               color: 'primary.main',
-              fontWeight: 700
-            })
+              fontWeight: 700,
+            }),
           }}
         >
           {title}
         </Box>
         {label && (
-          <Box
-            component="span"
-            sx={{ ml: 2 }}
-          >
+          <Box component='span'
+sx={{ ml: 2 }}>
             {label}
           </Box>
         )}
       </ButtonBase>
     </li>
-  );
-};
+  )
+}
 
 SideNavItem.propTypes = {
   active: PropTypes.bool,
@@ -200,5 +182,5 @@ SideNavItem.propTypes = {
   icon: PropTypes.node,
   open: PropTypes.bool,
   path: PropTypes.string,
-  title: PropTypes.string.isRequired
-};
+  title: PropTypes.string.isRequired,
+}

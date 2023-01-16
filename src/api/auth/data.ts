@@ -1,4 +1,4 @@
-import type { User } from '../../types/user';
+import type { User } from '../../types/user'
 
 export const users: User[] = [
   {
@@ -7,6 +7,6 @@ export const users: User[] = [
     email: 'demo@devias.io',
     name: 'Anika Visser',
     password: 'Password123!',
-    plan: 'Premium'
-  }
-];
+    plan: 'Premium',
+  },
+]

@@ -1,9 +1,9 @@
-import type { ChangeEvent } from 'react';
-import { useCallback, useEffect, useState } from 'react';
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import NextLink from 'next/link';
-import ArrowLeftIcon from '@untitled-ui/icons-react/build/esm/ArrowLeft';
+import type { ChangeEvent } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import NextLink from 'next/link'
+import ArrowLeftIcon from '@untitled-ui/icons-react/build/esm/ArrowLeft'
 import {
   Avatar,
   Box,
@@ -18,160 +18,139 @@ import {
   Tab,
   Tabs,
   Typography,
-  Unstable_Grid2 as Grid
-} from '@mui/material';
-import { jobsApi } from '../../../../api/jobs';
-import { useMounted } from '../../../../hooks/use-mounted';
-import { usePageView } from '../../../../hooks/use-page-view';
-import { Layout as DashboardLayout } from '../../../../layouts/dashboard';
-import { paths } from '../../../../paths';
-import { CompanyActivity } from '../../../../sections/dashboard/jobs/company-activity';
-import { CompanyAssets } from '../../../../sections/dashboard/jobs/company-assets';
-import { CompanyOverview } from '../../../../sections/dashboard/jobs/company-overview';
-import { CompanyReviews } from '../../../../sections/dashboard/jobs/company-reviews';
-import { CompanySummary } from '../../../../sections/dashboard/jobs/company-summary';
-import { CompanyTeam } from '../../../../sections/dashboard/jobs/company-team';
-import type { Company } from '../../../../types/job';
-import { getInitials } from '../../../../utils/get-initials';
+  Unstable_Grid2 as Grid,
+} from '@mui/material'
+import { jobsApi } from '../../../../api/jobs'
+import { useMounted } from '../../../../hooks/use-mounted'
+import { usePageView } from '../../../../hooks/use-page-view'
+import { Layout as DashboardLayout } from '../../../../layouts/dashboard'
+import { paths } from '../../../../paths'
+import { CompanyActivity } from '../../../../sections/dashboard/jobs/company-activity'
+import { CompanyAssets } from '../../../../sections/dashboard/jobs/company-assets'
+import { CompanyOverview } from '../../../../sections/dashboard/jobs/company-overview'
+import { CompanyReviews } from '../../../../sections/dashboard/jobs/company-reviews'
+import { CompanySummary } from '../../../../sections/dashboard/jobs/company-summary'
+import { CompanyTeam } from '../../../../sections/dashboard/jobs/company-team'
+import type { Company } from '../../../../types/job'
+import { getInitials } from '../../../../utils/get-initials'
 
 const tabs = [
   { label: 'Overview', value: 'overview' },
   { label: 'Reviews', value: 'reviews' },
   { label: 'Activity', value: 'activity' },
   { label: 'Team', value: 'team' },
-  { label: 'Assets', value: 'assets' }
-];
+  { label: 'Assets', value: 'assets' },
+]
 
 const useCompany = (): Company | null => {
-  const isMounted = useMounted();
-  const [company, setCompany] = useState<Company | null>(null);
+  const isMounted = useMounted()
+  const [company, setCompany] = useState<Company | null>(null)
 
   const getCompany = useCallback(async () => {
     try {
-      const response = await jobsApi.getCompany();
+      const response = await jobsApi.getCompany()
 
       if (isMounted()) {
-        setCompany(response);
+        setCompany(response)
       }
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  }, [isMounted]);
+  }, [isMounted])
 
   useEffect(
     () => {
-      getCompany();
+      getCompany()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+    [],
+  )
 
-  return company;
-};
+  return company
+}
 
 const Page: NextPage = () => {
-  const company = useCompany();
-  const [currentTab, setCurrentTab] = useState<string>('overview');
+  const company = useCompany()
+  const [currentTab, setCurrentTab] = useState<string>('overview')
 
-  usePageView();
+  usePageView()
 
-  const handleTabsChange = useCallback(
-    (event: ChangeEvent<{}>, value: string): void => {
-      setCurrentTab(value);
-    },
-    []
-  );
+  const handleTabsChange = useCallback((event: ChangeEvent<{}>, value: string): void => {
+    setCurrentTab(value)
+  }, [])
 
   if (!company) {
-    return null;
+    return null
   }
 
   return (
     <>
       <Head>
-        <title>
-          Dashboard: Company Details | Devias Kit PRO
-        </title>
+        <title>Dashboard: Company Details | Devias Kit PRO</title>
       </Head>
       <Box
-        component="main"
+        component='main'
         sx={{
           flexGrow: 1,
-          py: 8
+          py: 8,
         }}
       >
-        <Container maxWidth="lg">
-          <Grid
-            container
-            spacing={4}
-          >
+        <Container maxWidth='lg'>
+          <Grid container
+spacing={4}>
             <Grid xs={12}>
               <div>
                 <Link
-                  color="text.primary"
+                  color='text.primary'
                   component={NextLink}
                   href={paths.dashboard.jobs.index}
                   sx={{
                     alignItems: 'center',
-                    display: 'inline-flex'
+                    display: 'inline-flex',
                   }}
-                  underline="hover"
+                  underline='hover'
                 >
                   <SvgIcon sx={{ mr: 1 }}>
                     <ArrowLeftIcon />
                   </SvgIcon>
-                  <Typography variant="subtitle2">
-                    Jobs
-                  </Typography>
+                  <Typography variant='subtitle2'>Jobs</Typography>
                 </Link>
               </div>
             </Grid>
-            <Grid
-              xs={12}
-              lg={8}
-            >
+            <Grid xs={12}
+lg={8}>
               <Card>
                 <CardHeader
                   disableTypography
-                  title={(
-                    <Stack
-                      alignItems="flex-start"
-                      direction="row"
-                      spacing={2}
-                    >
-                      <Avatar
-                        src={company.logo}
-                        variant="rounded"
-                      >
+                  title={
+                    <Stack alignItems='flex-start'
+direction='row'
+spacing={2}>
+                      <Avatar src={company.logo}
+variant='rounded'>
                         {getInitials(company.name)}
                       </Avatar>
                       <Stack spacing={1}>
-                        <Typography variant="h6">
-                          {company.name}
-                        </Typography>
-                        <Typography variant="body2">
-                          {company.shortDescription}
-                        </Typography>
+                        <Typography variant='h6'>{company.name}</Typography>
+                        <Typography variant='body2'>{company.shortDescription}</Typography>
                       </Stack>
                     </Stack>
-                  )}
+                  }
                 />
                 <Divider />
                 <Tabs
-                  indicatorColor="primary"
+                  indicatorColor='primary'
                   onChange={handleTabsChange}
-                  scrollButtons="auto"
+                  scrollButtons='auto'
                   sx={{ px: 3 }}
-                  textColor="primary"
+                  textColor='primary'
                   value={currentTab}
-                  variant="scrollable"
+                  variant='scrollable'
                 >
                   {tabs.map((tab) => (
-                    <Tab
-                      key={tab.value}
-                      label={tab.label}
-                      value={tab.value}
-                    />
+                    <Tab key={tab.value}
+label={tab.label}
+value={tab.value} />
                   ))}
                 </Tabs>
                 <Divider />
@@ -191,23 +170,17 @@ const Page: NextPage = () => {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid
-              xs={12}
-              lg={4}
-            >
+            <Grid xs={12}
+lg={4}>
               <CompanySummary company={company} />
             </Grid>
           </Grid>
         </Container>
       </Box>
     </>
-  );
-};
+  )
+}
 
-Page.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
+Page.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>
 
-export default Page;
+export default Page

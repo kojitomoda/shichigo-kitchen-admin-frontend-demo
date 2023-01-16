@@ -1,6 +1,6 @@
-import type { FC } from 'react';
-import { addDays, format, subMinutes } from 'date-fns';
-import numeral from 'numeral';
+import type { FC } from 'react'
+import { addDays, format, subMinutes } from 'date-fns'
+import numeral from 'numeral'
 import {
   Avatar,
   Box,
@@ -10,46 +10,40 @@ import {
   Link,
   List,
   ListItem,
-  Typography
-} from '@mui/material';
+  Typography,
+} from '@mui/material'
 
 export const DetailList7: FC = () => {
-  const deadline = format(addDays(new Date(), 14).getTime(), 'dd MMM yyyy');
-  const budget = numeral(12500.00).format('$0,0.00');
-  const lastUpdate = format(subMinutes(new Date(), 23).getTime(), 'dd MMM yyyy');
+  const deadline = format(addDays(new Date(), 14).getTime(), 'dd MMM yyyy')
+  const budget = numeral(12500.0).format('$0,0.00')
+  const lastUpdate = format(subMinutes(new Date(), 23).getTime(), 'dd MMM yyyy')
 
   return (
     <Box
       sx={{
-        backgroundColor: (theme) => theme.palette.mode === 'dark'
-          ? 'neutral.800'
-          : 'neutral.100',
-        p: 3
+        backgroundColor: (theme) => (theme.palette.mode === 'dark' ? 'neutral.800' : 'neutral.100'),
+        p: 3,
       }}
     >
       <Card>
         <CardHeader
-          avatar={<Avatar src="/assets/avatars/avatar-omar-darboe.png" />}
+          avatar={<Avatar src='/assets/avatars/avatar-omar-darboe.png' />}
           disableTypography
-          subheader={(
-            <Link
-              color="text.primary"
-              underline="none"
-              variant="subtitle2"
-            >
+          subheader={
+            <Link color='text.primary'
+underline='none'
+variant='subtitle2'>
               Omar Darobe
             </Link>
-          )}
+          }
           style={{ paddingBottom: 0 }}
-          title={(
-            <Typography
-              color="text.secondary"
-              sx={{ display: 'block' }}
-              variant="overline"
-            >
+          title={
+            <Typography color='text.secondary'
+sx={{ display: 'block' }}
+variant='overline'>
               Contest holder
             </Typography>
-          )}
+          }
         />
         <CardContent sx={{ pt: 0 }}>
           <List>
@@ -58,16 +52,12 @@ export const DetailList7: FC = () => {
               divider
               sx={{
                 justifyContent: 'space-between',
-                padding: 2
+                padding: 2,
               }}
             >
-              <Typography variant="subtitle2">
-                Deadline
-              </Typography>
-              <Typography
-                color="text.secondary"
-                variant="body2"
-              >
+              <Typography variant='subtitle2'>Deadline</Typography>
+              <Typography color='text.secondary'
+variant='body2'>
                 {deadline}
               </Typography>
             </ListItem>
@@ -76,16 +66,12 @@ export const DetailList7: FC = () => {
               divider
               sx={{
                 justifyContent: 'space-between',
-                padding: 2
+                padding: 2,
               }}
             >
-              <Typography variant="subtitle2">
-                Budget
-              </Typography>
-              <Typography
-                color="text.secondary"
-                variant="body2"
-              >
+              <Typography variant='subtitle2'>Budget</Typography>
+              <Typography color='text.secondary'
+variant='body2'>
                 {budget}
               </Typography>
             </ListItem>
@@ -93,16 +79,12 @@ export const DetailList7: FC = () => {
               disableGutters
               sx={{
                 justifyContent: 'space-between',
-                padding: 2
+                padding: 2,
               }}
             >
-              <Typography variant="subtitle2">
-                Last Update
-              </Typography>
-              <Typography
-                color="text.secondary"
-                variant="body2"
-              >
+              <Typography variant='subtitle2'>Last Update</Typography>
+              <Typography color='text.secondary'
+variant='body2'>
                 {lastUpdate}
               </Typography>
             </ListItem>
@@ -110,5 +92,5 @@ export const DetailList7: FC = () => {
         </CardContent>
       </Card>
     </Box>
-  );
-};
+  )
+}

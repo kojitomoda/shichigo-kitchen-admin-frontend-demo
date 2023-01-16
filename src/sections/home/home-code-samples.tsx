@@ -1,16 +1,16 @@
-import type { ChangeEvent, FC } from 'react';
-import { useCallback, useMemo, useState } from 'react';
+import type { ChangeEvent, FC } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 // @ts-ignore
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { Box, Stack, Tab, Tabs, Typography } from '@mui/material';
-import { codeStyle } from '../../utils/code-style';
-import { alpha } from '@mui/material/styles';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { Box, Stack, Tab, Tabs, Typography } from '@mui/material'
+import { codeStyle } from '../../utils/code-style'
+import { alpha } from '@mui/material/styles'
 
 interface Sample {
-  lang: 'jsx' | 'tsx';
-  label: string;
-  icon: string;
-  code: string;
+  lang: 'jsx' | 'tsx'
+  label: string
+  icon: string
+  code: string
 }
 
 const samples: Sample[] = [
@@ -66,7 +66,7 @@ const Page = () => {
     </Box>
   );
 };
-`
+`,
   },
   {
     lang: 'tsx',
@@ -121,35 +121,35 @@ const Page: NextPage = () => {
     </Box>
   );
 };
-`
-  }
-];
+`,
+  },
+]
 
 export const HomeCodeSamples: FC = () => {
-  const [currentLang, setCurrentLang] = useState<string>(samples[0].lang);
+  const [currentLang, setCurrentLang] = useState<string>(samples[0].lang)
 
   const handleLangChange = useCallback((event: ChangeEvent<{}>, value: string): void => {
-    setCurrentLang(value);
-  }, []);
+    setCurrentLang(value)
+  }, [])
 
   const code = useMemo(() => {
-    return samples.find((sample) => sample.lang === currentLang)?.code.trim() || '';
-  }, [currentLang]);
+    return samples.find((sample) => sample.lang === currentLang)?.code.trim() || ''
+  }, [currentLang])
 
   return (
     <Box
       sx={{
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
       }}
     >
       <Stack
-        direction="row"
-        justifyContent="space-between"
+        direction='row'
+        justifyContent='space-between'
         spacing={2}
         sx={{
           backdropFilter: 'blur(6px)',
-          backgroundColor: (theme) => alpha(theme.palette.neutral[800], .95),
+          backgroundColor: (theme) => alpha(theme.palette.neutral[800], 0.95),
           borderBottomColor: 'neutral.700',
           borderBottomStyle: 'solid',
           borderBottomWidth: 1,
@@ -158,12 +158,12 @@ export const HomeCodeSamples: FC = () => {
           boxShadow: 24,
           flex: '0 0 auto',
           overflow: 'hidden',
-          px: 2
+          px: 2,
         }}
       >
         <Stack
-          alignItems="center"
-          direction="row"
+          alignItems='center'
+          direction='row'
           spacing={1}
           sx={{
             py: 2,
@@ -171,27 +171,23 @@ export const HomeCodeSamples: FC = () => {
               backgroundColor: 'rgba(255, 255, 255, 0.16)',
               borderRadius: '50%',
               height: 10,
-              width: 10
-            }
+              width: 10,
+            },
           }}
         >
           <div />
           <div />
           <div />
         </Stack>
-        <Tabs
-          onChange={handleLangChange}
-          value={currentLang}
-        >
+        <Tabs onChange={handleLangChange}
+value={currentLang}>
           {samples.map((sample) => (
             <Tab
               key={sample.lang}
               label={
-                <Stack
-                  alignItems="center"
-                  direction="row"
-                  spacing={1}
-                >
+                <Stack alignItems='center'
+direction='row'
+spacing={1}>
                   <Box
                     sx={{
                       borderRadius: '4px',
@@ -200,16 +196,14 @@ export const HomeCodeSamples: FC = () => {
                       overflow: 'hidden',
                       width: 20,
                       '& img': {
-                        width: '100%'
-                      }
+                        width: '100%',
+                      },
                     }}
                   >
                     <img src={sample.icon} />
                   </Box>
-                  <Typography
-                    sx={{ color: 'neutral.300' }}
-                    variant="body2"
-                  >
+                  <Typography sx={{ color: 'neutral.300' }}
+variant='body2'>
                     {sample.label}
                   </Typography>
                 </Stack>
@@ -222,7 +216,7 @@ export const HomeCodeSamples: FC = () => {
       <Box
         sx={{
           backdropFilter: 'blur(6px)',
-          backgroundColor: (theme) => alpha(theme.palette.neutral[800], .9),
+          backgroundColor: (theme) => alpha(theme.palette.neutral[800], 0.9),
           borderBottomLeftRadius: (theme) => theme.shape.borderRadius,
           borderBottomRightRadius: (theme) => theme.shape.borderRadius,
           flex: '1 1 auto',
@@ -235,19 +229,17 @@ export const HomeCodeSamples: FC = () => {
             height: '100%',
             m: '0 !important',
             overflow: 'hidden !important',
-            p: '0 !important'
+            p: '0 !important',
           },
           '& code': {
-            fontSize: '12px !important'
-          }
+            fontSize: '12px !important',
+          },
         }}
       >
-        <SyntaxHighlighter
-          children={code}
-          language={currentLang}
-          style={codeStyle}
-        />
+        <SyntaxHighlighter children={code}
+language={currentLang}
+style={codeStyle} />
       </Box>
     </Box>
-  );
-};
+  )
+}

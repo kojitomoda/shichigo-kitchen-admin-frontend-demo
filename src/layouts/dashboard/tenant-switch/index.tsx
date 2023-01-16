@@ -1,68 +1,51 @@
-import type { FC } from 'react';
-import { useCallback, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import ChevronDownIcon from '@untitled-ui/icons-react/build/esm/ChevronDown';
-import { SxProps } from '@mui/system';
-import { Box, IconButton, Stack, SvgIcon, Typography } from '@mui/material';
-import { TenantPopover } from './tenant-popover';
+import type { FC } from 'react'
+import { useCallback, useRef, useState } from 'react'
+import PropTypes from 'prop-types'
+import ChevronDownIcon from '@untitled-ui/icons-react/build/esm/ChevronDown'
+import { SxProps } from '@mui/system'
+import { Box, IconButton, Stack, SvgIcon, Typography } from '@mui/material'
+import { TenantPopover } from './tenant-popover'
 
-const tenants: string[] = ['Devias', 'Acme Corp'];
+const tenants: string[] = ['Devias', 'Acme Corp']
 
 interface TenantSwitchProps {
-  sx?: SxProps;
+  sx?: SxProps
 }
 
 export const TenantSwitch: FC<TenantSwitchProps> = (props) => {
-  const anchorRef = useRef<HTMLButtonElement | null>(null);
-  const [openPopover, setOpenPopover] = useState<boolean>(false);
+  const anchorRef = useRef<HTMLButtonElement | null>(null)
+  const [openPopover, setOpenPopover] = useState<boolean>(false)
 
-  const handlePopoverOpen = useCallback(
-    () => {
-      setOpenPopover(true);
-    },
-    []
-  );
+  const handlePopoverOpen = useCallback(() => {
+    setOpenPopover(true)
+  }, [])
 
-  const handlePopoverClose = useCallback(
-    () => {
-      setOpenPopover(false);
-    },
-    []
-  );
+  const handlePopoverClose = useCallback(() => {
+    setOpenPopover(false)
+  }, [])
 
-  const handleTenantChange = useCallback(
-    (tenant: string) => {
-      setOpenPopover(false);
-    },
-    []
-  );
+  const handleTenantChange = useCallback((tenant: string) => {
+    setOpenPopover(false)
+  }, [])
 
   return (
     <>
-      <Stack
-        alignItems="center"
-        direction="row"
-        spacing={2}
-        {...props}
-      >
+      <Stack alignItems='center'
+direction='row'
+spacing={2}
+{...props}>
         <Box sx={{ flexGrow: 1 }}>
-          <Typography
-            color="inherit"
-            variant="h6"
-          >
+          <Typography color='inherit'
+variant='h6'>
             Devias
           </Typography>
-          <Typography
-            color="neutral.400"
-            variant="body2"
-          >
+          <Typography color='neutral.400'
+variant='body2'>
             Production
           </Typography>
         </Box>
-        <IconButton
-          onClick={handlePopoverOpen}
-          ref={anchorRef}
-        >
+        <IconButton onClick={handlePopoverOpen}
+ref={anchorRef}>
           <SvgIcon sx={{ fontSize: 16 }}>
             <ChevronDownIcon />
           </SvgIcon>
@@ -76,10 +59,10 @@ export const TenantSwitch: FC<TenantSwitchProps> = (props) => {
         tenants={tenants}
       />
     </>
-  );
-};
+  )
+}
 
 TenantSwitch.propTypes = {
   // @ts-ignore
-  sx: PropTypes.object
-};
+  sx: PropTypes.object,
+}

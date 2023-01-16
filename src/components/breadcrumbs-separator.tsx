@@ -1,5 +1,5 @@
-import type { FC } from 'react';
-import { Box } from '@mui/material';
+import type { FC } from 'react'
+import { Box } from '@mui/material'
 
 export const BreadcrumbsSeparator: FC = () => (
   <Box
@@ -7,7 +7,7 @@ export const BreadcrumbsSeparator: FC = () => (
       backgroundColor: 'neutral.500',
       borderRadius: '50%',
       height: 4,
-      width: 4
+      width: 4,
     }}
   />
-);
+)

@@ -1,39 +1,39 @@
-import type { FC } from 'react';
-import { Draggable, Droppable } from 'react-beautiful-dnd';
-import PropTypes from 'prop-types';
-import { Box } from '@mui/material';
-import { useSelector } from '../../../../store';
-import type { Column } from '../../../../types/kanban';
-import { TaskAdd } from '../task-add';
-import { TaskCard } from '../task-card';
-import { ColumnHeader } from './column-header';
+import type { FC } from 'react'
+import { Draggable, Droppable } from 'react-beautiful-dnd'
+import PropTypes from 'prop-types'
+import { Box } from '@mui/material'
+import { useSelector } from '../../../../store'
+import type { Column } from '../../../../types/kanban'
+import { TaskAdd } from '../task-add'
+import { TaskCard } from '../task-card'
+import { ColumnHeader } from './column-header'
 
 const useColumn = (columnId: string): Column | undefined => {
   return useSelector((state) => {
-    const { columns } = state.kanban;
+    const { columns } = state.kanban
 
-    return columns.byId[columnId];
-  });
-};
+    return columns.byId[columnId]
+  })
+}
 
 interface ColumnCardProps {
-  columnId: string;
-  onClear?: () => void;
-  onDelete?: () => void;
-  onRename?: (name: string) => void;
-  onTaskAdd?: (name?: string) => void;
-  onTaskOpen?: (taskId: string) => void;
+  columnId: string
+  onClear?: () => void
+  onDelete?: () => void
+  onRename?: (name: string) => void
+  onTaskAdd?: (name?: string) => void
+  onTaskOpen?: (taskId: string) => void
 }
 
 export const ColumnCard: FC<ColumnCardProps> = (props) => {
-  const { columnId, onTaskAdd, onTaskOpen, onClear, onDelete, onRename, ...other } = props;
-  const column = useColumn(columnId);
+  const { columnId, onTaskAdd, onTaskOpen, onClear, onDelete, onRename, ...other } = props
+  const column = useColumn(columnId)
 
   if (!column) {
-    return null;
+    return null
   }
 
-  const tasksCount = column.taskIds.length;
+  const tasksCount = column.taskIds.length
 
   return (
     <Box
@@ -45,8 +45,8 @@ export const ColumnCard: FC<ColumnCardProps> = (props) => {
         overflowY: 'hidden',
         width: {
           xs: 300,
-          sm: 380
-        }
+          sm: 380,
+        },
       }}
       {...other}
     >
@@ -59,16 +59,13 @@ export const ColumnCard: FC<ColumnCardProps> = (props) => {
       />
       <Box
         sx={{
-          backgroundColor: (theme) => theme.palette.mode === 'dark'
-            ? 'neutral.900'
-            : 'neutral.100',
-          borderRadius: 2.5
+          backgroundColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'neutral.900' : 'neutral.100',
+          borderRadius: 2.5,
         }}
       >
-        <Droppable
-          droppableId={column.id}
-          type="task"
-        >
+        <Droppable droppableId={column.id}
+type='task'>
           {(droppableProvider): JSX.Element => (
             <Box
               ref={droppableProvider.innerRef}
@@ -77,22 +74,20 @@ export const ColumnCard: FC<ColumnCardProps> = (props) => {
                 minHeight: 80,
                 overflowY: 'auto',
                 px: 3,
-                pt: 1.5
+                pt: 1.5,
               }}
             >
               {column?.taskIds.map((taskId, index) => (
-                <Draggable
-                  key={taskId}
-                  draggableId={taskId}
-                  index={index}
-                >
+                <Draggable key={taskId}
+draggableId={taskId}
+index={index}>
                   {(draggableProvided, snapshot): JSX.Element => (
                     <Box
                       ref={draggableProvided.innerRef}
                       style={{ ...draggableProvided.draggableProps.style }}
                       sx={{
                         outline: 'none',
-                        py: 1.5
+                        py: 1.5,
                       }}
                       {...draggableProvided.draggableProps}
                       {...draggableProvided.dragHandleProps}
@@ -115,15 +110,15 @@ export const ColumnCard: FC<ColumnCardProps> = (props) => {
           sx={{
             pt: 1.5,
             pb: 3,
-            px: 3
+            px: 3,
           }}
         >
           <TaskAdd onAdd={onTaskAdd} />
         </Box>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
 ColumnCard.propTypes = {
   columnId: PropTypes.string.isRequired,
@@ -131,5 +126,5 @@ ColumnCard.propTypes = {
   onDelete: PropTypes.func,
   onRename: PropTypes.func,
   onTaskAdd: PropTypes.func,
-  onTaskOpen: PropTypes.func
-};
+  onTaskOpen: PropTypes.func,
+}

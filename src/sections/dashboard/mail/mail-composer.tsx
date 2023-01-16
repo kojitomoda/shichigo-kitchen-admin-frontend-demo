@@ -1,11 +1,11 @@
-import type { ChangeEvent, FC } from 'react';
-import { useCallback } from 'react';
-import PropTypes from 'prop-types';
-import Attachment01Icon from '@untitled-ui/icons-react/build/esm/Attachment01';
-import Expand01Icon from '@untitled-ui/icons-react/build/esm/Expand01';
-import Image01Icon from '@untitled-ui/icons-react/build/esm/Image01';
-import Minimize01Icon from '@untitled-ui/icons-react/build/esm/Minimize01';
-import XIcon from '@untitled-ui/icons-react/build/esm/X';
+import type { ChangeEvent, FC } from 'react'
+import { useCallback } from 'react'
+import PropTypes from 'prop-types'
+import Attachment01Icon from '@untitled-ui/icons-react/build/esm/Attachment01'
+import Expand01Icon from '@untitled-ui/icons-react/build/esm/Expand01'
+import Image01Icon from '@untitled-ui/icons-react/build/esm/Image01'
+import Minimize01Icon from '@untitled-ui/icons-react/build/esm/Minimize01'
+import XIcon from '@untitled-ui/icons-react/build/esm/X'
 import {
   Backdrop,
   Box,
@@ -18,22 +18,22 @@ import {
   Stack,
   SvgIcon,
   Tooltip,
-  Typography
-} from '@mui/material';
-import { QuillEditor } from '../../../components/quill-editor';
+  Typography,
+} from '@mui/material'
+import { QuillEditor } from '../../../components/quill-editor'
 
 interface MailComposerProps {
-  maximize?: boolean;
-  message?: string;
-  onClose?: () => void;
-  onMaximize?: () => void;
-  onMessageChange?: (value: string) => void;
-  onMinimize?: () => void;
-  onSubjectChange?: (value: string) => void;
-  onToChange?: (value: string) => void;
-  open?: boolean;
-  subject?: string;
-  to?: string;
+  maximize?: boolean
+  message?: string
+  onClose?: () => void
+  onMaximize?: () => void
+  onMessageChange?: (value: string) => void
+  onMinimize?: () => void
+  onSubjectChange?: (value: string) => void
+  onToChange?: (value: string) => void
+  open?: boolean
+  subject?: string
+  to?: string
 }
 
 export const MailComposer: FC<MailComposerProps> = (props) => {
@@ -48,25 +48,25 @@ export const MailComposer: FC<MailComposerProps> = (props) => {
     onToChange,
     open = false,
     subject = '',
-    to = ''
-  } = props;
+    to = '',
+  } = props
 
   const handleSubjectChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>): void => {
-      onSubjectChange?.(event.target.value);
+      onSubjectChange?.(event.target.value)
     },
-    [onSubjectChange]
-  );
+    [onSubjectChange],
+  )
 
   const handleToChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>): void => {
-      onToChange?.(event.target.value);
+      onToChange?.(event.target.value)
     },
-    [onToChange]
-  );
+    [onToChange],
+  )
 
   if (!open) {
-    return null;
+    return null
   }
 
   return (
@@ -93,8 +93,8 @@ export const MailComposer: FC<MailComposerProps> = (props) => {
             margin: 0,
             maxHeight: '100%',
             maxWidth: '100%',
-            width: '100%'
-          })
+            width: '100%',
+          }),
         }}
         elevation={12}
       >
@@ -103,30 +103,24 @@ export const MailComposer: FC<MailComposerProps> = (props) => {
             alignItems: 'center',
             display: 'flex',
             px: 2,
-            py: 1
+            py: 1,
           }}
         >
-          <Typography variant="h6">
-            New Message
-          </Typography>
+          <Typography variant='h6'>New Message</Typography>
           <Box sx={{ flexGrow: 1 }} />
-          {
-            maximize
-              ? (
-                <IconButton onClick={onMinimize}>
-                  <SvgIcon>
-                    <Minimize01Icon />
-                  </SvgIcon>
-                </IconButton>
-              )
-              : (
-                <IconButton onClick={onMaximize}>
-                  <SvgIcon>
-                    <Expand01Icon />
-                  </SvgIcon>
-                </IconButton>
-              )
-          }
+          {maximize ? (
+            <IconButton onClick={onMinimize}>
+              <SvgIcon>
+                <Minimize01Icon />
+              </SvgIcon>
+            </IconButton>
+          ) : (
+            <IconButton onClick={onMaximize}>
+              <SvgIcon>
+                <Expand01Icon />
+              </SvgIcon>
+            </IconButton>
+          )}
           <IconButton onClick={onClose}>
             <SvgIcon>
               <XIcon />
@@ -137,11 +131,11 @@ export const MailComposer: FC<MailComposerProps> = (props) => {
           disableUnderline
           fullWidth
           onChange={handleToChange}
-          placeholder="To"
+          placeholder='To'
           sx={{
             p: 1,
             borderBottom: 1,
-            borderColor: 'divider'
+            borderColor: 'divider',
           }}
           value={to}
         />
@@ -149,45 +143,43 @@ export const MailComposer: FC<MailComposerProps> = (props) => {
           disableUnderline
           fullWidth
           onChange={handleSubjectChange}
-          placeholder="Subject"
+          placeholder='Subject'
           sx={{
             p: 1,
             borderBottom: 1,
-            borderColor: 'divider'
+            borderColor: 'divider',
           }}
           value={subject}
         />
         <QuillEditor
           onChange={onMessageChange}
-          placeholder="Leave a message"
+          placeholder='Leave a message'
           sx={{
             border: 'none',
-            flexGrow: 1
+            flexGrow: 1,
           }}
           value={message}
         />
         <Divider />
         <Stack
-          alignItems="center"
-          direction="row"
-          justifyContent="space-between"
+          alignItems='center'
+          direction='row'
+          justifyContent='space-between'
           spacing={3}
           sx={{ p: 2 }}
         >
-          <Stack
-            alignItems="center"
-            direction="row"
-            spacing={1}
-          >
-            <Tooltip title="Attach image">
-              <IconButton size="small">
+          <Stack alignItems='center'
+direction='row'
+spacing={1}>
+            <Tooltip title='Attach image'>
+              <IconButton size='small'>
                 <SvgIcon>
                   <Image01Icon />
                 </SvgIcon>
               </IconButton>
             </Tooltip>
-            <Tooltip title="Attach file">
-              <IconButton size="small">
+            <Tooltip title='Attach file'>
+              <IconButton size='small'>
                 <SvgIcon>
                   <Attachment01Icon />
                 </SvgIcon>
@@ -195,15 +187,13 @@ export const MailComposer: FC<MailComposerProps> = (props) => {
             </Tooltip>
           </Stack>
           <div>
-            <Button variant="contained">
-              Send
-            </Button>
+            <Button variant='contained'>Send</Button>
           </div>
         </Stack>
       </Paper>
     </Portal>
-  );
-};
+  )
+}
 
 MailComposer.propTypes = {
   maximize: PropTypes.bool,
@@ -216,5 +206,5 @@ MailComposer.propTypes = {
   onToChange: PropTypes.func,
   open: PropTypes.bool,
   subject: PropTypes.string,
-  to: PropTypes.string
-};
+  to: PropTypes.string,
+}

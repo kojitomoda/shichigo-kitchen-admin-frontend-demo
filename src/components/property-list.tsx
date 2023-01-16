@@ -1,21 +1,17 @@
-import type { FC, ReactNode } from 'react';
-import PropTypes from 'prop-types';
-import { List } from '@mui/material';
+import type { FC, ReactNode } from 'react'
+import PropTypes from 'prop-types'
+import { List } from '@mui/material'
 
 interface PropertyListProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export const PropertyList: FC<PropertyListProps> = (props) => {
-  const { children } = props;
+  const { children } = props
 
-  return (
-    <List disablePadding>
-      {children}
-    </List>
-  );
-};
+  return <List disablePadding>{children}</List>
+}
 
 PropertyList.propTypes = {
-  children: PropTypes.node
-};
+  children: PropTypes.node,
+}

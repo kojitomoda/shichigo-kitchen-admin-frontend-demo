@@ -1,10 +1,10 @@
-import type { FC } from 'react';
-import { useCallback, useRef, useState } from 'react';
-import ArchiveIcon from '@untitled-ui/icons-react/build/esm/Archive';
-import ClipboardIcon from '@untitled-ui/icons-react/build/esm/Clipboard';
-import DotsHorizontalIcon from '@untitled-ui/icons-react/build/esm/DotsHorizontal';
-import Download01Icon from '@untitled-ui/icons-react/build/esm/Download01';
-import FileCheck03Icon from '@untitled-ui/icons-react/build/esm/FileCheck03';
+import type { FC } from 'react'
+import { useCallback, useRef, useState } from 'react'
+import ArchiveIcon from '@untitled-ui/icons-react/build/esm/Archive'
+import ClipboardIcon from '@untitled-ui/icons-react/build/esm/Clipboard'
+import DotsHorizontalIcon from '@untitled-ui/icons-react/build/esm/DotsHorizontal'
+import Download01Icon from '@untitled-ui/icons-react/build/esm/Download01'
+import FileCheck03Icon from '@untitled-ui/icons-react/build/esm/FileCheck03'
 import {
   IconButton,
   ListItemIcon,
@@ -12,42 +12,31 @@ import {
   Menu,
   MenuItem,
   SvgIcon,
-  Tooltip
-} from '@mui/material';
+  Tooltip,
+} from '@mui/material'
 
 export const MoreMenu: FC = (props) => {
-  const anchorRef = useRef<HTMLButtonElement | null>(null);
-  const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const anchorRef = useRef<HTMLButtonElement | null>(null)
+  const [openMenu, setOpenMenu] = useState<boolean>(false)
 
-  const handleMenuOpen = useCallback(
-    (): void => {
-      setOpenMenu(true);
-    },
-    []
-  );
+  const handleMenuOpen = useCallback((): void => {
+    setOpenMenu(true)
+  }, [])
 
-  const handleMenuClose = useCallback(
-    (): void => {
-      setOpenMenu(false);
-    },
-    []
-  );
+  const handleMenuClose = useCallback((): void => {
+    setOpenMenu(false)
+  }, [])
 
-  const handleAction = useCallback(
-    (): void => {
-      setOpenMenu(false);
-    },
-    []
-  );
+  const handleAction = useCallback((): void => {
+    setOpenMenu(false)
+  }, [])
 
   return (
     <>
-      <Tooltip title="More options">
-        <IconButton
-          onClick={handleMenuOpen}
-          ref={anchorRef}
-          {...props}
-        >
+      <Tooltip title='More options'>
+        <IconButton onClick={handleMenuOpen}
+ref={anchorRef}
+{...props}>
           <SvgIcon>
             <DotsHorizontalIcon />
           </SvgIcon>
@@ -57,19 +46,19 @@ export const MoreMenu: FC = (props) => {
         anchorEl={anchorRef.current}
         anchorOrigin={{
           horizontal: 'right',
-          vertical: 'bottom'
+          vertical: 'bottom',
         }}
         onClose={handleMenuClose}
         open={openMenu}
         PaperProps={{
           sx: {
             maxWidth: '100%',
-            width: 200
-          }
+            width: 200,
+          },
         }}
         transformOrigin={{
           horizontal: 'right',
-          vertical: 'top'
+          vertical: 'top',
         }}
       >
         <MenuItem onClick={handleAction}>
@@ -78,7 +67,7 @@ export const MoreMenu: FC = (props) => {
               <Download01Icon />
             </SvgIcon>
           </ListItemIcon>
-          <ListItemText primary="Import" />
+          <ListItemText primary='Import' />
         </MenuItem>
         <MenuItem onClick={handleAction}>
           <ListItemIcon>
@@ -86,7 +75,7 @@ export const MoreMenu: FC = (props) => {
               <FileCheck03Icon />
             </SvgIcon>
           </ListItemIcon>
-          <ListItemText primary="Export" />
+          <ListItemText primary='Export' />
         </MenuItem>
         <MenuItem onClick={handleAction}>
           <ListItemIcon>
@@ -94,7 +83,7 @@ export const MoreMenu: FC = (props) => {
               <ClipboardIcon />
             </SvgIcon>
           </ListItemIcon>
-          <ListItemText primary="Copy" />
+          <ListItemText primary='Copy' />
         </MenuItem>
         <MenuItem onClick={handleAction}>
           <ListItemIcon>
@@ -102,9 +91,9 @@ export const MoreMenu: FC = (props) => {
               <ArchiveIcon />
             </SvgIcon>
           </ListItemIcon>
-          <ListItemText primary="Archive" />
+          <ListItemText primary='Archive' />
         </MenuItem>
       </Menu>
     </>
-  );
-};
+  )
+}

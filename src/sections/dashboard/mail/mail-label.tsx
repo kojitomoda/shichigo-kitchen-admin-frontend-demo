@@ -1,16 +1,16 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import AlertCircleIcon from '@untitled-ui/icons-react/build/esm/AlertCircle';
-import BookmarkIcon from '@untitled-ui/icons-react/build/esm/Bookmark';
-import Inbox01Icon from '@untitled-ui/icons-react/build/esm/Inbox01';
-import Mail01Icon from '@untitled-ui/icons-react/build/esm/Mail01';
-import Mail04Icon from '@untitled-ui/icons-react/build/esm/Mail04';
-import Send01Icon from '@untitled-ui/icons-react/build/esm/Send01';
-import Star01Icon from '@untitled-ui/icons-react/build/esm/Star01';
-import Tag01Icon from '@untitled-ui/icons-react/build/esm/Tag01';
-import Trash02Icon from '@untitled-ui/icons-react/build/esm/Trash02';
-import { Box, ButtonBase, ListItem, SvgIcon, Typography } from '@mui/material';
-import type { Label } from '../../../types/mail';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import AlertCircleIcon from '@untitled-ui/icons-react/build/esm/AlertCircle'
+import BookmarkIcon from '@untitled-ui/icons-react/build/esm/Bookmark'
+import Inbox01Icon from '@untitled-ui/icons-react/build/esm/Inbox01'
+import Mail01Icon from '@untitled-ui/icons-react/build/esm/Mail01'
+import Mail04Icon from '@untitled-ui/icons-react/build/esm/Mail04'
+import Send01Icon from '@untitled-ui/icons-react/build/esm/Send01'
+import Star01Icon from '@untitled-ui/icons-react/build/esm/Star01'
+import Tag01Icon from '@untitled-ui/icons-react/build/esm/Tag01'
+import Trash02Icon from '@untitled-ui/icons-react/build/esm/Trash02'
+import { Box, ButtonBase, ListItem, SvgIcon, Typography } from '@mui/material'
+import type { Label } from '../../../types/mail'
 
 const systemLabelIcons: Record<string, JSX.Element> = {
   all: <Mail01Icon />,
@@ -20,37 +20,37 @@ const systemLabelIcons: Record<string, JSX.Element> = {
   drafts: <Mail04Icon />,
   spam: <AlertCircleIcon />,
   starred: <Star01Icon />,
-  important: <BookmarkIcon />
-};
+  important: <BookmarkIcon />,
+}
 
 const getIcon = (label: Label): JSX.Element => {
   if (label.type === 'system') {
-    return systemLabelIcons[label.id];
+    return systemLabelIcons[label.id]
   }
 
-  return <Tag01Icon />;
-};
+  return <Tag01Icon />
+}
 
 const getColor = (label: Label): string => {
   if (label.type === 'custom') {
-    return label.color || 'inherit';
+    return label.color || 'inherit'
   }
 
-  return 'inherit';
-};
+  return 'inherit'
+}
 
 interface MailLabelProps {
-  active?: boolean;
-  label: Label;
-  onClick?: () => void;
+  active?: boolean
+  label: Label
+  onClick?: () => void
 }
 
 export const MailLabel: FC<MailLabelProps> = (props) => {
-  const { active, label, ...other } = props;
+  const { active, label, ...other } = props
 
-  const icon = getIcon(label);
-  const color = getColor(label);
-  const showUnreadCount = !!(label.unreadCount && label.unreadCount > 0);
+  const icon = getIcon(label)
+  const color = getColor(label)
+  const showUnreadCount = !!(label.unreadCount && label.unreadCount > 0)
 
   return (
     <ListItem
@@ -58,8 +58,8 @@ export const MailLabel: FC<MailLabelProps> = (props) => {
       disablePadding
       sx={{
         '& + &': {
-          mt: 1
-        }
+          mt: 1,
+        },
       }}
       {...other}
     >
@@ -76,41 +76,37 @@ export const MailLabel: FC<MailLabelProps> = (props) => {
           px: 2,
           textAlign: 'left',
           '&:hover': {
-            backgroundColor: 'action.hover'
+            backgroundColor: 'action.hover',
           },
           ...(active && {
             backgroundColor: 'action.selected',
-            color: 'text.primary'
-          })
+            color: 'text.primary',
+          }),
         }}
       >
         <SvgIcon
           sx={{
             color,
-            mr: 1
+            mr: 1,
           }}
         >
           {icon}
         </SvgIcon>
-        <Box sx={{ flexGrow: 1 }}>
-          {label.name}
-        </Box>
+        <Box sx={{ flexGrow: 1 }}>{label.name}</Box>
         {showUnreadCount && (
-          <Typography
-            color="inherit"
-            variant="subtitle2"
-          >
+          <Typography color='inherit'
+variant='subtitle2'>
             {label.unreadCount}
           </Typography>
         )}
       </ButtonBase>
     </ListItem>
-  );
-};
+  )
+}
 
 MailLabel.propTypes = {
   active: PropTypes.bool,
   // @ts-ignore
   label: PropTypes.object.isRequired,
-  onClick: PropTypes.func
-};
+  onClick: PropTypes.func,
+}

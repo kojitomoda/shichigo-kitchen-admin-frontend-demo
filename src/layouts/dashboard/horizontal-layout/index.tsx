@@ -1,88 +1,77 @@
-import type { FC, ReactNode } from 'react';
-import { useCallback, useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
-import PropTypes from 'prop-types';
-import type { Theme } from '@mui/material';
-import { useMediaQuery } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import type { NavColor } from '../../../types/settings';
-import type { Section } from '../config';
-import { MobileNav } from '../mobile-nav';
-import { TopNav } from './top-nav';
+import type { FC, ReactNode } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
+import PropTypes from 'prop-types'
+import type { Theme } from '@mui/material'
+import { useMediaQuery } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import type { NavColor } from '../../../types/settings'
+import type { Section } from '../config'
+import { MobileNav } from '../mobile-nav'
+import { TopNav } from './top-nav'
 
 const useMobileNav = () => {
-  const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
-  const handlePathnameChange = useCallback(
-    (): void => {
-      if (isOpen) {
-        setIsOpen(false);
-      }
-    },
-    [isOpen]
-  );
+  const handlePathnameChange = useCallback((): void => {
+    if (isOpen) {
+      setIsOpen(false)
+    }
+  }, [isOpen])
 
   useEffect(
     () => {
-      handlePathnameChange();
+      handlePathnameChange()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [pathname]
-  );
+    [pathname],
+  )
 
-  const handleOpen = useCallback(
-    (): void => {
-      setIsOpen(true);
-    },
-    []
-  );
+  const handleOpen = useCallback((): void => {
+    setIsOpen(true)
+  }, [])
 
-  const handleClose = useCallback(
-    (): void => {
-      setIsOpen(false);
-    },
-    []
-  );
+  const handleClose = useCallback((): void => {
+    setIsOpen(false)
+  }, [])
 
   return {
     isOpen,
     handleOpen,
-    handleClose
-  };
-};
+    handleClose,
+  }
+}
 
 const HorizontalLayoutRoot = styled('div')({
   display: 'flex',
   flex: '1 1 auto',
-  maxWidth: '100%'
-});
+  maxWidth: '100%',
+})
 
 const HorizontalLayoutContainer = styled('div')({
   display: 'flex',
   flex: '1 1 auto',
   flexDirection: 'column',
-  width: '100%'
-});
+  width: '100%',
+})
 
 interface HorizontalLayoutProps {
-  children?: ReactNode;
-  navColor?: NavColor;
-  sections?: Section[];
+  children?: ReactNode
+  navColor?: NavColor
+  sections?: Section[]
 }
 
 export const HorizontalLayout: FC<HorizontalLayoutProps> = (props) => {
-  const { children, navColor, sections } = props;
-  const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
-  const mobileNav = useMobileNav();
+  const { children, navColor, sections } = props
+  const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'))
+  const mobileNav = useMobileNav()
 
   return (
     <>
-      <TopNav
-        color={navColor}
-        onMobileNav={mobileNav.handleOpen}
-        sections={sections}
-      />
+      <TopNav color={navColor}
+onMobileNav={mobileNav.handleOpen}
+sections={sections} />
       {!lgUp && (
         <MobileNav
           color={navColor}
@@ -92,14 +81,12 @@ export const HorizontalLayout: FC<HorizontalLayoutProps> = (props) => {
         />
       )}
       <HorizontalLayoutRoot>
-        <HorizontalLayoutContainer>
-          {children}
-        </HorizontalLayoutContainer>
+        <HorizontalLayoutContainer>{children}</HorizontalLayoutContainer>
       </HorizontalLayoutRoot>
     </>
-  );
-};
+  )
+}
 
 HorizontalLayout.propTypes = {
-  children: PropTypes.node
-};
+  children: PropTypes.node,
+}

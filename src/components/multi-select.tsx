@@ -1,61 +1,55 @@
-import type { ChangeEvent, FC } from 'react';
-import { useCallback, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import ChevronDownIcon from '@untitled-ui/icons-react/build/esm/ChevronDown';
-import { Button, Checkbox, FormControlLabel, Menu, MenuItem, SvgIcon } from '@mui/material';
+import type { ChangeEvent, FC } from 'react'
+import { useCallback, useRef, useState } from 'react'
+import PropTypes from 'prop-types'
+import ChevronDownIcon from '@untitled-ui/icons-react/build/esm/ChevronDown'
+import { Button, Checkbox, FormControlLabel, Menu, MenuItem, SvgIcon } from '@mui/material'
 
 interface MultiSelectProps {
-  label: string;
+  label: string
   // Same as type as the value received above
-  onChange?: (value: any[]) => void;
-  options: { label: string; value: unknown; }[];
+  onChange?: (value: any[]) => void
+  options: { label: string; value: unknown }[]
   // This should accept string[], number[] or boolean[]
-  value: any[];
+  value: any[]
 }
 
 export const MultiSelect: FC<MultiSelectProps> = (props) => {
-  const { label, onChange, options, value = [], ...other } = props;
-  const anchorRef = useRef<HTMLButtonElement | null>(null);
-  const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const { label, onChange, options, value = [], ...other } = props
+  const anchorRef = useRef<HTMLButtonElement | null>(null)
+  const [openMenu, setOpenMenu] = useState<boolean>(false)
 
-  const handleMenuOpen = useCallback(
-    (): void => {
-      setOpenMenu(true);
-    },
-    []
-  );
+  const handleMenuOpen = useCallback((): void => {
+    setOpenMenu(true)
+  }, [])
 
-  const handleMenuClose = useCallback(
-    (): void => {
-      setOpenMenu(false);
-    },
-    []
-  );
+  const handleMenuClose = useCallback((): void => {
+    setOpenMenu(false)
+  }, [])
 
   const handleValueChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>): void => {
-      let newValue = [...value];
+      let newValue = [...value]
 
       if (event.target.checked) {
-        newValue.push(event.target.value);
+        newValue.push(event.target.value)
       } else {
-        newValue = newValue.filter((item) => item !== event.target.value);
+        newValue = newValue.filter((item) => item !== event.target.value)
       }
 
-      onChange?.(newValue);
+      onChange?.(newValue)
     },
-    [onChange, value]
-  );
+    [onChange, value],
+  )
 
   return (
     <>
       <Button
-        color="inherit"
-        endIcon={(
+        color='inherit'
+        endIcon={
           <SvgIcon>
             <ChevronDownIcon />
           </SvgIcon>
-        )}
+        }
         onClick={handleMenuOpen}
         ref={anchorRef}
         {...other}
@@ -71,29 +65,29 @@ export const MultiSelect: FC<MultiSelectProps> = (props) => {
         {options.map((option) => (
           <MenuItem key={option.label}>
             <FormControlLabel
-              control={(
+              control={
                 <Checkbox
                   checked={value.includes(option.value)}
                   onChange={handleValueChange}
                   value={option.value}
                 />
-              )}
+              }
               label={option.label}
               sx={{
                 flexGrow: 1,
-                mr: 0
+                mr: 0,
               }}
             />
           </MenuItem>
         ))}
       </Menu>
     </>
-  );
-};
+  )
+}
 
 MultiSelect.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   options: PropTypes.array.isRequired,
-  value: PropTypes.array.isRequired
-};
+  value: PropTypes.array.isRequired,
+}

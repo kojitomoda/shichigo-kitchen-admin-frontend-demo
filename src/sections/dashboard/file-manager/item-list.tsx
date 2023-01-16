@@ -1,24 +1,24 @@
-import type { ChangeEvent, FC, MouseEvent } from 'react';
-import PropTypes from 'prop-types';
-import { Box, Stack, Table, TableBody, TablePagination } from '@mui/material';
-import { Scrollbar } from '../../../components/scrollbar';
-import type { Item } from '../../../types/file-manager';
-import { ItemListCard } from './item-list-card';
-import { ItemListRow } from './item-list-row';
+import type { ChangeEvent, FC, MouseEvent } from 'react'
+import PropTypes from 'prop-types'
+import { Box, Stack, Table, TableBody, TablePagination } from '@mui/material'
+import { Scrollbar } from '../../../components/scrollbar'
+import type { Item } from '../../../types/file-manager'
+import { ItemListCard } from './item-list-card'
+import { ItemListRow } from './item-list-row'
 
-type View = 'grid' | 'list';
+type View = 'grid' | 'list'
 
 interface ItemListProps {
-  items: Item[];
-  itemsCount: number;
-  onDelete?: (itemId: string) => void;
-  onFavorite?: (itemId: string, value: boolean) => void;
-  onOpen?: (itemId: string) => void;
-  onPageChange: (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => void;
-  onRowsPerPageChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  page: number;
-  rowsPerPage: number;
-  view?: View;
+  items: Item[]
+  itemsCount: number
+  onDelete?: (itemId: string) => void
+  onFavorite?: (itemId: string, value: boolean) => void
+  onOpen?: (itemId: string) => void
+  onPageChange: (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => void
+  onRowsPerPageChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  page: number
+  rowsPerPage: number
+  view?: View
 }
 
 export const ItemList: FC<ItemListProps> = (props) => {
@@ -32,10 +32,10 @@ export const ItemList: FC<ItemListProps> = (props) => {
     onRowsPerPageChange,
     page,
     rowsPerPage,
-    view = 'grid'
-  } = props;
+    view = 'grid',
+  } = props
 
-  let content: JSX.Element;
+  let content: JSX.Element
 
   if (view === 'grid') {
     content = (
@@ -43,7 +43,7 @@ export const ItemList: FC<ItemListProps> = (props) => {
         sx={{
           display: 'grid',
           gap: 3,
-          gridTemplateColumns: 'repeat(3, 1fr)'
+          gridTemplateColumns: 'repeat(3, 1fr)',
         }}
       >
         {items.map((item) => (
@@ -56,7 +56,7 @@ export const ItemList: FC<ItemListProps> = (props) => {
           />
         ))}
       </Box>
-    );
+    )
   } else {
     // Negative margin is a fix for the box shadow. The virtual scrollbar cuts it.
     content = (
@@ -67,7 +67,7 @@ export const ItemList: FC<ItemListProps> = (props) => {
               sx={{
                 minWidth: 600,
                 borderCollapse: 'separate',
-                borderSpacing: '0 8px'
+                borderSpacing: '0 8px',
               }}
             >
               <TableBody>
@@ -85,14 +85,14 @@ export const ItemList: FC<ItemListProps> = (props) => {
           </Box>
         </Scrollbar>
       </Box>
-    );
+    )
   }
 
   return (
     <Stack spacing={4}>
       {content}
       <TablePagination
-        component="div"
+        component='div'
         count={itemsCount}
         onPageChange={onPageChange}
         onRowsPerPageChange={onRowsPerPageChange}
@@ -101,8 +101,8 @@ export const ItemList: FC<ItemListProps> = (props) => {
         rowsPerPageOptions={[9, 18]}
       />
     </Stack>
-  );
-};
+  )
+}
 
 ItemList.propTypes = {
   items: PropTypes.array.isRequired,
@@ -114,5 +114,5 @@ ItemList.propTypes = {
   onRowsPerPageChange: PropTypes.func,
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
-  view: PropTypes.oneOf<View>(['grid', 'list'])
-};
+  view: PropTypes.oneOf<View>(['grid', 'list']),
+}

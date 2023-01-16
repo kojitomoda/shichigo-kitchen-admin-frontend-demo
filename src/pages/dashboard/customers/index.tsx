@@ -1,32 +1,32 @@
-import type { ChangeEvent, MouseEvent } from 'react';
-import { useCallback, useEffect, useState } from 'react';
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import Download01Icon from '@untitled-ui/icons-react/build/esm/Download01';
-import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus';
-import Upload01Icon from '@untitled-ui/icons-react/build/esm/Upload01';
-import { Box, Button, Card, Container, Stack, SvgIcon, Typography } from '@mui/material';
-import { customersApi } from '../../../api/customers';
-import { useMounted } from '../../../hooks/use-mounted';
-import { usePageView } from '../../../hooks/use-page-view';
-import { Layout as DashboardLayout } from '../../../layouts/dashboard';
-import { CustomerListSearch } from '../../../sections/dashboard/customer/customer-list-search';
-import { CustomerListTable } from '../../../sections/dashboard/customer/customer-list-table';
-import type { Customer } from '../../../types/customer';
+import type { ChangeEvent, MouseEvent } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import Download01Icon from '@untitled-ui/icons-react/build/esm/Download01'
+import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus'
+import Upload01Icon from '@untitled-ui/icons-react/build/esm/Upload01'
+import { Box, Button, Card, Container, Stack, SvgIcon, Typography } from '@mui/material'
+import { customersApi } from '../../../api/customers'
+import { useMounted } from '../../../hooks/use-mounted'
+import { usePageView } from '../../../hooks/use-page-view'
+import { Layout as DashboardLayout } from '../../../layouts/dashboard'
+import { CustomerListSearch } from '../../../sections/dashboard/customer/customer-list-search'
+import { CustomerListTable } from '../../../sections/dashboard/customer/customer-list-table'
+import type { Customer } from '../../../types/customer'
 
 interface Filters {
-  query?: string;
-  hasAcceptedMarketing?: boolean;
-  isProspect?: boolean;
-  isReturning?: boolean;
+  query?: string
+  hasAcceptedMarketing?: boolean
+  isProspect?: boolean
+  isReturning?: boolean
 }
 
 interface Search {
-  filters: Filters;
-  page: number;
-  rowsPerPage: number;
-  sortBy: string;
-  sortDir: 'asc' | 'desc';
+  filters: Filters
+  page: number
+  rowsPerPage: number
+  sortBy: string
+  sortDir: 'asc' | 'desc'
 }
 
 const useSearch = () => {
@@ -35,172 +35,159 @@ const useSearch = () => {
       query: undefined,
       hasAcceptedMarketing: undefined,
       isProspect: undefined,
-      isReturning: undefined
+      isReturning: undefined,
     },
     page: 0,
     rowsPerPage: 5,
     sortBy: 'updatedAt',
-    sortDir: 'desc'
-  });
+    sortDir: 'desc',
+  })
 
   return {
     search,
-    updateSearch: setSearch
-  };
-};
+    updateSearch: setSearch,
+  }
+}
 
-const useCustomers = (search: Search): { customers: Customer[]; customersCount: number; } => {
-  const isMounted = useMounted();
+const useCustomers = (search: Search): { customers: Customer[]; customersCount: number } => {
+  const isMounted = useMounted()
   const [state, setState] = useState<{
-    customers: Customer[];
-    customersCount: number;
+    customers: Customer[]
+    customersCount: number
   }>({
     customers: [],
-    customersCount: 0
-  });
+    customersCount: 0,
+  })
 
-  const getCustomers = useCallback(
-    async () => {
-      try {
-        const response = await customersApi.getCustomers(search);
+  const getCustomers = useCallback(async () => {
+    try {
+      const response = await customersApi.getCustomers(search)
 
-        if (isMounted()) {
-          setState({
-            customers: response.data,
-            customersCount: response.count
-          });
-        }
-      } catch (err) {
-        console.error(err);
+      if (isMounted()) {
+        setState({
+          customers: response.data,
+          customersCount: response.count,
+        })
       }
-    },
-    [search, isMounted]
-  );
+    } catch (err) {
+      console.error(err)
+    }
+  }, [search, isMounted])
 
   useEffect(
     () => {
-      getCustomers();
+      getCustomers()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [search]
-  );
+    [search],
+  )
 
-  return state;
-};
+  return state
+}
 
 const Page: NextPage = () => {
-  const { search, updateSearch } = useSearch();
-  const { customers, customersCount } = useCustomers(search);
+  const { search, updateSearch } = useSearch()
+  const { customers, customersCount } = useCustomers(search)
 
-  usePageView();
+  usePageView()
 
   const handleFiltersChange = useCallback(
     (filters: Filters): void => {
       updateSearch((prevState) => ({
         ...prevState,
-        filters
-      }));
+        filters,
+      }))
     },
-    [updateSearch]
-  );
+    [updateSearch],
+  )
 
   const handleSortChange = useCallback(
-    (sort: { sortBy: string; sortDir: 'asc' | 'desc'; }): void => {
+    (sort: { sortBy: string; sortDir: 'asc' | 'desc' }): void => {
       updateSearch((prevState) => ({
         ...prevState,
         sortBy: sort.sortBy,
-        sortDir: sort.sortDir
-      }));
+        sortDir: sort.sortDir,
+      }))
     },
-    [updateSearch]
-  );
+    [updateSearch],
+  )
 
   const handlePageChange = useCallback(
     (event: MouseEvent<HTMLButtonElement> | null, page: number): void => {
       updateSearch((prevState) => ({
         ...prevState,
-        page
-      }));
+        page,
+      }))
     },
-    [updateSearch]
-  );
+    [updateSearch],
+  )
 
   const handleRowsPerPageChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>): void => {
       updateSearch((prevState) => ({
         ...prevState,
-        rowsPerPage: parseInt(event.target.value, 10)
-      }));
+        rowsPerPage: parseInt(event.target.value, 10),
+      }))
     },
-    [updateSearch]
-  );
+    [updateSearch],
+  )
 
   return (
     <>
       <Head>
-        <title>
-          Dashboard: Customer List | Devias Kit PRO
-        </title>
+        <title>Dashboard: Customer List | Devias Kit PRO</title>
       </Head>
       <Box
-        component="main"
+        component='main'
         sx={{
           flexGrow: 1,
-          py: 8
+          py: 8,
         }}
       >
-        <Container maxWidth="xl">
+        <Container maxWidth='xl'>
           <Stack spacing={4}>
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              spacing={4}
-            >
+            <Stack direction='row'
+justifyContent='space-between'
+spacing={4}>
               <Stack spacing={1}>
-                <Typography variant="h4">
-                  Customers
-                </Typography>
-                <Stack
-                  alignItems="center"
-                  direction="row"
-                  spacing={1}
-                >
+                <Typography variant='h4'>Customers</Typography>
+                <Stack alignItems='center'
+direction='row'
+spacing={1}>
                   <Button
-                    color="inherit"
-                    size="small"
-                    startIcon={(
+                    color='inherit'
+                    size='small'
+                    startIcon={
                       <SvgIcon>
                         <Upload01Icon />
                       </SvgIcon>
-                    )}
+                    }
                   >
                     Import
                   </Button>
                   <Button
-                    color="inherit"
-                    size="small"
-                    startIcon={(
+                    color='inherit'
+                    size='small'
+                    startIcon={
                       <SvgIcon>
                         <Download01Icon />
                       </SvgIcon>
-                    )}
+                    }
                   >
                     Export
                   </Button>
                 </Stack>
               </Stack>
-              <Stack
-                alignItems="center"
-                direction="row"
-                spacing={3}
-              >
+              <Stack alignItems='center'
+direction='row'
+spacing={3}>
                 <Button
-                  startIcon={(
+                  startIcon={
                     <SvgIcon>
                       <PlusIcon />
                     </SvgIcon>
-                  )}
-                  variant="contained"
+                  }
+                  variant='contained'
                 >
                   Add
                 </Button>
@@ -226,13 +213,9 @@ const Page: NextPage = () => {
         </Container>
       </Box>
     </>
-  );
-};
+  )
+}
 
-Page.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
+Page.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>
 
-export default Page;
+export default Page

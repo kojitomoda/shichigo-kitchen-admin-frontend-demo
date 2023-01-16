@@ -1,5 +1,5 @@
-import type { FC } from 'react';
-import { Box, Typography } from '@mui/material';
+import type { FC } from 'react'
+import { Box, Typography } from '@mui/material'
 
 export const ChatBlank: FC = () => (
   <Box
@@ -9,23 +9,21 @@ export const ChatBlank: FC = () => (
       flexGrow: 1,
       flexDirection: 'column',
       justifyContent: 'center',
-      overflow: 'hidden'
+      overflow: 'hidden',
     }}
   >
     <Box
-      component="img"
-      src="/assets/errors/error-404.png"
+      component='img'
+      src='/assets/errors/error-404.png'
       sx={{
         height: 'auto',
-        maxWidth: 120
+        maxWidth: 120,
       }}
     />
-    <Typography
-      color="text.secondary"
-      sx={{ mt: 2 }}
-      variant="subtitle1"
-    >
+    <Typography color='text.secondary'
+sx={{ mt: 2 }}
+variant='subtitle1'>
       Start meaningful conversations!
     </Typography>
   </Box>
-);
+)

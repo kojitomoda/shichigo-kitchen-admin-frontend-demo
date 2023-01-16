@@ -1,6 +1,6 @@
-import type { FC } from 'react';
-import { useMemo } from 'react';
-import SearchMdIcon from '@untitled-ui/icons-react/build/esm/SearchMd';
+import type { FC } from 'react'
+import { useMemo } from 'react'
+import SearchMdIcon from '@untitled-ui/icons-react/build/esm/SearchMd'
 import {
   Box,
   Card,
@@ -11,89 +11,89 @@ import {
   Input,
   Stack,
   SvgIcon,
-  Typography
-} from '@mui/material';
-import { MultiSelect } from '../../../components/multi-select';
+  Typography,
+} from '@mui/material'
+import { MultiSelect } from '../../../components/multi-select'
 
 interface SearchChip {
-  label: string;
-  field: 'type' | 'level' | 'location' | 'role';
-  value: unknown;
-  displayValue?: unknown;
+  label: string
+  field: 'type' | 'level' | 'location' | 'role'
+  value: unknown
+  displayValue?: unknown
 }
 
 interface Option {
-  label: string;
-  value: string;
+  label: string
+  value: string
 }
 
 const typeOptions: Option[] = [
   {
     label: 'Freelance',
-    value: 'freelance'
+    value: 'freelance',
   },
   {
     label: 'Full Time',
-    value: 'fullTime'
+    value: 'fullTime',
   },
   {
     label: 'Part Time',
-    value: 'partTime'
+    value: 'partTime',
   },
   {
     label: 'Internship',
-    value: 'internship'
-  }
-];
+    value: 'internship',
+  },
+]
 
 const levelOptions: Option[] = [
   {
     label: 'Novice',
-    value: 'novice'
+    value: 'novice',
   },
   {
     label: 'Expert',
-    value: 'expert'
-  }
-];
+    value: 'expert',
+  },
+]
 
 const locationOptions: Option[] = [
   {
     label: 'Africa',
-    value: 'africa'
+    value: 'africa',
   },
   {
     label: 'Asia',
-    value: 'asia'
+    value: 'asia',
   },
   {
     label: 'Europe',
-    value: 'europe'
+    value: 'europe',
   },
   {
     label: 'North America',
-    value: 'northAmerica'
+    value: 'northAmerica',
   },
   {
     label: 'South America',
-    value: 'southAmerica'
-  }
-];
+    value: 'southAmerica',
+  },
+]
 
 const roleOptions: Option[] = [
   {
     label: 'Web Developer',
-    value: 'webDeveloper'
+    value: 'webDeveloper',
   },
   {
     label: 'Android Developer',
-    value: 'androidDeveloper'
+    value: 'androidDeveloper',
   },
   {
     label: 'iOS Developer',
-    value: 'iosDeveloper'
-  }
-];
+    value: 'iosDeveloper',
+  },
+]
 
 export const JobListSearch: FC = (props) => {
   const chips = useMemo<SearchChip[]>(
@@ -102,171 +102,134 @@ export const JobListSearch: FC = (props) => {
         label: 'Type',
         field: 'type',
         value: 'freelance',
-        displayValue: 'Freelance'
+        displayValue: 'Freelance',
       },
       {
         label: 'Type',
         field: 'type',
         value: 'internship',
-        displayValue: 'Internship'
+        displayValue: 'Internship',
       },
       {
         label: 'Level',
         field: 'level',
         value: 'novice',
-        displayValue: 'Novice'
+        displayValue: 'Novice',
       },
       {
         label: 'Location',
         field: 'location',
         value: 'asia',
-        displayValue: 'Asia'
+        displayValue: 'Asia',
       },
       {
         label: 'Role',
         field: 'role',
         value: 'webDeveloper',
-        displayValue: 'Web Developer'
-      }
+        displayValue: 'Web Developer',
+      },
     ],
-    []
-  );
+    [],
+  )
 
   // We memoize this part to prevent re-render issues
   const typeValues = useMemo(
-    () => chips
-      .filter((chip) => chip.field === 'type')
-      .map((chip) => chip.value),
-    [chips]
-  );
+    () => chips.filter((chip) => chip.field === 'type').map((chip) => chip.value),
+    [chips],
+  )
 
   const levelValues = useMemo(
-    () => chips
-      .filter((chip) => chip.field === 'level')
-      .map((chip) => chip.value),
-    [chips]
-  );
+    () => chips.filter((chip) => chip.field === 'level').map((chip) => chip.value),
+    [chips],
+  )
 
   const locationValues = useMemo(
-    () => chips
-      .filter((chip) => chip.field === 'location')
-      .map((chip) => chip.value),
-    [chips]
-  );
+    () => chips.filter((chip) => chip.field === 'location').map((chip) => chip.value),
+    [chips],
+  )
 
   const roleValues = useMemo(
-    () => chips
-      .filter((chip) => chip.field === 'role')
-      .map((chip) => chip.value),
-    [chips]
-  );
+    () => chips.filter((chip) => chip.field === 'role').map((chip) => chip.value),
+    [chips],
+  )
 
-  const showChips = chips.length > 0;
+  const showChips = chips.length > 0
 
   return (
     <Card {...props}>
-      <Stack
-        alignItems="center"
-        direction="row"
-        spacing={2}
-        sx={{ p: 2 }}
-      >
+      <Stack alignItems='center'
+direction='row'
+spacing={2}
+sx={{ p: 2 }}>
         <SvgIcon>
           <SearchMdIcon />
         </SvgIcon>
         <Box sx={{ flexGrow: 1 }}>
-          <Input
-            disableUnderline
-            fullWidth
-            placeholder="Enter a keyword"
-          />
+          <Input disableUnderline
+fullWidth
+placeholder='Enter a keyword' />
         </Box>
       </Stack>
       <Divider />
-      {
-        showChips
-          ? (
-            <Stack
-              alignItems="center"
-              direction="row"
-              flexWrap="wrap"
-              gap={1}
-              sx={{ p: 2 }}
-            >
-              {chips.map((chip, index) => (
-                <Chip
-                  key={index}
-                  label={(
-                    <Box
-                      sx={{
-                        alignItems: 'center',
-                        display: 'flex',
-                        '& span': {
-                          fontWeight: 600
-                        }
-                      }}
-                    >
-                      <>
-                        <span>
-                          {chip.label}
-                        </span>
-                        :
-                        {' '}
-                        {chip.displayValue || chip.value}
-                      </>
-                    </Box>
-                  )}
-                  onDelete={(): void => {}}
-                  variant="outlined"
-                />
-              ))}
-            </Stack>
-          )
-          : (
-            <Box sx={{ p: 2.5 }}>
-              <Typography
-                color="text.secondary"
-                variant="subtitle2"
-              >
-                No filters applied
-              </Typography>
-            </Box>
-          )
-      }
+      {showChips ? (
+        <Stack alignItems='center'
+direction='row'
+flexWrap='wrap'
+gap={1}
+sx={{ p: 2 }}>
+          {chips.map((chip, index) => (
+            <Chip
+              key={index}
+              label={
+                <Box
+                  sx={{
+                    alignItems: 'center',
+                    display: 'flex',
+                    '& span': {
+                      fontWeight: 600,
+                    },
+                  }}
+                >
+                  <>
+                    <span>{chip.label}</span>: {chip.displayValue || chip.value}
+                  </>
+                </Box>
+              }
+              onDelete={(): void => {}}
+              variant='outlined'
+            />
+          ))}
+        </Stack>
+      ) : (
+        <Box sx={{ p: 2.5 }}>
+          <Typography color='text.secondary'
+variant='subtitle2'>
+            No filters applied
+          </Typography>
+        </Box>
+      )}
       <Divider />
-      <Stack
-        alignItems="center"
-        direction="row"
-        flexWrap="wrap"
-        spacing={2}
-        sx={{ p: 1 }}
-      >
-        <MultiSelect
-          label="Type"
-          options={typeOptions}
-          value={typeValues}
-        />
-        <MultiSelect
-          label="Level"
-          options={levelOptions}
-          value={levelValues}
-        />
-        <MultiSelect
-          label="Location"
-          options={locationOptions}
-          value={locationValues}
-        />
-        <MultiSelect
-          label="Role"
-          options={roleOptions}
-          value={roleValues}
-        />
+      <Stack alignItems='center'
+direction='row'
+flexWrap='wrap'
+spacing={2}
+sx={{ p: 1 }}>
+        <MultiSelect label='Type'
+options={typeOptions}
+value={typeValues} />
+        <MultiSelect label='Level'
+options={levelOptions}
+value={levelValues} />
+        <MultiSelect label='Location'
+options={locationOptions}
+value={locationValues} />
+        <MultiSelect label='Role'
+options={roleOptions}
+value={roleValues} />
         <Box sx={{ flexGrow: 1 }} />
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="In network"
-        />
+        <FormControlLabel control={<Checkbox defaultChecked />}
+label='In network' />
       </Stack>
     </Card>
-  );
-};
+  )
+}

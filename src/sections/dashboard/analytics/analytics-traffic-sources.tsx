@@ -1,32 +1,30 @@
-import type { FC } from 'react';
-import type { ApexOptions } from 'apexcharts';
-import PropTypes from 'prop-types';
-import { Card, CardContent, CardHeader } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { Chart } from '../../../components/chart';
+import type { FC } from 'react'
+import type { ApexOptions } from 'apexcharts'
+import PropTypes from 'prop-types'
+import { Card, CardContent, CardHeader } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
+import { Chart } from '../../../components/chart'
 
 const useChartOptions = (): ApexOptions => {
-  const theme = useTheme();
+  const theme = useTheme()
 
   return {
     chart: {
       background: 'transparent',
       stacked: true,
       toolbar: {
-        show: false
-      }
+        show: false,
+      },
     },
     colors: [
       theme.palette.primary.main,
-      theme.palette.mode === 'dark'
-        ? theme.palette.primary.darkest
-        : theme.palette.primary.light
+      theme.palette.mode === 'dark' ? theme.palette.primary.darkest : theme.palette.primary.light,
     ],
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     legend: {
-      show: false
+      show: false,
     },
     grid: {
       borderColor: theme.palette.divider,
@@ -34,87 +32,75 @@ const useChartOptions = (): ApexOptions => {
         bottom: 0,
         left: 0,
         right: 0,
-        top: 0
+        top: 0,
       },
-      strokeDashArray: 2
+      strokeDashArray: 2,
     },
     plotOptions: {
       bar: {
         borderRadius: 8,
         columnWidth: '32px',
-        horizontal: true
-      }
+        horizontal: true,
+      },
     },
     theme: {
-      mode: theme.palette.mode
+      mode: theme.palette.mode,
     },
     xaxis: {
       axisBorder: {
-        show: false
+        show: false,
       },
       axisTicks: {
-        show: false
+        show: false,
       },
-      categories: [
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec'
-      ],
+      categories: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       labels: {
         style: {
-          colors: theme.palette.text.secondary
-        }
-      }
+          colors: theme.palette.text.secondary,
+        },
+      },
     },
     yaxis: {
       axisBorder: {
-        show: false
+        show: false,
       },
       axisTicks: {
-        show: false
+        show: false,
       },
       labels: {
-        show: false
-      }
-    }
-  };
-};
+        show: false,
+      },
+    },
+  }
+}
 
 type ChartSeries = {
-  name: string;
-  data: number[];
-}[];
+  name: string
+  data: number[]
+}[]
 
 interface AnalyticsTrafficSourcesProps {
-  chartSeries: ChartSeries;
+  chartSeries: ChartSeries
 }
 
 export const AnalyticsTrafficSources: FC<AnalyticsTrafficSourcesProps> = (props) => {
-  const { chartSeries } = props;
-  const chartOptions = useChartOptions();
+  const { chartSeries } = props
+  const chartOptions = useChartOptions()
 
   return (
     <Card>
-      <CardHeader
-        sx={{ pb: 0 }}
-        title="Traffic Sources"
-      />
+      <CardHeader sx={{ pb: 0 }}
+title='Traffic Sources' />
       <CardContent sx={{ pt: 0 }}>
-        <Chart
-          height={400}
-          options={chartOptions}
-          series={chartSeries}
-          type="bar"
-        />
+        <Chart height={400}
+options={chartOptions}
+series={chartSeries}
+type='bar' />
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
 AnalyticsTrafficSources.propTypes = {
-  chartSeries: PropTypes.any.isRequired
-};
+  chartSeries: PropTypes.any.isRequired,
+}

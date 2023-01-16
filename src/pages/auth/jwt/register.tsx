@@ -1,9 +1,9 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import { useRouter, useSearchParams } from 'next/navigation';
-import NextLink from 'next/link';
-import * as Yup from 'yup';
-import { useFormik } from 'formik';
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import { useRouter, useSearchParams } from 'next/navigation'
+import NextLink from 'next/link'
+import * as Yup from 'yup'
+import { useFormik } from 'formik'
 import {
   Box,
   Button,
@@ -15,34 +15,34 @@ import {
   Link,
   Stack,
   TextField,
-  Typography
-} from '@mui/material';
-import type { AuthContextType } from '../../../contexts/auth/jwt-context';
-import { GuestGuard } from '../../../guards/guest-guard';
-import { IssuerGuard } from '../../../guards/issuer-guard';
-import { useAuth } from '../../../hooks/use-auth';
-import { useMounted } from '../../../hooks/use-mounted';
-import { usePageView } from '../../../hooks/use-page-view';
-import { Layout as AuthLayout } from '../../../layouts/auth/classic-layout';
-import { paths } from '../../../paths';
-import { AuthIssuer } from '../../../sections/auth/auth-issuer';
-import { Issuer } from '../../../utils/auth';
+  Typography,
+} from '@mui/material'
+import type { AuthContextType } from '../../../contexts/auth/jwt-context'
+import { GuestGuard } from '../../../guards/guest-guard'
+import { IssuerGuard } from '../../../guards/issuer-guard'
+import { useAuth } from '../../../hooks/use-auth'
+import { useMounted } from '../../../hooks/use-mounted'
+import { usePageView } from '../../../hooks/use-page-view'
+import { Layout as AuthLayout } from '../../../layouts/auth/classic-layout'
+import { paths } from '../../../paths'
+import { AuthIssuer } from '../../../sections/auth/auth-issuer'
+import { Issuer } from '../../../utils/auth'
 
-const useParams = (): { returnTo?: string; } => {
-  const searchParams = useSearchParams();
-  const returnTo = searchParams.get('returnTo') || undefined;
+const useParams = (): { returnTo?: string } => {
+  const searchParams = useSearchParams()
+  const returnTo = searchParams.get('returnTo') || undefined
 
   return {
-    returnTo
-  };
-};
+    returnTo,
+  }
+}
 
 interface Values {
-  email: string;
-  name: string;
-  password: string;
-  policy: boolean;
-  submit: null;
+  email: string
+  name: string
+  password: string
+  policy: boolean
+  submit: null
 }
 
 const initialValues: Values = {
@@ -50,100 +50,80 @@ const initialValues: Values = {
   name: '',
   password: '',
   policy: false,
-  submit: null
-};
+  submit: null,
+}
 
 const validationSchema = Yup.object({
-  email: Yup
-    .string()
-    .email('Must be a valid email')
-    .max(255)
-    .required('Email is required'),
-  name: Yup
-    .string()
-    .max(255)
-    .required('Name is required'),
-  password: Yup
-    .string()
-    .min(7)
-    .max(255)
-    .required('Password is required'),
-  policy: Yup
-    .boolean()
-    .oneOf([true], 'This field must be checked')
-});
+  email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+  name: Yup.string().max(255).required('Name is required'),
+  password: Yup.string().min(7).max(255).required('Password is required'),
+  policy: Yup.boolean().oneOf([true], 'This field must be checked'),
+})
 
 const Page: NextPage = () => {
-  const isMounted = useMounted();
-  const router = useRouter();
-  const { returnTo } = useParams();
-  const { issuer, signUp } = useAuth<AuthContextType>();
+  const isMounted = useMounted()
+  const router = useRouter()
+  const { returnTo } = useParams()
+  const { issuer, signUp } = useAuth<AuthContextType>()
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: async (values, helpers): Promise<void> => {
       try {
-        await signUp(values.email, values.name, values.password);
+        await signUp(values.email, values.name, values.password)
 
         if (isMounted()) {
-          router.push(returnTo || paths.dashboard.index);
+          router.push(returnTo || paths.dashboard.index)
         }
       } catch (err) {
-        console.error(err);
+        console.error(err)
 
         if (isMounted()) {
-          helpers.setStatus({ success: false });
-          helpers.setErrors({ submit: err.message });
-          helpers.setSubmitting(false);
+          helpers.setStatus({ success: false })
+          helpers.setErrors({ submit: err.message })
+          helpers.setSubmitting(false)
         }
       }
-    }
-  });
+    },
+  })
 
-  usePageView();
+  usePageView()
 
   return (
     <>
       <Head>
-        <title>
-          Register | Devias Kit PRO
-        </title>
+        <title>Register | Devias Kit PRO</title>
       </Head>
       <div>
         <Card elevation={16}>
           <CardHeader
-            subheader={(
-              <Typography
-                color="text.secondary"
-                variant="body2"
-              >
-                Already have an account?
-                &nbsp;
+            subheader={
+              <Typography color='text.secondary'
+variant='body2'>
+                Already have an account? &nbsp;
                 <Link
                   component={NextLink}
                   href={paths.auth.jwt.login}
-                  underline="hover"
-                  variant="subtitle2"
+                  underline='hover'
+                  variant='subtitle2'
                 >
                   Log in
                 </Link>
               </Typography>
-            )}
+            }
             sx={{ pb: 0 }}
-            title="Register"
+            title='Register'
           />
           <CardContent>
-            <form
-              noValidate
-              onSubmit={formik.handleSubmit}
-            >
+            <form noValidate
+onSubmit={formik.handleSubmit}>
               <Stack spacing={3}>
                 <TextField
                   error={!!(formik.touched.name && formik.errors.name)}
                   fullWidth
                   helperText={formik.touched.name && formik.errors.name}
-                  label="Name"
-                  name="name"
+                  label='Name'
+                  name='name'
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   value={formik.values.name}
@@ -152,22 +132,22 @@ const Page: NextPage = () => {
                   error={!!(formik.touched.email && formik.errors.email)}
                   fullWidth
                   helperText={formik.touched.email && formik.errors.email}
-                  label="Email Address"
-                  name="email"
+                  label='Email Address'
+                  name='email'
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
-                  type="email"
+                  type='email'
                   value={formik.values.email}
                 />
                 <TextField
                   error={!!(formik.touched.password && formik.errors.password)}
                   fullWidth
                   helperText={formik.touched.password && formik.errors.password}
-                  label="Password"
-                  name="password"
+                  label='Password'
+                  name='password'
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
-                  type="password"
+                  type='password'
                   value={formik.values.password}
                 />
               </Stack>
@@ -176,48 +156,39 @@ const Page: NextPage = () => {
                   alignItems: 'center',
                   display: 'flex',
                   ml: -1,
-                  mt: 1
+                  mt: 1,
                 }}
               >
                 <Checkbox
                   checked={formik.values.policy}
-                  name="policy"
+                  name='policy'
                   onChange={formik.handleChange}
                 />
-                <Typography
-                  color="text.secondary"
-                  variant="body2"
-                >
-                  I have read the
-                  {' '}
-                  <Link
-                    component="a"
-                    href="#"
-                  >
+                <Typography color='text.secondary'
+variant='body2'>
+                  I have read the{' '}
+                  <Link component='a'
+href='#'>
                     Terms and Conditions
                   </Link>
                 </Typography>
               </Box>
               {!!(formik.touched.policy && formik.errors.policy) && (
-                <FormHelperText error>
-                  {formik.errors.policy}
-                </FormHelperText>
+                <FormHelperText error>{formik.errors.policy}</FormHelperText>
               )}
               {formik.errors.submit && (
-                <FormHelperText
-                  error
-                  sx={{ mt: 3 }}
-                >
+                <FormHelperText error
+sx={{ mt: 3 }}>
                   {formik.errors.submit as string}
                 </FormHelperText>
               )}
               <Button
                 disabled={formik.isSubmitting}
                 fullWidth
-                size="large"
+                size='large'
                 sx={{ mt: 2 }}
-                type="submit"
-                variant="contained"
+                type='submit'
+                variant='contained'
               >
                 Register
               </Button>
@@ -229,17 +200,15 @@ const Page: NextPage = () => {
         </Box>
       </div>
     </>
-  );
-};
+  )
+}
 
 Page.getLayout = (page) => (
   <IssuerGuard issuer={Issuer.JWT}>
     <GuestGuard>
-      <AuthLayout>
-        {page}
-      </AuthLayout>
+      <AuthLayout>{page}</AuthLayout>
     </GuestGuard>
   </IssuerGuard>
-);
+)
 
-export default Page;
+export default Page

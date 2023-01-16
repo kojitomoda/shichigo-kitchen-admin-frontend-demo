@@ -1,6 +1,6 @@
 export const tokens = {
   common: {
-    languageChanged: 'common.languageChanged'
+    languageChanged: 'common.languageChanged',
   },
   nav: {
     academy: 'nav.academy',
@@ -49,6 +49,6 @@ export const tokens = {
     register: 'nav.register',
     resetPassword: 'nav.resetPassword',
     socialMedia: 'nav.socialMedia',
-    verifyCode: 'nav.verifyCode'
-  }
-};
+    verifyCode: 'nav.verifyCode',
+  },
+}

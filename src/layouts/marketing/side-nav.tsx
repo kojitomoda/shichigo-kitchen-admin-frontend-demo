@@ -1,29 +1,29 @@
-import type { FC } from 'react';
-import { usePathname } from 'next/navigation';
-import NextLink from 'next/link';
-import PropTypes from 'prop-types';
-import { Box, ButtonBase, Drawer, Stack } from '@mui/material';
-import { Logo } from '../../components/logo';
-import { paths } from '../../paths';
-import { SideNavItem } from './side-nav-item';
+import type { FC } from 'react'
+import { usePathname } from 'next/navigation'
+import NextLink from 'next/link'
+import PropTypes from 'prop-types'
+import { Box, ButtonBase, Drawer, Stack } from '@mui/material'
+import { Logo } from '../../components/logo'
+import { paths } from '../../paths'
+import { SideNavItem } from './side-nav-item'
 
 interface Item {
-  disabled?: boolean;
+  disabled?: boolean
   children?: {
-    subheader?: string;
+    subheader?: string
     items: {
-      title: string;
-      path: string;
-    }[];
-  }[];
-  path?: string;
-  title: string;
+      title: string
+      path: string
+    }[]
+  }[]
+  path?: string
+  title: string
 }
 
 const items: Item[] = [
   {
     title: 'Components',
-    path: paths.components.index
+    path: paths.components.index,
   },
   {
     title: 'Pages',
@@ -33,91 +33,93 @@ const items: Item[] = [
         items: [
           {
             title: 'Overview',
-            path: paths.dashboard.index
+            path: paths.dashboard.index,
           },
           {
             title: 'Customers',
-            path: paths.dashboard.customers.index
+            path: paths.dashboard.customers.index,
           },
           {
             title: 'Logistics',
-            path: paths.dashboard.logistics.index
+            path: paths.dashboard.logistics.index,
           },
           {
             title: 'File Manager',
-            path: paths.dashboard.fileManager
+            path: paths.dashboard.fileManager,
           },
           {
             title: 'Academy',
-            path: paths.dashboard.academy.index
-          }
-        ]
+            path: paths.dashboard.academy.index,
+          },
+        ],
       },
       {
         subheader: 'Other',
         items: [
           {
             title: 'Blog',
-            path: paths.dashboard.blog.index
+            path: paths.dashboard.blog.index,
           },
           {
             title: 'Pricing',
-            path: paths.pricing
+            path: paths.pricing,
           },
           {
             title: 'Contact',
-            path: paths.contact
+            path: paths.contact,
           },
           {
             title: 'Checkout',
-            path: paths.checkout
+            path: paths.checkout,
           },
           {
             title: 'Error',
-            path: paths[404]
-          }
-        ]
-      }
-    ]
+            path: paths[404],
+          },
+        ],
+      },
+    ],
   },
   {
     title: 'Docs',
-    path: paths.docs.welcome
-  }
-];
+    path: paths.docs.welcome,
+  },
+]
 
 const renderItems = ({
   depth = 0,
   items,
-  pathname
+  pathname,
 }: {
-  depth?: number;
-  items: Item[];
-  pathname?: string | null;
-}): JSX.Element[] => items.reduce(
-  (acc: JSX.Element[], item) => reduceChildRoutes({
-    acc,
-    depth,
-    item,
-    pathname
-  }),
-  []
-);
+  depth?: number
+  items: Item[]
+  pathname?: string | null
+}): JSX.Element[] =>
+  items.reduce(
+    (acc: JSX.Element[], item) =>
+      reduceChildRoutes({
+        acc,
+        depth,
+        item,
+        pathname,
+      }),
+    [],
+  )
 
 const reduceChildRoutes = ({
   acc,
   depth,
   item,
-  pathname
+  pathname,
 }: {
-  acc: JSX.Element[];
-  depth: number;
-  item: Item;
-  pathname?: string | null;
+  acc: JSX.Element[]
+  depth: number
+  item: Item
+  pathname?: string | null
 }): Array<JSX.Element> => {
-  const checkPath = !!(item.path && pathname);
-  const partialMatch = checkPath ? pathname.includes(item.path!) : false;
-  const exactMatch = checkPath ? pathname === item.path : false;
+  const checkPath = !!(item.path && pathname)
+  const partialMatch = checkPath ? pathname.includes(item.path!) : false
+  const exactMatch = checkPath ? pathname === item.path : false
 
   if (item.children) {
     acc.push(
@@ -133,18 +135,18 @@ const reduceChildRoutes = ({
         <Stack spacing={2}>
           {item.children.map((child, index) => (
             <Stack
-              component="ul"
+              component='ul'
               key={index}
               spacing={0.5}
               sx={{
                 listStyle: 'none',
                 m: 0,
-                p: 0
+                p: 0,
               }}
             >
               {child.subheader && (
                 <Box
-                  component="li"
+                  component='li'
                   sx={{
                     color: 'text.secondary',
                     fontSize: 12,
@@ -152,31 +154,31 @@ const reduceChildRoutes = ({
                     lineHeight: 1.66,
                     mb: 1,
                     pl: '24px',
-                    textTransform: 'uppercase'
+                    textTransform: 'uppercase',
                   }}
                 >
                   {child.subheader}
                 </Box>
               )}
               {child.items.map((item) => {
-                const checkPath = !!(item.path && pathname);
-                const active = checkPath ? pathname === item.path : false;
+                const checkPath = !!(item.path && pathname)
+                const active = checkPath ? pathname === item.path : false
 
-                let linkProps: any = undefined;
+                let linkProps: any = undefined
 
                 if (item.path) {
-                  const isExternal = item.path.startsWith('http');
+                  const isExternal = item.path.startsWith('http')
 
                   linkProps = isExternal
                     ? {
-                      component: 'a',
-                      href: item.path,
-                      target: '_blank'
-                    }
+                        component: 'a',
+                        href: item.path,
+                        target: '_blank',
+                      }
                     : {
-                      component: NextLink,
-                      href: item.path
-                    };
+                        component: NextLink,
+                        href: item.path,
+                      }
                 }
 
                 return (
@@ -192,20 +194,20 @@ const reduceChildRoutes = ({
                         py: '8px',
                         textAlign: 'left',
                         '&:hover': {
-                          backgroundColor: 'action.hover'
+                          backgroundColor: 'action.hover',
                         },
                         ...(active && {
-                          color: 'primary.main'
-                        })
+                          color: 'primary.main',
+                        }),
                       }}
                       {...linkProps}
                     >
                       <Box
-                        component="span"
+                        component='span'
                         sx={{
                           height: 6,
                           mr: 2,
-                          width: 6
+                          width: 6,
                         }}
                       >
                         <Box
@@ -219,33 +221,33 @@ const reduceChildRoutes = ({
                               backgroundColor: 'primary.main',
                               height: 6,
                               opacity: 1,
-                              width: 6
-                            })
+                              width: 6,
+                            }),
                           }}
                         />
                       </Box>
                       <Box
-                        component="span"
+                        component='span'
                         sx={{
                           flexGrow: 1,
                           fontFamily: (theme) => theme.typography.fontFamily,
                           fontSize: 13,
                           fontWeight: 500,
                           lineHeight: '24px',
-                          whiteSpace: 'nowrap'
+                          whiteSpace: 'nowrap',
                         }}
                       >
                         {item.title}
                       </Box>
                     </ButtonBase>
                   </li>
-                );
+                )
               })}
             </Stack>
           ))}
         </Stack>
-      </SideNavItem>
-    );
+      </SideNavItem>,
+    )
   } else {
     acc.push(
       <SideNavItem
@@ -255,46 +257,46 @@ const reduceChildRoutes = ({
         key={item.title}
         path={item.path}
         title={item.title}
-      />
-    );
+      />,
+    )
   }
 
-  return acc;
-};
+  return acc
+}
 
 interface SideNavProps {
-  onClose?: () => void;
-  open?: boolean;
+  onClose?: () => void
+  open?: boolean
 }
 
 export const SideNav: FC<SideNavProps> = (props) => {
-  const { onClose, open = false } = props;
-  const pathname = usePathname();
+  const { onClose, open = false } = props
+  const pathname = usePathname()
 
   return (
     <Drawer
-      anchor="right"
+      anchor='right'
       onClose={onClose}
       open={open}
       PaperProps={{
         sx: {
           maxWidth: '100%',
-          width: 300
-        }
+          width: 300,
+        },
       }}
-      variant="temporary"
+      variant='temporary'
     >
       <Box
         sx={{
           pt: 2,
-          px: 2
+          px: 2,
         }}
       >
         <Stack
-          alignItems="center"
+          alignItems='center'
           component={NextLink}
-          direction="row"
-          display="inline-flex"
+          direction='row'
+          display='inline-flex'
           href={paths.index}
           spacing={1}
           sx={{ textDecoration: 'none' }}
@@ -303,7 +305,7 @@ export const SideNav: FC<SideNavProps> = (props) => {
             sx={{
               display: 'inline-flex',
               height: 24,
-              width: 24
+              width: 24,
             }}
           >
             <Logo />
@@ -311,41 +313,39 @@ export const SideNav: FC<SideNavProps> = (props) => {
           <Box
             sx={{
               color: 'text.primary',
-              fontFamily: '\'Plus Jakarta Sans\', sans-serif',
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontSize: 14,
               fontWeight: 800,
               letterSpacing: '0.3px',
               lineHeight: 2.5,
               '& span': {
-                color: 'primary.main'
-              }
+                color: 'primary.main',
+              },
             }}
           >
             Devias Kit <span>PRO</span>
           </Box>
         </Stack>
       </Box>
-      <Box
-        component="nav"
-        sx={{ p: 2 }}
-      >
+      <Box component='nav'
+sx={{ p: 2 }}>
         <Stack
-          component="ul"
+          component='ul'
           spacing={1}
           sx={{
             listStyle: 'none',
             m: 0,
-            p: 0
+            p: 0,
           }}
         >
           {renderItems({ items, pathname })}
         </Stack>
       </Box>
     </Drawer>
-  );
-};
+  )
+}
 
 SideNav.propTypes = {
   onClose: PropTypes.func,
-  open: PropTypes.bool
-};
+  open: PropTypes.bool,
+}

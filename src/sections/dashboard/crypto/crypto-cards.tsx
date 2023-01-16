@@ -1,8 +1,8 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import Slider from 'react-slick';
-import { Box } from '@mui/material';
-import { CryptoCard } from './crypto-card';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import Slider from 'react-slick'
+import { Box } from '@mui/material'
+import { CryptoCard } from './crypto-card'
 
 const sliderSettings = {
   arrows: false,
@@ -10,60 +10,58 @@ const sliderSettings = {
   infinite: true,
   speed: 500,
   slidesToShow: 1,
-  slidesToScroll: 1
-};
+  slidesToScroll: 1,
+}
 
 interface CryptoCards {
   cards: {
-    id: string;
-    brand: string;
-    cardNumber: string;
-    expiryDate: string;
-    holderName: string;
-  }[];
+    id: string
+    brand: string
+    cardNumber: string
+    expiryDate: string
+    holderName: string
+  }[]
 }
 
 export const CryptoCards: FC<CryptoCards> = (props) => {
-  const { cards } = props;
+  const { cards } = props
 
   return (
     <Box
       sx={{
         '& .slick-list': {
           borderRadius: 2,
-          boxShadow: 12
+          boxShadow: 12,
         },
         '& .slick-dots': {
           bottom: 'unset',
           left: (theme) => theme.spacing(3),
           textAlign: 'left',
-          top: (theme) => theme.spacing(1)
+          top: (theme) => theme.spacing(1),
         },
         '& .slick-dots li button': {
           '&:before': {
             fontSize: 10,
-            color: 'common.white'
-          }
+            color: 'common.white',
+          },
         },
         '& .slick-dots li.slick-active button': {
           '&:before': {
-            color: 'common.white'
-          }
-        }
+            color: 'common.white',
+          },
+        },
       }}
     >
       <Slider {...sliderSettings}>
         {cards.map((card) => (
-          <CryptoCard
-            key={card.id}
-            {...card}
-          />
+          <CryptoCard key={card.id}
+{...card} />
         ))}
       </Slider>
     </Box>
-  );
-};
+  )
+}
 
 CryptoCards.propTypes = {
-  cards: PropTypes.array.isRequired
-};
+  cards: PropTypes.array.isRequired,
+}

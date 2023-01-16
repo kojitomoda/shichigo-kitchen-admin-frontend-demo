@@ -1,154 +1,148 @@
-import type { ChangeEvent, MouseEvent } from 'react';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus';
-import { Box, Button, Divider, Stack, SvgIcon, Typography } from '@mui/material';
-import { ordersApi } from '../../../api/orders';
-import { useMounted } from '../../../hooks/use-mounted';
-import { usePageView } from '../../../hooks/use-page-view';
-import { Layout as DashboardLayout } from '../../../layouts/dashboard';
-import { OrderDrawer } from '../../../sections/dashboard/order/order-drawer';
-import { OrderListContainer } from '../../../sections/dashboard/order/order-list-container';
-import { OrderListSearch } from '../../../sections/dashboard/order/order-list-search';
-import { OrderListTable } from '../../../sections/dashboard/order/order-list-table';
-import type { Order } from '../../../types/order';
+import type { ChangeEvent, MouseEvent } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus'
+import { Box, Button, Divider, Stack, SvgIcon, Typography } from '@mui/material'
+import { ordersApi } from '../../../api/orders'
+import { useMounted } from '../../../hooks/use-mounted'
+import { usePageView } from '../../../hooks/use-page-view'
+import { Layout as DashboardLayout } from '../../../layouts/dashboard'
+import { OrderDrawer } from '../../../sections/dashboard/order/order-drawer'
+import { OrderListContainer } from '../../../sections/dashboard/order/order-list-container'
+import { OrderListSearch } from '../../../sections/dashboard/order/order-list-search'
+import { OrderListTable } from '../../../sections/dashboard/order/order-list-table'
+import type { Order } from '../../../types/order'
 
 interface Filters {
-  query?: string;
-  status?: string;
+  query?: string
+  status?: string
 }
 
-type SortDir = 'asc' | 'desc';
+type SortDir = 'asc' | 'desc'
 
 interface Search {
-  filters: Filters;
-  page: number;
-  rowsPerPage: number;
-  sortBy?: string;
-  sortDir?: SortDir;
+  filters: Filters
+  page: number
+  rowsPerPage: number
+  sortBy?: string
+  sortDir?: SortDir
 }
 
 const useSearch = () => {
   const [search, setSearch] = useState<Search>({
     filters: {
       query: undefined,
-      status: undefined
+      status: undefined,
     },
     page: 0,
     rowsPerPage: 5,
     sortBy: 'createdAt',
-    sortDir: 'desc'
-  });
+    sortDir: 'desc',
+  })
 
   return {
     search,
-    updateSearch: setSearch
-  };
-};
+    updateSearch: setSearch,
+  }
+}
 
-const useOrders = (search: Search): { orders: Order[]; ordersCount: number; } => {
-  const isMounted = useMounted();
+const useOrders = (search: Search): { orders: Order[]; ordersCount: number } => {
+  const isMounted = useMounted()
   const [state, setState] = useState<{
-    orders: Order[];
-    ordersCount: number;
+    orders: Order[]
+    ordersCount: number
   }>({
     orders: [],
-    ordersCount: 0
-  });
+    ordersCount: 0,
+  })
 
-  const getOrders = useCallback(
-    async () => {
-      try {
-        const response = await ordersApi.getOrders(search);
+  const getOrders = useCallback(async () => {
+    try {
+      const response = await ordersApi.getOrders(search)
 
-        if (isMounted()) {
-          setState({
-            orders: response.data,
-            ordersCount: response.count
-          });
-        }
-      } catch (err) {
-        console.error(err);
+      if (isMounted()) {
+        setState({
+          orders: response.data,
+          ordersCount: response.count,
+        })
       }
-    },
-    [search, isMounted]
-  );
+    } catch (err) {
+      console.error(err)
+    }
+  }, [search, isMounted])
 
   useEffect(
     () => {
-      getOrders();
+      getOrders()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [search]
-  );
+    [search],
+  )
 
-  return state;
-};
+  return state
+}
 
 const Page: NextPage = () => {
-  const rootRef = useRef<HTMLDivElement | null>(null);
-  const { search, updateSearch } = useSearch();
-  const { orders, ordersCount } = useOrders(search);
+  const rootRef = useRef<HTMLDivElement | null>(null)
+  const { search, updateSearch } = useSearch()
+  const { orders, ordersCount } = useOrders(search)
   const [drawer, setDrawer] = useState<{
-    isOpen: boolean;
-    data?: string;
+    isOpen: boolean
+    data?: string
   }>({
     isOpen: false,
-    data: undefined
-  });
-  const currentOrder = useMemo(
-    (): Order | undefined => {
-      if (!drawer.data) {
-        return undefined;
-      }
+    data: undefined,
+  })
+  const currentOrder = useMemo((): Order | undefined => {
+    if (!drawer.data) {
+      return undefined
+    }
 
-      return orders.find((order) => order.id === drawer.data);
-    },
-    [drawer, orders]
-  );
+    return orders.find((order) => order.id === drawer.data)
+  }, [drawer, orders])
 
-  usePageView();
+  usePageView()
 
   const handleFiltersChange = useCallback(
     (filters: Filters): void => {
       updateSearch((prevState) => ({
         ...prevState,
-        filters
-      }));
+        filters,
+      }))
     },
-    [updateSearch]
-  );
+    [updateSearch],
+  )
 
   const handleSortChange = useCallback(
     (sortDir: SortDir): void => {
       updateSearch((prevState) => ({
         ...prevState,
-        sortDir
-      }));
+        sortDir,
+      }))
     },
-    [updateSearch]
-  );
+    [updateSearch],
+  )
 
   const handlePageChange = useCallback(
     (event: MouseEvent<HTMLButtonElement> | null, page: number): void => {
       updateSearch((prevState) => ({
         ...prevState,
-        page
-      }));
+        page,
+      }))
     },
-    [updateSearch]
-  );
+    [updateSearch],
+  )
 
   const handleRowsPerPageChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>): void => {
       updateSearch((prevState) => ({
         ...prevState,
-        rowsPerPage: parseInt(event.target.value, 10)
-      }));
+        rowsPerPage: parseInt(event.target.value, 10),
+      }))
     },
-    [updateSearch]
-  );
+    [updateSearch],
+  )
 
   const handleOrderOpen = useCallback(
     (orderId: string): void => {
@@ -157,45 +151,40 @@ const Page: NextPage = () => {
       if (drawer.isOpen && drawer.data === orderId) {
         setDrawer({
           isOpen: false,
-          data: undefined
-        });
-        return;
+          data: undefined,
+        })
+        return
       }
 
       setDrawer({
         isOpen: true,
-        data: orderId
-      });
+        data: orderId,
+      })
     },
-    [drawer]
-  );
+    [drawer],
+  )
 
-  const handleOrderClose = useCallback(
-    (): void => {
-      setDrawer({
-        isOpen: false,
-        data: undefined
-      });
-    },
-    []
-  );
+  const handleOrderClose = useCallback((): void => {
+    setDrawer({
+      isOpen: false,
+      data: undefined,
+    })
+  }, [])
 
   return (
     <>
       <Head>
-        <title>
-          Dashboard: Order List | Devias Kit PRO
-        </title>
+        <title>Dashboard: Order List | Devias Kit PRO</title>
       </Head>
       <Divider />
       <Box
-        component="main"
+        component='main'
         ref={rootRef}
         sx={{
           display: 'flex',
           flex: '1 1 auto',
           overflow: 'hidden',
-          position: 'relative'
+          position: 'relative',
         }}
       >
         <Box
@@ -206,30 +195,28 @@ const Page: NextPage = () => {
             left: 0,
             position: 'absolute',
             right: 0,
-            top: 0
+            top: 0,
           }}
         >
           <OrderListContainer open={drawer.isOpen}>
             <Box sx={{ p: 3 }}>
               <Stack
-                alignItems="flex-start"
-                direction="row"
-                justifyContent="space-between"
+                alignItems='flex-start'
+                direction='row'
+                justifyContent='space-between'
                 spacing={4}
               >
                 <div>
-                  <Typography variant="h4">
-                    Orders
-                  </Typography>
+                  <Typography variant='h4'>Orders</Typography>
                 </div>
                 <div>
                   <Button
-                    startIcon={(
+                    startIcon={
                       <SvgIcon>
                         <PlusIcon />
                       </SvgIcon>
-                    )}
-                    variant="contained"
+                    }
+                    variant='contained'
                   >
                     Add
                   </Button>
@@ -263,13 +250,9 @@ const Page: NextPage = () => {
         </Box>
       </Box>
     </>
-  );
-};
+  )
+}
 
-Page.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
+Page.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>
 
-export default Page;
+export default Page

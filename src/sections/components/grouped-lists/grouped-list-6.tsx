@@ -1,6 +1,6 @@
-import type { FC } from 'react';
-import { format, subDays } from 'date-fns';
-import numeral from 'numeral';
+import type { FC } from 'react'
+import { format, subDays } from 'date-fns'
+import numeral from 'numeral'
 import {
   Box,
   Card,
@@ -10,18 +10,18 @@ import {
   TableBody,
   TableCell,
   TableRow,
-  Typography
-} from '@mui/material';
+  Typography,
+} from '@mui/material'
 
-const now = new Date();
+const now = new Date()
 
 interface Transaction {
-  id: string;
-  amount: number;
-  currency: string;
-  createdAt: number;
-  sender: string;
-  type: string;
+  id: string
+  amount: number
+  currency: string
+  createdAt: number
+  sender: string
+  type: string
 }
 
 const transactions: Transaction[] = [
@@ -31,7 +31,7 @@ const transactions: Transaction[] = [
     currency: 'usd',
     createdAt: now.getTime(),
     sender: 'Devias',
-    type: 'receive'
+    type: 'receive',
   },
   {
     id: 'b4b19b21656e44b487441c50',
@@ -39,7 +39,7 @@ const transactions: Transaction[] = [
     currency: 'usd',
     createdAt: subDays(now, 1).getTime(),
     sender: 'Zimbru',
-    type: 'send'
+    type: 'send',
   },
   {
     id: '56c09ad91f6d44cb313397db',
@@ -47,7 +47,7 @@ const transactions: Transaction[] = [
     currency: 'usd',
     createdAt: subDays(now, 1).getTime(),
     sender: 'Vertical Jelly',
-    type: 'send'
+    type: 'send',
   },
   {
     id: 'aaeb96c5a131a55d9623f44d',
@@ -55,32 +55,31 @@ const transactions: Transaction[] = [
     currency: 'usd',
     createdAt: subDays(now, 3).getTime(),
     sender: 'Devias',
-    type: 'receive'
-  }
-];
+    type: 'receive',
+  },
+]
 
 export const GroupedList6: FC = () => (
   <Box
     sx={{
-      backgroundColor: (theme) => theme.palette.mode === 'dark'
-        ? 'neutral.800'
-        : 'neutral.100',
-      p: 3
+      backgroundColor: (theme) => (theme.palette.mode === 'dark' ? 'neutral.800' : 'neutral.100'),
+      p: 3,
     }}
   >
     <Card>
-      <CardHeader title="Latest Transactions" />
+      <CardHeader title='Latest Transactions' />
       <Divider />
       <Table>
         <TableBody>
           {transactions.map((transaction) => {
-            const createdAtMonth = format(transaction.createdAt, 'LLL').toUpperCase();
-            const createdAtDay = format(transaction.createdAt, 'd');
-            const type = transaction.type === 'receive' ? 'Payment received' : 'Payment sent';
-            const amount = (transaction.type === 'receive' ? '+' : '-')
-              + ' '
-              + numeral(transaction.amount).format('$0,0.00');
-            const amountColor = transaction.type === 'receive' ? 'success.main' : 'error.main';
+            const createdAtMonth = format(transaction.createdAt, 'LLL').toUpperCase()
+            const createdAtDay = format(transaction.createdAt, 'd')
+            const type = transaction.type === 'receive' ? 'Payment received' : 'Payment sent'
+            const amount =
+              (transaction.type === 'receive' ? '+' : '-') +
+              ' ' +
+              numeral(transaction.amount).format('$0,0.00')
+            const amountColor = transaction.type === 'receive' ? 'success.main' : 'error.main'
 
             return (
               <TableRow
@@ -89,52 +88,40 @@ export const GroupedList6: FC = () => (
               >
                 <TableCell width={100}>
                   <Box sx={{ p: 1 }}>
-                    <Typography
-                      align="center"
-                      color="text.secondary"
-                      variant="subtitle2"
-                    >
+                    <Typography align='center'
+color='text.secondary'
+variant='subtitle2'>
                       {createdAtMonth}
                     </Typography>
-                    <Typography
-                      align="center"
-                      color="text.secondary"
-                      variant="h6"
-                    >
+                    <Typography align='center'
+color='text.secondary'
+variant='h6'>
                       {createdAtDay}
                     </Typography>
                   </Box>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="subtitle2">
-                    {transaction.sender}
-                  </Typography>
-                  <Typography
-                    color="text.secondary"
-                    variant="body2"
-                  >
+                  <Typography variant='subtitle2'>{transaction.sender}</Typography>
+                  <Typography color='text.secondary'
+variant='body2'>
                     {type}
                   </Typography>
                 </TableCell>
-                <TableCell align="right">
-                  <Typography
-                    color={amountColor}
-                    variant="subtitle2"
-                  >
+                <TableCell align='right'>
+                  <Typography color={amountColor}
+variant='subtitle2'>
                     {amount}
                   </Typography>
-                  <Typography
-                    color="text.secondary"
-                    variant="body2"
-                  >
+                  <Typography color='text.secondary'
+variant='body2'>
                     {transaction.currency.toUpperCase()}
                   </Typography>
                 </TableCell>
               </TableRow>
-            );
+            )
           })}
         </TableBody>
       </Table>
     </Card>
   </Box>
-);
+)

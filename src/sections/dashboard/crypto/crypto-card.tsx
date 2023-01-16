@@ -1,27 +1,27 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import { Box, Typography } from '@mui/material';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import { Box, Typography } from '@mui/material'
 
 const brandBg: Record<string, string> = {
   Mastercard: '/assets/cards/card-mastercard-1.png',
-  VISA: '/assets/cards/card-visa.png'
-};
+  VISA: '/assets/cards/card-visa.png',
+}
 
 const brandIcon: Record<string, string> = {
   Mastercard: '/assets/logos/logo-mastercard.svg',
-  VISA: '/assets/logos/logo-visa.svg'
-};
+  VISA: '/assets/logos/logo-visa.svg',
+}
 
 interface CryptoCardProps {
-  id: string;
-  brand: string;
-  cardNumber: string;
-  expiryDate: string;
-  holderName: string;
+  id: string
+  brand: string
+  cardNumber: string
+  expiryDate: string
+  holderName: string
 }
 
 export const CryptoCard: FC<CryptoCardProps> = (props) => {
-  const { brand, cardNumber, holderName, expiryDate, id, ...other } = props;
+  const { brand, cardNumber, holderName, expiryDate, id, ...other } = props
 
   return (
     <Box
@@ -32,7 +32,7 @@ export const CryptoCard: FC<CryptoCardProps> = (props) => {
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         py: 6,
-        px: 4
+        px: 4,
       }}
       {...other}
     >
@@ -40,28 +40,26 @@ export const CryptoCard: FC<CryptoCardProps> = (props) => {
         sx={{
           alignItems: 'center',
           display: 'flex',
-          justifyContent: 'space-between'
+          justifyContent: 'space-between',
         }}
       >
-        <img src="/assets/contactless.svg" />
+        <img src='/assets/contactless.svg' />
         <Box
           sx={{
             height: 32,
             '& img': {
-              height: '100%'
-            }
+              height: '100%',
+            },
           }}
         >
-          <img
-            alt=""
-            src={brandIcon[brand]}
-          />
+          <img alt=''
+src={brandIcon[brand]} />
         </Box>
       </Box>
       <Box
         sx={{
           mt: 6,
-          mb: 3
+          mb: 3,
         }}
       >
         <Typography
@@ -72,7 +70,7 @@ export const CryptoCard: FC<CryptoCardProps> = (props) => {
             fontWeight: 700,
             letterSpacing: '0.1em',
             lineHeight: '32px',
-            textFillColor: 'transparent'
+            textFillColor: 'transparent',
           }}
         >
           {cardNumber}
@@ -82,61 +80,57 @@ export const CryptoCard: FC<CryptoCardProps> = (props) => {
         sx={{
           alignItems: 'center',
           display: 'flex',
-          justifyContent: 'space-between'
+          justifyContent: 'space-between',
         }}
       >
         <div>
-          <Typography
-            color="white"
-            variant="body2"
-          >
+          <Typography color='white'
+variant='body2'>
             Card holder name
           </Typography>
           <Typography
-            color="white"
+            color='white'
             sx={{
               fontSize: 16,
               fontWeight: 700,
               lineHeight: '24px',
               mt: 1,
-              textShadow: '0px 1px 4px rgba(18, 109, 177, 0.58)'
+              textShadow: '0px 1px 4px rgba(18, 109, 177, 0.58)',
             }}
           >
             {holderName}
           </Typography>
         </div>
         <Box sx={{ ml: 2 }}>
-          <Typography
-            color="white"
-            variant="body2"
-          >
+          <Typography color='white'
+variant='body2'>
             Expiry date
           </Typography>
           <Typography
-            color="white"
+            color='white'
             sx={{
               fontSize: 16,
               fontWeight: 700,
               lineHeight: '24px',
               mt: 1,
-              textShadow: '0px 1px 4px rgba(18, 109, 177, 0.58)'
+              textShadow: '0px 1px 4px rgba(18, 109, 177, 0.58)',
             }}
           >
             {expiryDate}
           </Typography>
         </Box>
         <Box sx={{ ml: 2 }}>
-          <img src="/assets/sim.svg" />
+          <img src='/assets/sim.svg' />
         </Box>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
 CryptoCard.propTypes = {
   id: PropTypes.string.isRequired,
   brand: PropTypes.string.isRequired,
   cardNumber: PropTypes.string.isRequired,
   expiryDate: PropTypes.string.isRequired,
-  holderName: PropTypes.string.isRequired
-};
+  holderName: PropTypes.string.isRequired,
+}

@@ -1,165 +1,162 @@
-import type { FC } from 'react';
-import { useMemo } from 'react';
-import { usePathname } from 'next/navigation';
-import NextLink from 'next/link';
-import PropTypes from 'prop-types';
-import File04Icon from '@untitled-ui/icons-react/build/esm/File04';
-import { Box, Button, Drawer, Stack, SvgIcon, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { Logo } from '../../../components/logo';
-import { Scrollbar } from '../../../components/scrollbar';
-import { paths } from '../../../paths';
-import type { NavColor } from '../../../types/settings';
-import type { Section } from '../config';
-import { TenantSwitch } from '../tenant-switch';
-import { SideNavSection } from './side-nav-section';
+import type { FC } from 'react'
+import { useMemo } from 'react'
+import { usePathname } from 'next/navigation'
+import NextLink from 'next/link'
+import PropTypes from 'prop-types'
+import File04Icon from '@untitled-ui/icons-react/build/esm/File04'
+import { Box, Button, Drawer, Stack, SvgIcon, Typography } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
+import { Logo } from '../../../components/logo'
+import { Scrollbar } from '../../../components/scrollbar'
+import { paths } from '../../../paths'
+import type { NavColor } from '../../../types/settings'
+import type { Section } from '../config'
+import { TenantSwitch } from '../tenant-switch'
+import { SideNavSection } from './side-nav-section'
 
-const SIDE_NAV_WIDTH: number = 280;
+const SIDE_NAV_WIDTH: number = 280
 
 const useCssVars = (color: NavColor): Record<string, string> => {
-  const theme = useTheme();
+  const theme = useTheme()
 
-  return useMemo(
-    (): Record<string, string> => {
-      switch (color) {
-        case 'blend-in':
-          if (theme.palette.mode === 'dark') {
-            return {
-              '--nav-bg': theme.palette.background.default,
-              '--nav-color': theme.palette.neutral[100],
-              '--nav-border-color': theme.palette.neutral[700],
-              '--nav-logo-border': theme.palette.neutral[700],
-              '--nav-section-title-color': theme.palette.neutral[400],
-              '--nav-item-color': theme.palette.neutral[400],
-              '--nav-item-hover-bg': 'rgba(255, 255, 255, 0.04)',
-              '--nav-item-active-bg': 'rgba(255, 255, 255, 0.04)',
-              '--nav-item-active-color': theme.palette.text.primary,
-              '--nav-item-disabled-color': theme.palette.neutral[600],
-              '--nav-item-icon-color': theme.palette.neutral[500],
-              '--nav-item-icon-active-color': theme.palette.primary.main,
-              '--nav-item-icon-disabled-color': theme.palette.neutral[700],
-              '--nav-item-chevron-color': theme.palette.neutral[700],
-              '--nav-scrollbar-color': theme.palette.neutral[400]
-            };
-          } else {
-            return {
-              '--nav-bg': theme.palette.background.default,
-              '--nav-color': theme.palette.text.primary,
-              '--nav-border-color': theme.palette.neutral[100],
-              '--nav-logo-border': theme.palette.neutral[100],
-              '--nav-section-title-color': theme.palette.neutral[400],
-              '--nav-item-color': theme.palette.text.secondary,
-              '--nav-item-hover-bg': theme.palette.action.hover,
-              '--nav-item-active-bg': theme.palette.action.selected,
-              '--nav-item-active-color': theme.palette.text.primary,
-              '--nav-item-disabled-color': theme.palette.neutral[400],
-              '--nav-item-icon-color': theme.palette.neutral[400],
-              '--nav-item-icon-active-color': theme.palette.primary.main,
-              '--nav-item-icon-disabled-color': theme.palette.neutral[400],
-              '--nav-item-chevron-color': theme.palette.neutral[400],
-              '--nav-scrollbar-color': theme.palette.neutral[900]
-            };
+  return useMemo((): Record<string, string> => {
+    switch (color) {
+      case 'blend-in':
+        if (theme.palette.mode === 'dark') {
+          return {
+            '--nav-bg': theme.palette.background.default,
+            '--nav-color': theme.palette.neutral[100],
+            '--nav-border-color': theme.palette.neutral[700],
+            '--nav-logo-border': theme.palette.neutral[700],
+            '--nav-section-title-color': theme.palette.neutral[400],
+            '--nav-item-color': theme.palette.neutral[400],
+            '--nav-item-hover-bg': 'rgba(255, 255, 255, 0.04)',
+            '--nav-item-active-bg': 'rgba(255, 255, 255, 0.04)',
+            '--nav-item-active-color': theme.palette.text.primary,
+            '--nav-item-disabled-color': theme.palette.neutral[600],
+            '--nav-item-icon-color': theme.palette.neutral[500],
+            '--nav-item-icon-active-color': theme.palette.primary.main,
+            '--nav-item-icon-disabled-color': theme.palette.neutral[700],
+            '--nav-item-chevron-color': theme.palette.neutral[700],
+            '--nav-scrollbar-color': theme.palette.neutral[400],
           }
-
-        case 'discreet':
-          if (theme.palette.mode === 'dark') {
-            return {
-              '--nav-bg': theme.palette.neutral[900],
-              '--nav-color': theme.palette.neutral[100],
-              '--nav-border-color': theme.palette.neutral[700],
-              '--nav-logo-border': theme.palette.neutral[700],
-              '--nav-section-title-color': theme.palette.neutral[400],
-              '--nav-item-color': theme.palette.neutral[400],
-              '--nav-item-hover-bg': 'rgba(255, 255, 255, 0.04)',
-              '--nav-item-active-bg': 'rgba(255, 255, 255, 0.04)',
-              '--nav-item-active-color': theme.palette.text.primary,
-              '--nav-item-disabled-color': theme.palette.neutral[600],
-              '--nav-item-icon-color': theme.palette.neutral[500],
-              '--nav-item-icon-active-color': theme.palette.primary.main,
-              '--nav-item-icon-disabled-color': theme.palette.neutral[700],
-              '--nav-item-chevron-color': theme.palette.neutral[700],
-              '--nav-scrollbar-color': theme.palette.neutral[400]
-            };
-          } else {
-            return {
-              '--nav-bg': theme.palette.neutral[50],
-              '--nav-color': theme.palette.text.primary,
-              '--nav-border-color': theme.palette.divider,
-              '--nav-logo-border': theme.palette.neutral[200],
-              '--nav-section-title-color': theme.palette.neutral[500],
-              '--nav-item-color': theme.palette.neutral[500],
-              '--nav-item-hover-bg': theme.palette.action.hover,
-              '--nav-item-active-bg': theme.palette.action.selected,
-              '--nav-item-active-color': theme.palette.text.primary,
-              '--nav-item-disabled-color': theme.palette.neutral[400],
-              '--nav-item-icon-color': theme.palette.neutral[400],
-              '--nav-item-icon-active-color': theme.palette.primary.main,
-              '--nav-item-icon-disabled-color': theme.palette.neutral[400],
-              '--nav-item-chevron-color': theme.palette.neutral[400],
-              '--nav-scrollbar-color': theme.palette.neutral[900]
-            };
+        } else {
+          return {
+            '--nav-bg': theme.palette.background.default,
+            '--nav-color': theme.palette.text.primary,
+            '--nav-border-color': theme.palette.neutral[100],
+            '--nav-logo-border': theme.palette.neutral[100],
+            '--nav-section-title-color': theme.palette.neutral[400],
+            '--nav-item-color': theme.palette.text.secondary,
+            '--nav-item-hover-bg': theme.palette.action.hover,
+            '--nav-item-active-bg': theme.palette.action.selected,
+            '--nav-item-active-color': theme.palette.text.primary,
+            '--nav-item-disabled-color': theme.palette.neutral[400],
+            '--nav-item-icon-color': theme.palette.neutral[400],
+            '--nav-item-icon-active-color': theme.palette.primary.main,
+            '--nav-item-icon-disabled-color': theme.palette.neutral[400],
+            '--nav-item-chevron-color': theme.palette.neutral[400],
+            '--nav-scrollbar-color': theme.palette.neutral[900],
           }
+        }
 
-        case 'evident':
-          if (theme.palette.mode === 'dark') {
-            return {
-              '--nav-bg': theme.palette.neutral[800],
-              '--nav-color': theme.palette.common.white,
-              '--nav-border-color': 'transparent',
-              '--nav-logo-border': theme.palette.neutral[700],
-              '--nav-section-title-color': theme.palette.neutral[400],
-              '--nav-item-color': theme.palette.neutral[400],
-              '--nav-item-hover-bg': 'rgba(255, 255, 255, 0.04)',
-              '--nav-item-active-bg': 'rgba(255, 255, 255, 0.04)',
-              '--nav-item-active-color': theme.palette.common.white,
-              '--nav-item-disabled-color': theme.palette.neutral[500],
-              '--nav-item-icon-color': theme.palette.neutral[400],
-              '--nav-item-icon-active-color': theme.palette.primary.main,
-              '--nav-item-icon-disabled-color': theme.palette.neutral[500],
-              '--nav-item-chevron-color': theme.palette.neutral[600],
-              '--nav-scrollbar-color': theme.palette.neutral[400]
-            };
-          } else {
-            return {
-              '--nav-bg': theme.palette.neutral[800],
-              '--nav-color': theme.palette.common.white,
-              '--nav-border-color': 'transparent',
-              '--nav-logo-border': theme.palette.neutral[700],
-              '--nav-section-title-color': theme.palette.neutral[400],
-              '--nav-item-color': theme.palette.neutral[400],
-              '--nav-item-hover-bg': 'rgba(255, 255, 255, 0.04)',
-              '--nav-item-active-bg': 'rgba(255, 255, 255, 0.04)',
-              '--nav-item-active-color': theme.palette.common.white,
-              '--nav-item-disabled-color': theme.palette.neutral[500],
-              '--nav-item-icon-color': theme.palette.neutral[400],
-              '--nav-item-icon-active-color': theme.palette.primary.main,
-              '--nav-item-icon-disabled-color': theme.palette.neutral[500],
-              '--nav-item-chevron-color': theme.palette.neutral[600],
-              '--nav-scrollbar-color': theme.palette.neutral[400]
-            };
+      case 'discreet':
+        if (theme.palette.mode === 'dark') {
+          return {
+            '--nav-bg': theme.palette.neutral[900],
+            '--nav-color': theme.palette.neutral[100],
+            '--nav-border-color': theme.palette.neutral[700],
+            '--nav-logo-border': theme.palette.neutral[700],
+            '--nav-section-title-color': theme.palette.neutral[400],
+            '--nav-item-color': theme.palette.neutral[400],
+            '--nav-item-hover-bg': 'rgba(255, 255, 255, 0.04)',
+            '--nav-item-active-bg': 'rgba(255, 255, 255, 0.04)',
+            '--nav-item-active-color': theme.palette.text.primary,
+            '--nav-item-disabled-color': theme.palette.neutral[600],
+            '--nav-item-icon-color': theme.palette.neutral[500],
+            '--nav-item-icon-active-color': theme.palette.primary.main,
+            '--nav-item-icon-disabled-color': theme.palette.neutral[700],
+            '--nav-item-chevron-color': theme.palette.neutral[700],
+            '--nav-scrollbar-color': theme.palette.neutral[400],
           }
+        } else {
+          return {
+            '--nav-bg': theme.palette.neutral[50],
+            '--nav-color': theme.palette.text.primary,
+            '--nav-border-color': theme.palette.divider,
+            '--nav-logo-border': theme.palette.neutral[200],
+            '--nav-section-title-color': theme.palette.neutral[500],
+            '--nav-item-color': theme.palette.neutral[500],
+            '--nav-item-hover-bg': theme.palette.action.hover,
+            '--nav-item-active-bg': theme.palette.action.selected,
+            '--nav-item-active-color': theme.palette.text.primary,
+            '--nav-item-disabled-color': theme.palette.neutral[400],
+            '--nav-item-icon-color': theme.palette.neutral[400],
+            '--nav-item-icon-active-color': theme.palette.primary.main,
+            '--nav-item-icon-disabled-color': theme.palette.neutral[400],
+            '--nav-item-chevron-color': theme.palette.neutral[400],
+            '--nav-scrollbar-color': theme.palette.neutral[900],
+          }
+        }
 
-        default:
-          return {};
-      }
-    },
-    [theme, color]
-  );
-};
+      case 'evident':
+        if (theme.palette.mode === 'dark') {
+          return {
+            '--nav-bg': theme.palette.neutral[800],
+            '--nav-color': theme.palette.common.white,
+            '--nav-border-color': 'transparent',
+            '--nav-logo-border': theme.palette.neutral[700],
+            '--nav-section-title-color': theme.palette.neutral[400],
+            '--nav-item-color': theme.palette.neutral[400],
+            '--nav-item-hover-bg': 'rgba(255, 255, 255, 0.04)',
+            '--nav-item-active-bg': 'rgba(255, 255, 255, 0.04)',
+            '--nav-item-active-color': theme.palette.common.white,
+            '--nav-item-disabled-color': theme.palette.neutral[500],
+            '--nav-item-icon-color': theme.palette.neutral[400],
+            '--nav-item-icon-active-color': theme.palette.primary.main,
+            '--nav-item-icon-disabled-color': theme.palette.neutral[500],
+            '--nav-item-chevron-color': theme.palette.neutral[600],
+            '--nav-scrollbar-color': theme.palette.neutral[400],
+          }
+        } else {
+          return {
+            '--nav-bg': theme.palette.neutral[800],
+            '--nav-color': theme.palette.common.white,
+            '--nav-border-color': 'transparent',
+            '--nav-logo-border': theme.palette.neutral[700],
+            '--nav-section-title-color': theme.palette.neutral[400],
+            '--nav-item-color': theme.palette.neutral[400],
+            '--nav-item-hover-bg': 'rgba(255, 255, 255, 0.04)',
+            '--nav-item-active-bg': 'rgba(255, 255, 255, 0.04)',
+            '--nav-item-active-color': theme.palette.common.white,
+            '--nav-item-disabled-color': theme.palette.neutral[500],
+            '--nav-item-icon-color': theme.palette.neutral[400],
+            '--nav-item-icon-active-color': theme.palette.primary.main,
+            '--nav-item-icon-disabled-color': theme.palette.neutral[500],
+            '--nav-item-chevron-color': theme.palette.neutral[600],
+            '--nav-scrollbar-color': theme.palette.neutral[400],
+          }
+        }
+
+      default:
+        return {}
+    }
+  }, [theme, color])
+}
 
 interface SideNavProps {
-  color?: NavColor;
-  sections?: Section[];
+  color?: NavColor
+  sections?: Section[]
 }
 
 export const SideNav: FC<SideNavProps> = (props) => {
-  const { color = 'evident', sections = [] } = props;
-  const pathname = usePathname();
-  const cssVars = useCssVars(color);
+  const { color = 'evident', sections = [] } = props
+  const pathname = usePathname()
+  const cssVars = useCssVars(color)
 
   return (
     <Drawer
-      anchor="left"
+      anchor='left'
       open
       PaperProps={{
         sx: {
@@ -169,29 +166,27 @@ export const SideNav: FC<SideNavProps> = (props) => {
           borderRightStyle: 'solid',
           borderRightWidth: 1,
           color: 'var(--nav-color)',
-          width: SIDE_NAV_WIDTH
-        }
+          width: SIDE_NAV_WIDTH,
+        },
       }}
-      variant="permanent"
+      variant='permanent'
     >
       <Scrollbar
         sx={{
           height: '100%',
           '& .simplebar-content': {
-            height: '100%'
+            height: '100%',
           },
           '& .simplebar-scrollbar:before': {
-            background: 'var(--nav-scrollbar-color)'
-          }
+            background: 'var(--nav-scrollbar-color)',
+          },
         }}
       >
         <Stack sx={{ height: '100%' }}>
-          <Stack
-            alignItems="center"
-            direction="row"
-            spacing={2}
-            sx={{ p: 3 }}
-          >
+          <Stack alignItems='center'
+direction='row'
+spacing={2}
+sx={{ p: 3 }}>
             <Box
               component={NextLink}
               href={paths.index}
@@ -203,7 +198,7 @@ export const SideNav: FC<SideNavProps> = (props) => {
                 display: 'flex',
                 height: 40,
                 p: '4px',
-                width: 40
+                width: 40,
               }}
             >
               <Logo />
@@ -211,11 +206,11 @@ export const SideNav: FC<SideNavProps> = (props) => {
             <TenantSwitch sx={{ flexGrow: 1 }} />
           </Stack>
           <Stack
-            component="nav"
+            component='nav'
             spacing={2}
             sx={{
               flexGrow: 1,
-              px: 2
+              px: 2,
             }}
           >
             {sections.map((section, index) => (
@@ -228,26 +223,22 @@ export const SideNav: FC<SideNavProps> = (props) => {
             ))}
           </Stack>
           <Box sx={{ p: 3 }}>
-            <Typography variant="subtitle1">
-              Need help?
-            </Typography>
-            <Typography
-              color="neutral.400"
-              sx={{ mb: 2 }}
-              variant="body2"
-            >
+            <Typography variant='subtitle1'>Need help?</Typography>
+            <Typography color='neutral.400'
+sx={{ mb: 2 }}
+variant='body2'>
               Please check our docs.
             </Typography>
             <Button
               component={NextLink}
               fullWidth
               href={paths.docs.welcome}
-              startIcon={(
+              startIcon={
                 <SvgIcon>
                   <File04Icon />
                 </SvgIcon>
-              )}
-              variant="contained"
+              }
+              variant='contained'
             >
               Documentation
             </Button>
@@ -255,10 +246,10 @@ export const SideNav: FC<SideNavProps> = (props) => {
         </Stack>
       </Scrollbar>
     </Drawer>
-  );
-};
+  )
+}
 
 SideNav.propTypes = {
   color: PropTypes.oneOf(['blend-in', 'discreet', 'evident']),
-  sections: PropTypes.array
-};
+  sections: PropTypes.array,
+}

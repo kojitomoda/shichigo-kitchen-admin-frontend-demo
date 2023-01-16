@@ -1,7 +1,7 @@
-import { subDays, subHours, subMinutes, subSeconds } from 'date-fns';
-import type { Company } from '../../types/job';
+import { subDays, subHours, subMinutes, subSeconds } from 'date-fns'
+import type { Company } from '../../types/job'
 
-const now = new Date();
+const now = new Date()
 
 export const companies: Company[] = [
   {
@@ -17,7 +17,7 @@ export const companies: Company[] = [
         publishedAt: subMinutes(now, 24).getTime(),
         salaryMax: '75k',
         salaryMin: '55k',
-        title: 'Remote React / React Native Developer'
+        title: 'Remote React / React Native Developer',
       },
       {
         id: '6681e0dbfab15e83498b0d10',
@@ -27,12 +27,13 @@ export const companies: Company[] = [
         publishedAt: subHours(now, 2).getTime(),
         salaryMax: '160k',
         salaryMin: '80k',
-        title: 'Senior Golang Backend Engineer'
-      }
+        title: 'Senior Golang Backend Engineer',
+      },
     ],
     logo: '/assets/companies/company-logo-1.svg',
     name: 'Augmastic Inc.',
-    shortDescription: 'Building technologies and ideas that move us as the leaders in Augmented Reality'
+    shortDescription:
+      'Building technologies and ideas that move us as the leaders in Augmented Reality',
   },
   {
     id: 'FR-58F46',
@@ -47,12 +48,12 @@ export const companies: Company[] = [
         publishedAt: subHours(now, 1).getTime(),
         salaryMax: '160k',
         salaryMin: '80k',
-        title: 'Remote React / React Native Developer'
-      }
+        title: 'Remote React / React Native Developer',
+      },
     ],
     logo: '/assets/companies/company-logo-2.svg',
     name: 'Cryptomania SRL',
-    shortDescription: 'Monitor and optimize your content for long-term audience loyalty'
+    shortDescription: 'Monitor and optimize your content for long-term audience loyalty',
   },
   {
     id: 'FR-2X70G',
@@ -67,12 +68,12 @@ export const companies: Company[] = [
         publishedAt: subDays(subHours(subMinutes(subSeconds(now, 52), 39), 7), 5).getTime(),
         salaryMax: '210k',
         salaryMin: '150k',
-        title: 'Senior Backend Engineer'
-      }
+        title: 'Senior Backend Engineer',
+      },
     ],
     logo: '/assets/companies/company-logo-3.svg',
     name: 'Talkster Inc.',
-    shortDescription: 'Discover innovative companies and the people behind them'
+    shortDescription: 'Discover innovative companies and the people behind them',
   },
   {
     id: 'RO-1K6WE',
@@ -87,14 +88,14 @@ export const companies: Company[] = [
         publishedAt: subDays(subHours(subMinutes(subSeconds(now, 41), 89), 45), 8).getTime(),
         salaryMax: '160k',
         salaryMin: '80k',
-        title: 'Mid Frontend Developer'
-      }
+        title: 'Mid Frontend Developer',
+      },
     ],
     logo: '/assets/companies/company-logo-4.svg',
     name: 'Devias IO SRL',
-    shortDescription: 'Impact-ready developer tools and templates'
-  }
-];
+    shortDescription: 'Impact-ready developer tools and templates',
+  },
+]
 
 export const company: Company = {
   id: 'GR-2FR43',
@@ -105,7 +106,7 @@ export const company: Company = {
       author: 'Jie Yang Song',
       avatar: '/assets/avatars/avatar-jie-yan-song.png',
       createdAt: subDays(subHours(subMinutes(subSeconds(now, 3), 7), 5), 81).getTime(),
-      type: 'new_job'
+      type: 'new_job',
     },
     {
       id: 'e756e1393b620f87728ab28b',
@@ -113,7 +114,7 @@ export const company: Company = {
       author: 'Anika Visser',
       avatar: '/assets/avatars/avatar-iulia-albu.png',
       createdAt: subDays(subHours(subMinutes(subSeconds(now, 3), 7), 5), 82).getTime(),
-      type: 'new_job'
+      type: 'new_job',
     },
     {
       id: 'f80b8d4ed2a0ed9099593d39',
@@ -121,7 +122,7 @@ export const company: Company = {
       author: 'Jie Yang Song',
       avatar: '/assets/avatars/avatar-jie-yan-song.png',
       createdAt: subDays(subHours(subMinutes(subSeconds(now, 3), 7), 5), 83).getTime(),
-      type: 'new_team_member'
+      type: 'new_team_member',
     },
     {
       id: '53b48b76b01ed00bddee2038',
@@ -129,8 +130,8 @@ export const company: Company = {
       avatar: '/assets/avatars/avatar-jie-yan-song.png',
       createdAt: subDays(subHours(subMinutes(subSeconds(now, 3), 7), 5), 84).getTime(),
       createdCompany: 'Augmastic Inc',
-      type: 'created'
-    }
+      type: 'created',
+    },
   ],
   assets: [
     {
@@ -138,15 +139,15 @@ export const company: Company = {
       extension: 'png',
       fileName: 'company-cover.png',
       size: '23 Kb',
-      url: '/assets/covers/abstract-2-4x4-small.png'
+      url: '/assets/covers/abstract-2-4x4-small.png',
     },
     {
       id: 'e7626dd2086bf8a7aa6a991d',
       extension: 'pdf',
       fileName: 'Presentation.pdf',
       size: '3 Mb',
-      url: ''
-    }
+      url: '',
+    },
   ],
   averageRating: 3.66,
   description: `Augmastic is the world’s leading AR technology company, sparking creative and engaging journeys in the real world. Our products inspire outdoor exploration, exercise, and meaningful social interaction. 
@@ -162,20 +163,20 @@ Our mission emphasizes seeking and hiring diverse voices, including those who ar
       id: '5e8883f7ed1486d665d8be1e',
       avatar: '/assets/avatars/avatar-jie-yan-song.png',
       name: 'Jie Yang Song',
-      role: 'CEO & Co-founder'
+      role: 'CEO & Co-founder',
     },
     {
       id: '5e887b209c28ac3dd97f6db5',
       avatar: '/assets/avatars/avatar-fran-perez.png',
       name: 'Fran Perez',
-      role: 'CTO & Co-founder'
+      role: 'CTO & Co-founder',
     },
     {
       id: 'd058d861d43bbb36fb73b0bc',
       avatar: '/assets/avatars/avatar-omar-darboe.png',
       name: 'Omar Darboe',
-      role: 'CFO'
-    }
+      role: 'CFO',
+    },
   ],
   images: [
     '/assets/gallery/gallery-1.jpg',
@@ -183,7 +184,7 @@ Our mission emphasizes seeking and hiring diverse voices, including those who ar
     '/assets/gallery/gallery-3.jpg',
     '/assets/gallery/gallery-4.jpg',
     '/assets/gallery/gallery-5.jpg',
-    '/assets/gallery/gallery-6.jpg'
+    '/assets/gallery/gallery-6.jpg',
   ],
   isVerified: true,
   jobs: [
@@ -194,7 +195,7 @@ Our mission emphasizes seeking and hiring diverse voices, including those who ar
       publishedAt: subMinutes(now, 24).getTime(),
       salaryMax: '75k',
       salaryMin: '55k',
-      title: 'Remote React / React Native Developer'
+      title: 'Remote React / React Native Developer',
     },
     {
       id: '6681e0dbfab15e83498b0d10',
@@ -204,8 +205,8 @@ Our mission emphasizes seeking and hiring diverse voices, including those who ar
       publishedAt: subHours(now, 2).getTime(),
       salaryMax: '160k',
       salaryMin: '80k',
-      title: 'Senior Golang Backend Engineer'
-    }
+      title: 'Senior Golang Backend Engineer',
+    },
   ],
   locations: ['New York City', 'Milano', 'Moscow'],
   logo: '/assets/companies/company-logo-1.svg',
@@ -215,22 +216,22 @@ Our mission emphasizes seeking and hiring diverse voices, including those who ar
       avatar: '/assets/avatars/avatar-jie-yan-song.png',
       name: 'Jie Yang Song',
       role: 'CEO & Co-founder',
-      skills: ['JavaScript', 'React', 'Go']
+      skills: ['JavaScript', 'React', 'Go'],
     },
     {
       id: '5e887b209c28ac3dd97f6db5',
       avatar: '/assets/avatars/avatar-fran-perez.png',
       name: 'Fran Perez',
       role: 'CTO & Co-founder',
-      skills: ['C', 'C++', 'Java']
+      skills: ['C', 'C++', 'Java'],
     },
     {
       id: 'd058d861d43bbb36fb73b0bc',
       avatar: '/assets/avatars/avatar-omar-darboe.png',
       name: 'Omar Darboe',
       role: 'CFO',
-      skills: ['Go', 'Python']
-    }
+      skills: ['Go', 'Python'],
+    },
   ],
   name: 'Augmastic Inc.',
   reviews: [
@@ -239,27 +240,31 @@ Our mission emphasizes seeking and hiring diverse voices, including those who ar
       author: 'Anika Visser',
       avatar: '/assets/avatars/avatar-anika-visser.png',
       createdAt: subDays(subHours(subMinutes(subSeconds(now, 4), 9), 4), 2).getTime(),
-      description: 'I have been working with this company full-time. Great for the work life balance. Cons, decentralized decision making process across the organization.',
+      description:
+        'I have been working with this company full-time. Great for the work life balance. Cons, decentralized decision making process across the organization.',
       rating: 3.8,
-      title: 'Great company, providing an awesome & easy to use product'
+      title: 'Great company, providing an awesome & easy to use product',
     },
     {
       id: '973a87618e946f08ea8d8491',
       author: 'Victor Plesoianu',
       createdAt: subDays(subHours(subMinutes(subSeconds(now, 4), 9), 4), 25).getTime(),
-      description: 'Every day you learn something new - that is a typical day at work in Augmastic. I am surrounded by supportive people, from different cultures, we have a strong and unified team and help each other whenever is needed. The most enjoyable part of the job is that you meet new people, experts on different disciplines that might help you in your work, but the hardest part of the job is that there are too many tools and systems to use.',
+      description:
+        'Every day you learn something new - that is a typical day at work in Augmastic. I am surrounded by supportive people, from different cultures, we have a strong and unified team and help each other whenever is needed. The most enjoyable part of the job is that you meet new people, experts on different disciplines that might help you in your work, but the hardest part of the job is that there are too many tools and systems to use.',
       rating: 3.4,
-      title: 'Friendly environment'
+      title: 'Friendly environment',
     },
     {
       id: '7fdf64061aba2fd67d732006',
       author: 'Victor Plesoianu',
       createdAt: subDays(subHours(subMinutes(subSeconds(now, 4), 9), 4), 70).getTime(),
-      description: 'I have been working with this company full-time. Great for the work life balance. Cons, decentralized decision making process across the organization.',
+      description:
+        'I have been working with this company full-time. Great for the work life balance. Cons, decentralized decision making process across the organization.',
       rating: 3.8,
-      title: 'Great company, providing an awesome & easy to use product'
-    }
+      title: 'Great company, providing an awesome & easy to use product',
+    },
   ],
-  shortDescription: 'Building technologies and ideas that move us as the leaders in Augmented Reality',
-  website: 'https://augmastic.dev'
-};
+  shortDescription:
+    'Building technologies and ideas that move us as the leaders in Augmented Reality',
+  website: 'https://augmastic.dev',
+}

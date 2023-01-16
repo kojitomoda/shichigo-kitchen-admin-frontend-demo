@@ -1,10 +1,10 @@
-import type { ChangeEvent, FC, MouseEvent } from 'react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import NextLink from 'next/link';
-import numeral from 'numeral';
-import PropTypes from 'prop-types';
-import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight';
-import Edit02Icon from '@untitled-ui/icons-react/build/esm/Edit02';
+import type { ChangeEvent, FC, MouseEvent } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import NextLink from 'next/link'
+import numeral from 'numeral'
+import PropTypes from 'prop-types'
+import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight'
+import Edit02Icon from '@untitled-ui/icons-react/build/esm/Edit02'
 import {
   Avatar,
   Box,
@@ -20,83 +20,65 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography
-} from '@mui/material';
-import { Scrollbar } from '../../../components/scrollbar';
-import { paths } from '../../../paths';
-import type { Customer } from '../../../types/customer';
-import { getInitials } from '../../../utils/get-initials';
+  Typography,
+} from '@mui/material'
+import { Scrollbar } from '../../../components/scrollbar'
+import { paths } from '../../../paths'
+import type { Customer } from '../../../types/customer'
+import { getInitials } from '../../../utils/get-initials'
 
 interface SelectionModel {
-  deselectAll: () => void;
-  deselectOne: (customerId: string) => void;
-  selectAll: () => void;
-  selectOne: (customerId: string) => void;
-  selected: string[];
+  deselectAll: () => void
+  deselectOne: (customerId: string) => void
+  selectAll: () => void
+  selectOne: (customerId: string) => void
+  selected: string[]
 }
 
 const useSelectionModel = (customers: Customer[]): SelectionModel => {
-  const customerIds = useMemo(
-    () => {
-      return customers.map((customer) => customer.id);
-    },
-    [customers]
-  );
-  const [selected, setSelected] = useState<string[]>([]);
+  const customerIds = useMemo(() => {
+    return customers.map((customer) => customer.id)
+  }, [customers])
+  const [selected, setSelected] = useState<string[]>([])
 
-  useEffect(
-    () => {
-      setSelected([]);
-    },
-    [customerIds]
-  );
+  useEffect(() => {
+    setSelected([])
+  }, [customerIds])
 
-  const selectOne = useCallback(
-    (customerId: string): void => {
-      setSelected((prevState) => [...prevState, customerId]);
-    },
-    []
-  );
+  const selectOne = useCallback((customerId: string): void => {
+    setSelected((prevState) => [...prevState, customerId])
+  }, [])
 
-  const deselectOne = useCallback(
-    (customerId: string): void => {
-      setSelected((prevState) => {
-        return prevState.filter((id) => id !== customerId);
-      });
-    },
-    []
-  );
+  const deselectOne = useCallback((customerId: string): void => {
+    setSelected((prevState) => {
+      return prevState.filter((id) => id !== customerId)
+    })
+  }, [])
 
-  const selectAll = useCallback(
-    (): void => {
-      setSelected([...customerIds]);
-    },
-    [customerIds]
-  );
+  const selectAll = useCallback((): void => {
+    setSelected([...customerIds])
+  }, [customerIds])
 
-  const deselectAll = useCallback(
-    () => {
-      setSelected([]);
-    },
-    []
-  );
+  const deselectAll = useCallback(() => {
+    setSelected([])
+  }, [])
 
   return {
     deselectAll,
     deselectOne,
     selectAll,
     selectOne,
-    selected
-  };
-};
+    selected,
+  }
+}
 
 interface CustomerListTableProps {
-  customers: Customer[];
-  customersCount: number;
-  onPageChange: (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => void;
-  onRowsPerPageChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  page: number;
-  rowsPerPage: number;
+  customers: Customer[]
+  customersCount: number
+  onPageChange: (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => void
+  onRowsPerPageChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  page: number
+  rowsPerPage: number
 }
 
 export const CustomerListTable: FC<CustomerListTableProps> = (props) => {
@@ -108,46 +90,37 @@ export const CustomerListTable: FC<CustomerListTableProps> = (props) => {
     page,
     rowsPerPage,
     ...other
-  } = props;
-  const {
-    deselectAll,
-    selectAll,
-    deselectOne,
-    selectOne,
-    selected
-  } = useSelectionModel(customers);
+  } = props
+  const { deselectAll, selectAll, deselectOne, selectOne, selected } = useSelectionModel(customers)
 
   const handleToggleAll = useCallback(
     (event: ChangeEvent<HTMLInputElement>): void => {
-      const { checked } = event.target;
+      const { checked } = event.target
 
       if (checked) {
-        selectAll();
+        selectAll()
       } else {
-        deselectAll();
+        deselectAll()
       }
     },
-    [selectAll, deselectAll]
-  );
+    [selectAll, deselectAll],
+  )
 
-  const selectedAll = selected.length === customers.length;
-  const selectedSome = selected.length > 0 && selected.length < customers.length;
-  const enableBulkActions = selected.length > 0;
+  const selectedAll = selected.length === customers.length
+  const selectedSome = selected.length > 0 && selected.length < customers.length
+  const enableBulkActions = selected.length > 0
 
   return (
-    <Box
-      sx={{ position: 'relative' }}
-      {...other}
-    >
+    <Box sx={{ position: 'relative' }}
+{...other}>
       {enableBulkActions && (
         <Stack
-          direction="row"
+          direction='row'
           spacing={2}
           sx={{
             alignItems: 'center',
-            backgroundColor: (theme) => theme.palette.mode === 'dark'
-              ? 'neutral.800'
-              : 'neutral.50',
+            backgroundColor: (theme) =>
+              theme.palette.mode === 'dark' ? 'neutral.800' : 'neutral.50',
             display: enableBulkActions ? 'flex' : 'none',
             position: 'absolute',
             top: 0,
@@ -155,24 +128,18 @@ export const CustomerListTable: FC<CustomerListTableProps> = (props) => {
             width: '100%',
             px: 2,
             py: 0.5,
-            zIndex: 10
+            zIndex: 10,
           }}
         >
-          <Checkbox
-            checked={selectedAll}
-            indeterminate={selectedSome}
-            onChange={handleToggleAll}
-          />
-          <Button
-            color="inherit"
-            size="small"
-          >
+          <Checkbox checked={selectedAll}
+indeterminate={selectedSome}
+onChange={handleToggleAll} />
+          <Button color='inherit'
+size='small'>
             Delete
           </Button>
-          <Button
-            color="inherit"
-            size="small"
-          >
+          <Button color='inherit'
+size='small'>
             Edit
           </Button>
         </Stack>
@@ -181,127 +148,101 @@ export const CustomerListTable: FC<CustomerListTableProps> = (props) => {
         <Table sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
-              <TableCell padding="checkbox">
+              <TableCell padding='checkbox'>
                 <Checkbox
                   checked={selectedAll}
                   indeterminate={selectedSome}
                   onChange={handleToggleAll}
                 />
               </TableCell>
-              <TableCell>
-                Name
-              </TableCell>
-              <TableCell>
-                Location
-              </TableCell>
-              <TableCell>
-                Orders
-              </TableCell>
-              <TableCell>
-                Spent
-              </TableCell>
-              <TableCell align="right">
-                Actions
-              </TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Location</TableCell>
+              <TableCell>Orders</TableCell>
+              <TableCell>Spent</TableCell>
+              <TableCell align='right'>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {customers.map((customer) => {
-              const isSelected = selected.includes(customer.id);
-              const location = `${customer.city}, ${customer.state}, ${customer.country}`;
-              const totalSpent = numeral(customer.totalSpent).format(`${customer.currency}0,0.00`);
+              const isSelected = selected.includes(customer.id)
+              const location = `${customer.city}, ${customer.state}, ${customer.country}`
+              const totalSpent = numeral(customer.totalSpent).format(`${customer.currency}0,0.00`)
 
               return (
-                <TableRow
-                  hover
-                  key={customer.id}
-                  selected={isSelected}
-                >
-                  <TableCell padding="checkbox">
+                <TableRow hover
+key={customer.id}
+selected={isSelected}>
+                  <TableCell padding='checkbox'>
                     <Checkbox
                       checked={isSelected}
                       onChange={(event: ChangeEvent<HTMLInputElement>): void => {
-                        const { checked } = event.target;
+                        const { checked } = event.target
 
                         if (checked) {
-                          selectOne(customer.id);
+                          selectOne(customer.id)
                         } else {
-                          deselectOne(customer.id);
+                          deselectOne(customer.id)
                         }
                       }}
                       value={isSelected}
                     />
                   </TableCell>
                   <TableCell>
-                    <Stack
-                      alignItems="center"
-                      direction="row"
-                      spacing={1}
-                    >
+                    <Stack alignItems='center'
+direction='row'
+spacing={1}>
                       <Avatar
                         src={customer.avatar}
                         sx={{
                           height: 42,
-                          width: 42
+                          width: 42,
                         }}
                       >
                         {getInitials(customer.name)}
                       </Avatar>
                       <div>
                         <Link
-                          color="inherit"
+                          color='inherit'
                           component={NextLink}
                           href={paths.dashboard.customers.details}
-                          variant="subtitle2"
+                          variant='subtitle2'
                         >
                           {customer.name}
                         </Link>
-                        <Typography
-                          color="text.secondary"
-                          variant="body2"
-                        >
+                        <Typography color='text.secondary'
+variant='body2'>
                           {customer.email}
                         </Typography>
                       </div>
                     </Stack>
                   </TableCell>
+                  <TableCell>{location}</TableCell>
+                  <TableCell>{customer.totalOrders}</TableCell>
                   <TableCell>
-                    {location}
+                    <Typography variant='subtitle2'>{totalSpent}</Typography>
                   </TableCell>
-                  <TableCell>
-                    {customer.totalOrders}
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="subtitle2">
-                      {totalSpent}
-                    </Typography>
-                  </TableCell>
-                  <TableCell align="right">
-                    <IconButton
-                      component={NextLink}
-                      href={paths.dashboard.customers.edit}
-                    >
+                  <TableCell align='right'>
+                    <IconButton component={NextLink}
+href={paths.dashboard.customers.edit}>
                       <SvgIcon>
                         <Edit02Icon />
                       </SvgIcon>
                     </IconButton>
-                    <IconButton
-                      component={NextLink}
-                      href={paths.dashboard.customers.details}
-                    >
+                    <IconButton component={NextLink}
+href={paths.dashboard.customers.details}>
                       <SvgIcon>
                         <ArrowRightIcon />
                       </SvgIcon>
                     </IconButton>
                   </TableCell>
                 </TableRow>
-              );
+              )
             })}
           </TableBody>
         </Table>
       </Scrollbar>
       <TablePagination
-        component="div"
+        component='div'
         count={customersCount}
         onPageChange={onPageChange}
         onRowsPerPageChange={onRowsPerPageChange}
@@ -310,8 +251,8 @@ export const CustomerListTable: FC<CustomerListTableProps> = (props) => {
         rowsPerPageOptions={[5, 10, 25]}
       />
     </Box>
-  );
-};
+  )
+}
 
 CustomerListTable.propTypes = {
   customers: PropTypes.array.isRequired,
@@ -319,5 +260,5 @@ CustomerListTable.propTypes = {
   onPageChange: PropTypes.func.isRequired,
   onRowsPerPageChange: PropTypes.func,
   page: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired
-};
+  rowsPerPage: PropTypes.number.isRequired,
+}

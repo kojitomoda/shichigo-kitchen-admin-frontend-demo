@@ -1,7 +1,7 @@
-import type { FC } from 'react';
-import { useCallback, useEffect, useState } from 'react';
-import { format } from 'date-fns';
-import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight';
+import type { FC } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { format } from 'date-fns'
+import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight'
 import {
   Box,
   Button,
@@ -15,82 +15,76 @@ import {
   TableHead,
   TableRow,
   TextField,
-  Typography
-} from '@mui/material';
-import { customersApi } from '../../../api/customers';
-import { useMounted } from '../../../hooks/use-mounted';
-import type { CustomerEmail } from '../../../types/customer';
+  Typography,
+} from '@mui/material'
+import { customersApi } from '../../../api/customers'
+import { useMounted } from '../../../hooks/use-mounted'
+import type { CustomerEmail } from '../../../types/customer'
 
-const emailOptions: string[] = [
-  'Resend last invoice',
-  'Send password reset',
-  'Send verification'
-];
+const emailOptions: string[] = ['Resend last invoice', 'Send password reset', 'Send verification']
 
 const useEmails = (): CustomerEmail[] => {
-  const isMounted = useMounted();
-  const [emails, setEmails] = useState<CustomerEmail[]>([]);
+  const isMounted = useMounted()
+  const [emails, setEmails] = useState<CustomerEmail[]>([])
 
   const getEmails = useCallback(async () => {
     try {
-      const response = await customersApi.getEmails();
+      const response = await customersApi.getEmails()
 
       if (isMounted()) {
-        setEmails(response);
+        setEmails(response)
       }
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  }, [isMounted]);
+  }, [isMounted])
 
   useEffect(
     () => {
-      getEmails();
+      getEmails()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+    [],
+  )
 
-  return emails;
-};
+  return emails
+}
 
 export const CustomerEmailsSummary: FC = (props) => {
-  const [emailOption, setEmailOption] = useState<string>(emailOptions[0]);
-  const emails = useEmails();
+  const [emailOption, setEmailOption] = useState<string>(emailOptions[0])
+  const emails = useEmails()
 
   return (
     <Card {...props}>
-      <CardHeader title="Emails" />
+      <CardHeader title='Emails' />
       <CardContent sx={{ pt: 0 }}>
         <TextField
-          name="option"
+          name='option'
           onChange={(event): void => setEmailOption(event.target.value)}
           select
           SelectProps={{ native: true }}
           sx={{
             width: 320,
-            maxWidth: '100%'
+            maxWidth: '100%',
           }}
-          variant="outlined"
+          variant='outlined'
           value={emailOption}
         >
           {emailOptions.map((option) => (
-            <option
-              key={option}
-              value={option}
-            >
+            <option key={option}
+value={option}>
               {option}
             </option>
           ))}
         </TextField>
         <Box sx={{ mt: 2 }}>
           <Button
-            endIcon={(
+            endIcon={
               <SvgIcon>
                 <ArrowRightIcon />
               </SvgIcon>
-            )}
-            variant="contained"
+            }
+            variant='contained'
           >
             Send email
           </Button>
@@ -99,36 +93,26 @@ export const CustomerEmailsSummary: FC = (props) => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>
-              Mail Type
-            </TableCell>
-            <TableCell>
-              Date
-            </TableCell>
+            <TableCell>Mail Type</TableCell>
+            <TableCell>Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {emails.map((email) => {
-            const createdAt = format(email.createdAt, 'dd/MM/yyyy | HH:mm');
+            const createdAt = format(email.createdAt, 'dd/MM/yyyy | HH:mm')
 
             return (
-              <TableRow
-                key={email.id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
+              <TableRow key={email.id}
+sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell>
-                  <Typography variant="subtitle2">
-                    {email.description}
-                  </Typography>
+                  <Typography variant='subtitle2'>{email.description}</Typography>
                 </TableCell>
-                <TableCell>
-                  {createdAt}
-                </TableCell>
+                <TableCell>{createdAt}</TableCell>
               </TableRow>
-            );
+            )
           })}
         </TableBody>
       </Table>
     </Card>
-  );
-};
+  )
+}

@@ -1,25 +1,25 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import Link01Icon from '@untitled-ui/icons-react/build/esm/Link01';
-import Trash02Icon from '@untitled-ui/icons-react/build/esm/Trash02';
-import { Menu, MenuItem, menuItemClasses, SvgIcon } from '@mui/material';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import Link01Icon from '@untitled-ui/icons-react/build/esm/Link01'
+import Trash02Icon from '@untitled-ui/icons-react/build/esm/Trash02'
+import { Menu, MenuItem, menuItemClasses, SvgIcon } from '@mui/material'
 
 interface ItemMenuProps {
-  anchorEl?: HTMLElement | null;
-  onClose?: () => void;
-  onDelete?: () => void;
-  open?: boolean;
+  anchorEl?: HTMLElement | null
+  onClose?: () => void
+  onDelete?: () => void
+  open?: boolean
 }
 
 export const ItemMenu: FC<ItemMenuProps> = (props) => {
-  const { anchorEl, onClose, onDelete, open = false } = props;
+  const { anchorEl, onClose, onDelete, open = false } = props
 
   return (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
         horizontal: 'right',
-        vertical: 'bottom'
+        vertical: 'bottom',
       }}
       onClose={onClose}
       open={open}
@@ -27,37 +27,35 @@ export const ItemMenu: FC<ItemMenuProps> = (props) => {
         [`& .${menuItemClasses.root}`]: {
           fontSize: 14,
           '& svg': {
-            mr: 1
-          }
-        }
+            mr: 1,
+          },
+        },
       }}
       transformOrigin={{
         horizontal: 'right',
-        vertical: 'top'
+        vertical: 'top',
       }}
     >
       <MenuItem onClick={onClose}>
-        <SvgIcon fontSize="small">
+        <SvgIcon fontSize='small'>
           <Link01Icon />
         </SvgIcon>
         Copy Link
       </MenuItem>
-      <MenuItem
-        onClick={onDelete}
-        sx={{ color: 'error.main' }}
-      >
-        <SvgIcon fontSize="small">
+      <MenuItem onClick={onDelete}
+sx={{ color: 'error.main' }}>
+        <SvgIcon fontSize='small'>
           <Trash02Icon />
         </SvgIcon>
         Delete
       </MenuItem>
     </Menu>
-  );
-};
+  )
+}
 
 ItemMenu.propTypes = {
   anchorEl: PropTypes.any,
   onClose: PropTypes.func,
   onDelete: PropTypes.func,
-  open: PropTypes.bool
-};
+  open: PropTypes.bool,
+}

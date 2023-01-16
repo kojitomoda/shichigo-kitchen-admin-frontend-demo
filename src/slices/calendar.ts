@@ -1,50 +1,50 @@
-import type { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
-import type { CalendarEvent } from '../types/calendar';
+import type { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+import type { CalendarEvent } from '../types/calendar'
 
 interface CalendarState {
-  events: CalendarEvent[];
+  events: CalendarEvent[]
 }
 
-type GetEventsAction = PayloadAction<CalendarEvent[]>;
+type GetEventsAction = PayloadAction<CalendarEvent[]>
 
-type CreateEventAction = PayloadAction<CalendarEvent>;
+type CreateEventAction = PayloadAction<CalendarEvent>
 
-type UpdateEventAction = PayloadAction<CalendarEvent>;
+type UpdateEventAction = PayloadAction<CalendarEvent>
 
-type DeleteEventAction = PayloadAction<string>;
+type DeleteEventAction = PayloadAction<string>
 
 const initialState: CalendarState = {
-  events: []
-};
+  events: [],
+}
 
 const reducers = {
   getEvents(state: CalendarState, action: GetEventsAction): void {
-    state.events = action.payload;
+    state.events = action.payload
   },
   createEvent(state: CalendarState, action: CreateEventAction): void {
-    state.events.push(action.payload);
+    state.events.push(action.payload)
   },
   updateEvent(state: CalendarState, action: UpdateEventAction): void {
-    const event = action.payload;
+    const event = action.payload
 
     state.events = state.events.map((_event) => {
       if (_event.id === event.id) {
-        return event;
+        return event
       }
 
-      return _event;
-    });
+      return _event
+    })
   },
   deleteEvent(state: CalendarState, action: DeleteEventAction): void {
-    state.events = state.events.filter((event) => event.id !== action.payload);
-  }
-};
+    state.events = state.events.filter((event) => event.id !== action.payload)
+  },
+}
 
 export const slice = createSlice({
   name: 'calendar',
   initialState,
-  reducers
-});
+  reducers,
+})
 
-export const { reducer } = slice;
+export const { reducer } = slice

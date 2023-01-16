@@ -1,8 +1,8 @@
-import type { FC } from 'react';
-import NextLink from 'next/link';
-import PropTypes from 'prop-types';
-import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight';
-import ClockIcon from '@untitled-ui/icons-react/build/esm/Clock';
+import type { FC } from 'react'
+import NextLink from 'next/link'
+import PropTypes from 'prop-types'
+import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight'
+import ClockIcon from '@untitled-ui/icons-react/build/esm/Clock'
 import {
   Box,
   Button,
@@ -13,20 +13,20 @@ import {
   Link,
   Stack,
   SvgIcon,
-  Typography
-} from '@mui/material';
-import type { Course } from '../../../types/academy';
-import { paths } from '../../../paths';
+  Typography,
+} from '@mui/material'
+import type { Course } from '../../../types/academy'
+import { paths } from '../../../paths'
 
 interface CourseCardProps {
-  course: Course;
+  course: Course
 }
 
 export const CourseCard: FC<CourseCardProps> = (props) => {
-  const { course } = props;
+  const { course } = props
 
   return (
-    <Card variant="outlined">
+    <Card variant='outlined'>
       <CardMedia
         component={NextLink}
         href={paths.dashboard.academy.courseDetails}
@@ -35,67 +35,59 @@ export const CourseCard: FC<CourseCardProps> = (props) => {
       />
       <CardContent>
         <Link
-          color="text.primary"
+          color='text.primary'
           component={NextLink}
           href={paths.dashboard.academy.courseDetails}
-          underline="none"
-          variant="subtitle1"
+          underline='none'
+          variant='subtitle1'
         >
           {course.title}
         </Link>
-        <Typography
-          color="text.secondary"
-          sx={{ mt: 1 }}
-          variant="body2"
-        >
+        <Typography color='text.secondary'
+sx={{ mt: 1 }}
+variant='body2'>
           {course.description}
         </Typography>
-        <Stack
-          alignItems="center"
-          direction="row"
-          spacing={1}
-          sx={{ mt: 1 }}
-        >
+        <Stack alignItems='center'
+direction='row'
+spacing={1}
+sx={{ mt: 1 }}>
           <SvgIcon>
             <ClockIcon />
           </SvgIcon>
-          <Typography
-            color="text.secondary"
-            variant="caption"
-          >
+          <Typography color='text.secondary'
+variant='caption'>
             {course.duration}
           </Typography>
         </Stack>
       </CardContent>
-      <LinearProgress
-        value={course.progress}
-        variant="determinate"
-      />
+      <LinearProgress value={course.progress}
+variant='determinate' />
       <Box
         sx={{
           display: 'flex',
           justifyContent: 'flex-end',
-          p: 1
+          p: 1,
         }}
       >
         <Button
-          color="inherit"
+          color='inherit'
           component={NextLink}
-          endIcon={(
+          endIcon={
             <SvgIcon>
               <ArrowRightIcon />
             </SvgIcon>
-          )}
+          }
           href={paths.dashboard.academy.courseDetails}
         >
           Continue
         </Button>
       </Box>
     </Card>
-  );
-};
+  )
+}
 
 CourseCard.propTypes = {
   // @ts-ignore
-  course: PropTypes.object.isRequired
-};
+  course: PropTypes.object.isRequired,
+}

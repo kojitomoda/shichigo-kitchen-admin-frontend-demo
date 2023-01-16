@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from 'react';
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import NextLink from 'next/link';
-import ArrowLeftIcon from '@untitled-ui/icons-react/build/esm/ArrowLeft';
-import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight';
+import { useCallback, useEffect, useState } from 'react'
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import NextLink from 'next/link'
+import ArrowLeftIcon from '@untitled-ui/icons-react/build/esm/ArrowLeft'
+import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight'
 import {
   Box,
   Breadcrumbs,
@@ -15,90 +15,84 @@ import {
   Stack,
   SvgIcon,
   Typography,
-  Unstable_Grid2 as Grid
-} from '@mui/material';
-import { blogApi } from '../../../api/blog';
-import { useMounted } from '../../../hooks/use-mounted';
-import { usePageView } from '../../../hooks/use-page-view';
-import { Layout as DashboardLayout } from '../../../layouts/dashboard';
-import { paths } from '../../../paths';
-import { PostNewsletter } from '../../../sections/dashboard/blog/post-newsletter';
-import { PostCard } from '../../../sections/dashboard/blog/post-card';
-import type { Post } from '../../../types/blog';
-import { BreadcrumbsSeparator } from '../../../components/breadcrumbs-separator';
+  Unstable_Grid2 as Grid,
+} from '@mui/material'
+import { blogApi } from '../../../api/blog'
+import { useMounted } from '../../../hooks/use-mounted'
+import { usePageView } from '../../../hooks/use-page-view'
+import { Layout as DashboardLayout } from '../../../layouts/dashboard'
+import { paths } from '../../../paths'
+import { PostNewsletter } from '../../../sections/dashboard/blog/post-newsletter'
+import { PostCard } from '../../../sections/dashboard/blog/post-card'
+import type { Post } from '../../../types/blog'
+import { BreadcrumbsSeparator } from '../../../components/breadcrumbs-separator'
 
 const usePosts = (): Post[] => {
-  const isMounted = useMounted();
-  const [posts, setPosts] = useState<Post[]>([]);
+  const isMounted = useMounted()
+  const [posts, setPosts] = useState<Post[]>([])
 
   const getPosts = useCallback(async () => {
     try {
-      const response = await blogApi.getPosts();
+      const response = await blogApi.getPosts()
 
       if (isMounted()) {
-        setPosts(response);
+        setPosts(response)
       }
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  }, [isMounted]);
+  }, [isMounted])
 
   useEffect(
     () => {
-      getPosts();
+      getPosts()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+    [],
+  )
 
-  return posts;
-};
+  return posts
+}
 
 const Page: NextPage = () => {
-  const posts = usePosts();
+  const posts = usePosts()
 
-  usePageView();
+  usePageView()
 
   return (
     <>
       <Head>
-        <title>
-          Blog: Post List | Devias Kit PRO
-        </title>
+        <title>Blog: Post List | Devias Kit PRO</title>
       </Head>
       <Box
-        component="main"
+        component='main'
         sx={{
           flexGrow: 1,
-          py: 8
+          py: 8,
         }}
       >
-        <Container maxWidth="xl">
+        <Container maxWidth='xl'>
           <Stack spacing={1}>
-            <Typography variant="h3">
-              Blog
-            </Typography>
+            <Typography variant='h3'>Blog</Typography>
             <Breadcrumbs separator={<BreadcrumbsSeparator />}>
               <Link
-                color="text.primary"
+                color='text.primary'
                 component={NextLink}
                 href={paths.dashboard.index}
-                variant="subtitle2"
+                variant='subtitle2'
               >
                 Dashboard
               </Link>
               <Link
-                color="text.primary"
+                color='text.primary'
                 component={NextLink}
                 href={paths.dashboard.blog.index}
-                variant="subtitle2"
+                variant='subtitle2'
               >
                 Blog
               </Link>
-              <Typography
-                color="text.secondary"
-                variant="subtitle2"
-              >
+              <Typography color='text.secondary'
+variant='subtitle2'>
                 List
               </Typography>
             </Breadcrumbs>
@@ -113,48 +107,33 @@ const Page: NextPage = () => {
               mb: 8,
               mt: 6,
               px: 3,
-              py: 2
+              py: 2,
             }}
           >
-            <Typography variant="subtitle1">
-              Hello, Admin
-            </Typography>
-            <Button
-              component={NextLink}
-              href={paths.dashboard.blog.postCreate}
-              variant="contained"
-            >
+            <Typography variant='subtitle1'>Hello, Admin</Typography>
+            <Button component={NextLink}
+href={paths.dashboard.blog.postCreate}
+variant='contained'>
               New Post
             </Button>
           </Card>
-          <Typography variant="h4">
-            Recent Articles
-          </Typography>
-          <Typography
-            color="text.secondary"
-            sx={{ mt: 2 }}
-            variant="body1"
-          >
+          <Typography variant='h4'>Recent Articles</Typography>
+          <Typography color='text.secondary'
+sx={{ mt: 2 }}
+variant='body1'>
             Discover the latest news, tips and user research insights from Acme.
           </Typography>
-          <Typography
-            color="text.secondary"
-            variant="body1"
-          >
-            You will learn about web infrastructure, design systems and devops APIs best
-            practices.
+          <Typography color='text.secondary'
+variant='body1'>
+            You will learn about web infrastructure, design systems and devops APIs best practices.
           </Typography>
           <Divider sx={{ my: 4 }} />
-          <Grid
-            container
-            spacing={4}
-          >
+          <Grid container
+spacing={4}>
             {posts.map((post) => (
-              <Grid
-                key={post.title}
-                xs={12}
-                md={6}
-              >
+              <Grid key={post.title}
+xs={12}
+md={6}>
                 <PostCard
                   authorAvatar={post.author.avatar}
                   authorName={post.author.name}
@@ -170,31 +149,31 @@ const Page: NextPage = () => {
             ))}
           </Grid>
           <Stack
-            alignItems="center"
-            direction="row"
-            justifyContent="center"
+            alignItems='center'
+            direction='row'
+            justifyContent='center'
             spacing={1}
             sx={{
               mt: 4,
-              mb: 8
+              mb: 8,
             }}
           >
             <Button
               disabled
-              startIcon={(
+              startIcon={
                 <SvgIcon>
                   <ArrowLeftIcon />
                 </SvgIcon>
-              )}
+              }
             >
               Newer
             </Button>
             <Button
-              endIcon={(
+              endIcon={
                 <SvgIcon>
                   <ArrowRightIcon />
                 </SvgIcon>
-              )}
+              }
             >
               Older posts
             </Button>
@@ -205,13 +184,9 @@ const Page: NextPage = () => {
         </Container>
       </Box>
     </>
-  );
-};
+  )
+}
 
-Page.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
+Page.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>
 
-export default Page;
+export default Page

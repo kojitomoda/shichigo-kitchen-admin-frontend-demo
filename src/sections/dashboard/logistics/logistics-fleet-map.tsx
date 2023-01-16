@@ -1,88 +1,86 @@
-import type { FC } from 'react';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import type { MapRef, ViewState } from 'react-map-gl';
-import Map, { Marker } from 'react-map-gl';
-import type { FlyToOptions } from 'mapbox-gl';
-import PropTypes from 'prop-types';
-import { Box, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { mapboxConfig } from '../../../config';
-import type { Vehicle } from '../../../types/logistics';
+import type { FC } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import type { MapRef, ViewState } from 'react-map-gl'
+import Map, { Marker } from 'react-map-gl'
+import type { FlyToOptions } from 'mapbox-gl'
+import PropTypes from 'prop-types'
+import { Box, Typography } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
+import { mapboxConfig } from '../../../config'
+import type { Vehicle } from '../../../types/logistics'
 
 // Map default view state
 const VIEW_STATE: Pick<ViewState, 'latitude' | 'longitude' | 'zoom'> = {
   latitude: 40.74281576586265,
   longitude: -73.99277240443942,
-  zoom: 11
-};
+  zoom: 11,
+}
 
 interface LogisticsFleetMapProps {
-  currentVehicleId?: string;
-  onVehicleSelect?: (vehicleId: string) => void;
-  vehicles?: Vehicle[];
+  currentVehicleId?: string
+  onVehicleSelect?: (vehicleId: string) => void
+  vehicles?: Vehicle[]
 }
 
 export const LogisticsFleetMap: FC<LogisticsFleetMapProps> = (props) => {
-  const { onVehicleSelect, currentVehicleId, vehicles = [] } = props;
-  const theme = useTheme();
-  const mapRef = useRef<MapRef | null>(null);
+  const { onVehicleSelect, currentVehicleId, vehicles = [] } = props
+  const theme = useTheme()
+  const mapRef = useRef<MapRef | null>(null)
   const [viewState] = useState(() => {
     if (!currentVehicleId) {
-      return VIEW_STATE;
+      return VIEW_STATE
     } else {
-      const vehicle = vehicles.find((vehicle) => vehicle.id === currentVehicleId);
+      const vehicle = vehicles.find((vehicle) => vehicle.id === currentVehicleId)
 
       if (!vehicle) {
-        return VIEW_STATE;
+        return VIEW_STATE
       } else {
         return {
           latitude: vehicle.latitude,
           longitude: vehicle.longitude,
-          zoom: 13
-        };
+          zoom: 13,
+        }
       }
     }
-  });
+  })
 
-  const handleRecenter = useCallback(
-    () => {
-      const map = mapRef.current;
+  const handleRecenter = useCallback(() => {
+    const map = mapRef.current
 
-      if (!map) {
-        return;
+    if (!map) {
+      return
+    }
+
+    let flyOptions: FlyToOptions
+
+    const vehicle = vehicles.find((vehicle) => vehicle.id === currentVehicleId)
+
+    if (!vehicle) {
+      flyOptions = {
+        center: [VIEW_STATE.longitude, VIEW_STATE.latitude],
       }
-
-      let flyOptions: FlyToOptions;
-
-      const vehicle = vehicles.find((vehicle) => vehicle.id === currentVehicleId);
-
-      if (!vehicle) {
-        flyOptions = {
-          center: [VIEW_STATE.longitude, VIEW_STATE.latitude]
-        };
-      } else {
-        flyOptions = {
-          center: [vehicle.longitude, vehicle.latitude]
-        };
+    } else {
+      flyOptions = {
+        center: [vehicle.longitude, vehicle.latitude],
       }
+    }
 
-      map.flyTo(flyOptions);
-    },
-    [vehicles, currentVehicleId]
-  );
+    map.flyTo(flyOptions)
+  }, [vehicles, currentVehicleId])
 
   // Recenter if vehicles or current vehicle change
   useEffect(
     () => {
-      handleRecenter();
+      handleRecenter()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [vehicles, currentVehicleId]
-  );
+    [vehicles, currentVehicleId],
+  )
 
-  const mapStyle = theme.palette.mode === 'dark'
-    ? 'mapbox://styles/mapbox/dark-v9'
-    : 'mapbox://styles/mapbox/light-v9';
+  const mapStyle =
+    theme.palette.mode === 'dark'
+      ? 'mapbox://styles/mapbox/dark-v9'
+      : 'mapbox://styles/mapbox/light-v9'
 
   if (!mapboxConfig.apiKey) {
     return (
@@ -92,33 +90,29 @@ export const LogisticsFleetMap: FC<LogisticsFleetMapProps> = (props) => {
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
-          justifyContent: 'center'
+          justifyContent: 'center',
         }}
       >
         <Box sx={{ mb: 3 }}>
           <Box
-            component="img"
-            src="/assets/errors/error-404.png"
+            component='img'
+            src='/assets/errors/error-404.png'
             sx={{
               width: 200,
-              maxWidth: '100%'
+              maxWidth: '100%',
             }}
           />
         </Box>
-        <Typography
-          variant="h5"
-          sx={{ mb: 1 }}
-        >
+        <Typography variant='h5'
+sx={{ mb: 1 }}>
           Map cannot be loaded
         </Typography>
-        <Typography
-          color="text.secondary"
-          variant="subtitle2"
-        >
+        <Typography color='text.secondary'
+variant='subtitle2'>
           Mapbox API Key is not configured.
         </Typography>
       </Box>
-    );
+    )
   }
 
   return (
@@ -143,23 +137,23 @@ export const LogisticsFleetMap: FC<LogisticsFleetMapProps> = (props) => {
               height: 50,
               width: 50,
               ...(vehicle.id === currentVehicleId && {
-                filter: (theme) => `drop-shadow(0px 0px 8px ${theme.palette.primary.main})`
+                filter: (theme) => `drop-shadow(0px 0px 8px ${theme.palette.primary.main})`,
               }),
               '& img': {
-                height: '100%'
-              }
+                height: '100%',
+              },
             }}
           >
-            <img src="/assets/car-marker.png" />
+            <img src='/assets/car-marker.png' />
           </Box>
         </Marker>
       ))}
     </Map>
-  );
-};
+  )
+}
 
 LogisticsFleetMap.propTypes = {
   currentVehicleId: PropTypes.string,
   onVehicleSelect: PropTypes.func,
-  vehicles: PropTypes.array
-};
+  vehicles: PropTypes.array,
+}

@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC } from 'react'
 import {
   Box,
   Card,
@@ -7,35 +7,29 @@ import {
   Divider,
   LinearProgress,
   Stack,
-  Typography
-} from '@mui/material';
+  Typography,
+} from '@mui/material'
 
 export const QuickStats7: FC = () => (
   <Box
     sx={{
-      backgroundColor: (theme) => theme.palette.mode === 'dark'
-        ? 'neutral.800'
-        : 'neutral.100',
-      p: 3
+      backgroundColor: (theme) => (theme.palette.mode === 'dark' ? 'neutral.800' : 'neutral.100'),
+      p: 3,
     }}
   >
     <Card>
-      <CardHeader title="Profile Progress" />
+      <CardHeader title='Profile Progress' />
       <Divider />
       <CardContent>
         <Stack spacing={2}>
-          <LinearProgress
-            value={50}
-            variant="determinate"
-          />
-          <Typography
-            color="text.secondary"
-            variant="subtitle2"
-          >
+          <LinearProgress value={50}
+variant='determinate' />
+          <Typography color='text.secondary'
+variant='subtitle2'>
             50% Set Up Complete
           </Typography>
         </Stack>
       </CardContent>
     </Card>
   </Box>
-);
+)

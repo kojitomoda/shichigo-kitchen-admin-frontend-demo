@@ -1,49 +1,51 @@
-import type { FC, ReactNode } from 'react';
-import PropTypes from 'prop-types';
-import { Box, Stack } from '@mui/material';
-import { MobileNavItem } from './mobile-nav-item';
+import type { FC, ReactNode } from 'react'
+import PropTypes from 'prop-types'
+import { Box, Stack } from '@mui/material'
+import { MobileNavItem } from './mobile-nav-item'
 
 interface Item {
-  disabled?: boolean;
-  icon?: ReactNode;
-  items?: Item[];
-  label?: ReactNode;
-  path?: string;
-  title: string;
+  disabled?: boolean
+  icon?: ReactNode
+  items?: Item[]
+  label?: ReactNode
+  path?: string
+  title: string
 }
 
 const renderItems = ({
   depth = 0,
   items,
-  pathname
+  pathname,
 }: {
-  depth?: number;
-  items: Item[];
-  pathname?: string | null;
-}): JSX.Element[] => items.reduce(
-  (acc: JSX.Element[], item) => reduceChildRoutes({
-    acc,
-    depth,
-    item,
-    pathname
-  }),
-  []
-);
+  depth?: number
+  items: Item[]
+  pathname?: string | null
+}): JSX.Element[] =>
+  items.reduce(
+    (acc: JSX.Element[], item) =>
+      reduceChildRoutes({
+        acc,
+        depth,
+        item,
+        pathname,
+      }),
+    [],
+  )
 
 const reduceChildRoutes = ({
   acc,
   depth,
   item,
-  pathname
+  pathname,
 }: {
-  acc: JSX.Element[];
-  depth: number;
-  item: Item;
-  pathname?: string | null;
+  acc: JSX.Element[]
+  depth: number
+  item: Item
+  pathname?: string | null
 }): Array<JSX.Element> => {
-  const checkPath = !!(item.path && pathname);
-  const partialMatch = checkPath ? pathname.includes(item.path!) : false;
-  const exactMatch = checkPath ? pathname === item.path : false;
+  const checkPath = !!(item.path && pathname)
+  const partialMatch = checkPath ? pathname.includes(item.path!) : false
+  const exactMatch = checkPath ? pathname === item.path : false
 
   if (item.items) {
     acc.push(
@@ -59,22 +61,22 @@ const reduceChildRoutes = ({
         title={item.title}
       >
         <Stack
-          component="ul"
+          component='ul'
           spacing={0.5}
           sx={{
             listStyle: 'none',
             m: 0,
-            p: 0
+            p: 0,
           }}
         >
           {renderItems({
             depth: depth + 1,
             items: item.items,
-            pathname
+            pathname,
           })}
         </Stack>
-      </MobileNavItem>
-    );
+      </MobileNavItem>,
+    )
   } else {
     acc.push(
       <MobileNavItem
@@ -86,36 +88,36 @@ const reduceChildRoutes = ({
         label={item.label}
         path={item.path}
         title={item.title}
-      />
-    );
+      />,
+    )
   }
 
-  return acc;
-};
+  return acc
+}
 
 interface MobileNavSectionProps {
-  items?: Item[];
-  pathname?: string | null;
-  subheader?: string;
+  items?: Item[]
+  pathname?: string | null
+  subheader?: string
 }
 
 export const MobileNavSection: FC<MobileNavSectionProps> = (props) => {
-  const { items = [], pathname, subheader = '', ...other } = props;
+  const { items = [], pathname, subheader = '', ...other } = props
 
   return (
     <Stack
-      component="ul"
+      component='ul'
       spacing={0.5}
       sx={{
         listStyle: 'none',
         m: 0,
-        p: 0
+        p: 0,
       }}
       {...other}
     >
       {subheader && (
         <Box
-          component="li"
+          component='li'
           sx={{
             color: 'var(--nav-section-title-color)',
             fontSize: 14,
@@ -123,7 +125,7 @@ export const MobileNavSection: FC<MobileNavSectionProps> = (props) => {
             lineHeight: 1.66,
             mb: 1,
             ml: 1,
-            textTransform: 'uppercase'
+            textTransform: 'uppercase',
           }}
         >
           {subheader}
@@ -131,11 +133,11 @@ export const MobileNavSection: FC<MobileNavSectionProps> = (props) => {
       )}
       {renderItems({ items, pathname })}
     </Stack>
-  );
-};
+  )
+}
 
 MobileNavSection.propTypes = {
   items: PropTypes.array,
   pathname: PropTypes.string,
-  subheader: PropTypes.string
-};
+  subheader: PropTypes.string,
+}

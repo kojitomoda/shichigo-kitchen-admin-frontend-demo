@@ -1,28 +1,28 @@
-import type { FC } from 'react';
-import { MenuItem, Popover } from '@mui/material';
+import type { FC } from 'react'
+import { MenuItem, Popover } from '@mui/material'
 
 interface TenantPopoverProps {
-  anchorEl: null | Element;
-  onChange?: (tenant: string) => void;
-  onClose?: () => void;
-  open?: boolean;
-  tenants: string[];
+  anchorEl: null | Element
+  onChange?: (tenant: string) => void
+  onClose?: () => void
+  open?: boolean
+  tenants: string[]
 }
 
 export const TenantPopover: FC<TenantPopoverProps> = (props) => {
-  const { anchorEl, onChange, onClose, open = false, tenants, ...other } = props;
+  const { anchorEl, onChange, onClose, open = false, tenants, ...other } = props
 
   return (
     <Popover
       anchorEl={anchorEl}
       anchorOrigin={{
         horizontal: 'right',
-        vertical: 'bottom'
+        vertical: 'bottom',
       }}
       disableScrollLock
       transformOrigin={{
         horizontal: 'right',
-        vertical: 'top'
+        vertical: 'top',
       }}
       keepMounted
       onClose={onClose}
@@ -31,13 +31,11 @@ export const TenantPopover: FC<TenantPopoverProps> = (props) => {
       {...other}
     >
       {tenants.map((tenant) => (
-        <MenuItem
-          key={tenant}
-          onClick={() => onChange?.(tenant)}
-        >
+        <MenuItem key={tenant}
+onClick={() => onChange?.(tenant)}>
           {tenant}
         </MenuItem>
       ))}
     </Popover>
-  );
-};
+  )
+}

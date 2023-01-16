@@ -1,28 +1,28 @@
-import type { FC } from 'react';
-import type { ApexOptions } from 'apexcharts';
-import { Box, Card, CardContent, Container, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { Chart } from '../../../components/chart';
+import type { FC } from 'react'
+import type { ApexOptions } from 'apexcharts'
+import { Box, Card, CardContent, Container, Typography } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
+import { Chart } from '../../../components/chart'
 
-type ChartSeries = number[];
+type ChartSeries = number[]
 
-const chartSeries: ChartSeries = [83];
+const chartSeries: ChartSeries = [83]
 
 const useChartOptions = (): ApexOptions => {
-  const theme = useTheme();
+  const theme = useTheme()
 
   return {
     chart: {
       background: 'transparent',
       stacked: false,
       toolbar: {
-        show: false
-      }
+        show: false,
+      },
     },
     colors: [theme.palette.primary.main],
     fill: {
       opacity: 1,
-      type: 'solid'
+      type: 'solid',
     },
     labels: ['System Health'],
     plotOptions: {
@@ -30,70 +30,64 @@ const useChartOptions = (): ApexOptions => {
         dataLabels: {
           name: {
             color: theme.palette.text.primary,
-            fontFamily: theme.typography.fontFamily
+            fontFamily: theme.typography.fontFamily,
           },
           value: {
-            color: theme.palette.text.secondary
-          }
+            color: theme.palette.text.secondary,
+          },
         },
         hollow: {
-          size: '60%'
+          size: '60%',
         },
         track: {
-          background: theme.palette.background.default
-        }
-      }
+          background: theme.palette.background.default,
+        },
+      },
     },
     states: {
       active: {
         filter: {
-          type: 'none'
-        }
+          type: 'none',
+        },
       },
       hover: {
         filter: {
-          type: 'none'
-        }
-      }
+          type: 'none',
+        },
+      },
     },
     theme: {
-      mode: theme.palette.mode
-    }
-  };
-};
+      mode: theme.palette.mode,
+    },
+  }
+}
 
 export const Chart3: FC = () => {
-  const chartOptions = useChartOptions();
+  const chartOptions = useChartOptions()
 
   return (
     <Box
       sx={{
-        backgroundColor: (theme) => theme.palette.mode === 'dark'
-          ? 'neutral.800'
-          : 'neutral.100',
-        p: 3
+        backgroundColor: (theme) => (theme.palette.mode === 'dark' ? 'neutral.800' : 'neutral.100'),
+        p: 3,
       }}
     >
-      <Container maxWidth="sm">
+      <Container maxWidth='sm'>
         <Card>
           <CardContent>
-            <Chart
-              height={300}
-              options={chartOptions}
-              series={chartSeries}
-              type="radialBar"
-            />
-            <Typography
-              align="center"
-              color="text.secondary"
-              component="p"
-              variant="caption"
-            >
+            <Chart height={300}
+options={chartOptions}
+series={chartSeries}
+type='radialBar' />
+            <Typography align='center'
+color='text.secondary'
+component='p'
+variant='caption'>
               This shouldn&apos;t be bellow 80%
             </Typography>
           </CardContent>
         </Card>
       </Container>
     </Box>
-  );
-};
+  )
+}

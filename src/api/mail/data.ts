@@ -1,61 +1,61 @@
-import type { Email, Label } from '../../types/mail';
+import type { Email, Label } from '../../types/mail'
 
-const now = new Date();
+const now = new Date()
 
 export const labels: Label[] = [
   {
     id: 'all',
     name: 'All Mail',
-    type: 'system'
+    type: 'system',
   },
   {
     id: 'inbox',
     name: 'Inbox',
     totalCount: 0,
     type: 'system',
-    unreadCount: 1
+    unreadCount: 1,
   },
   {
     id: 'sent',
     name: 'Sent',
     totalCount: 0,
     type: 'system',
-    unreadCount: 0
+    unreadCount: 0,
   },
   {
     id: 'drafts',
     name: 'Drafts',
     totalCount: 0,
     type: 'system',
-    unreadCount: 0
+    unreadCount: 0,
   },
   {
     id: 'trash',
     name: 'Trash',
     totalCount: 1,
     type: 'system',
-    unreadCount: 0
+    unreadCount: 0,
   },
   {
     id: 'spam',
     name: 'Spam',
     totalCount: 0,
     type: 'system',
-    unreadCount: 0
+    unreadCount: 0,
   },
   {
     id: 'important',
     name: 'Important',
     totalCount: 1,
     type: 'system',
-    unreadCount: 0
+    unreadCount: 0,
   },
   {
     id: 'starred',
     name: 'Starred',
     totalCount: 1,
     type: 'system',
-    unreadCount: 1
+    unreadCount: 1,
   },
   {
     id: 'work',
@@ -63,7 +63,7 @@ export const labels: Label[] = [
     name: 'Work',
     totalCount: 1,
     type: 'custom',
-    unreadCount: 0
+    unreadCount: 0,
   },
   {
     id: 'business',
@@ -71,7 +71,7 @@ export const labels: Label[] = [
     name: 'Business',
     totalCount: 2,
     type: 'custom',
-    unreadCount: 1
+    unreadCount: 1,
   },
   {
     id: 'personal',
@@ -79,9 +79,9 @@ export const labels: Label[] = [
     name: 'Personal',
     totalCount: 1,
     type: 'custom',
-    unreadCount: 0
-  }
-];
+    unreadCount: 0,
+  },
+]
 
 export const emails: Email[] = [
   {
@@ -92,29 +92,29 @@ export const emails: Email[] = [
         name: 'working-sketch.png',
         size: '128.5Kb',
         type: 'image',
-        url: '/assets/covers/abstract-1-4x4-small.png'
+        url: '/assets/covers/abstract-1-4x4-small.png',
       },
       {
         id: '09223c93e60f815fdce487af',
         name: 'summer-customers.pdf',
         size: '782.3Kb',
         type: 'file',
-        url: '#'
+        url: '#',
       },
       {
         id: '165adb24c7b6a2e9aebba766',
         name: 'desktop-coffee.png',
         size: '568.2Kb',
         type: 'image',
-        url: '/assets/covers/minimal-1-4x4-small.png'
-      }
+        url: '/assets/covers/minimal-1-4x4-small.png',
+      },
     ],
     createdAt: now.getTime(),
     folder: 'inbox',
     from: {
       avatar: '/assets/avatars/avatar-marcus-finn.png',
       email: 'marcus.finn@devias.io',
-      name: 'Marcus Finn'
+      name: 'Marcus Finn',
     },
     isImportant: true,
     isStarred: false,
@@ -137,9 +137,9 @@ Marcus Finn
       {
         avatar: '/assets/avatars/avatar-anika-visser.png',
         email: 'anika.visser@devias.io',
-        name: 'Anika Visser'
-      }
-    ]
+        name: 'Anika Visser',
+      },
+    ],
   },
   {
     id: '5e86bcbd8406cd3055f2b6c8',
@@ -148,7 +148,7 @@ Marcus Finn
     from: {
       avatar: '/assets/avatars/avatar-miron-vitold.png',
       email: 'miron.vitold@devias.io',
-      name: 'Miron Vitold'
+      name: 'Miron Vitold',
     },
     isImportant: false,
     isStarred: true,
@@ -162,9 +162,9 @@ Hey, nice projects! I really liked the one in react. What's your quote on kinda 
       {
         avatar: '/assets/avatars/avatar-anika-visser.png',
         email: 'anika.visser@devias.io',
-        name: 'Anika Visser'
-      }
-    ]
+        name: 'Anika Visser',
+      },
+    ],
   },
   {
     id: '5e86bcb9fee1ec12453fa13b',
@@ -173,7 +173,7 @@ Hey, nice projects! I really liked the one in react. What's your quote on kinda 
     from: {
       avatar: '/assets/avatars/avatar-penjani-inyene.png',
       email: 'penjani.inyene@devias.io',
-      name: 'Penjani Inyene'
+      name: 'Penjani Inyene',
     },
     isImportant: false,
     isStarred: false,
@@ -187,9 +187,9 @@ Dear Anika, Your flight is coming up soon. Please don’t forget to check in for
       {
         avatar: '/assets/avatars/avatar-anika-visser.png',
         email: 'anika.visser@devias.io',
-        name: 'Anika Visser'
-      }
-    ]
+        name: 'Anika Visser',
+      },
+    ],
   },
   {
     id: '5e86bcb5575181a5e527e24f',
@@ -198,7 +198,7 @@ Dear Anika, Your flight is coming up soon. Please don’t forget to check in for
     from: {
       avatar: '/assets/avatars/avatar-carson-darrin.png',
       email: 'carson.darrin@devias.io',
-      name: 'Carson Darrin'
+      name: 'Carson Darrin',
     },
     isImportant: false,
     isStarred: false,
@@ -212,8 +212,8 @@ My market leading client has another fantastic opportunity for an experienced So
       {
         avatar: '/assets/avatars/avatar-anika-visser.png',
         email: 'anika.visser@devias.io',
-        name: 'Anika Visser'
-      }
-    ]
-  }
-];
+        name: 'Anika Visser',
+      },
+    ],
+  },
+]

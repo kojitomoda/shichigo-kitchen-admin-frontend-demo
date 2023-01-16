@@ -1,6 +1,6 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import Truck02Icon from '@untitled-ui/icons-react/build/esm/Truck02';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import Truck02Icon from '@untitled-ui/icons-react/build/esm/Truck02'
 import {
   Avatar,
   Box,
@@ -13,54 +13,42 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  Typography
-} from '@mui/material';
-import { Scrollbar } from '../../../components/scrollbar';
-import { SeverityPill } from '../../../components/severity-pill';
+  Typography,
+} from '@mui/material'
+import { Scrollbar } from '../../../components/scrollbar'
+import { SeverityPill } from '../../../components/severity-pill'
 
 interface Vehicle {
-  id: string;
-  endingRoute: string;
-  startingRoute: string;
-  status: 'success' | 'error' | 'warning';
-  temperature: number;
-  temperatureLabel: string;
-  warning?: string;
+  id: string
+  endingRoute: string
+  startingRoute: string
+  status: 'success' | 'error' | 'warning'
+  temperature: number
+  temperatureLabel: string
+  warning?: string
 }
 
 interface LogisticsVehiclesListProps {
-  vehicles: Vehicle[];
+  vehicles: Vehicle[]
 }
 
 export const LogisticsVehiclesList: FC<LogisticsVehiclesListProps> = (props) => {
-  const { vehicles } = props;
+  const { vehicles } = props
 
   return (
     <Card>
-      <CardHeader
-        title="On Route Vehicles"
-        subheader="Condition and temperature"
-      />
+      <CardHeader title='On Route Vehicles'
+subheader='Condition and temperature' />
       <Scrollbar>
         <Box sx={{ minWidth: 1200 }}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>
-                  Location
-                </TableCell>
-                <TableCell>
-                  Ending Route
-                </TableCell>
-                <TableCell>
-                  Starting Route
-                </TableCell>
-                <TableCell>
-                  Warnings
-                </TableCell>
-                <TableCell>
-                  Refrigerator Temperature
-                </TableCell>
+                <TableCell>Location</TableCell>
+                <TableCell>Ending Route</TableCell>
+                <TableCell>Starting Route</TableCell>
+                <TableCell>Warnings</TableCell>
+                <TableCell>Refrigerator Temperature</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -73,7 +61,7 @@ export const LogisticsVehiclesList: FC<LogisticsVehiclesListProps> = (props) => 
                     <Box
                       sx={{
                         alignItems: 'center',
-                        display: 'flex'
+                        display: 'flex',
                       }}
                     >
                       <Avatar sx={{ mr: 2 }}>
@@ -81,20 +69,14 @@ export const LogisticsVehiclesList: FC<LogisticsVehiclesListProps> = (props) => 
                           <Truck02Icon />
                         </SvgIcon>
                       </Avatar>
-                      <Typography variant="subtitle2">
-                        {vehicle.id}
-                      </Typography>
+                      <Typography variant='subtitle2'>{vehicle.id}</Typography>
                     </Box>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="body2">
-                      {vehicle.endingRoute}
-                    </Typography>
+                    <Typography variant='body2'>{vehicle.endingRoute}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="body2">
-                      {vehicle.startingRoute}
-                    </Typography>
+                    <Typography variant='body2'>{vehicle.startingRoute}</Typography>
                   </TableCell>
                   <TableCell>
                     <SeverityPill color={vehicle.status}>
@@ -102,28 +84,22 @@ export const LogisticsVehiclesList: FC<LogisticsVehiclesListProps> = (props) => 
                     </SeverityPill>
                   </TableCell>
                   <TableCell>
-                    <LinearProgress
-                      value={vehicle.temperature}
-                      variant="determinate"
-                    />
+                    <LinearProgress value={vehicle.temperature}
+variant='determinate' />
                     <Box
                       sx={{
                         alignItems: 'center',
                         display: 'flex',
-                        mt: 2
+                        mt: 2,
                       }}
                     >
-                      <Typography
-                        color="inherit"
-                        variant="inherit"
-                      >
+                      <Typography color='inherit'
+variant='inherit'>
                         {vehicle.temperatureLabel}
                       </Typography>
                       <Box sx={{ flexGrow: 1 }} />
-                      <Typography
-                        color="text.secondary"
-                        variant="inherit"
-                      >
+                      <Typography color='text.secondary'
+variant='inherit'>
                         {vehicle.temperature}
                         °C
                       </Typography>
@@ -136,9 +112,9 @@ export const LogisticsVehiclesList: FC<LogisticsVehiclesListProps> = (props) => 
         </Box>
       </Scrollbar>
     </Card>
-  );
-};
+  )
+}
 
 LogisticsVehiclesList.propTypes = {
-  vehicles: PropTypes.array.isRequired
-};
+  vehicles: PropTypes.array.isRequired,
+}

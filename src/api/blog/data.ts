@@ -1,68 +1,72 @@
-import { subDays, subHours, subMinutes, subSeconds } from 'date-fns';
-import type { Post } from '../../types/blog';
+import { subDays, subHours, subMinutes, subSeconds } from 'date-fns'
+import type { Post } from '../../types/blog'
 
-const now = new Date();
+const now = new Date()
 
 export const posts: Post[] = [
   {
     id: '24b76cac9a128cd949747080',
     author: {
       avatar: '/assets/avatars/avatar-jie-yan-song.png',
-      name: 'Jie Yan Song'
+      name: 'Jie Yan Song',
     },
     category: 'Programming',
     cover: '/assets/covers/business-2-4x4-large.png',
     publishedAt: subMinutes(subSeconds(now, 16), 45).getTime(),
     readTime: '5 min',
-    shortDescription: 'Aliquam dapibus elementum nulla at malesuada. Ut mi nisl, aliquet non mollis vel, feugiat non nibh.',
-    title: 'Why I Still Lisp, and You Should Too'
+    shortDescription:
+      'Aliquam dapibus elementum nulla at malesuada. Ut mi nisl, aliquet non mollis vel, feugiat non nibh.',
+    title: 'Why I Still Lisp, and You Should Too',
   },
   {
     id: 'a9c19d0caf2ca91020aacd1f',
     author: {
       avatar: '/assets/avatars/avatar-omar-darboe.png',
-      name: 'Omar Darobe'
+      name: 'Omar Darobe',
     },
     category: 'Productivity',
     cover: '/assets/covers/abstract-2-4x4-large.png',
     publishedAt: subHours(subMinutes(subSeconds(now, 29), 51), 6).getTime(),
     readTime: '6 min',
-    shortDescription: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    title: 'Scrum Has Hit the Glass Ceiling'
+    shortDescription:
+      'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
+    title: 'Scrum Has Hit the Glass Ceiling',
   },
   {
     id: '44df90cbf89963b8aa625c7d',
     author: {
       avatar: '/assets/avatars/avatar-siegbert-gottfried.png',
-      name: 'Siegbert Gottfried'
+      name: 'Siegbert Gottfried',
     },
     category: 'Entrepreneurs',
     cover: '/assets/covers/minimal-2-4x4-large.png',
     publishedAt: subHours(subMinutes(subSeconds(now, 6), 46), 16).getTime(),
     readTime: '3 min',
-    shortDescription: 'Praesent eget leo mauris. Morbi ac vulputate nibh. In hac habitasse platea dictumst.',
-    title: 'How Model View Controller (MVC) Architectures Work'
+    shortDescription:
+      'Praesent eget leo mauris. Morbi ac vulputate nibh. In hac habitasse platea dictumst.',
+    title: 'How Model View Controller (MVC) Architectures Work',
   },
   {
     id: 'c597c300fe3f817c41a2f01d',
     author: {
       avatar: '/assets/avatars/avatar-iulia-albu.png',
-      name: 'Iulia Albu'
+      name: 'Iulia Albu',
     },
     category: 'Innovation',
     cover: '/assets/covers/minimal-1-4x4-large.png',
     publishedAt: subDays(subHours(subMinutes(subSeconds(now, 52), 39), 7), 5).getTime(),
     readTime: '1 min',
-    shortDescription: 'Phasellus eu commodo lacus, eget tristique nunc. Ut ullamcorper semper nunc sit amet vehicula.',
-    title: 'Generating Passive Income Is Hard, Here Is a Better Option'
-  }
-];
+    shortDescription:
+      'Phasellus eu commodo lacus, eget tristique nunc. Ut ullamcorper semper nunc sit amet vehicula.',
+    title: 'Generating Passive Income Is Hard, Here Is a Better Option',
+  },
+]
 
 export const post: Post = {
   id: '24b76cac9a128cd949747080',
   author: {
     avatar: '/assets/avatars/avatar-jie-yan-song.png',
-    name: 'Jie Yan Song'
+    name: 'Jie Yan Song',
   },
   category: 'Programming',
   content: `
@@ -96,6 +100,7 @@ Suspendisse pharetra dolor in massa molestie, vel molestie nunc accumsan. Cras v
   cover: '/assets/covers/business-2-4x4-large.png',
   publishedAt: subMinutes(subSeconds(now, 16), 45).getTime(),
   readTime: '5 min',
-  shortDescription: 'Aliquam dapibus elementum nulla at malesuada. Ut mi nisl, aliquet non mollis vel, feugiat non nibh.',
-  title: 'Why I Still Lisp, and You Should Too'
-};
+  shortDescription:
+    'Aliquam dapibus elementum nulla at malesuada. Ut mi nisl, aliquet non mollis vel, feugiat non nibh.',
+  title: 'Why I Still Lisp, and You Should Too',
+}

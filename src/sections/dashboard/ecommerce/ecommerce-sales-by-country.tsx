@@ -1,5 +1,5 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
 import {
   Box,
   Card,
@@ -7,10 +7,10 @@ import {
   CardHeader,
   LinearProgress,
   Stack,
-  Typography
-} from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { EcommerceWorldMap } from './ecommerce-world-map';
+  Typography,
+} from '@mui/material'
+import { useTheme } from '@mui/material/styles'
+import { EcommerceWorldMap } from './ecommerce-world-map'
 
 const flagMap: Record<string, string> = {
   au: '/assets/flags/flag-au.svg',
@@ -20,35 +20,35 @@ const flagMap: Record<string, string> = {
   in: '/assets/flags/flag-in.svg',
   ru: '/assets/flags/flag-ru.svg',
   uk: '/assets/flags/flag-uk.svg',
-  us: '/assets/flags/flag-us.svg'
-};
+  us: '/assets/flags/flag-us.svg',
+}
 
 interface Sale {
-  id: string;
-  amount: number;
-  country: string;
+  id: string
+  amount: number
+  country: string
 }
 
 interface EcommerceSalesByCountryProps {
-  sales: Sale[];
+  sales: Sale[]
 }
 
 export const EcommerceSalesByCountry: FC<EcommerceSalesByCountryProps> = (props) => {
-  const { sales } = props;
-  const theme = useTheme();
-  const markerColor = theme.palette.primary.main;
+  const { sales } = props
+  const theme = useTheme()
+  const markerColor = theme.palette.primary.main
 
   return (
     <Card>
-      <CardHeader title="Sales by Country" />
+      <CardHeader title='Sales by Country' />
       <Stack
         alignItems={{
-          md: 'center'
+          md: 'center',
         }}
         component={CardContent}
         direction={{
           xs: 'column',
-          sm: 'row'
+          sm: 'row',
         }}
         spacing={3}
         sx={{ pt: 0 }}
@@ -63,8 +63,8 @@ export const EcommerceSalesByCountry: FC<EcommerceSalesByCountryProps> = (props)
             flexBasis: {
               xs: '100%',
               md: '50%',
-              lg: '60%'
-            }
+              lg: '60%',
+            },
           }}
         >
           <EcommerceWorldMap markerColor={markerColor} />
@@ -76,81 +76,67 @@ export const EcommerceSalesByCountry: FC<EcommerceSalesByCountryProps> = (props)
             flexBasis: {
               xs: '100%',
               md: '50%',
-              lg: '40%'
-            }
+              lg: '40%',
+            },
           }}
         >
-          <Typography
-            color="text.secondary"
-            variant="body2"
-          >
+          <Typography color='text.secondary'
+variant='body2'>
             Total
           </Typography>
-          <Typography
-            sx={{ mb: 3 }}
-            variant="h5"
-          >
+          <Typography sx={{ mb: 3 }}
+variant='h5'>
             $152K
           </Typography>
           <Stack
-            component="ul"
+            component='ul'
             spacing={2}
             sx={{
               listStyle: 'none',
               m: 0,
-              p: 0
+              p: 0,
             }}
           >
             {sales.map((sale) => {
-              const flag = flagMap[sale.id];
+              const flag = flagMap[sale.id]
 
               return (
-                <Stack
-                  alignItems="center"
-                  direction="row"
-                  key={sale.id}
-                  spacing={1}
-                >
+                <Stack alignItems='center'
+direction='row'
+key={sale.id}
+spacing={1}>
                   <Box
                     sx={{
                       height: 48,
-                      width: 48
+                      width: 48,
                     }}
                   >
                     <img src={flag} />
                   </Box>
-                  <Stack
-                    spacing={1}
-                    sx={{ flexGrow: 1 }}
-                  >
-                    <Typography variant="subtitle2">
-                      {sale.country}
-                    </Typography>
-                    <Stack
-                      alignItems="center"
-                      direction="row"
-                      spacing={3}
-                    >
+                  <Stack spacing={1}
+sx={{ flexGrow: 1 }}>
+                    <Typography variant='subtitle2'>{sale.country}</Typography>
+                    <Stack alignItems='center'
+direction='row'
+spacing={3}>
                       <LinearProgress
                         sx={{ flexGrow: 1 }}
                         value={sale.amount}
-                        variant="determinate"
+                        variant='determinate'
                       />
-                      <Typography>
-                        {sale.amount}%
-                      </Typography>
+                      <Typography>{sale.amount}%</Typography>
                     </Stack>
                   </Stack>
                 </Stack>
-              );
+              )
             })}
           </Stack>
         </Box>
       </Stack>
     </Card>
-  );
-};
+  )
+}
 
 EcommerceSalesByCountry.propTypes = {
-  sales: PropTypes.array.isRequired
-};
+  sales: PropTypes.array.isRequired,
+}

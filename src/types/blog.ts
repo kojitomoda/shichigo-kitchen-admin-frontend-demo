@@ -1,14 +1,14 @@
 export interface Post {
-  id: string;
+  id: string
   author: {
-    avatar: string;
-    name: string;
-  };
-  category: string;
-  content?: string;
-  cover: string;
-  publishedAt: number;
-  readTime: string;
-  shortDescription: string;
-  title: string;
+    avatar: string
+    name: string
+  }
+  category: string
+  content?: string
+  cover: string
+  publishedAt: number
+  readTime: string
+  shortDescription: string
+  title: string
 }

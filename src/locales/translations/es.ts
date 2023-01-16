@@ -1,4 +1,4 @@
-import { tokens } from '../tokens';
+import { tokens } from '../tokens'
 
 export const es = {
   [tokens.common.languageChanged]: 'Se ha cambiado el idioma',
@@ -47,5 +47,5 @@ export const es = {
   [tokens.nav.register]: 'Registrarse',
   [tokens.nav.resetPassword]: 'Restablecer Contraseña',
   [tokens.nav.socialMedia]: 'Redes Sociales',
-  [tokens.nav.verifyCode]: 'Verificar Código'
-};
+  [tokens.nav.verifyCode]: 'Verificar Código',
+}

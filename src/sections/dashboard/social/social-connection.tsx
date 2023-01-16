@@ -1,8 +1,8 @@
-import type { FC } from 'react';
-import { useCallback, useState } from 'react';
-import toast from 'react-hot-toast';
-import PropTypes from 'prop-types';
-import DotsHorizontalIcon from '@untitled-ui/icons-react/build/esm/DotsHorizontal';
+import type { FC } from 'react'
+import { useCallback, useState } from 'react'
+import toast from 'react-hot-toast'
+import PropTypes from 'prop-types'
+import DotsHorizontalIcon from '@untitled-ui/icons-react/build/esm/DotsHorizontal'
 import {
   Avatar,
   Box,
@@ -12,94 +12,74 @@ import {
   Link,
   Stack,
   SvgIcon,
-  Typography
-} from '@mui/material';
-import type { Connection } from '../../../types/social';
+  Typography,
+} from '@mui/material'
+import type { Connection } from '../../../types/social'
 
 interface SocialConnectionProps {
-  connection: Connection;
+  connection: Connection
 }
 
 export const SocialConnection: FC<SocialConnectionProps> = (props) => {
-  const { connection } = props;
-  const [status, setStatus] = useState(connection.status);
+  const { connection } = props
+  const [status, setStatus] = useState(connection.status)
 
-  const handleConnectionAdd = useCallback(
-    (): void => {
-      setStatus('pending');
-      toast.success('Request sent');
-    },
-    []
-  );
+  const handleConnectionAdd = useCallback((): void => {
+    setStatus('pending')
+    toast.success('Request sent')
+  }, [])
 
-  const handleConnectionRemove = useCallback(
-    (): void => {
-      setStatus('not_connected');
-    },
-    []
-  );
+  const handleConnectionRemove = useCallback((): void => {
+    setStatus('not_connected')
+  }, [])
 
-  const showConnect = status === 'not_connected';
-  const showPending = status === 'pending';
+  const showConnect = status === 'not_connected'
+  const showPending = status === 'pending'
 
   return (
-    <Card
-      variant="outlined"
-      sx={{ height: '100%' }}
-    >
+    <Card variant='outlined'
+sx={{ height: '100%' }}>
       <Stack
-        alignItems="flex-start"
-        direction="row"
-        justifyContent="space-between"
+        alignItems='flex-start'
+        direction='row'
+        justifyContent='space-between'
         spacing={2}
         sx={{ p: 2 }}
       >
-        <Stack
-          alignItems="flex-start"
-          direction="row"
-          spacing={2}
-        >
+        <Stack alignItems='flex-start'
+direction='row'
+spacing={2}>
           <Avatar
-            component="a"
-            href="#"
+            component='a'
+            href='#'
             src={connection.avatar}
             sx={{
               height: 56,
-              width: 56
+              width: 56,
             }}
           />
           <Box sx={{ flexGrow: 1 }}>
-            <Link
-              color="text.primary"
-              href="#"
-              variant="subtitle2"
-            >
+            <Link color='text.primary'
+href='#'
+variant='subtitle2'>
               {connection.name}
             </Link>
-            <Typography
-              color="text.secondary"
-              gutterBottom
-              variant="body2"
-            >
-              {connection.commonConnections}
-              {' '}
-              connections in common
+            <Typography color='text.secondary'
+gutterBottom
+variant='body2'>
+              {connection.commonConnections} connections in common
             </Typography>
             {showConnect && (
-              <Button
-                onClick={handleConnectionAdd}
-                size="small"
-                variant="outlined"
-              >
+              <Button onClick={handleConnectionAdd}
+size='small'
+variant='outlined'>
                 Connect
               </Button>
             )}
             {showPending && (
-              <Button
-                onClick={handleConnectionRemove}
-                size="small"
-                color="inherit"
-              >
+              <Button onClick={handleConnectionRemove}
+size='small'
+color='inherit'>
                 Pending
               </Button>
             )}
@@ -112,10 +92,10 @@ export const SocialConnection: FC<SocialConnectionProps> = (props) => {
         </IconButton>
       </Stack>
     </Card>
-  );
-};
+  )
+}
 
 SocialConnection.propTypes = {
   // @ts-ignore
-  connection: PropTypes.object
-};
+  connection: PropTypes.object,
+}

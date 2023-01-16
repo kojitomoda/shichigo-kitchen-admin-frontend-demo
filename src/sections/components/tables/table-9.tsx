@@ -1,7 +1,7 @@
-import type { FC } from 'react';
-import { format } from 'date-fns';
-import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight';
-import DotsHorizontalIcon from '@untitled-ui/icons-react/build/esm/DotsHorizontal';
+import type { FC } from 'react'
+import { format } from 'date-fns'
+import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight'
+import DotsHorizontalIcon from '@untitled-ui/icons-react/build/esm/DotsHorizontal'
 import {
   Box,
   Card,
@@ -15,24 +15,24 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography
-} from '@mui/material';
-import { Scrollbar } from '../../../components/scrollbar';
-import { SeverityPill } from '../../../components/severity-pill';
+  Typography,
+} from '@mui/material'
+import { Scrollbar } from '../../../components/scrollbar'
+import { SeverityPill } from '../../../components/severity-pill'
 
-const now = new Date();
+const now = new Date()
 
-type InvoiceStatus = 'paid';
+type InvoiceStatus = 'paid'
 
 interface Invoice {
-  id: string;
-  currency: string;
-  description: string;
-  issueDate: number;
-  number: number;
-  paymentMethod: string;
-  status: InvoiceStatus;
-  value: number;
+  id: string
+  currency: string
+  description: string
+  issueDate: number
+  number: number
+  paymentMethod: string
+  status: InvoiceStatus
+  value: number
 }
 
 const invoices: Invoice[] = [
@@ -44,7 +44,7 @@ const invoices: Invoice[] = [
     number: 5345,
     paymentMethod: 'Credit Card',
     status: 'paid',
-    value: 5.25
+    value: 5.25,
   },
   {
     id: '5ece2cf461b9484866f2968c',
@@ -54,91 +54,65 @@ const invoices: Invoice[] = [
     number: 4596,
     paymentMethod: 'Credit Card',
     status: 'paid',
-    value: 5.25
-  }
-];
+    value: 5.25,
+  },
+]
 
 export const Table9: FC = () => (
   <Box
     sx={{
-      backgroundColor: (theme) => theme.palette.mode === 'dark'
-        ? 'neutral.800'
-        : 'neutral.100',
-      p: 3
+      backgroundColor: (theme) => (theme.palette.mode === 'dark' ? 'neutral.800' : 'neutral.100'),
+      p: 3,
     }}
   >
     <Card>
       <CardHeader
-        action={(
+        action={
           <IconButton>
             <SvgIcon>
               <DotsHorizontalIcon />
             </SvgIcon>
           </IconButton>
-        )}
-        title="Invoices"
+        }
+        title='Invoices'
       />
       <Divider />
       <Scrollbar>
         <Table sx={{ minWidth: 1150 }}>
           <TableHead>
             <TableRow>
-              <TableCell>
-                ID
-              </TableCell>
-              <TableCell>
-                Date
-              </TableCell>
-              <TableCell>
-                Description
-              </TableCell>
-              <TableCell>
-                Payment Method
-              </TableCell>
-              <TableCell>
-                Total
-              </TableCell>
-              <TableCell>
-                Status
-              </TableCell>
-              <TableCell align="right">
-                Actions
-              </TableCell>
+              <TableCell>ID</TableCell>
+              <TableCell>Date</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Payment Method</TableCell>
+              <TableCell>Total</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell align='right'>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {invoices.map((invoice) => {
-              const issueDate = format(invoice.issueDate, 'dd/MM/yyyy | HH:mm');
+              const issueDate = format(invoice.issueDate, 'dd/MM/yyyy | HH:mm')
 
               return (
                 <TableRow key={invoice.id}>
+                  <TableCell>#{invoice.number}</TableCell>
                   <TableCell>
-                    #{invoice.number}
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      noWrap
-                      variant="body2"
-                    >
+                    <Typography noWrap
+variant='body2'>
                       {issueDate}
                     </Typography>
                   </TableCell>
-                  <TableCell>
-                    {invoice.description}
-                  </TableCell>
-                  <TableCell>
-                    {invoice.paymentMethod}
-                  </TableCell>
+                  <TableCell>{invoice.description}</TableCell>
+                  <TableCell>{invoice.paymentMethod}</TableCell>
                   <TableCell>
                     {invoice.currency}
                     {invoice.value}
                   </TableCell>
                   <TableCell>
-                    <SeverityPill color="primary">
-                      {invoice.status}
-                    </SeverityPill>
+                    <SeverityPill color='primary'>{invoice.status}</SeverityPill>
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align='right'>
                     <IconButton>
                       <SvgIcon>
                         <ArrowRightIcon />
@@ -146,13 +120,13 @@ export const Table9: FC = () => (
                     </IconButton>
                   </TableCell>
                 </TableRow>
-              );
+              )
             })}
           </TableBody>
         </Table>
       </Scrollbar>
       <TablePagination
-        component="div"
+        component='div'
         count={invoices.length}
         onPageChange={(): void => {}}
         onRowsPerPageChange={(): void => {}}
@@ -162,4 +136,4 @@ export const Table9: FC = () => (
       />
     </Card>
   </Box>
-);
+)

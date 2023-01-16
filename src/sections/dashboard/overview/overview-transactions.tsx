@@ -1,7 +1,7 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import { format } from 'date-fns';
-import numeral from 'numeral';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import { format } from 'date-fns'
+import numeral from 'numeral'
 import {
   Box,
   Card,
@@ -13,72 +13,65 @@ import {
   TableCell,
   TableRow,
   Tabs,
-  Typography
-} from '@mui/material';
-import { Scrollbar } from '../../../components/scrollbar';
-import type { SeverityPillColor } from '../../../components/severity-pill';
-import { SeverityPill } from '../../../components/severity-pill';
+  Typography,
+} from '@mui/material'
+import { Scrollbar } from '../../../components/scrollbar'
+import type { SeverityPillColor } from '../../../components/severity-pill'
+import { SeverityPill } from '../../../components/severity-pill'
 
 const statusMap: Record<string, SeverityPillColor> = {
   confirmed: 'success',
   on_hold: 'warning',
-  failed: 'error'
-};
+  failed: 'error',
+}
 
 interface Transaction {
-  id: string;
-  amount: number;
-  createdAt: number;
-  currency: string;
-  sender: string;
-  status: string;
-  type: string;
+  id: string
+  amount: number
+  createdAt: number
+  currency: string
+  sender: string
+  status: string
+  type: string
 }
 
 interface OverviewTransactionsProps {
-  transactions: Transaction[];
+  transactions: Transaction[]
 }
 
 export const OverviewTransactions: FC<OverviewTransactionsProps> = (props) => {
-  const { transactions } = props;
+  const { transactions } = props
 
   return (
     <Card>
       <CardHeader
-        title="Latest Transactions"
-        subheader="Based on the selected period"
+        title='Latest Transactions'
+        subheader='Based on the selected period'
         sx={{ pb: 0 }}
       />
-      <Tabs
-        value="all"
-        sx={{ px: 3 }}
-      >
-        <Tab
-          label="All"
-          value="all"
-        />
-        <Tab
-          label="Confirmed"
-          value="confirmed"
-        />
-        <Tab
-          label="Pending"
-          value="pending"
-        />
+      <Tabs value='all'
+sx={{ px: 3 }}>
+        <Tab label='All'
+value='all' />
+        <Tab label='Confirmed'
+value='confirmed' />
+        <Tab label='Pending'
+value='pending' />
       </Tabs>
       <Divider />
       <Scrollbar>
         <Table sx={{ minWidth: 600 }}>
           <TableBody>
             {transactions.map((transaction) => {
-              const createdAtMonth = format(transaction.createdAt, 'LLL').toUpperCase();
-              const createdAtDay = format(transaction.createdAt, 'd');
-              const statusColor = statusMap[transaction.status];
-              const type = transaction.type === 'receive' ? 'Payment received' : 'Payment sent';
-              const amount = (transaction.type === 'receive' ? '+' : '-')
-                + ' '
-                + numeral(transaction.amount).format('$0,0.00');
-              const amountColor = transaction.type === 'receive' ? 'success.main' : 'error.main';
+              const createdAtMonth = format(transaction.createdAt, 'LLL').toUpperCase()
+              const createdAtDay = format(transaction.createdAt, 'd')
+              const statusColor = statusMap[transaction.status]
+              const type = transaction.type === 'receive' ? 'Payment received' : 'Payment sent'
+              const amount =
+                (transaction.type === 'receive' ? '+' : '-') +
+                ' ' +
+                numeral(transaction.amount).format('$0,0.00')
+              const amountColor = transaction.type === 'receive' ? 'success.main' : 'error.main'
 
               return (
                 <TableRow
@@ -90,65 +83,52 @@ export const OverviewTransactions: FC<OverviewTransactionsProps> = (props) => {
                     <Box
                       sx={{
                         p: 1,
-                        backgroundColor: (theme) => theme.palette.mode === 'dark'
-                          ? 'neutral.800'
-                          : 'neutral.100',
+                        backgroundColor: (theme) =>
+                          theme.palette.mode === 'dark' ? 'neutral.800' : 'neutral.100',
                         borderRadius: 2,
-                        maxWidth: 'fit-content'
+                        maxWidth: 'fit-content',
                       }}
                     >
-                      <Typography
-                        align="center"
-                        color="text.primary"
-                        variant="caption"
-                      >
+                      <Typography align='center'
+color='text.primary'
+variant='caption'>
                         {createdAtMonth}
                       </Typography>
-                      <Typography
-                        align="center"
-                        color="text.primary"
-                        variant="h6"
-                      >
+                      <Typography align='center'
+color='text.primary'
+variant='h6'>
                         {createdAtDay}
                       </Typography>
                     </Box>
                   </TableCell>
                   <TableCell>
                     <div>
-                      <Typography variant="subtitle2">
-                        {transaction.sender}
-                      </Typography>
-                      <Typography
-                        color="text.secondary"
-                        variant="body2"
-                      >
+                      <Typography variant='subtitle2'>{transaction.sender}</Typography>
+                      <Typography color='text.secondary'
+variant='body2'>
                         {type}
                       </Typography>
                     </div>
                   </TableCell>
                   <TableCell>
-                    <SeverityPill color={statusColor}>
-                      {transaction.status}
-                    </SeverityPill>
+                    <SeverityPill color={statusColor}>{transaction.status}</SeverityPill>
                   </TableCell>
                   <TableCell width={180}>
-                    <Typography
-                      color={amountColor}
-                      variant="subtitle2"
-                    >
+                    <Typography color={amountColor}
+variant='subtitle2'>
                       {amount}
                     </Typography>
                   </TableCell>
                 </TableRow>
-              );
+              )
             })}
           </TableBody>
         </Table>
       </Scrollbar>
     </Card>
-  );
-};
+  )
+}
 
 OverviewTransactions.propTypes = {
-  transactions: PropTypes.array.isRequired
-};
+  transactions: PropTypes.array.isRequired,
+}

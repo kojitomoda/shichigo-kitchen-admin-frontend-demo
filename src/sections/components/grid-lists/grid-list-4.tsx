@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC } from 'react'
 import {
   Avatar,
   Box,
@@ -10,16 +10,16 @@ import {
   Link,
   Stack,
   Typography,
-  Unstable_Grid2 as Grid
-} from '@mui/material';
+  Unstable_Grid2 as Grid,
+} from '@mui/material'
 
 interface Applicant {
-  id: string;
-  avatar: string;
-  commonContacts: number;
-  cover: string;
-  name: string;
-  skills: string[];
+  id: string
+  avatar: string
+  commonContacts: number
+  cover: string
+  name: string
+  skills: string[]
 }
 
 const applicants: Applicant[] = [
@@ -29,13 +29,7 @@ const applicants: Applicant[] = [
     commonContacts: 12,
     cover: '/assets/covers/minimal-1-4x4-small.png',
     name: 'Marcus Finn',
-    skills: [
-      'UX',
-      'Frontend development',
-      'HTML5',
-      'VueJS',
-      'ReactJS'
-    ]
+    skills: ['UX', 'Frontend development', 'HTML5', 'VueJS', 'ReactJS'],
   },
   {
     id: '5e86809283e28b96d2d38537',
@@ -43,12 +37,7 @@ const applicants: Applicant[] = [
     commonContacts: 17,
     cover: '/assets/covers/abstract-1-4x4-small.png',
     name: 'Anika Visser',
-    skills: [
-      'Backend development',
-      'Firebase',
-      'MongoDB',
-      'ExpressJS'
-    ]
+    skills: ['Backend development', 'Firebase', 'MongoDB', 'ExpressJS'],
   },
   {
     id: '5e887ac47eed253091be10cb',
@@ -56,91 +45,69 @@ const applicants: Applicant[] = [
     commonContacts: 5,
     cover: '/assets/covers/minimal-2-4x4-small.png',
     name: 'Carson Darrin',
-    skills: [
-      'UI',
-      'UX',
-      'Full-Stack development',
-      'Angular',
-      'ExpressJS'
-    ]
-  }
-];
+    skills: ['UI', 'UX', 'Full-Stack development', 'Angular', 'ExpressJS'],
+  },
+]
 
 export const GridList4: FC = () => (
   <Box
     sx={{
-      backgroundColor: (theme) => theme.palette.mode === 'dark'
-        ? 'neutral.800'
-        : 'neutral.100',
-      p: 3
+      backgroundColor: (theme) => (theme.palette.mode === 'dark' ? 'neutral.800' : 'neutral.100'),
+      p: 3,
     }}
   >
-    <Grid
-      container
-      spacing={3}
-    >
+    <Grid container
+spacing={3}>
       {applicants.map((applicant) => (
-        <Grid
-          key={applicant.id}
-          md={4}
-          xs={12}
-        >
+        <Grid key={applicant.id}
+md={4}
+xs={12}>
           <Card sx={{ height: '100%' }}>
-            <CardMedia
-              image={applicant.cover}
-              sx={{ height: 200 }}
-            />
+            <CardMedia image={applicant.cover}
+sx={{ height: 200 }} />
             <CardContent sx={{ pt: 0 }}>
               <Box
                 sx={{
                   display: 'flex',
                   justifyContent: 'center',
                   mb: 2,
-                  mt: '-50px'
+                  mt: '-50px',
                 }}
               >
                 <Avatar
-                  alt="Applicant"
+                  alt='Applicant'
                   src={applicant.avatar}
                   sx={{
                     border: '3px solid #FFFFFF',
                     height: 100,
-                    width: 100
+                    width: 100,
                   }}
                 />
               </Box>
               <Link
-                align="center"
-                color="text.primary"
+                align='center'
+                color='text.primary'
                 sx={{ display: 'block' }}
-                underline="none"
-                variant="h6"
+                underline='none'
+                variant='h6'
               >
                 {applicant.name}
               </Link>
-              <Typography
-                align="center"
-                variant="body2"
-                color="text.secondary"
-              >
-                {applicant.commonContacts}
-                {' '}
-                contacts in common
+              <Typography align='center'
+variant='body2'
+color='text.secondary'>
+                {applicant.commonContacts} contacts in common
               </Typography>
               <Divider sx={{ my: 2 }} />
-              <Stack
-                alignItems="center"
-                direction="row"
-                flexWrap="wrap"
-                gap={0.5}
-              >
+              <Stack alignItems='center'
+direction='row'
+flexWrap='wrap'
+gap={0.5}>
                 {applicant.skills.map((skill) => (
-                  <Chip
-                    key={skill}
-                    label={skill}
-                    sx={{ m: 0.5 }}
-                    variant="outlined"
-                  />
+                  <Chip key={skill}
+label={skill}
+sx={{ m: 0.5 }}
+variant='outlined' />
                 ))}
               </Stack>
             </CardContent>
@@ -149,4 +116,4 @@ export const GridList4: FC = () => (
       ))}
     </Grid>
   </Box>
-);
+)

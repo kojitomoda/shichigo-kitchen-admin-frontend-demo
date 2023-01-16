@@ -1,8 +1,8 @@
-import type { FC } from 'react';
-import Slider from 'react-slick';
-import PropTypes from 'prop-types';
-import { Box, Card, CardContent, Typography } from '@mui/material';
-import type { SxProps } from '@mui/system';
+import type { FC } from 'react'
+import Slider from 'react-slick'
+import PropTypes from 'prop-types'
+import { Box, Card, CardContent, Typography } from '@mui/material'
+import type { SxProps } from '@mui/system'
 
 const sliderSettings = {
   arrows: false,
@@ -10,21 +10,21 @@ const sliderSettings = {
   infinite: true,
   speed: 500,
   slidesToShow: 1,
-  slidesToScroll: 1
-};
+  slidesToScroll: 1,
+}
 
 interface Tip {
-  title: string;
-  content: string;
+  title: string
+  content: string
 }
 
 interface OverviewTipsProps {
-  sx?: SxProps;
-  tips: Tip[];
+  sx?: SxProps
+  tips: Tip[]
 }
 
 export const OverviewTips: FC<OverviewTipsProps> = (props) => {
-  const { sx, tips } = props;
+  const { sx, tips } = props
 
   return (
     <Card sx={sx}>
@@ -32,40 +32,36 @@ export const OverviewTips: FC<OverviewTipsProps> = (props) => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          height: '100%'
+          height: '100%',
         }}
       >
         <Box sx={{ mb: 6 }}>
-          <img src="/assets/next-tip.svg" />
+          <img src='/assets/next-tip.svg' />
         </Box>
         <Box
           sx={{
             flexGrow: 1,
             '& .slick-slider': {
-              cursor: 'grab'
+              cursor: 'grab',
             },
             '& .slick-slider, & .slick-list, & .slick-track': {
-              height: '100%'
+              height: '100%',
             },
             '& .slick-dots': {
               top: -50,
               bottom: 'unset',
               left: -10,
-              textAlign: 'left'
-            }
+              textAlign: 'left',
+            },
           }}
         >
           <Slider {...sliderSettings}>
             {tips.map((tip) => (
               <div key={tip.title}>
-                <Typography variant="h6">
-                  {tip.title}
-                </Typography>
-                <Typography
-                  color="text.secondary"
-                  sx={{ mt: 1 }}
-                  variant="body1"
-                >
+                <Typography variant='h6'>{tip.title}</Typography>
+                <Typography color='text.secondary'
+sx={{ mt: 1 }}
+variant='body1'>
                   {tip.content}
                 </Typography>
               </div>
@@ -74,11 +70,11 @@ export const OverviewTips: FC<OverviewTipsProps> = (props) => {
         </Box>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
 OverviewTips.propTypes = {
   // @ts-ignore
   sx: PropTypes.object,
-  tips: PropTypes.array.isRequired
-};
+  tips: PropTypes.array.isRequired,
+}

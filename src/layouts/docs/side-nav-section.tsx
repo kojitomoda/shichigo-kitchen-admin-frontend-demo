@@ -1,44 +1,42 @@
-import type { FC, ReactNode } from 'react';
-import PropTypes from 'prop-types';
-import { Box, Stack } from '@mui/material';
-import { SideNavItem } from './side-nav-item';
+import type { FC, ReactNode } from 'react'
+import PropTypes from 'prop-types'
+import { Box, Stack } from '@mui/material'
+import { SideNavItem } from './side-nav-item'
 
 interface Item {
-  icon?: ReactNode;
-  info?: ReactNode;
-  items?: Item[];
-  label?: ReactNode;
-  path?: string;
-  title: string;
+  icon?: ReactNode
+  info?: ReactNode
+  items?: Item[]
+  label?: ReactNode
+  path?: string
+  title: string
 }
 
 const renderItems = ({
   depth = 0,
   items,
-  pathname
+  pathname,
 }: {
-  depth?: number;
-  items: Item[];
-  pathname?: string | null;
-}): JSX.Element[] => items.reduce(
-  (acc: JSX.Element[], item) => reduceChildRoutes({ acc, depth, item, pathname }),
-  []
-);
+  depth?: number
+  items: Item[]
+  pathname?: string | null
+}): JSX.Element[] =>
+  items.reduce((acc: JSX.Element[], item) => reduceChildRoutes({ acc, depth, item, pathname }), [])
 
 const reduceChildRoutes = ({
   acc,
   depth,
   item,
-  pathname
+  pathname,
 }: {
-  acc: JSX.Element[];
-  depth: number;
-  item: Item;
-  pathname?: string | null;
+  acc: JSX.Element[]
+  depth: number
+  item: Item
+  pathname?: string | null
 }): Array<JSX.Element> => {
-  const checkPath = !!(item.path && pathname);
-  const partialMatch = checkPath ? pathname.includes(item.path!) : false;
-  const exactMatch = checkPath ? pathname === item.path : false;
+  const checkPath = !!(item.path && pathname)
+  const partialMatch = checkPath ? pathname.includes(item.path!) : false
+  const exactMatch = checkPath ? pathname === item.path : false
 
   if (item.items) {
     acc.push(
@@ -53,22 +51,22 @@ const reduceChildRoutes = ({
         title={item.title}
       >
         <Stack
-          component="ul"
+          component='ul'
           spacing={0.5}
           sx={{
             listStyle: 'none',
             m: 0,
-            p: 0
+            p: 0,
           }}
         >
           {renderItems({
             depth: depth + 1,
             items: item.items,
-            pathname
+            pathname,
           })}
         </Stack>
-      </SideNavItem>
-    );
+      </SideNavItem>,
+    )
   } else {
     acc.push(
       <SideNavItem
@@ -79,36 +77,36 @@ const reduceChildRoutes = ({
         label={item.label}
         path={item.path}
         title={item.title}
-      />
-    );
+      />,
+    )
   }
 
-  return acc;
-};
+  return acc
+}
 
 interface SideNavSectionProps {
-  items?: Item[];
-  pathname?: string | null;
-  subheader?: string;
+  items?: Item[]
+  pathname?: string | null
+  subheader?: string
 }
 
 export const SideNavSection: FC<SideNavSectionProps> = (props) => {
-  const { items = [], pathname, subheader = '', ...other } = props;
+  const { items = [], pathname, subheader = '', ...other } = props
 
   return (
     <Stack
-      component="ul"
+      component='ul'
       spacing={0.5}
       sx={{
         listStyle: 'none',
         m: 0,
-        p: 0
+        p: 0,
       }}
       {...other}
     >
       {subheader && (
         <Box
-          component="li"
+          component='li'
           sx={{
             color: 'text.secondary',
             fontSize: 12,
@@ -116,7 +114,7 @@ export const SideNavSection: FC<SideNavSectionProps> = (props) => {
             lineHeight: 2.5,
             mb: 1,
             ml: 1,
-            textTransform: 'uppercase'
+            textTransform: 'uppercase',
           }}
         >
           {subheader}
@@ -124,11 +122,11 @@ export const SideNavSection: FC<SideNavSectionProps> = (props) => {
       )}
       {renderItems({ items, pathname })}
     </Stack>
-  );
-};
+  )
+}
 
 SideNavSection.propTypes = {
   items: PropTypes.array,
   pathname: PropTypes.string,
-  subheader: PropTypes.string
-};
+  subheader: PropTypes.string,
+}

@@ -1,5 +1,5 @@
-import type { FC } from 'react';
-import { formatDistanceToNowStrict, subDays, subHours, subMinutes } from 'date-fns';
+import type { FC } from 'react'
+import { formatDistanceToNowStrict, subDays, subHours, subMinutes } from 'date-fns'
 import {
   Avatar,
   Box,
@@ -9,18 +9,18 @@ import {
   ListItemAvatar,
   ListItemText,
   Paper,
-  Typography
-} from '@mui/material';
-import { Presence } from '../../../components/presence';
+  Typography,
+} from '@mui/material'
+import { Presence } from '../../../components/presence'
 
-const now = new Date();
+const now = new Date()
 
 interface Contact {
-  id: string;
-  avatar: string;
-  isActive: boolean;
-  lastActivity: number;
-  name: string;
+  id: string
+  avatar: string
+  isActive: boolean
+  lastActivity: number
+  name: string
 }
 
 const contacts: Contact[] = [
@@ -29,87 +29,85 @@ const contacts: Contact[] = [
     avatar: '/assets/avatars/avatar-alcides-antonio.png',
     isActive: true,
     lastActivity: now.getTime(),
-    name: 'Alcides Antonio'
+    name: 'Alcides Antonio',
   },
   {
     id: '5e887a62195cc5aef7e8ca5d',
     avatar: '/assets/avatars/avatar-marcus-finn.png',
     isActive: false,
     lastActivity: subHours(now, 2).getTime(),
-    name: 'Marcus Finn'
+    name: 'Marcus Finn',
   },
   {
     id: '5e887ac47eed253091be10cb',
     avatar: '/assets/avatars/avatar-carson-darrin.png',
     isActive: false,
     lastActivity: subMinutes(now, 15).getTime(),
-    name: 'Carson Darrin'
+    name: 'Carson Darrin',
   },
   {
     id: '5e887b209c28ac3dd97f6db5',
     avatar: '/assets/avatars/avatar-fran-perez.png',
     isActive: true,
     lastActivity: now.getTime(),
-    name: 'Fran Perez'
+    name: 'Fran Perez',
   },
   {
     id: '5e887b7602bdbc4dbb234b27',
     avatar: '/assets/avatars/avatar-jie-yan-song.png',
     isActive: true,
     lastActivity: now.getTime(),
-    name: 'Jie Yan Song'
+    name: 'Jie Yan Song',
   },
   {
     id: '5e86805e2bafd54f66cc95c3',
     avatar: '/assets/avatars/avatar-miron-vitold.png',
     isActive: false,
     lastActivity: subDays(now, 2).getTime(),
-    name: 'Miron Vitold'
+    name: 'Miron Vitold',
   },
   {
     id: '5e887a1fbefd7938eea9c981',
     avatar: '/assets/avatars/avatar-penjani-inyene.png',
     isActive: false,
     lastActivity: subHours(now, 6).getTime(),
-    name: 'Penjani Inyene'
+    name: 'Penjani Inyene',
   },
   {
     id: '5e887d0b3d090c1b8f162003',
     avatar: '/assets/avatars/avatar-omar-darboe.png',
     isActive: true,
     lastActivity: now.getTime(),
-    name: 'Omar Darobe'
+    name: 'Omar Darobe',
   },
   {
     id: '5e88792be2d4cfb4bf0971d9',
     avatar: '/assets/avatars/avatar-siegbert-gottfried.png',
     isActive: true,
     lastActivity: now.getTime(),
-    name: 'Siegbert Gottfried'
+    name: 'Siegbert Gottfried',
   },
   {
     id: '5e8877da9a65442b11551975',
     avatar: '/assets/avatars/avatar-iulia-albu.png',
     isActive: true,
     lastActivity: now.getTime(),
-    name: 'Iulia Albu'
+    name: 'Iulia Albu',
   },
   {
     id: '5e8680e60cba5019c5ca6fda',
     avatar: '/assets/avatars/avatar-nasimiyu-danai.png',
     isActive: true,
     lastActivity: now.getTime(),
-    name: 'Nasimiyu Danai'
-  }
-];
+    name: 'Nasimiyu Danai',
+  },
+]
 
 export const Modal4: FC = () => (
   <Box
     sx={{
-      backgroundColor: (theme) => theme.palette.mode === 'dark'
-        ? 'neutral.800'
-        : 'neutral.100',
-      p: 3
+      backgroundColor: (theme) => (theme.palette.mode === 'dark' ? 'neutral.800' : 'neutral.100'),
+      p: 3,
     }}
   >
     <Paper
@@ -117,63 +115,50 @@ export const Modal4: FC = () => (
       sx={{
         maxWidth: 320,
         mx: 'auto',
-        p: 2
+        p: 2,
       }}
     >
-      <Typography variant="h6">
-        Contacts
-      </Typography>
+      <Typography variant='h6'>Contacts</Typography>
       <Box sx={{ mt: 2 }}>
         <List disablePadding>
           {contacts.map((contact) => {
-            const showOnline = contact.isActive;
-            const lastActivity = !contact.isActive && contact.lastActivity
-              ? formatDistanceToNowStrict(contact.lastActivity)
-              : undefined;
+            const showOnline = contact.isActive
+            const lastActivity =
+              !contact.isActive && contact.lastActivity
+                ? formatDistanceToNowStrict(contact.lastActivity)
+                : undefined
 
             return (
-              <ListItem
-                disableGutters
-                key={contact.id}
-              >
+              <ListItem disableGutters
+key={contact.id}>
                 <ListItemAvatar>
                   <Avatar src={contact.avatar} />
                 </ListItemAvatar>
                 <ListItemText
                   disableTypography
-                  primary={(
-                    <Link
-                      color="text.primary"
-                      noWrap
-                      underline="none"
-                      variant="subtitle2"
-                    >
+                  primary={
+                    <Link color='text.primary'
+noWrap
+underline='none'
+variant='subtitle2'>
                       {contact.name}
                     </Link>
-                  )}
+                  }
                 />
-                {showOnline && (
-                  <Presence
-                    size="small"
-                    status="online"
-                  />
-                )}
+                {showOnline && <Presence size='small'
+status='online' />}
                 {lastActivity && (
-                  <Typography
-                    color="text.secondary"
-                    noWrap
-                    variant="caption"
-                  >
-                    {lastActivity}
-                    {' '}
-                    ago
+                  <Typography color='text.secondary'
+noWrap
+variant='caption'>
+                    {lastActivity} ago
                   </Typography>
                 )}
               </ListItem>
-            );
+            )
           })}
         </List>
       </Box>
     </Paper>
   </Box>
-);
+)

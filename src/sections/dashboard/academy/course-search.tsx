@@ -1,43 +1,39 @@
-import type { FC } from 'react';
-import SearchMdIcon from '@untitled-ui/icons-react/build/esm/SearchMd';
-import { Box, Button, Card, Stack, SvgIcon, TextField } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import type { FC } from 'react'
+import SearchMdIcon from '@untitled-ui/icons-react/build/esm/SearchMd'
+import { Box, Button, Card, Stack, SvgIcon, TextField } from '@mui/material'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 
-const platformOptions: string[] = ['Web', 'Node.js', 'Python', 'C#'];
+const platformOptions: string[] = ['Web', 'Node.js', 'Python', 'C#']
 
 export const CourseSearch: FC = () => {
   return (
     <Card>
-      <Stack
-        alignItems="center"
-        direction="row"
-        flexWrap="wrap"
-        gap={3}
-        sx={{ p: 3 }}
-      >
+      <Stack alignItems='center'
+direction='row'
+flexWrap='wrap'
+gap={3}
+sx={{ p: 3 }}>
         <Box sx={{ flexGrow: 1 }}>
           <TextField
-            defaultValue=""
+            defaultValue=''
             fullWidth
-            label="Search"
-            name="query"
-            placeholder="Title or description"
+            label='Search'
+            name='query'
+            placeholder='Title or description'
           />
         </Box>
         <Box sx={{ flexGrow: 1 }}>
           <TextField
-            defaultValue="web"
+            defaultValue='web'
             fullWidth
-            label="Platform"
-            name="platform"
+            label='Platform'
+            name='platform'
             select
             SelectProps={{ native: true }}
           >
             {platformOptions.map((option) => (
-              <option
-                key={option}
-                value={option}
-              >
+              <option key={option}
+value={option}>
                 {option}
               </option>
             ))}
@@ -45,8 +41,8 @@ export const CourseSearch: FC = () => {
         </Box>
         <div>
           <DatePicker
-            inputFormat="dd/MM/yyyy"
-            label="From"
+            inputFormat='dd/MM/yyyy'
+            label='From'
             onChange={() => {}}
             renderInput={(inputProps) => <TextField {...inputProps} />}
             value={new Date()}
@@ -54,25 +50,25 @@ export const CourseSearch: FC = () => {
         </div>
         <div>
           <DatePicker
-            inputFormat="dd/MM/yyyy"
-            label="To"
+            inputFormat='dd/MM/yyyy'
+            label='To'
             onChange={() => {}}
             renderInput={(inputProps) => <TextField {...inputProps} />}
             value={new Date()}
           />
         </div>
         <Button
-          size="large"
-          startIcon={(
+          size='large'
+          startIcon={
             <SvgIcon>
               <SearchMdIcon />
             </SvgIcon>
-          )}
-          variant="contained"
+          }
+          variant='contained'
         >
           Search
         </Button>
       </Stack>
     </Card>
-  );
-};
+  )
+}

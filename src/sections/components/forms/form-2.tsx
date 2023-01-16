@@ -1,6 +1,6 @@
-import type { FC } from 'react';
-import { useMemo } from 'react';
-import SearchMdIcon from '@untitled-ui/icons-react/build/esm/SearchMd';
+import type { FC } from 'react'
+import { useMemo } from 'react'
+import SearchMdIcon from '@untitled-ui/icons-react/build/esm/SearchMd'
 import {
   Box,
   Checkbox,
@@ -9,51 +9,51 @@ import {
   FormControlLabel,
   Input,
   Stack,
-  SvgIcon
-} from '@mui/material';
-import { MultiSelect } from '../../../components/multi-select';
+  SvgIcon,
+} from '@mui/material'
+import { MultiSelect } from '../../../components/multi-select'
 
 interface Option {
-  label: string;
-  value: string;
+  label: string
+  value: string
 }
 
 const categoryOptions: Option[] = [
   {
     label: 'Digital',
-    value: 'digital'
+    value: 'digital',
   },
   {
     label: 'Service',
-    value: 'service'
-  }
-];
+    value: 'service',
+  },
+]
 
 const statusOptions: Option[] = [
   {
     label: 'Published',
-    value: 'published'
+    value: 'published',
   },
   {
     label: 'Draft',
-    value: 'draft'
-  }
-];
+    value: 'draft',
+  },
+]
 
 const stockOptions: Option[] = [
   {
     label: 'All',
-    value: 'all'
+    value: 'all',
   },
   {
     label: 'Available',
-    value: 'available'
+    value: 'available',
   },
   {
     label: 'Out of Stock',
-    value: 'outOfStock'
-  }
-];
+    value: 'outOfStock',
+  },
+]
 
 export const Form2: FC = () => {
   // We memoize this part to prevent re-render issues
@@ -63,50 +63,44 @@ export const Form2: FC = () => {
         label: 'Category',
         field: 'category',
         value: 'digital',
-        displayValue: 'Digital'
+        displayValue: 'Digital',
       },
       {
         label: 'Category',
         field: 'category',
         value: 'service',
-        displayValue: 'Service'
+        displayValue: 'Service',
       },
       {
         label: 'Status',
         field: 'status',
         value: 'published',
-        displayValue: 'Published'
+        displayValue: 'Published',
       },
       {
         label: 'Stock',
         field: 'inStock',
         value: 'outOfStock',
-        displayValue: 'Out of Stock'
-      }
+        displayValue: 'Out of Stock',
+      },
     ],
-    []
-  );
+    [],
+  )
 
   const categoryValues = useMemo(
-    () => chips
-      .filter((chip) => chip.field === 'category')
-      .map((chip) => chip.value),
-    [chips]
-  );
+    () => chips.filter((chip) => chip.field === 'category').map((chip) => chip.value),
+    [chips],
+  )
 
   const statusValues = useMemo(
-    () => chips
-      .filter((chip) => chip.field === 'status')
-      .map((chip) => chip.value),
-    [chips]
-  );
+    () => chips.filter((chip) => chip.field === 'status').map((chip) => chip.value),
+    [chips],
+  )
 
   const stockValues = useMemo(
-    () => chips
-      .filter((chip) => chip.field === 'inStock')
-      .map((chip) => chip.value),
-    [chips]
-  );
+    () => chips.filter((chip) => chip.field === 'inStock').map((chip) => chip.value),
+    [chips],
+  )
 
   return (
     <Box sx={{ p: 3 }}>
@@ -114,7 +108,7 @@ export const Form2: FC = () => {
         sx={{
           alignItems: 'center',
           display: 'flex',
-          p: 2
+          p: 2,
         }}
       >
         <SvgIcon>
@@ -123,14 +117,12 @@ export const Form2: FC = () => {
         <Box
           sx={{
             flexGrow: 1,
-            ml: 3
+            ml: 3,
           }}
         >
-          <Input
-            disableUnderline
-            fullWidth
-            placeholder="Enter a keyword"
-          />
+          <Input disableUnderline
+fullWidth
+placeholder='Enter a keyword' />
         </Box>
       </Box>
       <Divider />
@@ -139,65 +131,50 @@ export const Form2: FC = () => {
           alignItems: 'center',
           display: 'flex',
           flexWrap: 'wrap',
-          p: 2
+          p: 2,
         }}
       >
         {chips.map((chip, index) => (
           <Chip
             key={index}
-            label={(
+            label={
               <Box
                 sx={{
                   alignItems: 'center',
                   display: 'flex',
                   '& span': {
-                    fontWeight: 600
-                  }
+                    fontWeight: 600,
+                  },
                 }}
               >
-                <span>
-                  {chip.label}
-                </span>
-                :
-                {' '}
-                {chip.displayValue}
+                <span>{chip.label}</span>: {chip.displayValue}
               </Box>
-            )}
+            }
             onDelete={(): void => {}}
             sx={{ m: 1 }}
-            variant="outlined"
+            variant='outlined'
           />
         ))}
       </Box>
       <Divider />
-      <Stack
-        alignItems="center"
-        direction="row"
-        flexWrap="wrap"
-        spacing={2}
-        sx={{ p: 1 }}
-      >
-        <MultiSelect
-          label="Category"
-          options={categoryOptions}
-          value={categoryValues}
-        />
-        <MultiSelect
-          label="Status"
-          options={statusOptions}
-          value={statusValues}
-        />
-        <MultiSelect
-          label="Stock"
-          options={stockOptions}
-          value={stockValues}
-        />
+      <Stack alignItems='center'
+direction='row'
+flexWrap='wrap'
+spacing={2}
+sx={{ p: 1 }}>
+        <MultiSelect label='Category'
+options={categoryOptions}
+value={categoryValues} />
+        <MultiSelect label='Status'
+options={statusOptions}
+value={statusValues} />
+        <MultiSelect label='Stock'
+options={stockOptions}
+value={stockValues} />
         <Box sx={{ flexGrow: 1 }} />
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="In network"
-        />
+        <FormControlLabel control={<Checkbox defaultChecked />}
+label='In network' />
       </Stack>
     </Box>
-  );
-};
+  )
+}

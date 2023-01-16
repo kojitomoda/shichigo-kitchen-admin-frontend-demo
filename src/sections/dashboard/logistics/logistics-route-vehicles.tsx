@@ -1,26 +1,22 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import { Avatar, Box, Card, Stack, Typography } from '@mui/material';
-import { alpha } from '@mui/material/styles';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import { Avatar, Box, Card, Stack, Typography } from '@mui/material'
+import { alpha } from '@mui/material/styles'
 
 interface LogisticsRouteVehiclesProps {
-  amount: number;
+  amount: number
 }
 
 export const LogisticsRouteVehicles: FC<LogisticsRouteVehiclesProps> = (props) => {
-  const { amount } = props;
+  const { amount } = props
 
   return (
     <Card>
-      <Stack
-        spacing={1}
-        sx={{ p: 3 }}
-      >
-        <Stack
-          alignItems="center"
-          direction="row"
-          spacing={2}
-        >
+      <Stack spacing={1}
+sx={{ p: 3 }}>
+        <Stack alignItems='center'
+direction='row'
+spacing={2}>
           <Avatar sx={{ backgroundColor: 'transparent' }}>
             <Box
               sx={{
@@ -29,12 +25,12 @@ export const LogisticsRouteVehicles: FC<LogisticsRouteVehiclesProps> = (props) =
                 p: 0.5,
                 '@keyframes pulse': {
                   '0%': {
-                    boxShadow: 'none'
+                    boxShadow: 'none',
                   },
                   '100%': {
-                    boxShadow: (theme) => `0px 0px 0px 6px ${alpha(theme.palette.error.main, 0.1)}`
-                  }
-                }
+                    boxShadow: (theme) => `0px 0px 0px 6px ${alpha(theme.palette.error.main, 0.1)}`,
+                  },
+                },
               }}
             >
               <Box
@@ -42,26 +38,22 @@ export const LogisticsRouteVehicles: FC<LogisticsRouteVehiclesProps> = (props) =
                   backgroundColor: 'error.main',
                   borderRadius: '50%',
                   height: 18,
-                  width: 18
+                  width: 18,
                 }}
               />
             </Box>
           </Avatar>
-          <Typography variant="h5">
-            {amount}
-          </Typography>
+          <Typography variant='h5'>{amount}</Typography>
         </Stack>
-        <Typography
-          color="text.secondary"
-          variant="body2"
-        >
+        <Typography color='text.secondary'
+variant='body2'>
           On route vehicles
         </Typography>
       </Stack>
     </Card>
-  );
-};
+  )
+}
 
 LogisticsRouteVehicles.propTypes = {
-  amount: PropTypes.number.isRequired
-};
+  amount: PropTypes.number.isRequired,
+}

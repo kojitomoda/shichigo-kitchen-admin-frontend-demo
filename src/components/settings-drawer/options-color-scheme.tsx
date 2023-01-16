@@ -1,13 +1,13 @@
-import type { FC, ReactElement } from 'react';
-import PropTypes from 'prop-types';
-import SunIcon from '@untitled-ui/icons-react/build/esm/Sun';
-import Moon01Icon from '@untitled-ui/icons-react/build/esm/Moon01';
-import { Chip, PaletteMode, Stack, SvgIcon, Typography } from '@mui/material';
+import type { FC, ReactElement } from 'react'
+import PropTypes from 'prop-types'
+import SunIcon from '@untitled-ui/icons-react/build/esm/Sun'
+import Moon01Icon from '@untitled-ui/icons-react/build/esm/Moon01'
+import { Chip, PaletteMode, Stack, SvgIcon, Typography } from '@mui/material'
 
 interface Option {
-  label: string;
-  value: PaletteMode;
-  icon: ReactElement;
+  label: string
+  value: PaletteMode
+  icon: ReactElement
 }
 
 const options: Option[] = [
@@ -15,44 +15,40 @@ const options: Option[] = [
     label: 'Light',
     value: 'light',
     icon: (
-      <SvgIcon fontSize="small">
+      <SvgIcon fontSize='small'>
         <SunIcon />
       </SvgIcon>
-    )
+    ),
   },
   {
     label: 'Dark',
     value: 'dark',
     icon: (
-      <SvgIcon fontSize="small">
+      <SvgIcon fontSize='small'>
         <Moon01Icon />
       </SvgIcon>
-    )
-  }
-];
+    ),
+  },
+]
 
 interface OptionsColorSchemeProps {
-  onChange?: (value: PaletteMode) => void;
-  value?: PaletteMode;
+  onChange?: (value: PaletteMode) => void
+  value?: PaletteMode
 }
 
 export const OptionsColorScheme: FC<OptionsColorSchemeProps> = (props) => {
-  const { onChange, value } = props;
+  const { onChange, value } = props
 
   return (
     <Stack spacing={1}>
-      <Typography
-        color="text.secondary"
-        variant="overline"
-      >
+      <Typography color='text.secondary'
+variant='overline'>
         Color Scheme
       </Typography>
-      <Stack
-        alignItems="center"
-        direction="row"
-        flexWrap="wrap"
-        gap={2}
-      >
+      <Stack alignItems='center'
+direction='row'
+flexWrap='wrap'
+gap={2}>
         {options.map((option) => (
           <Chip
             icon={option.icon}
@@ -65,17 +61,17 @@ export const OptionsColorScheme: FC<OptionsColorSchemeProps> = (props) => {
               borderStyle: 'solid',
               borderWidth: 2,
               ...(option.value === value && {
-                borderColor: 'primary.main'
-              })
+                borderColor: 'primary.main',
+              }),
             }}
           />
         ))}
       </Stack>
     </Stack>
-  );
-};
+  )
+}
 
 OptionsColorScheme.propTypes = {
   onChange: PropTypes.func,
-  value: PropTypes.oneOf(['light', 'dark'])
-};
+  value: PropTypes.oneOf(['light', 'dark']),
+}

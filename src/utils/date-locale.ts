@@ -1,5 +1,5 @@
-import { Locale } from 'date-fns';
-import locale from 'date-fns/locale/en-US';
+import { Locale } from 'date-fns'
+import locale from 'date-fns/locale/en-US'
 
 const formatDistanceLocale: Record<string, string> = {
   lessThanXSeconds: '{{count}}s',
@@ -17,24 +17,24 @@ const formatDistanceLocale: Record<string, string> = {
   aboutXYears: '{{count}}y',
   xYears: '{{count}}y',
   overXYears: '{{count}}y',
-  almostXYears: '{{count}}y'
-};
+  almostXYears: '{{count}}y',
+}
 
 export const customLocale: Locale = {
   ...locale,
   formatDistance: (token, count, options) => {
-    options = options || {};
+    options = options || {}
 
-    const result = formatDistanceLocale[token].replace('{{count}}', count);
+    const result = formatDistanceLocale[token].replace('{{count}}', count)
 
     if (options.addSuffix) {
       if (options.comparison > 0) {
-        return 'in ' + result;
+        return 'in ' + result
       } else {
-        return result + ' ago';
+        return result + ' ago'
       }
     }
 
-    return result;
-  }
-};
+    return result
+  },
+}

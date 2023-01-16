@@ -1,13 +1,13 @@
-import { createContext, MouseEvent } from 'react';
-import { noop } from '../../utils/noop';
+import { createContext, MouseEvent } from 'react'
+import { noop } from '../../utils/noop'
 
 interface ContextValue {
-  anchorEl: HTMLElement | null;
-  onMenuEnter: (event: MouseEvent<HTMLElement>) => void;
-  onMenuLeave: (event: MouseEvent<HTMLElement>) => void;
-  onTriggerEnter: (event: MouseEvent<HTMLElement>) => void;
-  onTriggerLeave: (event: MouseEvent<HTMLElement>) => void;
-  open: boolean;
+  anchorEl: HTMLElement | null
+  onMenuEnter: (event: MouseEvent<HTMLElement>) => void
+  onMenuLeave: (event: MouseEvent<HTMLElement>) => void
+  onTriggerEnter: (event: MouseEvent<HTMLElement>) => void
+  onTriggerLeave: (event: MouseEvent<HTMLElement>) => void
+  open: boolean
 }
 
 export const DropdownContext = createContext<ContextValue>({
@@ -16,5 +16,5 @@ export const DropdownContext = createContext<ContextValue>({
   onMenuLeave: noop,
   onTriggerEnter: noop,
   onTriggerLeave: noop,
-  open: false
-});
+  open: false,
+})

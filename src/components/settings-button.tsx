@@ -1,14 +1,14 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import Settings03Icon from '@untitled-ui/icons-react/build/esm/Settings03';
-import { Box, ButtonBase, SvgIcon, Tooltip } from '@mui/material';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import Settings03Icon from '@untitled-ui/icons-react/build/esm/Settings03'
+import { Box, ButtonBase, SvgIcon, Tooltip } from '@mui/material'
 
 interface SettingsButtonProps {
-  onClick?: () => void;
+  onClick?: () => void
 }
 
 export const SettingsButton: FC<SettingsButtonProps> = (props) => (
-  <Tooltip title="Settings">
+  <Tooltip title='Settings'>
     <Box
       {...props}
       sx={{
@@ -19,7 +19,7 @@ export const SettingsButton: FC<SettingsButtonProps> = (props) => (
         margin: (theme) => theme.spacing(4),
         position: 'fixed',
         right: 0,
-        zIndex: (theme) => theme.zIndex.speedDial
+        zIndex: (theme) => theme.zIndex.speedDial,
       }}
     >
       <ButtonBase
@@ -27,7 +27,7 @@ export const SettingsButton: FC<SettingsButtonProps> = (props) => (
           backgroundColor: 'primary.main',
           borderRadius: '50%',
           color: 'primary.contrastText',
-          p: '10px'
+          p: '10px',
         }}
       >
         <SvgIcon>
@@ -36,8 +36,8 @@ export const SettingsButton: FC<SettingsButtonProps> = (props) => (
       </ButtonBase>
     </Box>
   </Tooltip>
-);
+)
 
 SettingsButton.propTypes = {
-  onClick: PropTypes.func
-};
+  onClick: PropTypes.func,
+}

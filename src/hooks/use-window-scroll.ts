@@ -1,24 +1,21 @@
-import { useEffect } from 'react';
-import { throttle } from 'lodash';
+import { useEffect } from 'react'
+import { throttle } from 'lodash'
 
 interface Config {
-  handler: () => void;
-  delay?: number;
+  handler: () => void
+  delay?: number
 }
 
 export const useWindowScroll = (config: Config): void => {
-  useEffect(
-    () => {
-      const { handler, delay } = config;
+  useEffect(() => {
+    const { handler, delay } = config
 
-      const withThrottle = throttle(handler, delay);
+    const withThrottle = throttle(handler, delay)
 
-      window.addEventListener('scroll', withThrottle);
+    window.addEventListener('scroll', withThrottle)
 
-      return () => {
-        window.removeEventListener('scroll', withThrottle);
-      };
-    },
-    [config]
-  );
-};
+    return () => {
+      window.removeEventListener('scroll', withThrottle)
+    }
+  }, [config])
+}

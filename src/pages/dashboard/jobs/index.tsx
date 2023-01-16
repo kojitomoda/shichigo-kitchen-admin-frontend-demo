@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from 'react';
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import NextLink from 'next/link';
-import ChevronLeftIcon from '@untitled-ui/icons-react/build/esm/ChevronLeft';
-import ChevronRightIcon from '@untitled-ui/icons-react/build/esm/ChevronRight';
+import { useCallback, useEffect, useState } from 'react'
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import NextLink from 'next/link'
+import ChevronLeftIcon from '@untitled-ui/icons-react/build/esm/ChevronLeft'
+import ChevronRightIcon from '@untitled-ui/icons-react/build/esm/ChevronRight'
 import {
   Box,
   Button,
@@ -12,102 +12,91 @@ import {
   Stack,
   SvgIcon,
   Typography,
-  Unstable_Grid2 as Grid
-} from '@mui/material';
-import { jobsApi } from '../../../api/jobs';
-import { useMounted } from '../../../hooks/use-mounted';
-import { usePageView } from '../../../hooks/use-page-view';
-import { Layout as DashboardLayout } from '../../../layouts/dashboard';
-import { paths } from '../../../paths';
-import { CompanyCard } from '../../../sections/dashboard/jobs/company-card';
-import { JobListSearch } from '../../../sections/dashboard/jobs/job-list-search';
-import type { Company } from '../../../types/job';
+  Unstable_Grid2 as Grid,
+} from '@mui/material'
+import { jobsApi } from '../../../api/jobs'
+import { useMounted } from '../../../hooks/use-mounted'
+import { usePageView } from '../../../hooks/use-page-view'
+import { Layout as DashboardLayout } from '../../../layouts/dashboard'
+import { paths } from '../../../paths'
+import { CompanyCard } from '../../../sections/dashboard/jobs/company-card'
+import { JobListSearch } from '../../../sections/dashboard/jobs/job-list-search'
+import type { Company } from '../../../types/job'
 
 const useCompanies = (): Company[] => {
-  const isMounted = useMounted();
-  const [companies, setCompanies] = useState<Company[]>([]);
+  const isMounted = useMounted()
+  const [companies, setCompanies] = useState<Company[]>([])
 
-  const getCompanies = useCallback(
-    async (): Promise<void> => {
-      try {
-        const response = await jobsApi.getCompanies();
+  const getCompanies = useCallback(async (): Promise<void> => {
+    try {
+      const response = await jobsApi.getCompanies()
 
-        if (isMounted()) {
-          setCompanies(response);
-        }
-      } catch (err) {
-        console.error(err);
+      if (isMounted()) {
+        setCompanies(response)
       }
-    },
-    [isMounted]
-  );
+    } catch (err) {
+      console.error(err)
+    }
+  }, [isMounted])
 
   useEffect(
     () => {
-      getCompanies();
+      getCompanies()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+    [],
+  )
 
-  return companies;
-};
+  return companies
+}
 
 const Page: NextPage = () => {
-  const companies = useCompanies();
+  const companies = useCompanies()
 
-  usePageView();
+  usePageView()
 
   return (
     <>
       <Head>
-        <title>
-          Dashboard: Job Browse | Devias Kit PRO
-        </title>
+        <title>Dashboard: Job Browse | Devias Kit PRO</title>
       </Head>
       <Box
-        component="main"
+        component='main'
         sx={{
           flexGrow: 1,
-          py: 8
+          py: 8,
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth='lg'>
           <Grid
-            alignItems="center"
+            alignItems='center'
             container
             sx={{
               backgroundColor: 'neutral.900',
               borderRadius: 1,
               color: 'common.white',
               px: 4,
-              py: 8
+              py: 8,
             }}
           >
-            <Grid
-              xs={12}
-              sm={7}
-            >
-              <Typography
-                color="inherit"
-                variant="h3"
-              >
+            <Grid xs={12}
+sm={7}>
+              <Typography color='inherit'
+variant='h3'>
                 Reach 50k+ potential candidates.
               </Typography>
-              <Typography
-                color="neutral.500"
-                sx={{ mt: 2 }}
-                variant="body1"
-              >
+              <Typography color='neutral.500'
+sx={{ mt: 2 }}
+variant='body1'>
                 Post your job today for free. Promotions start at $99.
               </Typography>
               <Button
-                color="primary"
+                color='primary'
                 component={NextLink}
                 href={paths.dashboard.jobs.create}
-                size="large"
+                size='large'
                 sx={{ mt: 3 }}
-                variant="contained"
+                variant='contained'
               >
                 Post a job
               </Button>
@@ -117,42 +106,38 @@ const Page: NextPage = () => {
               sx={{
                 display: {
                   xs: 'none',
-                  sm: 'flex'
+                  sm: 'flex',
                 },
-                justifyContent: 'center'
+                justifyContent: 'center',
               }}
             >
-              <img src="/assets/iconly/iconly-glass-shield.svg" />
+              <img src='/assets/iconly/iconly-glass-shield.svg' />
             </Grid>
           </Grid>
-          <Stack
-            spacing={4}
-            sx={{ mt: 4 }}
-          >
+          <Stack spacing={4}
+sx={{ mt: 4 }}>
             <JobListSearch />
             {companies.map((company) => (
-              <CompanyCard
-                key={company.id}
-                company={company}
-              />
+              <CompanyCard key={company.id}
+company={company} />
             ))}
             <Stack
-              alignItems="center"
-              direction="row"
-              justifyContent="flex-end"
+              alignItems='center'
+              direction='row'
+              justifyContent='flex-end'
               spacing={2}
               sx={{
                 px: 3,
-                py: 2
+                py: 2,
               }}
             >
               <IconButton disabled>
-                <SvgIcon fontSize="small">
+                <SvgIcon fontSize='small'>
                   <ChevronLeftIcon />
                 </SvgIcon>
               </IconButton>
               <IconButton>
-                <SvgIcon fontSize="small">
+                <SvgIcon fontSize='small'>
                   <ChevronRightIcon />
                 </SvgIcon>
               </IconButton>
@@ -161,13 +146,9 @@ const Page: NextPage = () => {
         </Container>
       </Box>
     </>
-  );
-};
+  )
+}
 
-Page.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
+Page.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>
 
-export default Page;
+export default Page

@@ -1,6 +1,6 @@
-import type { FC } from 'react';
-import Settings01Icon from '@untitled-ui/icons-react/build/esm/Settings01';
-import User01Icon from '@untitled-ui/icons-react/build/esm/User01';
+import type { FC } from 'react'
+import Settings01Icon from '@untitled-ui/icons-react/build/esm/Settings01'
+import User01Icon from '@untitled-ui/icons-react/build/esm/User01'
 import {
   Box,
   Button,
@@ -10,33 +10,27 @@ import {
   MenuItem,
   Paper,
   SvgIcon,
-  Typography
-} from '@mui/material';
+  Typography,
+} from '@mui/material'
 
 export const Modal6: FC = () => (
   <Box
     sx={{
-      backgroundColor: (theme) => theme.palette.mode === 'dark'
-        ? 'neutral.800'
-        : 'neutral.100',
-      p: 3
+      backgroundColor: (theme) => (theme.palette.mode === 'dark' ? 'neutral.800' : 'neutral.100'),
+      p: 3,
     }}
   >
     <Paper
       elevation={12}
       sx={{
         maxWidth: 320,
-        mx: 'auto'
+        mx: 'auto',
       }}
     >
       <Box sx={{ p: 2 }}>
-        <Typography variant="subtitle2">
-          demo@devias.io
-        </Typography>
-        <Typography
-          color="text.secondary"
-          variant="subtitle2"
-        >
+        <Typography variant='subtitle2'>demo@devias.io</Typography>
+        <Typography color='text.secondary'
+variant='subtitle2'>
           Devias
         </Typography>
       </Box>
@@ -48,13 +42,7 @@ export const Modal6: FC = () => (
               <User01Icon />
             </SvgIcon>
           </ListItemIcon>
-          <ListItemText
-            primary={(
-              <Typography variant="subtitle2">
-                Profile
-              </Typography>
-            )}
-          />
+          <ListItemText primary={<Typography variant='subtitle2'>Profile</Typography>} />
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
@@ -62,23 +50,15 @@ export const Modal6: FC = () => (
               <Settings01Icon />
             </SvgIcon>
           </ListItemIcon>
-          <ListItemText
-            primary={(
-              <Typography variant="subtitle2">
-                Settings
-              </Typography>
-            )}
-          />
+          <ListItemText primary={<Typography variant='subtitle2'>Settings</Typography>} />
         </MenuItem>
       </Box>
       <Box sx={{ p: 2 }}>
-        <Button
-          fullWidth
-          variant="outlined"
-        >
+        <Button fullWidth
+variant='outlined'>
           Logout
         </Button>
       </Box>
     </Paper>
   </Box>
-);
+)

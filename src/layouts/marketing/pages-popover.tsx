@@ -1,27 +1,27 @@
-import type { FC } from 'react';
-import NextLink from 'next/link';
-import { Box, ButtonBase, Stack, SvgIcon } from '@mui/material';
-import CreditCard01Icon from '../../icons/untitled-ui/duocolor/credit-card-01';
-import HomeSmileIcon from '../../icons/untitled-ui/duocolor/home-smile';
-import LayoutAlt02Icon from '../../icons/untitled-ui/duocolor/layout-alt-02';
-import LogOut01Icon from '../../icons/untitled-ui/duocolor/log-out-01';
-import Mail04Icon from '../../icons/untitled-ui/duocolor/mail-04';
-import XSquareIcon from '../../icons/untitled-ui/duocolor/x-square';
-import { paths } from '../../paths';
+import type { FC } from 'react'
+import NextLink from 'next/link'
+import { Box, ButtonBase, Stack, SvgIcon } from '@mui/material'
+import CreditCard01Icon from '../../icons/untitled-ui/duocolor/credit-card-01'
+import HomeSmileIcon from '../../icons/untitled-ui/duocolor/home-smile'
+import LayoutAlt02Icon from '../../icons/untitled-ui/duocolor/layout-alt-02'
+import LogOut01Icon from '../../icons/untitled-ui/duocolor/log-out-01'
+import Mail04Icon from '../../icons/untitled-ui/duocolor/mail-04'
+import XSquareIcon from '../../icons/untitled-ui/duocolor/x-square'
+import { paths } from '../../paths'
 
 interface Item {
-  caption?: string;
+  caption?: string
   children?: {
-    title: string;
-    path: string;
-  }[];
-  icon: JSX.Element;
-  path?: string;
-  title: string;
+    title: string
+    path: string
+  }[]
+  icon: JSX.Element
+  path?: string
+  title: string
 }
 
 interface Section {
-  items: Item[];
+  items: Item[]
 }
 
 const sections: Section[] = [
@@ -31,7 +31,7 @@ const sections: Section[] = [
         title: 'Dashboard',
         path: '/dashboard',
         icon: (
-          <SvgIcon fontSize="small">
+          <SvgIcon fontSize='small'>
             <HomeSmileIcon />
           </SvgIcon>
         ),
@@ -39,27 +39,27 @@ const sections: Section[] = [
         children: [
           {
             title: 'Overview',
-            path: paths.dashboard.index
+            path: paths.dashboard.index,
           },
           {
             title: 'Customers',
-            path: paths.dashboard.customers.index
+            path: paths.dashboard.customers.index,
           },
           {
             title: 'Logistics',
-            path: paths.dashboard.logistics.index
+            path: paths.dashboard.logistics.index,
           },
           {
             title: 'File Manager',
-            path: paths.dashboard.fileManager
+            path: paths.dashboard.fileManager,
           },
           {
             title: 'Academy',
-            path: paths.dashboard.academy.index
-          }
-        ]
-      }
-    ]
+            path: paths.dashboard.academy.index,
+          },
+        ],
+      },
+    ],
   },
   {
     items: [
@@ -67,50 +67,50 @@ const sections: Section[] = [
         title: 'Blog',
         path: paths.dashboard.blog.index,
         icon: (
-          <SvgIcon fontSize="small">
+          <SvgIcon fontSize='small'>
             <LayoutAlt02Icon />
           </SvgIcon>
-        )
+        ),
       },
       {
         title: 'Pricing',
         path: paths.pricing,
         icon: (
-          <SvgIcon fontSize="small">
+          <SvgIcon fontSize='small'>
             <CreditCard01Icon />
           </SvgIcon>
-        )
+        ),
       },
       {
         title: 'Contact',
         path: paths.contact,
         icon: (
-          <SvgIcon fontSize="small">
+          <SvgIcon fontSize='small'>
             <Mail04Icon />
           </SvgIcon>
-        )
+        ),
       },
       {
         title: 'Checkout',
         path: paths.checkout,
         icon: (
-          <SvgIcon fontSize="small">
+          <SvgIcon fontSize='small'>
             <LogOut01Icon />
           </SvgIcon>
-        )
+        ),
       },
       {
         title: 'Error',
         path: paths[404],
         icon: (
-          <SvgIcon fontSize="small">
+          <SvgIcon fontSize='small'>
             <XSquareIcon />
           </SvgIcon>
-        )
-      }
-    ]
-  }
-];
+        ),
+      },
+    ],
+  },
+]
 
 export const PagesPopover: FC = () => (
   <Box
@@ -118,37 +118,37 @@ export const PagesPopover: FC = () => (
       display: 'grid',
       gap: 3,
       gridTemplateColumns: 'repeat(2, 1fr)',
-      p: 3
+      p: 3,
     }}
   >
     {sections.map((section, index) => {
       return (
         <Stack
-          component="ul"
+          component='ul'
           key={index}
           spacing={0.5}
           sx={{
             listStyle: 'none',
             m: 0,
-            p: 0
+            p: 0,
           }}
         >
           {section.items.map((item) => {
-            let linkProps: any = undefined;
+            let linkProps: any = undefined
 
             if (item.path) {
-              const isExternal = item.path.startsWith('http');
+              const isExternal = item.path.startsWith('http')
 
               linkProps = isExternal
                 ? {
-                  component: 'a',
-                  href: item.path,
-                  target: '_blank'
-                }
+                    component: 'a',
+                    href: item.path,
+                    target: '_blank',
+                  }
                 : {
-                  component: NextLink,
-                  href: item.path
-                };
+                    component: NextLink,
+                    href: item.path,
+                  }
             }
 
             return (
@@ -164,44 +164,42 @@ export const PagesPopover: FC = () => (
                     textAlign: 'left',
                     width: '100%',
                     '&:hover': {
-                      backgroundColor: 'action.hover'
-                    }
+                      backgroundColor: 'action.hover',
+                    },
                   }}
                   {...linkProps}
                 >
                   <Box
-                    component="span"
+                    component='span'
                     sx={{
                       alignItems: 'center',
                       color: 'action.active',
                       display: 'inline-flex',
                       justifyContent: 'center',
                       mr: 2,
-                      width: 20
+                      width: 20,
                     }}
                   >
                     {item.icon}
                   </Box>
-                  <Box
-                    component="span"
-                    sx={{ flexGrow: 1 }}
-                  >
+                  <Box component='span'
+sx={{ flexGrow: 1 }}>
                     <Box
-                      component="span"
+                      component='span'
                       sx={{
                         display: 'block',
                         fontFamily: (theme) => theme.typography.fontFamily,
                         fontSize: 14,
                         fontWeight: 500,
                         lineHeight: '24px',
-                        whiteSpace: 'nowrap'
+                        whiteSpace: 'nowrap',
                       }}
                     >
                       {item.title}
                     </Box>
                     {item.caption && (
                       <Box
-                        component="span"
+                        component='span'
                         sx={{
                           color: 'text.secondary',
                           display: 'block',
@@ -209,7 +207,7 @@ export const PagesPopover: FC = () => (
                           fontSize: 12,
                           fontWeight: 400,
                           lineHeight: '18px',
-                          whiteSpace: 'nowrap'
+                          whiteSpace: 'nowrap',
                         }}
                       >
                         {item.caption}
@@ -219,31 +217,31 @@ export const PagesPopover: FC = () => (
                 </ButtonBase>
                 {item.children && (
                   <Stack
-                    component="ul"
+                    component='ul'
                     spacing={0.5}
                     sx={{
                       listStyle: 'none',
                       m: 0,
                       p: 0,
-                      pl: 20 + 16 + 'px' // icon size + icon margin
+                      pl: 20 + 16 + 'px', // icon size + icon margin
                     }}
                   >
                     {item.children.map((child) => {
-                      let linkProps: any = undefined;
+                      let linkProps: any = undefined
 
                       if (child.path) {
-                        const isExternal = child.path.startsWith('http');
+                        const isExternal = child.path.startsWith('http')
 
                         linkProps = isExternal
                           ? {
-                            component: 'a',
-                            href: child.path,
-                            target: '_blank'
-                          }
+                              component: 'a',
+                              href: child.path,
+                              target: '_blank',
+                            }
                           : {
-                            component: NextLink,
-                            href: child.path
-                          };
+                              component: NextLink,
+                              href: child.path,
+                            }
                       }
 
                       return (
@@ -259,13 +257,13 @@ export const PagesPopover: FC = () => (
                               textAlign: 'left',
                               width: '100%',
                               '&:hover': {
-                                backgroundColor: 'action.hover'
-                              }
+                                backgroundColor: 'action.hover',
+                              },
                             }}
                             {...linkProps}
                           >
                             <Box
-                              component="span"
+                              component='span'
                               sx={{
                                 color: 'text.secondary',
                                 display: 'block',
@@ -273,22 +271,22 @@ export const PagesPopover: FC = () => (
                                 fontSize: 14,
                                 fontWeight: 500,
                                 lineHeight: '24px',
-                                whiteSpace: 'nowrap'
+                                whiteSpace: 'nowrap',
                               }}
                             >
                               {child.title}
                             </Box>
                           </ButtonBase>
                         </li>
-                      );
+                      )
                     })}
                   </Stack>
                 )}
               </li>
-            );
+            )
           })}
         </Stack>
-      );
+      )
     })}
   </Box>
-);
+)

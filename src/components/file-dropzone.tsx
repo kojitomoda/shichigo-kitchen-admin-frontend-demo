@@ -1,9 +1,9 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import type { DropzoneOptions, FileWithPath } from 'react-dropzone';
-import { useDropzone } from 'react-dropzone';
-import Upload01Icon from '@untitled-ui/icons-react/build/esm/Upload01';
-import XIcon from '@untitled-ui/icons-react/build/esm/X';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import type { DropzoneOptions, FileWithPath } from 'react-dropzone'
+import { useDropzone } from 'react-dropzone'
+import Upload01Icon from '@untitled-ui/icons-react/build/esm/Upload01'
+import XIcon from '@untitled-ui/icons-react/build/esm/X'
 import {
   Avatar,
   Box,
@@ -16,26 +16,26 @@ import {
   Stack,
   SvgIcon,
   Tooltip,
-  Typography
-} from '@mui/material';
-import { bytesToSize } from '../utils/bytes-to-size';
-import { FileIcon } from './file-icon';
+  Typography,
+} from '@mui/material'
+import { bytesToSize } from '../utils/bytes-to-size'
+import { FileIcon } from './file-icon'
 
-export type File = FileWithPath;
+export type File = FileWithPath
 
 interface FileDropzoneProps extends DropzoneOptions {
-  caption?: string;
-  files?: File[];
-  onRemove?: (file: File) => void;
-  onRemoveAll?: () => void;
-  onUpload?: () => void;
+  caption?: string
+  files?: File[]
+  onRemove?: (file: File) => void
+  onRemoveAll?: () => void
+  onUpload?: () => void
 }
 
 export const FileDropzone: FC<FileDropzoneProps> = (props) => {
-  const { caption, files = [], onRemove, onRemoveAll, onUpload, ...other } = props;
-  const { getRootProps, getInputProps, isDragActive } = useDropzone(other);
+  const { caption, files = [], onRemove, onRemoveAll, onUpload, ...other } = props
+  const { getRootProps, getInputProps, isDragActive } = useDropzone(other)
 
-  const hasAnyFiles = files.length > 0;
+  const hasAnyFiles = files.length > 0
 
   return (
     <div>
@@ -51,30 +51,26 @@ export const FileDropzone: FC<FileDropzoneProps> = (props) => {
           justifyContent: 'center',
           outline: 'none',
           p: 6,
-          ...(
-            isDragActive && {
-              backgroundColor: 'action.active',
-              opacity: 0.5
-            }
-          ),
+          ...(isDragActive && {
+            backgroundColor: 'action.active',
+            opacity: 0.5,
+          }),
           '&:hover': {
             backgroundColor: 'action.hover',
             cursor: 'pointer',
-            opacity: 0.5
-          }
+            opacity: 0.5,
+          },
         }}
         {...getRootProps()}
       >
         <input {...getInputProps()} />
-        <Stack
-          alignItems="center"
-          direction="row"
-          spacing={2}
-        >
+        <Stack alignItems='center'
+direction='row'
+spacing={2}>
           <Avatar
             sx={{
               height: 64,
-              width: 64
+              width: 64,
             }}
           >
             <SvgIcon>
@@ -85,18 +81,16 @@ export const FileDropzone: FC<FileDropzoneProps> = (props) => {
             <Typography
               sx={{
                 '& span': {
-                  textDecoration: 'underline'
-                }
+                  textDecoration: 'underline',
+                },
               }}
-              variant="h6"
+              variant='h6'
             >
               <span>Click to upload</span> or drag and drop
             </Typography>
             {caption && (
-              <Typography
-                color="text.secondary"
-                variant="body2"
-              >
+              <Typography color='text.secondary'
+variant='body2'>
                 {caption}
               </Typography>
             )}
@@ -107,7 +101,7 @@ export const FileDropzone: FC<FileDropzoneProps> = (props) => {
         <Box sx={{ mt: 2 }}>
           <List>
             {files.map((file) => {
-              const extension = file.name.split('.').pop();
+              const extension = file.name.split('.').pop()
 
               return (
                 <ListItem
@@ -117,8 +111,8 @@ export const FileDropzone: FC<FileDropzoneProps> = (props) => {
                     borderColor: 'divider',
                     borderRadius: 1,
                     '& + &': {
-                      mt: 1
-                    }
+                      mt: 1,
+                    },
                   }}
                 >
                   <ListItemIcon>
@@ -129,49 +123,43 @@ export const FileDropzone: FC<FileDropzoneProps> = (props) => {
                     primaryTypographyProps={{ variant: 'subtitle2' }}
                     secondary={bytesToSize(file.size)}
                   />
-                  <Tooltip title="Remove">
-                    <IconButton
-                      edge="end"
-                      onClick={() => onRemove?.(file)}
-                    >
+                  <Tooltip title='Remove'>
+                    <IconButton edge='end'
+onClick={() => onRemove?.(file)}>
                       <SvgIcon>
                         <XIcon />
                       </SvgIcon>
                     </IconButton>
                   </Tooltip>
                 </ListItem>
-              );
+              )
             })}
           </List>
           <Stack
-            alignItems="center"
-            direction="row"
-            justifyContent="flex-end"
+            alignItems='center'
+            direction='row'
+            justifyContent='flex-end'
             spacing={2}
             sx={{ mt: 2 }}
           >
-            <Button
-              color="inherit"
-              onClick={onRemoveAll}
-              size="small"
-              type="button"
-            >
+            <Button color='inherit'
+onClick={onRemoveAll}
+size='small'
+type='button'>
               Remove All
             </Button>
-            <Button
-              onClick={onUpload}
-              size="small"
-              type="button"
-              variant="contained"
-            >
+            <Button onClick={onUpload}
+size='small'
+type='button'
+variant='contained'>
               Upload
             </Button>
           </Stack>
         </Box>
       )}
     </div>
-  );
-};
+  )
+}
 
 FileDropzone.propTypes = {
   caption: PropTypes.string,
@@ -194,5 +182,5 @@ FileDropzone.propTypes = {
   onDropAccepted: PropTypes.func,
   onDropRejected: PropTypes.func,
   onFileDialogCancel: PropTypes.func,
-  preventDropOnDocument: PropTypes.bool
-};
+  preventDropOnDocument: PropTypes.bool,
+}

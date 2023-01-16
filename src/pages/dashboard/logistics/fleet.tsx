@@ -1,14 +1,14 @@
-import { useCallback, useRef, useState } from 'react';
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import type { Theme } from '@mui/material';
-import { Box, Divider, Typography, useMediaQuery } from '@mui/material';
-import { Layout as DashboardLayout } from '../../../layouts/dashboard';
-import { LogisticsFleetDrawer } from '../../../sections/dashboard/logistics/logistics-fleet-drawer';
-import { LogisticsFleetList } from '../../../sections/dashboard/logistics/logistics-fleet-list';
-import { LogisticsFleetMap } from '../../../sections/dashboard/logistics/logistics-fleet-map';
-import { LogisticsFleetToolbar } from '../../../sections/dashboard/logistics/logistics-fleet-toolbar';
-import type { Vehicle } from '../../../types/logistics';
+import { useCallback, useRef, useState } from 'react'
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import type { Theme } from '@mui/material'
+import { Box, Divider, Typography, useMediaQuery } from '@mui/material'
+import { Layout as DashboardLayout } from '../../../layouts/dashboard'
+import { LogisticsFleetDrawer } from '../../../sections/dashboard/logistics/logistics-fleet-drawer'
+import { LogisticsFleetList } from '../../../sections/dashboard/logistics/logistics-fleet-list'
+import { LogisticsFleetMap } from '../../../sections/dashboard/logistics/logistics-fleet-map'
+import { LogisticsFleetToolbar } from '../../../sections/dashboard/logistics/logistics-fleet-toolbar'
+import type { Vehicle } from '../../../types/logistics'
 
 const useVehicles = (): Vehicle[] => {
   return [
@@ -20,7 +20,7 @@ const useVehicles = (): Vehicle[] => {
       temp: '8°C',
       startedAt: 'Sep 01, 7:53 AM',
       departedAt: 'Sep 01, 8:02 AM',
-      arrivedAt: 'Sep 01, 8:18 AM'
+      arrivedAt: 'Sep 01, 8:18 AM',
     },
     {
       id: 'VOL-653CD3',
@@ -30,7 +30,7 @@ const useVehicles = (): Vehicle[] => {
       temp: '6°C',
       startedAt: 'Sep 01, 8:21 AM',
       departedAt: 'Sep 01, 8:36 AM',
-      arrivedAt: 'Sep 01, 9:54 AM'
+      arrivedAt: 'Sep 01, 9:54 AM',
     },
     {
       id: 'VOL-653CD4',
@@ -40,62 +40,48 @@ const useVehicles = (): Vehicle[] => {
       temp: '8°C',
       startedAt: 'Sep 01, 6:34 AM',
       departedAt: 'Sep 01, 7:41 AM',
-      arrivedAt: 'Sep 01, 9:20 AM'
-    }
-  ];
-};
+      arrivedAt: 'Sep 01, 9:20 AM',
+    },
+  ]
+}
 
 const Page: NextPage = () => {
-  const rootRef = useRef<HTMLDivElement | null>(null);
-  const mdUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'));
-  const vehicles = useVehicles();
-  const [openDrawer, setOpenDrawer] = useState<boolean>(false);
-  const [currentVehicleId, setCurrentVehicleId] = useState<string | undefined>(vehicles[0]?.id);
+  const rootRef = useRef<HTMLDivElement | null>(null)
+  const mdUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
+  const vehicles = useVehicles()
+  const [openDrawer, setOpenDrawer] = useState<boolean>(false)
+  const [currentVehicleId, setCurrentVehicleId] = useState<string | undefined>(vehicles[0]?.id)
 
-  const handleVehicleSelect = useCallback(
-    (vehicleId: string): void => {
-      setCurrentVehicleId(vehicleId);
-    },
-    []
-  );
+  const handleVehicleSelect = useCallback((vehicleId: string): void => {
+    setCurrentVehicleId(vehicleId)
+  }, [])
 
-  const handleVehicleDeselect = useCallback(
-    (): void => {
-      setCurrentVehicleId(undefined);
-    },
-    []
-  );
+  const handleVehicleDeselect = useCallback((): void => {
+    setCurrentVehicleId(undefined)
+  }, [])
 
-  const handleDrawerOpen = useCallback(
-    (): void => {
-      setOpenDrawer(true);
-    },
-    []
-  );
+  const handleDrawerOpen = useCallback((): void => {
+    setOpenDrawer(true)
+  }, [])
 
-  const handleDrawerClose = useCallback(
-    (): void => {
-      setOpenDrawer(false);
-    },
-    []
-  );
+  const handleDrawerClose = useCallback((): void => {
+    setOpenDrawer(false)
+  }, [])
 
   return (
     <>
       <Head>
-        <title>
-          Dashboard: Logistics Fleet | Devias Kit PRO
-        </title>
+        <title>Dashboard: Logistics Fleet | Devias Kit PRO</title>
       </Head>
       <Divider />
       <Box
-        component="main"
+        component='main'
         ref={rootRef}
         sx={{
           display: 'flex',
           flex: '1 1 auto',
           overflow: 'hidden',
-          position: 'relative'
+          position: 'relative',
         }}
       >
         {mdUp && (
@@ -104,13 +90,11 @@ const Page: NextPage = () => {
               borderRightColor: 'divider',
               borderRightStyle: 'solid',
               borderRightWidth: 1,
-              flex: '0 0 400px'
+              flex: '0 0 400px',
             }}
           >
             <Box sx={{ p: 2 }}>
-              <Typography variant="h5">
-                Fleet
-              </Typography>
+              <Typography variant='h5'>Fleet</Typography>
             </Box>
             <LogisticsFleetList
               currentVehicleId={currentVehicleId}
@@ -124,7 +108,7 @@ const Page: NextPage = () => {
           sx={{
             flex: '1 1 auto',
             overflow: 'hidden',
-            position: 'relative'
+            position: 'relative',
           }}
         >
           {!mdUp && <LogisticsFleetToolbar onDrawerOpen={handleDrawerOpen} />}
@@ -150,13 +134,9 @@ const Page: NextPage = () => {
         </LogisticsFleetDrawer>
       )}
     </>
-  );
-};
+  )
+}
 
-Page.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
+Page.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>
 
-export default Page;
+export default Page

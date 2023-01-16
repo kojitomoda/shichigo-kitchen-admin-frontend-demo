@@ -1,77 +1,69 @@
-import { useCallback, useEffect, useState } from 'react';
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import { Box, Container, Stack, Typography } from '@mui/material';
-import { socialApi } from '../../../api/social';
-import { useMounted } from '../../../hooks/use-mounted';
-import { usePageView } from '../../../hooks/use-page-view';
-import { Layout as DashboardLayout } from '../../../layouts/dashboard';
-import { SocialPostAdd } from '../../../sections/dashboard/social/social-post-add';
-import { SocialPostCard } from '../../../sections/dashboard/social/social-post-card';
-import type { Post } from '../../../types/social';
+import { useCallback, useEffect, useState } from 'react'
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import { Box, Container, Stack, Typography } from '@mui/material'
+import { socialApi } from '../../../api/social'
+import { useMounted } from '../../../hooks/use-mounted'
+import { usePageView } from '../../../hooks/use-page-view'
+import { Layout as DashboardLayout } from '../../../layouts/dashboard'
+import { SocialPostAdd } from '../../../sections/dashboard/social/social-post-add'
+import { SocialPostCard } from '../../../sections/dashboard/social/social-post-card'
+import type { Post } from '../../../types/social'
 
 const usePosts = (): Post[] => {
-  const isMounted = useMounted();
-  const [posts, setPosts] = useState<Post[]>([]);
+  const isMounted = useMounted()
+  const [posts, setPosts] = useState<Post[]>([])
 
   const getPosts = useCallback(async () => {
     try {
-      const response = await socialApi.getFeed();
+      const response = await socialApi.getFeed()
 
       if (isMounted()) {
-        setPosts(response);
+        setPosts(response)
       }
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  }, [isMounted]);
+  }, [isMounted])
 
   useEffect(
     () => {
-      getPosts();
+      getPosts()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+    [],
+  )
 
-  return posts;
-};
+  return posts
+}
 
 const SocialFeed: NextPage = () => {
-  const posts = usePosts();
+  const posts = usePosts()
 
-  usePageView();
+  usePageView()
 
   return (
     <>
       <Head>
-        <title>
-          Dashboard: Social Feed | Devias Kit PRO
-        </title>
+        <title>Dashboard: Social Feed | Devias Kit PRO</title>
       </Head>
       <Box
-        component="main"
+        component='main'
         sx={{
           flexGrow: 1,
-          py: 8
+          py: 8,
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth='lg'>
           <Stack spacing={1}>
-            <Typography
-              color="text.secondary"
-              variant="overline"
-            >
+            <Typography color='text.secondary'
+variant='overline'>
               Social Feed
             </Typography>
-            <Typography variant="h4">
-              Here&apos;s what your connections posted
-            </Typography>
+            <Typography variant='h4'>Here&apos;s what your connections posted</Typography>
           </Stack>
-          <Stack
-            spacing={3}
-            sx={{ mt: 3 }}
-          >
+          <Stack spacing={3}
+sx={{ mt: 3 }}>
             <SocialPostAdd />
             {posts.map((post) => (
               <SocialPostCard
@@ -90,13 +82,9 @@ const SocialFeed: NextPage = () => {
         </Container>
       </Box>
     </>
-  );
-};
+  )
+}
 
-SocialFeed.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
+SocialFeed.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>
 
-export default SocialFeed;
+export default SocialFeed

@@ -1,64 +1,48 @@
-import type { FC } from 'react';
-import FaceSmileIcon from '@untitled-ui/icons-react/build/esm/FaceSmile';
-import Link01Icon from '@untitled-ui/icons-react/build/esm/Link01';
-import Attachment01Icon from '@untitled-ui/icons-react/build/esm/Attachment01';
-import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus';
-import Image01Icon from '@untitled-ui/icons-react/build/esm/Image01';
-import type { Theme } from '@mui/material';
-import {
-  Avatar,
-  Button,
-  IconButton,
-  Stack,
-  SvgIcon,
-  TextField,
-  useMediaQuery
-} from '@mui/material';
-import { useMockedUser } from '../../../hooks/use-mocked-user';
-import { getInitials } from '../../../utils/get-initials';
+import type { FC } from 'react'
+import FaceSmileIcon from '@untitled-ui/icons-react/build/esm/FaceSmile'
+import Link01Icon from '@untitled-ui/icons-react/build/esm/Link01'
+import Attachment01Icon from '@untitled-ui/icons-react/build/esm/Attachment01'
+import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus'
+import Image01Icon from '@untitled-ui/icons-react/build/esm/Image01'
+import type { Theme } from '@mui/material'
+import { Avatar, Button, IconButton, Stack, SvgIcon, TextField, useMediaQuery } from '@mui/material'
+import { useMockedUser } from '../../../hooks/use-mocked-user'
+import { getInitials } from '../../../utils/get-initials'
 
 export const SocialCommentAdd: FC = (props) => {
-  const smUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'));
-  const user = useMockedUser();
+  const smUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'))
+  const user = useMockedUser()
 
   return (
     <div {...props}>
-      <Stack
-        alignItems="flex-start"
-        direction="row"
-        spacing={2}
-      >
+      <Stack alignItems='flex-start'
+direction='row'
+spacing={2}>
         <Avatar
           src={user.avatar}
           sx={{
             height: 40,
-            width: 40
+            width: 40,
           }}
         >
           {getInitials(user.name)}
         </Avatar>
-        <Stack
-          spacing={3}
-          sx={{ flexGrow: 1 }}
-        >
+        <Stack spacing={3}
+sx={{ flexGrow: 1 }}>
           <TextField
             fullWidth
             multiline
-            placeholder="Type your reply"
+            placeholder='Type your reply'
             rows={3}
-            variant="outlined"
+            variant='outlined'
           />
-          <Stack
-            alignItems="center"
-            direction="row"
-            justifyContent="space-between"
-            spacing={3}
-          >
-            <Stack
-              alignItems="center"
-              direction="row"
-              spacing={1}
-            >
+          <Stack alignItems='center'
+direction='row'
+justifyContent='space-between'
+spacing={3}>
+            <Stack alignItems='center'
+direction='row'
+spacing={1}>
               {!smUp && (
                 <IconButton>
                   <SvgIcon>
@@ -92,13 +76,11 @@ export const SocialCommentAdd: FC = (props) => {
               )}
             </Stack>
             <div>
-              <Button variant="contained">
-                Send
-              </Button>
+              <Button variant='contained'>Send</Button>
             </div>
           </Stack>
         </Stack>
       </Stack>
     </div>
-  );
-};
+  )
+}

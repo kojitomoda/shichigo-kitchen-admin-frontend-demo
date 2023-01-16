@@ -1,29 +1,25 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import { Stack, Unstable_Grid2 as Grid } from '@mui/material';
-import type { Post, Profile } from '../../../types/social';
-import { SocialPostAdd } from './social-post-add';
-import { SocialPostCard } from './social-post-card';
-import { SocialAbout } from './social-about';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import { Stack, Unstable_Grid2 as Grid } from '@mui/material'
+import type { Post, Profile } from '../../../types/social'
+import { SocialPostAdd } from './social-post-add'
+import { SocialPostCard } from './social-post-card'
+import { SocialAbout } from './social-about'
 
 interface SocialProfileTimelineProps {
-  posts?: Post[];
-  profile: Profile;
+  posts?: Post[]
+  profile: Profile
 }
 
 export const SocialTimeline: FC<SocialProfileTimelineProps> = (props) => {
-  const { posts = [], profile, ...other } = props;
+  const { posts = [], profile, ...other } = props
 
   return (
     <div {...other}>
-      <Grid
-        container
-        spacing={4}
-      >
-        <Grid
-          lg={4}
-          xs={12}
-        >
+      <Grid container
+spacing={4}>
+        <Grid lg={4}
+xs={12}>
           <SocialAbout
             currentCity={profile.currentCity}
             currentJobCompany={profile.currentJobCompany}
@@ -36,10 +32,8 @@ export const SocialTimeline: FC<SocialProfileTimelineProps> = (props) => {
             quote={profile.quote}
           />
         </Grid>
-        <Grid
-          lg={8}
-          xs={12}
-        >
+        <Grid lg={8}
+xs={12}>
           <Stack spacing={3}>
             <SocialPostAdd />
             {posts.map((post) => (
@@ -59,11 +53,11 @@ export const SocialTimeline: FC<SocialProfileTimelineProps> = (props) => {
         </Grid>
       </Grid>
     </div>
-  );
-};
+  )
+}
 
 SocialTimeline.propTypes = {
   posts: PropTypes.array,
   // @ts-ignore
-  profile: PropTypes.object.isRequired
-};
+  profile: PropTypes.object.isRequired,
+}

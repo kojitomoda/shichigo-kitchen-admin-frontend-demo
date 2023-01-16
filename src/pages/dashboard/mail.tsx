@@ -1,59 +1,56 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import type { NextPage } from 'next';
-import { useSearchParams } from 'next/navigation';
-import Head from 'next/head';
-import type { Theme } from '@mui/material';
-import { Box, Divider, useMediaQuery } from '@mui/material';
-import { usePageView } from '../../hooks/use-page-view';
-import { Layout as DashboardLayout } from '../../layouts/dashboard';
-import { MailComposer } from '../../sections/dashboard/mail/mail-composer';
-import { MailThread } from '../../sections/dashboard/mail/mail-thread';
-import { MailContainer } from '../../sections/dashboard/mail/mail-container';
-import { MailList } from '../../sections/dashboard/mail/mail-list';
-import { MailSidebar } from '../../sections/dashboard/mail/mail-sidebar';
-import { useDispatch, useSelector } from '../../store';
-import { thunks } from '../../thunks/mail';
-import type { Label } from '../../types/mail';
+import { useCallback, useEffect, useRef, useState } from 'react'
+import type { NextPage } from 'next'
+import { useSearchParams } from 'next/navigation'
+import Head from 'next/head'
+import type { Theme } from '@mui/material'
+import { Box, Divider, useMediaQuery } from '@mui/material'
+import { usePageView } from '../../hooks/use-page-view'
+import { Layout as DashboardLayout } from '../../layouts/dashboard'
+import { MailComposer } from '../../sections/dashboard/mail/mail-composer'
+import { MailThread } from '../../sections/dashboard/mail/mail-thread'
+import { MailContainer } from '../../sections/dashboard/mail/mail-container'
+import { MailList } from '../../sections/dashboard/mail/mail-list'
+import { MailSidebar } from '../../sections/dashboard/mail/mail-sidebar'
+import { useDispatch, useSelector } from '../../store'
+import { thunks } from '../../thunks/mail'
+import type { Label } from '../../types/mail'
 
-const useParams = (): { emailId?: string; label?: string; } => {
-  const searchParams = useSearchParams();
-  const emailId = searchParams.get('emailId') || undefined;
-  const label = searchParams.get('label') || undefined;
+const useParams = (): { emailId?: string; label?: string } => {
+  const searchParams = useSearchParams()
+  const emailId = searchParams.get('emailId') || undefined
+  const label = searchParams.get('label') || undefined
 
   return {
     emailId,
-    label
-  };
-};
+    label,
+  }
+}
 
 const useLabels = (): Label[] => {
-  const dispatch = useDispatch();
-  const labels = useSelector((state) => state.mail.labels);
+  const dispatch = useDispatch()
+  const labels = useSelector((state) => state.mail.labels)
 
-  const getLabels = useCallback(
-    (): void => {
-      dispatch(thunks.getLabels());
-    },
-    [dispatch]
-  );
+  const getLabels = useCallback((): void => {
+    dispatch(thunks.getLabels())
+  }, [dispatch])
 
   useEffect(
     () => {
-      getLabels();
+      getLabels()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+    [],
+  )
 
-  return labels;
-};
+  return labels
+}
 
 interface ComposerState {
-  isFullScreen: boolean;
-  isOpen: boolean;
-  message: string;
-  subject: string;
-  to: string;
+  isFullScreen: boolean
+  isOpen: boolean
+  message: string
+  subject: string
+  to: string
 }
 
 const useComposer = () => {
@@ -62,78 +59,60 @@ const useComposer = () => {
     isOpen: false,
     message: '',
     subject: '',
-    to: ''
-  };
+    to: '',
+  }
 
-  const [state, setState] = useState<ComposerState>(initialState);
+  const [state, setState] = useState<ComposerState>(initialState)
 
-  const handleOpen = useCallback(
-    (): void => {
-      setState((prevState) => ({
-        ...prevState,
-        isOpen: true
-      }));
-    },
-    []
-  );
+  const handleOpen = useCallback((): void => {
+    setState((prevState) => ({
+      ...prevState,
+      isOpen: true,
+    }))
+  }, [])
 
   const handleClose = useCallback(
     (): void => {
-      setState(initialState);
+      setState(initialState)
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+    [],
+  )
 
-  const handleMaximize = useCallback(
-    (): void => {
-      setState((prevState) => ({
-        ...prevState,
-        isFullScreen: true
-      }));
-    },
-    []
-  );
+  const handleMaximize = useCallback((): void => {
+    setState((prevState) => ({
+      ...prevState,
+      isFullScreen: true,
+    }))
+  }, [])
 
-  const handleMinimize = useCallback(
-    (): void => {
-      setState((prevState) => ({
-        ...prevState,
-        isFullScreen: false
-      }));
-    },
-    []
-  );
+  const handleMinimize = useCallback((): void => {
+    setState((prevState) => ({
+      ...prevState,
+      isFullScreen: false,
+    }))
+  }, [])
 
-  const handleMessageChange = useCallback(
-    (message: string): void => {
-      setState((prevState) => ({
-        ...prevState,
-        message
-      }));
-    },
-    []
-  );
+  const handleMessageChange = useCallback((message: string): void => {
+    setState((prevState) => ({
+      ...prevState,
+      message,
+    }))
+  }, [])
 
-  const handleSubjectChange = useCallback(
-    (subject: string): void => {
-      setState((prevState) => ({
-        ...prevState,
-        subject
-      }));
-    },
-    []
-  );
+  const handleSubjectChange = useCallback((subject: string): void => {
+    setState((prevState) => ({
+      ...prevState,
+      subject,
+    }))
+  }, [])
 
-  const handleToChange = useCallback(
-    (to: string): void => {
-      setState((prevState) => ({
-        ...prevState,
-        to
-      }));
-    },
-    []
-  );
+  const handleToChange = useCallback((to: string): void => {
+    setState((prevState) => ({
+      ...prevState,
+      to,
+    }))
+  }, [])
 
   return {
     ...state,
@@ -143,80 +122,69 @@ const useComposer = () => {
     handleMinimize,
     handleOpen,
     handleSubjectChange,
-    handleToChange
-  };
-};
+    handleToChange,
+  }
+}
 
 const useSidebar = () => {
-  const mdUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'));
-  const [isOpen, setIsOpen] = useState(mdUp);
+  const mdUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
+  const [isOpen, setIsOpen] = useState(mdUp)
 
-  const handleScreenResize = useCallback(
-    (): void => {
-      if (!mdUp) {
-        setIsOpen(false);
-      } else {
-        setIsOpen(true);
-      }
-    },
-    [mdUp]
-  );
+  const handleScreenResize = useCallback((): void => {
+    if (!mdUp) {
+      setIsOpen(false)
+    } else {
+      setIsOpen(true)
+    }
+  }, [mdUp])
 
   useEffect(
     () => {
-      handleScreenResize();
+      handleScreenResize()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [mdUp]
-  );
+    [mdUp],
+  )
 
-  const handleToggle = useCallback(
-    (): void => {
-      setIsOpen((prevState) => !prevState);
-    },
-    []
-  );
+  const handleToggle = useCallback((): void => {
+    setIsOpen((prevState) => !prevState)
+  }, [])
 
-  const handleClose = useCallback(
-    (): void => {
-      setIsOpen(false);
-    },
-    []
-  );
+  const handleClose = useCallback((): void => {
+    setIsOpen(false)
+  }, [])
 
   return {
     isOpen,
     handleToggle,
-    handleClose
-  };
-};
+    handleClose,
+  }
+}
 
 const Page: NextPage = () => {
-  const rootRef = useRef<HTMLDivElement | null>(null);
-  const { emailId, label: currentLabelId } = useParams();
-  const labels = useLabels();
-  const composer = useComposer();
-  const sidebar = useSidebar();
+  const rootRef = useRef<HTMLDivElement | null>(null)
+  const { emailId, label: currentLabelId } = useParams()
+  const labels = useLabels()
+  const composer = useComposer()
+  const sidebar = useSidebar()
 
-  usePageView();
+  usePageView()
 
-  const view = emailId ? 'details' : 'list';
+  const view = emailId ? 'details' : 'list'
 
   return (
     <>
       <Head>
-        <title>
-          Dashboard: Mail | Devias Kit PRO
-        </title>
+        <title>Dashboard: Mail | Devias Kit PRO</title>
       </Head>
       <Divider />
       <Box
-        component="main"
+        component='main'
         sx={{
           backgroundColor: 'background.paper',
           flex: '1 1 auto',
           overflow: 'hidden',
-          position: 'relative'
+          position: 'relative',
         }}
       >
         <Box
@@ -227,7 +195,7 @@ const Page: NextPage = () => {
             left: 0,
             position: 'absolute',
             right: 0,
-            top: 0
+            top: 0,
           }}
         >
           <MailSidebar
@@ -240,16 +208,12 @@ const Page: NextPage = () => {
           />
           <MailContainer open={sidebar.isOpen}>
             {view === 'details' && (
-              <MailThread
-                currentLabelId={currentLabelId}
-                emailId={emailId!}
-              />
+              <MailThread currentLabelId={currentLabelId}
+emailId={emailId!} />
             )}
             {view === 'list' && (
-              <MailList
-                currentLabelId={currentLabelId}
-                onSidebarToggle={sidebar.handleToggle}
-              />
+              <MailList currentLabelId={currentLabelId}
+onSidebarToggle={sidebar.handleToggle} />
             )}
           </MailContainer>
         </Box>
@@ -268,13 +232,9 @@ const Page: NextPage = () => {
         to={composer.to}
       />
     </>
-  );
-};
+  )
+}
 
-Page.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
+Page.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>
 
-export default Page;
+export default Page

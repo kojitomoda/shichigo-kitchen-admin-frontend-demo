@@ -1,46 +1,42 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import { Chip, Stack, Typography } from '@mui/material';
-import type { Contrast } from '../../theme';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import { Chip, Stack, Typography } from '@mui/material'
+import type { Contrast } from '../../theme'
 
 interface Option {
-  label: string;
-  value: Contrast;
+  label: string
+  value: Contrast
 }
 
 const options: Option[] = [
   {
     label: 'Normal',
-    value: 'normal'
+    value: 'normal',
   },
   {
     label: 'High',
-    value: 'high'
-  }
-];
+    value: 'high',
+  },
+]
 
 interface OptionsContrastProps {
-  onChange?: (value: Contrast) => void;
-  value?: Contrast;
+  onChange?: (value: Contrast) => void
+  value?: Contrast
 }
 
 export const OptionsContrast: FC<OptionsContrastProps> = (props) => {
-  const { onChange, value } = props;
+  const { onChange, value } = props
 
   return (
     <Stack spacing={1}>
-      <Typography
-        color="text.secondary"
-        variant="overline"
-      >
+      <Typography color='text.secondary'
+variant='overline'>
         Contrast
       </Typography>
-      <Stack
-        alignItems="center"
-        direction="row"
-        flexWrap="wrap"
-        gap={2}
-      >
+      <Stack alignItems='center'
+direction='row'
+flexWrap='wrap'
+gap={2}>
         {options.map((option) => (
           <Chip
             key={option.label}
@@ -52,17 +48,17 @@ export const OptionsContrast: FC<OptionsContrastProps> = (props) => {
               borderStyle: 'solid',
               borderWidth: 2,
               ...(option.value === value && {
-                borderColor: 'primary.main'
-              })
+                borderColor: 'primary.main',
+              }),
             }}
           />
         ))}
       </Stack>
     </Stack>
-  );
-};
+  )
+}
 
 OptionsContrast.propTypes = {
   onChange: PropTypes.func,
-  value: PropTypes.oneOf(['normal', 'high'])
-};
+  value: PropTypes.oneOf(['normal', 'high']),
+}

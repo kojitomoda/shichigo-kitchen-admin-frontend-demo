@@ -1,22 +1,24 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import { FileIcon } from '../../../components/file-icon';
-import type { ItemType } from '../../../types/file-manager';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import { FileIcon } from '../../../components/file-icon'
+import type { ItemType } from '../../../types/file-manager'
 
 interface ItemIconProps {
-  extension?: string;
-  type: ItemType;
+  extension?: string
+  type: ItemType
 }
 
 export const ItemIcon: FC<ItemIconProps> = (props) => {
-  const { type, extension } = props;
+  const { type, extension } = props
 
-  return type === 'folder'
-    ? <img src="/assets/icons/icon-folder.svg" />
-    : <FileIcon extension={extension} />;
-};
+  return type === 'folder' ? (
+    <img src='/assets/icons/icon-folder.svg' />
+  ) : (
+    <FileIcon extension={extension} />
+  )
+}
 
 ItemIcon.propTypes = {
   extension: PropTypes.string,
-  type: PropTypes.oneOf<ItemType>(['file', 'folder']).isRequired
-};
+  type: PropTypes.oneOf<ItemType>(['file', 'folder']).isRequired,
+}

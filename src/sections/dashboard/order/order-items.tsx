@@ -1,6 +1,6 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import numeral from 'numeral';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import numeral from 'numeral'
 import {
   Box,
   Card,
@@ -11,75 +11,63 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography
-} from '@mui/material';
-import type { OrderItem } from '../../../types/order';
-import { Scrollbar } from '../../../components/scrollbar';
+  Typography,
+} from '@mui/material'
+import type { OrderItem } from '../../../types/order'
+import { Scrollbar } from '../../../components/scrollbar'
 
 interface OrderItemsProps {
-  items: OrderItem[];
+  items: OrderItem[]
 }
 
 export const OrderItems: FC<OrderItemsProps> = (props) => {
-  const { items, ...other } = props;
+  const { items, ...other } = props
 
   return (
     <Card {...other}>
-      <CardHeader title="Order items" />
+      <CardHeader title='Order items' />
       <Scrollbar>
         <Box sx={{ minWidth: 700 }}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>
-                  Description
-                </TableCell>
-                <TableCell>
-                  Billing Cycle
-                </TableCell>
-                <TableCell>
-                  Amount
-                </TableCell>
+                <TableCell>Description</TableCell>
+                <TableCell>Billing Cycle</TableCell>
+                <TableCell>Amount</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {items.map((item) => {
-                const title = `${item.name} x ${item.quantity}`;
-                const unitAmount = numeral(item.unitAmount).format(`${item.currency}0,0.00`);
+                const title = `${item.name} x ${item.quantity}`
+                const unitAmount = numeral(item.unitAmount).format(`${item.currency}0,0.00`)
 
                 return (
                   <TableRow key={item.id}>
                     <TableCell>
-                      <Typography variant="subtitle2">
-                        {title}
-                      </Typography>
+                      <Typography variant='subtitle2'>{title}</Typography>
                     </TableCell>
-                    <TableCell>
-                      {item.billingCycle}
-                    </TableCell>
-                    <TableCell>
-                      {unitAmount}
-                    </TableCell>
+                    <TableCell>{item.billingCycle}</TableCell>
+                    <TableCell>{unitAmount}</TableCell>
                   </TableRow>
-                );
+                )
               })}
             </TableBody>
           </Table>
         </Box>
       </Scrollbar>
       <TablePagination
-        component="div"
+        component='div'
         count={items.length}
-        onPageChange={(): void => { }}
-        onRowsPerPageChange={(): void => { }}
+        onPageChange={(): void => {}}
+        onRowsPerPageChange={(): void => {}}
         page={0}
         rowsPerPage={5}
         rowsPerPageOptions={[5, 10, 25]}
       />
     </Card>
-  );
-};
+  )
+}
 
 OrderItems.propTypes = {
-  items: PropTypes.array.isRequired
-};
+  items: PropTypes.array.isRequired,
+}

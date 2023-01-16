@@ -1,66 +1,57 @@
-import type { ChangeEvent, FC, KeyboardEvent } from 'react';
-import { useCallback, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import Attachment01Icon from '@untitled-ui/icons-react/build/esm/Attachment01';
-import Camera01Icon from '@untitled-ui/icons-react/build/esm/Camera01';
-import Send01Icon from '@untitled-ui/icons-react/build/esm/Send01';
-import { Avatar, Box, IconButton, OutlinedInput, Stack, SvgIcon, Tooltip } from '@mui/material';
-import { useMockedUser } from '../../../hooks/use-mocked-user';
+import type { ChangeEvent, FC, KeyboardEvent } from 'react'
+import { useCallback, useRef, useState } from 'react'
+import PropTypes from 'prop-types'
+import Attachment01Icon from '@untitled-ui/icons-react/build/esm/Attachment01'
+import Camera01Icon from '@untitled-ui/icons-react/build/esm/Camera01'
+import Send01Icon from '@untitled-ui/icons-react/build/esm/Send01'
+import { Avatar, Box, IconButton, OutlinedInput, Stack, SvgIcon, Tooltip } from '@mui/material'
+import { useMockedUser } from '../../../hooks/use-mocked-user'
 
 interface ChatMessageAddProps {
-  disabled?: boolean;
-  onSend?: (value: string) => void;
+  disabled?: boolean
+  onSend?: (value: string) => void
 }
 
 export const ChatMessageAdd: FC<ChatMessageAddProps> = (props) => {
-  const { disabled, onSend, ...other } = props;
-  const user = useMockedUser();
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const [body, setBody] = useState<string>('');
+  const { disabled, onSend, ...other } = props
+  const user = useMockedUser()
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
+  const [body, setBody] = useState<string>('')
 
-  const handleAttach = useCallback(
-    (): void => {
-      fileInputRef.current?.click();
-    },
-    []
-  );
+  const handleAttach = useCallback((): void => {
+    fileInputRef.current?.click()
+  }, [])
 
-  const handleChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>): void => {
-      setBody(event.target.value);
-    },
-    []
-  );
+  const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>): void => {
+    setBody(event.target.value)
+  }, [])
 
-  const handleSend = useCallback(
-    (): void => {
-      if (!body) {
-        return;
-      }
+  const handleSend = useCallback((): void => {
+    if (!body) {
+      return
+    }
 
-      onSend?.(body);
-      setBody('');
-    },
-    [body, onSend]
-  );
+    onSend?.(body)
+    setBody('')
+  }, [body, onSend])
 
   const handleKeyUp = useCallback(
     (event: KeyboardEvent<HTMLInputElement>): void => {
       if (event.code === 'Enter') {
-        handleSend();
+        handleSend()
       }
     },
-    [handleSend]
-  );
+    [handleSend],
+  )
 
   return (
     <Stack
-      alignItems="center"
-      direction="row"
+      alignItems='center'
+      direction='row'
       spacing={2}
       sx={{
         px: 3,
-        py: 1
+        py: 1,
       }}
       {...other}
     >
@@ -68,8 +59,8 @@ export const ChatMessageAdd: FC<ChatMessageAddProps> = (props) => {
         sx={{
           display: {
             xs: 'none',
-            sm: 'inline'
-          }
+            sm: 'inline',
+          },
         }}
         src={user.avatar}
       />
@@ -78,8 +69,8 @@ export const ChatMessageAdd: FC<ChatMessageAddProps> = (props) => {
         fullWidth
         onChange={handleChange}
         onKeyUp={handleKeyUp}
-        placeholder="Leave a message"
-        size="small"
+        placeholder='Leave a message'
+        size='small'
         value={body}
       />
       <Box
@@ -87,20 +78,20 @@ export const ChatMessageAdd: FC<ChatMessageAddProps> = (props) => {
           alignItems: 'center',
           display: 'flex',
           m: -2,
-          ml: 2
+          ml: 2,
         }}
       >
-        <Tooltip title="Send">
+        <Tooltip title='Send'>
           <Box sx={{ m: 1 }}>
             <IconButton
-              color="primary"
+              color='primary'
               disabled={!body || disabled}
               sx={{
                 backgroundColor: 'primary.main',
                 color: 'primary.contrastText',
                 '&:hover': {
-                  backgroundColor: 'primary.dark'
-                }
+                  backgroundColor: 'primary.dark',
+                },
               }}
               onClick={handleSend}
             >
@@ -110,42 +101,38 @@ export const ChatMessageAdd: FC<ChatMessageAddProps> = (props) => {
             </IconButton>
           </Box>
         </Tooltip>
-        <Tooltip title="Attach photo">
+        <Tooltip title='Attach photo'>
           <Box
             sx={{
               display: {
                 xs: 'none',
-                sm: 'inline-flex'
+                sm: 'inline-flex',
               },
-              m: 1
+              m: 1,
             }}
           >
-            <IconButton
-              disabled={disabled}
-              edge="end"
-              onClick={handleAttach}
-            >
+            <IconButton disabled={disabled}
+edge='end'
+onClick={handleAttach}>
               <SvgIcon>
                 <Camera01Icon />
               </SvgIcon>
             </IconButton>
           </Box>
         </Tooltip>
-        <Tooltip title="Attach file">
+        <Tooltip title='Attach file'>
           <Box
             sx={{
               display: {
                 xs: 'none',
-                sm: 'inline-flex'
+                sm: 'inline-flex',
               },
-              m: 1
+              m: 1,
             }}
           >
-            <IconButton
-              disabled={disabled}
-              edge="end"
-              onClick={handleAttach}
-            >
+            <IconButton disabled={disabled}
+edge='end'
+onClick={handleAttach}>
               <SvgIcon>
                 <Attachment01Icon />
               </SvgIcon>
@@ -153,20 +140,18 @@ export const ChatMessageAdd: FC<ChatMessageAddProps> = (props) => {
           </Box>
         </Tooltip>
       </Box>
-      <input
-        hidden
-        ref={fileInputRef}
-        type="file"
-      />
+      <input hidden
+ref={fileInputRef}
+type='file' />
     </Stack>
-  );
-};
+  )
+}
 
 ChatMessageAdd.propTypes = {
   disabled: PropTypes.bool,
-  onSend: PropTypes.func
-};
+  onSend: PropTypes.func,
+}
 
 ChatMessageAdd.defaultProps = {
-  disabled: false
-};
+  disabled: false,
+}

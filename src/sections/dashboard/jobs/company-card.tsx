@@ -1,115 +1,99 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import { Avatar, Box, Card, CardContent, Link, Stack, SvgIcon, Typography } from '@mui/material';
-import NextLink from 'next/link';
-import Users01Icon from '@untitled-ui/icons-react/build/esm/Users01';
-import Star01Icon from '@untitled-ui/icons-react/build/esm/Star01';
-import CheckVerified01 from '@untitled-ui/icons-react/build/esm/CheckVerified01';
-import { getInitials } from '../../../utils/get-initials';
-import { CompanyJobs } from './company-jobs';
-import type { Company } from '../../../types/job';
-import { paths } from '../../../paths';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import { Avatar, Box, Card, CardContent, Link, Stack, SvgIcon, Typography } from '@mui/material'
+import NextLink from 'next/link'
+import Users01Icon from '@untitled-ui/icons-react/build/esm/Users01'
+import Star01Icon from '@untitled-ui/icons-react/build/esm/Star01'
+import CheckVerified01 from '@untitled-ui/icons-react/build/esm/CheckVerified01'
+import { getInitials } from '../../../utils/get-initials'
+import { CompanyJobs } from './company-jobs'
+import type { Company } from '../../../types/job'
+import { paths } from '../../../paths'
 
 interface CompanyCardProps {
-  company: Company;
+  company: Company
 }
 
 export const CompanyCard: FC<CompanyCardProps> = (props) => {
-  const { company, ...other } = props;
+  const { company, ...other } = props
 
   return (
     <Card {...other}>
       <CardContent>
         <Stack
-          alignItems="flex-start"
+          alignItems='flex-start'
           spacing={2}
           direction={{
             xs: 'column',
-            sm: 'row'
+            sm: 'row',
           }}
         >
           <Avatar
             component={NextLink}
             href={paths.dashboard.jobs.companies.details}
             src={company.logo}
-            variant="rounded"
+            variant='rounded'
           >
             {getInitials(company.name)}
           </Avatar>
           <div>
             <Link
-              color="text.primary"
+              color='text.primary'
               component={NextLink}
               href={paths.dashboard.jobs.companies.details}
-              variant="h6"
+              variant='h6'
             >
               {company.name}
             </Link>
-            <Typography variant="body2">
-              {company.shortDescription}
-            </Typography>
-            <Stack
-              alignItems="center"
-              direction="row"
-              flexWrap="wrap"
-              spacing={3}
-              sx={{ mt: 1 }}
-            >
-              <Stack
-                alignItems="center"
-                spacing={1}
-                direction="row"
-              >
-                <SvgIcon color="action">
+            <Typography variant='body2'>{company.shortDescription}</Typography>
+            <Stack alignItems='center'
+direction='row'
+flexWrap='wrap'
+spacing={3}
+sx={{ mt: 1 }}>
+              <Stack alignItems='center'
+spacing={1}
+direction='row'>
+                <SvgIcon color='action'>
                   <Users01Icon />
                 </SvgIcon>
-                <Typography
-                  color="text.secondary"
-                  noWrap
-                  variant="overline"
-                >
+                <Typography color='text.secondary'
+noWrap
+variant='overline'>
                   {company.employees}
                 </Typography>
               </Stack>
-              <Stack
-                alignItems="center"
-                spacing={1}
-                direction="row"
-              >
-                <SvgIcon color="action">
+              <Stack alignItems='center'
+spacing={1}
+direction='row'>
+                <SvgIcon color='action'>
                   <Star01Icon />
                 </SvgIcon>
-                <Typography
-                  color="text.secondary"
-                  noWrap
-                  variant="overline"
-                >
+                <Typography color='text.secondary'
+noWrap
+variant='overline'>
                   {company.averageRating}
                   /5
                 </Typography>
               </Stack>
               {company.isVerified && (
-                <Stack
-                  alignItems="center"
-                  direction="row"
-                  spacing={0.5}
-                >
+                <Stack alignItems='center'
+direction='row'
+spacing={0.5}>
                   <SvgIcon
                     sx={{
                       color: 'background.paper',
                       '& path': {
                         fill: (theme) => theme.palette.success.main,
-                        fillOpacity: 1
-                      }
+                        fillOpacity: 1,
+                      },
                     }}
                   >
                     <CheckVerified01 />
                   </SvgIcon>
-                  <Typography
-                    color="success"
-                    noWrap
-                    variant="overline"
-                  >
+                  <Typography color='success'
+noWrap
+variant='overline'>
                     Verified
                   </Typography>
                 </Stack>
@@ -122,10 +106,10 @@ export const CompanyCard: FC<CompanyCardProps> = (props) => {
         </Box>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
 CompanyCard.propTypes = {
   // @ts-ignore
-  company: PropTypes.object.isRequired
-};
+  company: PropTypes.object.isRequired,
+}

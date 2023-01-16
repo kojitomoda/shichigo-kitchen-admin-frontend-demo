@@ -1,8 +1,8 @@
-import type { FC } from 'react';
-import NextLink from 'next/link';
-import PropTypes from 'prop-types';
-import { format } from 'date-fns';
-import type { SxProps } from '@mui/system';
+import type { FC } from 'react'
+import NextLink from 'next/link'
+import PropTypes from 'prop-types'
+import { format } from 'date-fns'
+import type { SxProps } from '@mui/system'
 import {
   Avatar,
   Box,
@@ -12,21 +12,21 @@ import {
   Chip,
   Link,
   Stack,
-  Typography
-} from '@mui/material';
-import { paths } from '../../../paths';
-import { getInitials } from '../../../utils/get-initials';
+  Typography,
+} from '@mui/material'
+import { paths } from '../../../paths'
+import { getInitials } from '../../../utils/get-initials'
 
 interface PostCardProps {
-  authorAvatar: string;
-  authorName: string;
-  category: string;
-  cover: string;
-  publishedAt: number;
-  readTime: string;
-  shortDescription: string;
-  sx?: SxProps;
-  title: string;
+  authorAvatar: string
+  authorName: string
+  category: string
+  cover: string
+  publishedAt: number
+  readTime: string
+  shortDescription: string
+  sx?: SxProps
+  title: string
 }
 
 export const PostCard: FC<PostCardProps> = (props) => {
@@ -40,9 +40,9 @@ export const PostCard: FC<PostCardProps> = (props) => {
     shortDescription,
     title,
     ...other
-  } = props;
+  } = props
 
-  const formattedPublishedAt = format(publishedAt, 'MMM d, yyyy');
+  const formattedPublishedAt = format(publishedAt, 'MMM d, yyyy')
 
   return (
     <Card {...other}>
@@ -57,65 +57,51 @@ export const PostCard: FC<PostCardProps> = (props) => {
           <Chip label={category} />
         </Box>
         <Link
-          color="text.primary"
+          color='text.primary'
           component={NextLink}
           href={paths.dashboard.blog.postDetails}
-          variant="h5"
+          variant='h5'
         >
           {title}
         </Link>
         <Typography
-          color="text.secondary"
+          color='text.secondary'
           sx={{
             height: 48,
             mt: 1,
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             WebkitBoxOrient: 'vertical',
-            WebkitLineClamp: 2
+            WebkitLineClamp: 2,
           }}
-          variant="body1"
+          variant='body1'
         >
           {shortDescription}
         </Typography>
-        <Stack
-          alignItems="center"
-          direction="row"
-          flexWrap="wrap"
-          spacing={2}
-          sx={{ mt: 2 }}
-        >
-          <Stack
-            alignItems="center"
-            direction="row"
-            spacing={2}
-          >
-            <Avatar src={authorAvatar}>
-              {getInitials(authorName)}
-            </Avatar>
-            <Typography variant="subtitle2">
-              By
-              {' '}
-              {authorName}
-              {' '}
-              •
-              {' '}
-              {formattedPublishedAt}
+        <Stack alignItems='center'
+direction='row'
+flexWrap='wrap'
+spacing={2}
+sx={{ mt: 2 }}>
+          <Stack alignItems='center'
+direction='row'
+spacing={2}>
+            <Avatar src={authorAvatar}>{getInitials(authorName)}</Avatar>
+            <Typography variant='subtitle2'>
+              By {authorName} • {formattedPublishedAt}
             </Typography>
           </Stack>
-          <Typography
-            align="right"
-            color="text.secondary"
-            sx={{ flexGrow: 1 }}
-            variant="body2"
-          >
+          <Typography align='right'
+color='text.secondary'
+sx={{ flexGrow: 1 }}
+variant='body2'>
             {readTime} read
           </Typography>
         </Stack>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
 PostCard.propTypes = {
   authorAvatar: PropTypes.string.isRequired,
@@ -125,5 +111,5 @@ PostCard.propTypes = {
   publishedAt: PropTypes.number.isRequired,
   readTime: PropTypes.string.isRequired,
   shortDescription: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
-};
+  title: PropTypes.string.isRequired,
+}

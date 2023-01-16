@@ -1,7 +1,7 @@
-import type { FC } from 'react';
-import PropTypes from 'prop-types';
-import ArrowLeftIcon from '@untitled-ui/icons-react/build/esm/ArrowLeft';
-import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight';
+import type { FC } from 'react'
+import PropTypes from 'prop-types'
+import ArrowLeftIcon from '@untitled-ui/icons-react/build/esm/ArrowLeft'
+import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight'
 import {
   Box,
   Button,
@@ -13,42 +13,34 @@ import {
   SvgIcon,
   Tab,
   Tabs,
-  Typography
-} from '@mui/material';
-import type { CourseChapter as CourseChapterType } from '../../../types/academy';
-import { CourseLesson } from './course-lesson';
+  Typography,
+} from '@mui/material'
+import type { CourseChapter as CourseChapterType } from '../../../types/academy'
+import { CourseLesson } from './course-lesson'
 
 interface CourseChapterProps {
-  chapter: CourseChapterType;
+  chapter: CourseChapterType
 }
 
 export const CourseChapter: FC<CourseChapterProps> = (props) => {
-  const { chapter } = props;
+  const { chapter } = props
 
   return (
     <Box
       sx={{
         position: 'relative',
-        pb: 6
+        pb: 6,
       }}
     >
       <Card>
-        <CardHeader
-          title={chapter.title}
-          subheader={chapter.description}
-        />
-        <Tabs
-          value="lesson"
-          sx={{ px: 3 }}
-        >
-          <Tab
-            label="Lesson"
-            value="lesson"
-          />
-          <Tab
-            label="Resources"
-            value="resources"
-          />
+        <CardHeader title={chapter.title}
+subheader={chapter.description} />
+        <Tabs value='lesson'
+sx={{ px: 3 }}>
+          <Tab label='Lesson'
+value='lesson' />
+          <Tab label='Resources'
+value='resources' />
         </Tabs>
         <Divider />
         <CardContent>
@@ -63,41 +55,37 @@ export const CourseChapter: FC<CourseChapterProps> = (props) => {
           left: 0,
           position: 'absolute',
           right: 0,
-          zIndex: 1
+          zIndex: 1,
         }}
       >
         <Card elevation={16}>
-          <Stack
-            alignItems="center"
-            direction="row"
-            spacing={3}
-            sx={{ p: 1 }}
-          >
+          <Stack alignItems='center'
+direction='row'
+spacing={3}
+sx={{ p: 1 }}>
             <Button
-              color="inherit"
-              size="small"
-              startIcon={(
+              color='inherit'
+              size='small'
+              startIcon={
                 <SvgIcon>
                   <ArrowLeftIcon />
                 </SvgIcon>
-              )}
+              }
             >
               Prev
             </Button>
-            <Typography
-              color="text.secondary"
-              variant="subtitle2"
-            >
+            <Typography color='text.secondary'
+variant='subtitle2'>
               1/3
             </Typography>
             <Button
-              color="inherit"
-              size="small"
-              startIcon={(
+              color='inherit'
+              size='small'
+              startIcon={
                 <SvgIcon>
                   <ArrowRightIcon />
                 </SvgIcon>
-              )}
+              }
             >
               Next
             </Button>
@@ -105,10 +93,10 @@ export const CourseChapter: FC<CourseChapterProps> = (props) => {
         </Card>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
 CourseChapter.propTypes = {
   // @ts-ignore
-  chapter: PropTypes.object.isRequired
-};
+  chapter: PropTypes.object.isRequired,
+}
