@@ -5,14 +5,14 @@
   "homepage": "https://devias.io",
   "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 3010",
     "build": "next build",
     "start": "next start",
     "export": "next export",
     "build-export": "next build && next export",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'"
+    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'",
   },
   "browserslist": {
     "production": [
@@ -43,7 +43,8 @@
     "@fullcalendar/timeline": "5.11.3",
     "@mui/icons-material": "5.11.0",
     "@mui/lab": "5.0.0-alpha.112",
-    "@mui/material": "5.11.0",
+    "@mui/material": "^5.11.0",
+    "@mui/styles": "^5.11.9",
     "@mui/system": "5.11.0",
     "@mui/x-date-pickers": "5.0.11",
     "@react-pdf/renderer": "3.0.1",
@@ -61,7 +62,8 @@
     "@untitled-ui/icons-react": "0.1.0",
     "apexcharts": "3.35.5",
     "aws-amplify": "5.0.9",
-    "date-fns": "2.29.3",
+    "axios": "^1.2.2",
+    "date-fns": "^2.29.3",
     "draft-js": "0.11.7",
     "firebase": "9.9.4",
     "formik": "2.2.9",

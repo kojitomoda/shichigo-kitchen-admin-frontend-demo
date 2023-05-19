@@ -2,11 +2,11 @@ import type { FC, ReactElement } from 'react'
 import PropTypes from 'prop-types'
 import SunIcon from '@untitled-ui/icons-react/build/esm/Sun'
 import Moon01Icon from '@untitled-ui/icons-react/build/esm/Moon01'
-import { Chip, PaletteMode, Stack, SvgIcon, Typography } from '@mui/material'
+import { Chip, Stack, SvgIcon, Typography } from '@mui/material'
 
 interface Option {
   label: string
-  value: PaletteMode
+  value: string
   icon: ReactElement
 }
 
@@ -32,8 +32,8 @@ const options: Option[] = [
 ]
 
 interface OptionsColorSchemeProps {
-  onChange?: (value: PaletteMode) => void
-  value?: PaletteMode
+  onChange?: (value: string) => void
+  value?: string
 }
 
 export const OptionsColorScheme: FC<OptionsColorSchemeProps> = (props) => {
@@ -41,14 +41,10 @@ export const OptionsColorScheme: FC<OptionsColorSchemeProps> = (props) => {
 
   return (
     <Stack spacing={1}>
-      <Typography color='text.secondary'
-variant='overline'>
+      <Typography color='text.secondary' variant='overline'>
         Color Scheme
       </Typography>
-      <Stack alignItems='center'
-direction='row'
-flexWrap='wrap'
-gap={2}>
+      <Stack alignItems='center' direction='row' flexWrap='wrap' gap={2}>
         {options.map((option) => (
           <Chip
             icon={option.icon}

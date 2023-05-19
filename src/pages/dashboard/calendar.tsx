@@ -6,15 +6,8 @@ import '@fullcalendar/timeline/main.css'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import type { DateSelectArg, EventClickArg, EventDropArg } from '@fullcalendar/react'
 import Calendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import type { EventResizeDoneArg } from '@fullcalendar/interaction'
-import interactionPlugin from '@fullcalendar/interaction'
-import listPlugin from '@fullcalendar/list'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import timelinePlugin from '@fullcalendar/timeline'
-import { Box, Card, Container, Stack, Theme, useMediaQuery } from '@mui/material'
+import { Box, Card, Container, Stack, useMediaQuery } from '@mui/material'
 import { usePageView } from '../../hooks/use-page-view'
 import { Layout as DashboardLayout } from '../../layouts/dashboard'
 import { CalendarEventDialog } from '../../sections/dashboard/calendar/calendar-event-dialog'
@@ -23,7 +16,6 @@ import { CalendarContainer } from '../../sections/dashboard/calendar/calendar-co
 import { useDispatch, useSelector } from '../../store'
 import { thunks } from '../../thunks/calendar'
 import type { CalendarEvent, CalendarView } from '../../types/calendar'
-import { CustomerListTable } from '@/sections/dashboard/customer/customer-list-table'
 import { CalenderListTable } from '@/sections/dashboard/calendar/calender-list-table'
 import { CalenderEventTrashDialog } from '@/sections/dashboard/calendar/calender-event-trash-dialog'
 
@@ -74,9 +66,8 @@ const Page: NextPage = () => {
   const dispatch = useDispatch()
   const calendarRef = useRef<Calendar | null>(null)
   const events = useEvents()
-  const mdUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
   const [date, setDate] = useState<Date>(new Date())
-  const [view, setView] = useState<CalendarView>(mdUp ? 'timeGridDay' : 'dayGridMonth')
+  const [view, setView] = useState<CalendarView>('timeGridDay')
   const [dialog, setDialog] = useState<DialogState>({
     isOpen: false,
     data: undefined,
@@ -94,19 +85,19 @@ const Page: NextPage = () => {
 
     if (calendarEl) {
       const calendarApi = calendarEl.getApi()
-      const newView = mdUp ? 'dayGridMonth' : 'timeGridDay'
+      const newView = 'dayGridMonth'
 
       calendarApi.changeView(newView)
       setView(newView)
     }
-  }, [calendarRef, mdUp])
+  }, [calendarRef])
 
   useEffect(
     () => {
       handleScreenResize()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [mdUp],
+    [],
   )
 
   const handleViewChange = useCallback((view: CalendarView): void => {
@@ -208,15 +199,6 @@ const Page: NextPage = () => {
           </Stack>
         </Container>
       </Box>
-      <CalendarEventDialog
-        event={currentEvent}
-        onAddComplete={handleCloseDialog}
-        onClose={handleCloseDialog}
-        onDeleteComplete={handleCloseDialog}
-        onEditComplete={handleCloseDialog}
-        open={dialog.isOpen}
-        range={dialog.data?.range}
-      />
       <CalenderEventTrashDialog
         event={currentEvent}
         onAddComplete={handleCloseDialogTrash}

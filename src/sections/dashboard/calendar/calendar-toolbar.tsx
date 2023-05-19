@@ -11,7 +11,6 @@ import {
   Stack,
   SvgIcon,
   TextField,
-  Theme,
   Typography,
   useMediaQuery,
 } from '@mui/material'
@@ -65,7 +64,6 @@ export const CalendarToolbar: FC<CalendarToolbarProps> = (props) => {
     view,
     ...other
   } = props
-  const mdUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
 
   const handleViewChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>): void => {
@@ -78,12 +76,6 @@ export const CalendarToolbar: FC<CalendarToolbarProps> = (props) => {
   const dateDay = format(date, 'y')
 
   // On mobile allow only timeGridDay and agenda views
-
-  const availableViewOptions = useMemo(() => {
-    return mdUp
-      ? viewOptions
-      : viewOptions.filter((option) => ['timeGridDay', 'listWeek'].includes(option.value))
-  }, [mdUp])
 
   return (
     <Stack
@@ -116,18 +108,6 @@ export const CalendarToolbar: FC<CalendarToolbarProps> = (props) => {
         >
           ゴミの種類を登録する
         </Button>
-        {/*<Button*/}
-        {/*  onClick={onAddClick}*/}
-        {/*  sx={{*/}
-        {/*    width: {*/}
-        {/*      xs: '100%',*/}
-        {/*      md: 'auto',*/}
-        {/*    },*/}
-        {/*  }}*/}
-        {/*  variant='contained'*/}
-        {/*>*/}
-        {/*  追加する*/}
-        {/*</Button>*/}
       </Stack>
     </Stack>
   )

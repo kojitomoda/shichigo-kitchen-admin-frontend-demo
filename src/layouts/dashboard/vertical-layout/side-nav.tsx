@@ -3,13 +3,12 @@ import { useMemo } from 'react'
 import { usePathname } from 'next/navigation'
 import NextLink from 'next/link'
 import PropTypes from 'prop-types'
-import File04Icon from '@untitled-ui/icons-react/build/esm/File04'
-import { Box, Button, Drawer, Stack, SvgIcon, Typography } from '@mui/material'
+import { Box, Drawer, Stack } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { Logo } from '../../../components/logo'
-import { Scrollbar } from '../../../components/scrollbar'
-import { paths } from '../../../paths'
-import type { NavColor } from '../../../types/settings'
+import { Logo } from '@/components/logo'
+import { Scrollbar } from '@/components/scrollbar'
+import { paths } from '@/paths'
+import type { NavColor } from '@/types/settings'
 import type { Section } from '../config'
 import { TenantSwitch } from '../tenant-switch'
 import { SideNavSection } from './side-nav-section'
@@ -200,7 +199,7 @@ export const SideNav: FC<SideNavProps> = (props) => {
             >
               <Logo />
             </Box>
-            <TenantSwitch sx={{ flexGrow: 1 }} />
+            <TenantSwitch />
           </Stack>
           <Stack
             component='nav'

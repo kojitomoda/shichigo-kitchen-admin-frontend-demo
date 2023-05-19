@@ -1,4 +1,4 @@
-import { Locale } from 'date-fns'
+import type { Locale } from 'date-fns'
 import locale from 'date-fns/locale/en-US'
 
 const formatDistanceLocale: Record<string, string> = {
