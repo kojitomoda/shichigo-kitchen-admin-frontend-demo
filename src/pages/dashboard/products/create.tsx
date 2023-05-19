@@ -26,28 +26,9 @@ const ProductCreate: NextPage = () => {
         <Container maxWidth='xl'>
           <Stack spacing={3}>
             <Stack spacing={1}>
-              <Typography variant='h4'>Create a new product</Typography>
+              <Typography variant='h4'>三田ガーデンヒルズ</Typography>
               <Breadcrumbs separator={<BreadcrumbsSeparator />}>
-                <Link
-                  color='text.primary'
-                  component={NextLink}
-                  href={paths.dashboard.index}
-                  variant='subtitle2'
-                >
-                  Dashboard
-                </Link>
-                <Link
-                  color='text.primary'
-                  component={NextLink}
-                  href={paths.dashboard.products.index}
-                  variant='subtitle2'
-                >
-                  Products
-                </Link>
-                <Typography color='text.secondary'
-variant='subtitle2'>
-                  Create
-                </Typography>
+                <Typography color='text.secondary' variant='subtitle2'></Typography>
               </Breadcrumbs>
             </Stack>
             <ProductCreateForm />

@@ -5,12 +5,10 @@ import type { Theme } from '@mui/material'
 import { Box, IconButton, Stack, SvgIcon, useMediaQuery } from '@mui/material'
 import { alpha } from '@mui/material/styles'
 import { AccountButton } from '../account-button'
-import { ContactsButton } from '../contacts-button'
-import { LanguageSwitch } from '../language-switch'
 import { NotificationsButton } from '../notifications-button'
 import { SearchButton } from '../search-button'
 
-const TOP_NAV_HEIGHT: number = 64
+const TOP_NAV_HEIGHT: number = 40
 const SIDE_NAV_WIDTH: number = 280
 
 interface TopNavProps {
@@ -43,15 +41,14 @@ export const TopNav: FC<TopNavProps> = (props) => {
         alignItems='center'
         direction='row'
         justifyContent='space-between'
-        spacing={2}
+        spacing={0}
         sx={{
           minHeight: TOP_NAV_HEIGHT,
           px: 2,
+          pt: 2,
         }}
       >
-        <Stack alignItems='center'
-direction='row'
-spacing={2}>
+        <Stack alignItems='center' direction='row' spacing={2}>
           {!lgUp && (
             <IconButton onClick={onMobileNavOpen}>
               <SvgIcon>
@@ -59,14 +56,8 @@ spacing={2}>
               </SvgIcon>
             </IconButton>
           )}
-          <SearchButton />
         </Stack>
-        <Stack alignItems='center'
-direction='row'
-spacing={2}>
-          <LanguageSwitch />
-          <NotificationsButton />
-          <ContactsButton />
+        <Stack alignItems='center' direction='row' spacing={2}>
           <AccountButton />
         </Stack>
       </Stack>

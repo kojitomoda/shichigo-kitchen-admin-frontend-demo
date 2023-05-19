@@ -44,7 +44,7 @@ export const contacts: Contact[] = [
     avatar: '/assets/avatars/avatar-miron-vitold.png',
     isActive: false,
     lastActivity: subHours(now, 1).getTime(),
-    name: 'Miron Vitold',
+    name: '1207',
   },
   {
     id: '5e887a1fbefd7938eea9c981',
@@ -79,7 +79,7 @@ export const contacts: Contact[] = [
     avatar: '/assets/avatars/avatar-nasimiyu-danai.png',
     isActive: true,
     lastActivity: now.getTime(),
-    name: 'Nasimiyu Danai',
+    name: '1001',
   },
 ]
 
@@ -146,7 +146,7 @@ export const threads: Thread[] = [
       {
         id: '5e867fc180837d901bd9bca1',
         attachments: [],
-        body: 'Hey, would you like to collaborate?',
+        body: 'お尋ねしたいことがあります',
         contentType: 'text',
         createdAt: subDays(subMinutes(now, 6), 3).getTime(),
         authorId: '5e8680e60cba5019c5ca6fda',
@@ -154,7 +154,7 @@ export const threads: Thread[] = [
       {
         id: '5e8d6fb695df7971237fc173',
         attachments: [],
-        body: 'Hi, Merrile!',
+        body: 'なんでしょうか？',
         contentType: 'text',
         createdAt: subDays(subMinutes(now, 5), 3).getTime(),
         authorId: '5e86809283e28b96d2d38537',
@@ -162,18 +162,14 @@ export const threads: Thread[] = [
       {
         id: '58825a290eb4d4271a54f188',
         attachments: [],
-        body: 'Hello everyone 😀',
+        body: 'ペットを飼えますか？',
         contentType: 'text',
         createdAt: subDays(subMinutes(now, 2), 1).getTime(),
         authorId: '5e8891ab188cd2855e6029b7',
       },
     ],
-    participantIds: [
-      '5e86809283e28b96d2d38537',
-      '5e8680e60cba5019c5ca6fda',
-      '5e8891ab188cd2855e6029b7',
-    ],
+    participantIds: ['5e86809283e28b96d2d38537', '5e8680e60cba5019c5ca6fda'],
     type: 'GROUP',
-    unreadCount: 0,
+    unreadCount: 5,
   },
 ]

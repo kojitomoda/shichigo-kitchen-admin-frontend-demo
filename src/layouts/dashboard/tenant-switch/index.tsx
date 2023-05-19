@@ -6,7 +6,7 @@ import { SxProps } from '@mui/system'
 import { Box, IconButton, Stack, SvgIcon, Typography } from '@mui/material'
 import { TenantPopover } from './tenant-popover'
 
-const tenants: string[] = ['Devias', 'Acme Corp']
+const tenants: string[] = ['パークホームズ柏たなか', '幕張ベイパーク', 'パークホームズ昭島中神', 'ザ・ガーデンズ稲毛海岸', 'パークタワー西新宿', '三田ガーデンヒルズ', 'パークシティ高田馬場']
 
 interface TenantSwitchProps {
   sx?: SxProps
@@ -37,11 +37,11 @@ spacing={2}
         <Box sx={{ flexGrow: 1 }}>
           <Typography color='inherit'
 variant='h6'>
-            Devias
+            三井不動産
           </Typography>
           <Typography color='neutral.400'
 variant='body2'>
-            Production
+            三田ガーデンヒルズ
           </Typography>
         </Box>
         <IconButton onClick={handlePopoverOpen}

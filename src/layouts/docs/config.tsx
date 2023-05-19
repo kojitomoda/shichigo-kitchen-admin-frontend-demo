@@ -111,7 +111,7 @@ export const sections: Section[] = [
     ],
   },
   {
-    subheader: 'Analytics',
+    subheader: 'hohoge',
     items: [
       {
         title: 'Introduction',

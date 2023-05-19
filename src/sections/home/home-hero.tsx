@@ -21,48 +21,14 @@ export const HomeHero: FC = () => {
     >
       <Container maxWidth='lg'>
         <Box maxWidth='sm'>
-          <Typography variant='h1'
-sx={{ mb: 2 }}>
-            Let us worry about the&nbsp;
-            <Typography component='span'
-color='primary.main'
-variant='inherit'>
-              User Experience
-            </Typography>
-            , you focus on Developing.
-          </Typography>
-          <Typography
-            color='text.secondary'
-            sx={{
-              fontSize: 20,
-              fontWeight: 500,
-            }}
-          >
-            A professional kit that comes with ready-to-use MUI components developed with one common
-            goal in mind, help you build faster & beautiful applications.
-          </Typography>
-          <Stack alignItems='center'
-direction='row'
-flexWrap='wrap'
-spacing={1}
-sx={{ my: 3 }}>
-            <Rating readOnly
-value={4.7}
-precision={0.1}
-max={5} />
-            <Typography color='text.primary'
-variant='caption'
-sx={{ fontWeight: 700 }}>
-              4.7/5
-            </Typography>
-            <Typography color='text.secondary'
-variant='caption'>
-              based on (70+ reviews)
-            </Typography>
-          </Stack>
-          <Stack alignItems='center'
-direction='row'
-spacing={2}>
+          <Stack
+            alignItems='center'
+            direction='row'
+            flexWrap='wrap'
+            spacing={1}
+            sx={{ my: 3 }}
+          ></Stack>
+          <Stack alignItems='center' direction='row' spacing={2}>
             <Button
               component={NextLink}
               href={paths.dashboard.index}
@@ -92,18 +58,6 @@ spacing={2}>
             >
               Live Demo
             </Button>
-            <Button
-              color='inherit'
-              component={NextLink}
-              href={paths.components.index}
-              startIcon={
-                <SvgIcon fontSize='small'>
-                  <LayoutBottomIcon />
-                </SvgIcon>
-              }
-            >
-              Components
-            </Button>
           </Stack>
         </Box>
         <Box
@@ -128,15 +82,7 @@ spacing={2}>
                 width: '100%',
               },
             }}
-          >
-            <img
-              src={
-                theme.palette.mode === 'dark'
-                  ? '/assets/home-thumbnail-dark.png'
-                  : '/assets/home-thumbnail-light.png'
-              }
-            />
-          </Box>
+          ></Box>
           <Box
             sx={{
               maxHeight: '100%',
@@ -150,9 +96,7 @@ spacing={2}>
                 width: 560,
               },
             }}
-          >
-            <HomeCodeSamples />
-          </Box>
+          ></Box>
         </Box>
       </Container>
     </Box>

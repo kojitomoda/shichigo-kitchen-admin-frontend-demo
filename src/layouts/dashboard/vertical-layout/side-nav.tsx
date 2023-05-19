@@ -183,10 +183,7 @@ export const SideNav: FC<SideNavProps> = (props) => {
         }}
       >
         <Stack sx={{ height: '100%' }}>
-          <Stack alignItems='center'
-direction='row'
-spacing={2}
-sx={{ p: 3 }}>
+          <Stack alignItems='center' direction='row' spacing={2} sx={{ p: 3 }}>
             <Box
               component={NextLink}
               href={paths.index}
@@ -222,27 +219,6 @@ sx={{ p: 3 }}>
               />
             ))}
           </Stack>
-          <Box sx={{ p: 3 }}>
-            <Typography variant='subtitle1'>Need help?</Typography>
-            <Typography color='neutral.400'
-sx={{ mb: 2 }}
-variant='body2'>
-              Please check our docs.
-            </Typography>
-            <Button
-              component={NextLink}
-              fullWidth
-              href={paths.docs.welcome}
-              startIcon={
-                <SvgIcon>
-                  <File04Icon />
-                </SvgIcon>
-              }
-              variant='contained'
-            >
-              Documentation
-            </Button>
-          </Box>
         </Stack>
       </Scrollbar>
     </Drawer>

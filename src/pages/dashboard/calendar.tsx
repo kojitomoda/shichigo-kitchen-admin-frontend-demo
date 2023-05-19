@@ -23,6 +23,9 @@ import { CalendarContainer } from '../../sections/dashboard/calendar/calendar-co
 import { useDispatch, useSelector } from '../../store'
 import { thunks } from '../../thunks/calendar'
 import type { CalendarEvent, CalendarView } from '../../types/calendar'
+import { CustomerListTable } from '@/sections/dashboard/customer/customer-list-table'
+import { CalenderListTable } from '@/sections/dashboard/calendar/calender-list-table'
+import { CalenderEventTrashDialog } from '@/sections/dashboard/calendar/calender-event-trash-dialog'
 
 interface DialogState {
   isOpen: boolean
@@ -75,6 +78,10 @@ const Page: NextPage = () => {
   const [date, setDate] = useState<Date>(new Date())
   const [view, setView] = useState<CalendarView>(mdUp ? 'timeGridDay' : 'dayGridMonth')
   const [dialog, setDialog] = useState<DialogState>({
+    isOpen: false,
+    data: undefined,
+  })
+  const [dialogTrash, setDialogTrash] = useState<DialogState>({
     isOpen: false,
     data: undefined,
   })
@@ -151,82 +158,20 @@ const Page: NextPage = () => {
       isOpen: true,
     })
   }, [])
-
-  const handleRangeSelect = useCallback((arg: DateSelectArg): void => {
-    const calendarEl = calendarRef.current
-
-    if (calendarEl) {
-      const calendarApi = calendarEl.getApi()
-
-      calendarApi.unselect()
-    }
-
-    setDialog({
+  const onAddClickTrashCategory = useCallback((): void => {
+    setDialogTrash({
       isOpen: true,
-      data: {
-        range: {
-          start: arg.start.getTime(),
-          end: arg.end.getTime(),
-        },
-      },
     })
   }, [])
-
-  const handleEventSelect = useCallback((arg: EventClickArg): void => {
-    setDialog({
-      isOpen: true,
-      data: {
-        eventId: arg.event.id,
-      },
-    })
-  }, [])
-
-  const handleEventResize = useCallback(
-    async (arg: EventResizeDoneArg): Promise<void> => {
-      const { event } = arg
-
-      try {
-        await dispatch(
-          thunks.updateEvent({
-            eventId: event.id,
-            update: {
-              allDay: event.allDay,
-              start: event.start?.getTime(),
-              end: event.end?.getTime(),
-            },
-          }),
-        )
-      } catch (err) {
-        console.error(err)
-      }
-    },
-    [dispatch],
-  )
-
-  const handleEventDrop = useCallback(
-    async (arg: EventDropArg): Promise<void> => {
-      const { event } = arg
-
-      try {
-        await dispatch(
-          thunks.updateEvent({
-            eventId: event.id,
-            update: {
-              allDay: event.allDay,
-              start: event.start?.getTime(),
-              end: event.end?.getTime(),
-            },
-          }),
-        )
-      } catch (err) {
-        console.error(err)
-      }
-    },
-    [dispatch],
-  )
 
   const handleCloseDialog = useCallback((): void => {
     setDialog({
+      isOpen: false,
+    })
+  }, [])
+
+  const handleCloseDialogTrash = useCallback((): void => {
+    setDialogTrash({
       isOpen: false,
     })
   }, [])
@@ -248,6 +193,7 @@ const Page: NextPage = () => {
             <CalendarToolbar
               date={date}
               onAddClick={handleAddClick}
+              onAddClickTrashCategory={onAddClickTrashCategory}
               onDateNext={handleDateNext}
               onDatePrev={handleDatePrev}
               onDateToday={handleDateToday}
@@ -256,34 +202,7 @@ const Page: NextPage = () => {
             />
             <Card>
               <CalendarContainer>
-                <Calendar
-                  allDayMaintainDuration
-                  dayMaxEventRows={3}
-                  droppable
-                  editable
-                  eventClick={handleEventSelect}
-                  eventDisplay='block'
-                  eventDrop={handleEventDrop}
-                  eventResizableFromStart
-                  eventResize={handleEventResize}
-                  events={events}
-                  headerToolbar={false}
-                  height={800}
-                  initialDate={date}
-                  initialView={view}
-                  plugins={[
-                    dayGridPlugin,
-                    interactionPlugin,
-                    listPlugin,
-                    timeGridPlugin,
-                    timelinePlugin,
-                  ]}
-                  ref={calendarRef}
-                  rerenderDelay={10}
-                  select={handleRangeSelect}
-                  selectable
-                  weekends
-                />
+                <CalenderListTable />
               </CalendarContainer>
             </Card>
           </Stack>
@@ -297,6 +216,15 @@ const Page: NextPage = () => {
         onEditComplete={handleCloseDialog}
         open={dialog.isOpen}
         range={dialog.data?.range}
+      />
+      <CalenderEventTrashDialog
+        event={currentEvent}
+        onAddComplete={handleCloseDialogTrash}
+        onClose={handleCloseDialogTrash}
+        onDeleteComplete={handleCloseDialogTrash}
+        onEditComplete={handleCloseDialogTrash}
+        open={dialogTrash.isOpen}
+        range={dialogTrash.data?.range}
       />
     </>
   )

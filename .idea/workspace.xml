@@ -4,7 +4,75 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a698aaa2-0433-486a-b770-d4b0038b1ec5" name="変更" comment="" />
+    <list default="true" id="a698aaa2-0433-486a-b770-d4b0038b1ec5" name="変更" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/dashboard/calender-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/dashboard/orders/register.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sections/dashboard/calendar/calender-event-trash-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sections/dashboard/calendar/calender-list-table.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sections/dashboard/customer/cutomer-detail-list.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sections/dashboard/home/home-list-table.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sections/dashboard/order/order-edit-form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sections/dashboard/order/order-list-table-2.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sections/dashboard/order/order-register-table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/chat/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/chat/data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/customers/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/customers/data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/orders/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/orders/data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/file-dropzone.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/file-dropzone.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/icons/untitled-ui/duocolor/receipt-check.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/untitled-ui/duocolor/receipt-check.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/auth/classic-layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/auth/classic-layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/dashboard/config.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/dashboard/config.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/dashboard/horizontal-layout/top-nav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/dashboard/horizontal-layout/top-nav.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/dashboard/tenant-switch/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/dashboard/tenant-switch/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/dashboard/tenant-switch/tenant-popover.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/dashboard/tenant-switch/tenant-popover.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/dashboard/vertical-layout/side-nav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/dashboard/vertical-layout/side-nav.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/dashboard/vertical-layout/top-nav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/dashboard/vertical-layout/top-nav.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/docs/config.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/docs/config.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/docs/desktop-side-nav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/docs/desktop-side-nav.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/marketing/footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/marketing/footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/marketing/side-nav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/marketing/side-nav.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/marketing/top-nav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/marketing/top-nav.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/locales/tokens.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/locales/tokens.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/locales/translations/en.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/locales/translations/en.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth/jwt/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/auth/jwt/login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/blog/[postId].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/blog/[postId].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/blog/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/blog/create.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/blog/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/blog/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/calendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/calendar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/chat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/chat.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/customers/[customerId]/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/customers/[customerId]/edit.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/customers/[customerId]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/customers/[customerId]/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/customers/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/customers/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/orders/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/orders/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/products/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/products/create.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/products/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/products/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/paths.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/paths.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/blog/post-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/blog/post-card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/calendar/calendar-event-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/calendar/calendar-event-dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/calendar/calendar-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/calendar/calendar-toolbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/chat/chat-message-add.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/chat/chat-message-add.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/chat/chat-message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/chat/chat-message.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/chat/chat-sidebar-search.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/chat/chat-sidebar-search.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/chat/chat-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/chat/chat-sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/chat/chat-thread-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/chat/chat-thread-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/chat/chat-thread-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/chat/chat-thread-toolbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/chat/chat-thread.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/chat/chat-thread.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/customer/customer-basic-details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/customer/customer-basic-details.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/customer/customer-data-management.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/customer/customer-data-management.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/customer/customer-edit-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/customer/customer-edit-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/customer/customer-list-search.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/customer/customer-list-search.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/customer/customer-list-table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/customer/customer-list-table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/order/order-drawer/order-details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/order/order-drawer/order-details.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/order/order-list-search.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/order/order-list-search.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/order/order-list-table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/order/order-list-table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/dashboard/product/product-create-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/dashboard/product/product-create-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/home/home-cta.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/home/home-cta.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sections/home/home-hero.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/sections/home/home-hero.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/customer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/customer.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +80,13 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
@@ -36,24 +111,31 @@
     &quot;TF_FMT&quot;: &quot;false&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;initial&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
     &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/yuki/Projects/champal-shop-front&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/tomodakouji/Documents/champal-shop-front/src/sections/dashboard/order&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;/Users/yuki/Projects/champal-shop-front/node_modules/eslint&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;/Users/tomodakouji/Documents/champal-shop-front/node_modules/eslint&quot;,
     &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/yuki/Projects/champal-shop-front/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.eslint&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/tomodakouji/Documents/champal-shop-front/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/yuki/Projects/champal-shop-front/node_modules/typescript/lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/tomodakouji/Documents/champal-shop-front/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/sections/dashboard/order" />
+      <recent name="$PROJECT_DIR$/src/pages/dashboard/orders" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="DjangoTestsConfigurationType">
       <module name="champal-shop-front" />
@@ -91,19 +173,6 @@
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
       <method v="2" />
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="champal-shop-front" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="champal-shop-front" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
       <module name="champal-shop-front" />
@@ -165,16 +234,6 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <method v="2" />
     </configuration>
-    <configuration name="lint:fix" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="lint:fix" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Autodetect">
       <module name="champal-shop-front" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -209,6 +268,16 @@
       <option name="USE_PATTERN" value="false" />
       <method v="2" />
     </configuration>
+    <configuration name="lint:fix" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="lint:fix" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="npm.lint:fix" />
@@ -227,6 +296,13 @@
       <workItem from="1673806877266" duration="18651000" />
       <workItem from="1673892413862" duration="68000" />
       <workItem from="1673892533559" duration="18000" />
+      <workItem from="1683882926636" duration="2996000" />
+      <workItem from="1684034634294" duration="599000" />
+      <workItem from="1684119564869" duration="26732000" />
+      <workItem from="1684245610611" duration="9854000" />
+      <workItem from="1684388392135" duration="9752000" />
+      <workItem from="1684422856977" duration="66000" />
+      <workItem from="1684463442214" duration="9004000" />
     </task>
     <task id="LOCAL-00001" summary="linterの設定">
       <created>1673805677660</created>
@@ -247,6 +323,17 @@
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/sections/dashboard/chat/chat-thread-toolbar.tsx</url>
+          <line>105</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

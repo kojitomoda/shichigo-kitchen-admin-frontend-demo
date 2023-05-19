@@ -53,9 +53,9 @@ export const PostCard: FC<PostCardProps> = (props) => {
         sx={{ height: 280 }}
       />
       <CardContent>
-        <Box sx={{ mb: 2 }}>
-          <Chip label={category} />
-        </Box>
+        {/*<Box sx={{ mb: 2 }}>*/}
+        {/*  <Chip label={category} />*/}
+        {/*</Box>*/}
         <Link
           color='text.primary'
           component={NextLink}
@@ -64,38 +64,27 @@ export const PostCard: FC<PostCardProps> = (props) => {
         >
           {title}
         </Link>
-        <Typography
-          color='text.secondary'
-          sx={{
-            height: 48,
-            mt: 1,
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            WebkitBoxOrient: 'vertical',
-            WebkitLineClamp: 2,
-          }}
-          variant='body1'
-        >
-          {shortDescription}
-        </Typography>
-        <Stack alignItems='center'
-direction='row'
-flexWrap='wrap'
-spacing={2}
-sx={{ mt: 2 }}>
-          <Stack alignItems='center'
-direction='row'
-spacing={2}>
+        {/*<Typography*/}
+        {/*  color='text.secondary'*/}
+        {/*  sx={{*/}
+        {/*    height: 48,*/}
+        {/*    mt: 1,*/}
+        {/*    overflow: 'hidden',*/}
+        {/*    textOverflow: 'ellipsis',*/}
+        {/*    WebkitBoxOrient: 'vertical',*/}
+        {/*    WebkitLineClamp: 2,*/}
+        {/*  }}*/}
+        {/*  variant='body1'*/}
+        {/*>*/}
+        {/*  {shortDescription}*/}
+        {/*</Typography>*/}
+        <Stack alignItems='center' direction='row' flexWrap='wrap' spacing={2} sx={{ mt: 2 }}>
+          <Stack alignItems='center' direction='row' spacing={2}>
             <Avatar src={authorAvatar}>{getInitials(authorName)}</Avatar>
-            <Typography variant='subtitle2'>
-              By {authorName} • {formattedPublishedAt}
-            </Typography>
+            <Typography variant='subtitle2'>{authorName}</Typography>
           </Stack>
-          <Typography align='right'
-color='text.secondary'
-sx={{ flexGrow: 1 }}
-variant='body2'>
-            {readTime} read
+          <Typography align='right' color='text.secondary' sx={{ flexGrow: 1 }} variant='body2'>
+            2023/05/11
           </Typography>
         </Stack>
       </CardContent>

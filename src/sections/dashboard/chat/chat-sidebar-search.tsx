@@ -54,14 +54,12 @@ export const ChatSidebarSearch = forwardRef<HTMLDivElement, ChatSidebarSearchPro
 
     return (
       <ClickAwayListener onClickAway={onClickAway}>
-        <Box ref={ref}
-sx={{ p: 2 }}
-{...other}>
+        <Box ref={ref} sx={{ p: 2 }} {...other}>
           <OutlinedInput
             fullWidth
             onChange={onChange}
             onFocus={onFocus}
-            placeholder='Search contacts'
+            placeholder='部屋番号を入力ください'
             startAdornment={
               <InputAdornment position='start'>
                 <SvgIcon>
@@ -73,30 +71,19 @@ sx={{ p: 2 }}
           />
           {showTip && (
             <Box sx={{ py: 2 }}>
-              <Tip message='Enter a contact name' />
+              <Tip message='部屋番号を入力ください' />
             </Box>
           )}
           {showResults && (
             <>
               {hasResults ? (
                 <Box sx={{ py: 2 }}>
-                  <Typography color='text.secondary'
-variant='subtitle2'>
+                  <Typography color='text.secondary' variant='subtitle2'>
                     Contacts
                   </Typography>
                   <List>
                     {results.map((contact) => (
-                      <ListItemButton key={contact.id}
-onClick={(): void => handleSelect(contact)}>
-                        <ListItemAvatar>
-                          <Avatar
-                            src={contact.avatar}
-                            sx={{
-                              height: 32,
-                              width: 32,
-                            }}
-                          />
-                        </ListItemAvatar>
+                      <ListItemButton key={contact.id} onClick={(): void => handleSelect(contact)}>
                         <ListItemText
                           primary={contact.name}
                           primaryTypographyProps={{
@@ -104,14 +91,33 @@ onClick={(): void => handleSelect(contact)}>
                             variant: 'subtitle2',
                           }}
                         />
+                        {contact.name === '1207' && (
+                          <ListItemText
+                            style={{ color: 'blue' }}
+                            primary={'入居中'}
+                            primaryTypographyProps={{
+                              noWrap: true,
+                              variant: 'subtitle2',
+                            }}
+                          />
+                        )}
+                        {contact.name === '1001' && (
+                          <ListItemText
+                            style={{ color: 'red' }}
+                            primary={'退去済'}
+                            primaryTypographyProps={{
+                              noWrap: true,
+                              variant: 'subtitle2',
+                            }}
+                          />
+                        )}
                       </ListItemButton>
                     ))}
                   </List>
                 </Box>
               ) : (
                 <Box sx={{ py: 2 }}>
-                  <Typography color='text.secondary'
-variant='body2'>
+                  <Typography color='text.secondary' variant='body2'>
                     We couldn&apos;t find any matches for &quot;{query}&quot;. Try checking for
                     typos or using complete words.
                   </Typography>

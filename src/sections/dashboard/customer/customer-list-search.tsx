@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import SearchMdIcon from '@untitled-ui/icons-react/build/esm/SearchMd'
 import {
   Box,
+  Button,
   Divider,
   InputAdornment,
   OutlinedInput,
@@ -31,20 +32,20 @@ interface TabOption {
 
 const tabs: TabOption[] = [
   {
-    label: 'All',
+    label: 'すべて',
     value: 'all',
   },
   {
-    label: 'Accepts Marketing',
+    label: '入居中',
     value: 'hasAcceptedMarketing',
   },
   {
-    label: 'Prospect',
-    value: 'isProspect',
+    label: '入居予定',
+    value: 'isReturning',
   },
   {
-    label: 'Returning',
-    value: 'isReturning',
+    label: '空室',
+    value: 'isProspect',
   },
 ]
 
@@ -147,25 +148,17 @@ export const CustomerListSearch: FC<CustomerListSearchProps> = (props) => {
         variant='scrollable'
       >
         {tabs.map((tab) => (
-          <Tab key={tab.value}
-label={tab.label}
-value={tab.value} />
+          <Tab key={tab.value} label={tab.label} value={tab.value} />
         ))}
       </Tabs>
       <Divider />
-      <Stack alignItems='center'
-direction='row'
-flexWrap='wrap'
-spacing={3}
-sx={{ p: 3 }}>
-        <Box component='form'
-onSubmit={handleQueryChange}
-sx={{ flexGrow: 1 }}>
+      <Stack alignItems='center' direction='row' flexWrap='wrap' spacing={3} sx={{ p: 3 }}>
+        <Box component='form' onSubmit={handleQueryChange} sx={{ flexGrow: 1 }}>
           <OutlinedInput
             defaultValue=''
             fullWidth
             inputProps={{ ref: queryRef }}
-            placeholder='Search customers'
+            placeholder='部屋番号を入力する'
             startAdornment={
               <InputAdornment position='start'>
                 <SvgIcon>
@@ -175,21 +168,16 @@ sx={{ flexGrow: 1 }}>
             }
           />
         </Box>
-        <TextField
-          label='Sort By'
-          name='sort'
-          onChange={handleSortChange}
-          select
-          SelectProps={{ native: true }}
-          value={`${sortBy}|${sortDir}`}
+        <Button
+          startIcon={
+            <SvgIcon>
+              <SearchMdIcon />
+            </SvgIcon>
+          }
+          variant='contained'
         >
-          {sortOptions.map((option) => (
-            <option key={option.value}
-value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextField>
+          検索
+        </Button>
       </Stack>
     </>
   )

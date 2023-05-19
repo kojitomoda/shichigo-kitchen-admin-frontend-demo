@@ -141,37 +141,11 @@ const ProductList: NextPage = () => {
       >
         <Container maxWidth='xl'>
           <Stack spacing={4}>
-            <Stack direction='row'
-justifyContent='space-between'
-spacing={4}>
+            <Stack direction='row' justifyContent='space-between' spacing={4}>
               <Stack spacing={1}>
-                <Typography variant='h4'>Products</Typography>
-                <Breadcrumbs separator={<BreadcrumbsSeparator />}>
-                  <Link
-                    color='text.primary'
-                    component={NextLink}
-                    href={paths.dashboard.index}
-                    variant='subtitle2'
-                  >
-                    Dashboard
-                  </Link>
-                  <Link
-                    color='text.primary'
-                    component={NextLink}
-                    href={paths.dashboard.products.index}
-                    variant='subtitle2'
-                  >
-                    Products
-                  </Link>
-                  <Typography color='text.secondary'
-variant='subtitle2'>
-                    List
-                  </Typography>
-                </Breadcrumbs>
+                <Typography variant='h4'>建物一覧</Typography>
               </Stack>
-              <Stack alignItems='center'
-direction='row'
-spacing={3}>
+              <Stack alignItems='center' direction='row' spacing={3}>
                 <Button
                   component={NextLink}
                   href={paths.dashboard.products.create}

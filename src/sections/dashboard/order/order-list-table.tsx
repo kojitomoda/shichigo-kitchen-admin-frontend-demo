@@ -77,19 +77,16 @@ export const OrderListTable: FC<OrderListTableProps> = (props) => {
                       p: 1,
                     }}
                   >
-                    <Typography align='center'
-variant='subtitle2'>
+                    <Typography align='center' variant='subtitle2'>
                       {createdAtMonth}
                     </Typography>
-                    <Typography align='center'
-variant='h6'>
+                    <Typography align='center' variant='h6'>
                       {createdAtDay}
                     </Typography>
                   </Box>
                   <Box sx={{ ml: 2 }}>
                     <Typography variant='subtitle2'>{order.number}</Typography>
-                    <Typography color='text.secondary'
-variant='body2'>
+                    <Typography color='text.secondary' variant='body2'>
                       Total of {totalAmount}
                     </Typography>
                   </Box>

@@ -1,24 +1,21 @@
 import type { SVGProps } from 'react'
 
-const ReceiptCheck = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns='http://www.w3.org/2000/svg'
-width={24}
-height={24}
-fill='none'
-{...props}>
+const Room = (props: SVGProps<SVGSVGElement>) => (
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'>
     <path
-      fill='currentColor'
-      d='M4 7.8c0-1.6802 0-2.5202.327-3.162a3 3 0 0 1 1.311-1.311C6.2798 3 7.1198 3 8.8 3h6.4c1.6802 0 2.5202 0 3.162.327a2.9997 2.9997 0 0 1 1.311 1.311C20 5.2798 20 6.1198 20 7.8V21l-2.75-2-2.5 2L12 19l-2.75 2-2.5-2L4 21V7.8Z'
-      opacity={0.12}
+      fill='var(--ci-primary-color, currentColor)'
+      d='M440,424V88H352V13.005L88,58.522V424H16v32h86.9L352,490.358V120h56V456h88V424ZM320,453.642,120,426.056V85.478L320,51Z'
+      className='ci-primary'
     />
-    <path
-      stroke='currentColor'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      strokeWidth={2}
-      d='m9 10.5 2 2L15.5 8M20 21V7.8c0-1.6802 0-2.5202-.327-3.162a2.9997 2.9997 0 0 0-1.311-1.311C17.7202 3 16.8802 3 15.2 3H8.8c-1.6802 0-2.5202 0-3.162.327a3 3 0 0 0-1.311 1.311C4 5.2798 4 6.1198 4 7.8V21l2.75-2 2.5 2L12 19l2.75 2 2.5-2L20 21Z'
+    <rect
+      width='32'
+      height='64'
+      x='256'
+      y='232'
+      fill='var(--ci-primary-color, currentColor)'
+      className='ci-primary'
     />
   </svg>
 )
 
-export default ReceiptCheck
+export default Room

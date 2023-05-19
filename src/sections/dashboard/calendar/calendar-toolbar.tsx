@@ -45,6 +45,7 @@ interface CalendarToolbarProps {
   children?: ReactNode
   date: Date
   onAddClick?: () => void
+  onAddClickTrashCategory?: () => void
   onDateNext?: () => void
   onDatePrev?: () => void
   onDateToday?: () => void
@@ -53,8 +54,17 @@ interface CalendarToolbarProps {
 }
 
 export const CalendarToolbar: FC<CalendarToolbarProps> = (props) => {
-  const { date, onAddClick, onDateNext, onDatePrev, onDateToday, onViewChange, view, ...other } =
-    props
+  const {
+    date,
+    onAddClick,
+    onAddClickTrashCategory,
+    onDateNext,
+    onDatePrev,
+    onDateToday,
+    onViewChange,
+    view,
+    ...other
+  } = props
   const mdUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
 
   const handleViewChange = useCallback(
@@ -84,62 +94,18 @@ export const CalendarToolbar: FC<CalendarToolbarProps> = (props) => {
         xs: 'column',
         md: 'row',
       }}
-      spacing={3}
+      spacing={2}
       sx={{ px: 3 }}
       {...other}
     >
-      <Stack alignItems='center'
-direction='row'
-spacing={1}>
-        <Typography variant='h5'>{dateMonth}</Typography>
-        <Typography sx={{ fontWeight: 400 }}
-variant='h5'>
-          {dateDay}
-        </Typography>
+      <Stack alignItems='center' direction='row' spacing={1}>
+        <Typography variant='h4'>ゴミの日管理</Typography>
       </Stack>
-      <Stack alignItems='center'
-direction='row'
-spacing={1}>
-        <IconButton onClick={onDatePrev}>
-          <SvgIcon>
-            <ChevronLeftIcon />
-          </SvgIcon>
-        </IconButton>
-        <IconButton onClick={onDateNext}>
-          <SvgIcon>
-            <ChevronRightIcon />
-          </SvgIcon>
-        </IconButton>
-        <TextField
-          label='View'
-          name='view'
-          onChange={handleViewChange}
-          select
-          SelectProps={{ native: true }}
-          size='small'
-          sx={{
-            minWidth: 120,
-            order: {
-              xs: -1,
-              md: 0,
-            },
-          }}
-          value={view}
-        >
-          {availableViewOptions.map((option) => (
-            <option key={option.value}
-value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextField>
+      <Stack alignItems='center' direction='row' spacing={1}>
+        <IconButton onClick={onDatePrev}></IconButton>
+        <IconButton onClick={onDateNext}></IconButton>
         <Button
-          onClick={onAddClick}
-          startIcon={
-            <SvgIcon>
-              <PlusIcon />
-            </SvgIcon>
-          }
+          onClick={onAddClickTrashCategory}
           sx={{
             width: {
               xs: '100%',
@@ -148,8 +114,20 @@ value={option.value}>
           }}
           variant='contained'
         >
-          New Event
+          ゴミの種類を登録する
         </Button>
+        {/*<Button*/}
+        {/*  onClick={onAddClick}*/}
+        {/*  sx={{*/}
+        {/*    width: {*/}
+        {/*      xs: '100%',*/}
+        {/*      md: 'auto',*/}
+        {/*    },*/}
+        {/*  }}*/}
+        {/*  variant='contained'*/}
+        {/*>*/}
+        {/*  追加する*/}
+        {/*</Button>*/}
       </Stack>
     </Stack>
   )
@@ -159,6 +137,7 @@ CalendarToolbar.propTypes = {
   children: PropTypes.node,
   date: PropTypes.instanceOf(Date).isRequired,
   onAddClick: PropTypes.func,
+  onAddClickTrashCategory: PropTypes.func,
   onDateNext: PropTypes.func,
   onDatePrev: PropTypes.func,
   onDateToday: PropTypes.func,

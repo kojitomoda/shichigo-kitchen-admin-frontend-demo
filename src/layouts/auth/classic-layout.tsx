@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles'
 import { Logo } from '../../components/logo'
 import { paths } from '../../paths'
 
-const TOP_NAV_HEIGHT: number = 64
+const TOP_NAV_HEIGHT: number = 40
 
 const LayoutRoot = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
@@ -39,9 +39,7 @@ export const Layout: FC<LayoutProps> = (props) => {
         }}
       >
         <Container maxWidth='lg'>
-          <Stack direction='row'
-spacing={2}
-sx={{ height: TOP_NAV_HEIGHT }}>
+          <Stack direction='row' spacing={2} sx={{ height: TOP_NAV_HEIGHT }}>
             <Stack
               alignItems='center'
               component={NextLink}
@@ -73,7 +71,7 @@ sx={{ height: TOP_NAV_HEIGHT }}>
                   },
                 }}
               >
-                Devias Kit <span>PRO</span>
+                NOBISHIRO回覧板<span>クライアント管理画面</span>
               </Box>
             </Stack>
           </Stack>

@@ -219,7 +219,7 @@ export const ChatThread: FC<ChatThreadProps> = (props) => {
       }}
       {...other}
     >
-      <ChatThreadToolbar participants={participants} />
+      {/*<ChatThreadToolbar participants={participants} />*/}
       <Divider />
       <Box
         sx={{
@@ -227,8 +227,7 @@ export const ChatThread: FC<ChatThreadProps> = (props) => {
           overflow: 'hidden',
         }}
       >
-        <Scrollbar ref={messagesRef}
-sx={{ maxHeight: '100%' }}>
+        <Scrollbar ref={messagesRef} sx={{ maxHeight: '100%' }}>
           <ChatMessages
             messages={thread?.messages || []}
             participants={thread?.participants || []}

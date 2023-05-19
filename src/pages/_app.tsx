@@ -45,8 +45,7 @@ const App = (props: AppProps) => {
     <CacheProvider value={emotionCache}>
       <Head>
         <title>Devias Kit PRO</title>
-        <meta name='viewport'
-content='initial-scale=1, width=device-width' />
+        <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
       <ReduxProvider store={store}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -75,10 +74,8 @@ content='initial-scale=1, width=device-width' />
                       return (
                         <ThemeProvider theme={theme}>
                           <Head>
-                            <meta name='color-scheme'
-content={settings.paletteMode} />
-                            <meta name='theme-color'
-content={theme.palette.neutral[900]} />
+                            <meta name='color-scheme' content={settings.paletteMode} />
+                            <meta name='theme-color' content={theme.palette.neutral[900]} />
                           </Head>
                           <RTL direction={settings.direction}>
                             <CssBaseline />
@@ -87,24 +84,24 @@ content={theme.palette.neutral[900]} />
                             ) : (
                               <>
                                 {getLayout(<Component {...pageProps} />)}
-                                <SettingsButton onClick={settings.handleDrawerOpen} />
-                                <SettingsDrawer
-                                  canReset={settings.isCustom}
-                                  onClose={settings.handleDrawerClose}
-                                  onReset={settings.handleReset}
-                                  onUpdate={settings.handleUpdate}
-                                  open={settings.openDrawer}
-                                  values={{
-                                    colorPreset: settings.colorPreset,
-                                    contrast: settings.contrast,
-                                    direction: settings.direction,
-                                    paletteMode: settings.paletteMode,
-                                    responsiveFontSizes: settings.responsiveFontSizes,
-                                    stretch: settings.stretch,
-                                    layout: settings.layout,
-                                    navColor: settings.navColor,
-                                  }}
-                                />
+                                {/*<SettingsButton onClick={settings.handleDrawerOpen} />*/}
+                                {/*<SettingsDrawer*/}
+                                {/*  canReset={settings.isCustom}*/}
+                                {/*  onClose={settings.handleDrawerClose}*/}
+                                {/*  onReset={settings.handleReset}*/}
+                                {/*  onUpdate={settings.handleUpdate}*/}
+                                {/*  open={settings.openDrawer}*/}
+                                {/*  values={{*/}
+                                {/*    colorPreset: settings.colorPreset,*/}
+                                {/*    contrast: settings.contrast,*/}
+                                {/*    direction: settings.direction,*/}
+                                {/*    paletteMode: settings.paletteMode,*/}
+                                {/*    responsiveFontSizes: settings.responsiveFontSizes,*/}
+                                {/*    stretch: settings.stretch,*/}
+                                {/*    layout: settings.layout,*/}
+                                {/*    navColor: settings.navColor,*/}
+                                {/*  }}*/}
+                                {/*/>*/}
                               </>
                             )}
                             <Toaster />

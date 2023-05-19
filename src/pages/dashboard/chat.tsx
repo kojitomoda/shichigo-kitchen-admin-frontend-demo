@@ -14,6 +14,8 @@ import { ChatSidebar } from '../../sections/dashboard/chat/chat-sidebar'
 import { ChatThread } from '../../sections/dashboard/chat/chat-thread'
 import { useDispatch } from '../../store'
 import { thunks } from '../../thunks/chat'
+import { position } from 'unist-util-position'
+import { display, flexbox } from '@mui/system'
 
 /**
  * NOTE:
@@ -142,12 +144,15 @@ const Page: NextPage = () => {
             open={sidebar.isOpen}
           />
           <ChatContainer open={sidebar.isOpen}>
-            <Box sx={{ p: 2 }}>
+            <Box sx={{ p: 2, display: 'flex' }}>
               <IconButton onClick={sidebar.handleToggle}>
                 <SvgIcon>
                   <Menu01Icon />
                 </SvgIcon>
               </IconButton>
+              <div style={{ alignSelf: 'center', fontWeight: 'bold', marginLeft: '20px' }}>
+                1201
+              </div>
             </Box>
             <Divider />
             {view === 'thread' && <ChatThread threadKey={threadKey!} />}

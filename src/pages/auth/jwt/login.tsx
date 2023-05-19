@@ -85,31 +85,27 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Login | Devias Kit PRO</title>
+        <title>Login</title>
       </Head>
       <div>
         <Card elevation={16}>
           <CardHeader
-            subheader={
-              <Typography color='text.secondary'
-variant='body2'>
-                Don&apos;t have an account? &nbsp;
-                <Link
-                  component={NextLink}
-                  href={paths.auth.jwt.register}
-                  underline='hover'
-                  variant='subtitle2'
-                >
-                  Register
-                </Link>
-              </Typography>
-            }
+            // subheader={
+            //   <Typography color='text.secondary' variant='body2'>
+            //     パスワードを忘れましたか？
+            //     <Link
+            //       component={NextLink}
+            //       href={paths.auth.jwt.register}
+            //       underline='hover'
+            //       variant='subtitle2'
+            //     ></Link>
+            //   </Typography>
+            // }
             sx={{ pb: 0 }}
             title='Log in'
           />
           <CardContent>
-            <form noValidate
-onSubmit={formik.handleSubmit}>
+            <form noValidate onSubmit={formik.handleSubmit}>
               <Stack spacing={3}>
                 <TextField
                   autoFocus
@@ -136,8 +132,7 @@ onSubmit={formik.handleSubmit}>
                 />
               </Stack>
               {formik.errors.submit && (
-                <FormHelperText error
-sx={{ mt: 3 }}>
+                <FormHelperText error sx={{ mt: 3 }}>
                   {formik.errors.submit as string}
                 </FormHelperText>
               )}
@@ -154,15 +149,6 @@ sx={{ mt: 3 }}>
             </form>
           </CardContent>
         </Card>
-        <Stack spacing={3}
-sx={{ mt: 3 }}>
-          <Alert severity='error'>
-            <div>
-              You can use <b>demo@devias.io</b> and password <b>Password123!</b>
-            </div>
-          </Alert>
-          <AuthIssuer issuer={issuer} />
-        </Stack>
       </div>
     </>
   )

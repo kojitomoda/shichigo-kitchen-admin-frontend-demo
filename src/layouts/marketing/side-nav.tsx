@@ -32,11 +32,11 @@ const items: Item[] = [
         subheader: 'Dashboard',
         items: [
           {
-            title: 'Overview',
+            title: '技芸',
             path: paths.dashboard.index,
           },
           {
-            title: 'Customers',
+            title: '大家管理',
             path: paths.dashboard.customers.index,
           },
           {

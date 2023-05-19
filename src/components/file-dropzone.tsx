@@ -64,9 +64,7 @@ export const FileDropzone: FC<FileDropzoneProps> = (props) => {
         {...getRootProps()}
       >
         <input {...getInputProps()} />
-        <Stack alignItems='center'
-direction='row'
-spacing={2}>
+        <Stack alignItems='center' direction='row' spacing={2}>
           <Avatar
             sx={{
               height: 64,
@@ -86,11 +84,10 @@ spacing={2}>
               }}
               variant='h6'
             >
-              <span>Click to upload</span> or drag and drop
+              <span>Click to upload</span>
             </Typography>
             {caption && (
-              <Typography color='text.secondary'
-variant='body2'>
+              <Typography color='text.secondary' variant='body2'>
                 {caption}
               </Typography>
             )}
@@ -124,8 +121,7 @@ variant='body2'>
                     secondary={bytesToSize(file.size)}
                   />
                   <Tooltip title='Remove'>
-                    <IconButton edge='end'
-onClick={() => onRemove?.(file)}>
+                    <IconButton edge='end' onClick={() => onRemove?.(file)}>
                       <SvgIcon>
                         <XIcon />
                       </SvgIcon>
@@ -142,16 +138,10 @@ onClick={() => onRemove?.(file)}>
             spacing={2}
             sx={{ mt: 2 }}
           >
-            <Button color='inherit'
-onClick={onRemoveAll}
-size='small'
-type='button'>
+            <Button color='inherit' onClick={onRemoveAll} size='small' type='button'>
               Remove All
             </Button>
-            <Button onClick={onUpload}
-size='small'
-type='button'
-variant='contained'>
+            <Button onClick={onUpload} size='small' type='button' variant='contained'>
               Upload
             </Button>
           </Stack>

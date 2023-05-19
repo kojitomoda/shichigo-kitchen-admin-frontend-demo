@@ -60,6 +60,11 @@ export const paths = {
       postDetails: '/dashboard/blog/:postId',
       postCreate: '/dashboard/blog/create',
     },
+    minutes: {
+      index: '/dashboard/minutes',
+      postDetails: '/dashboard/minutes/:postId',
+      postCreate: '/dashboard/minutes/create',
+    },
     calendar: '/dashboard/calendar',
     chat: '/dashboard/chat',
     crypto: '/dashboard/crypto',
@@ -89,7 +94,7 @@ export const paths = {
     mail: '/dashboard/mail',
     orders: {
       index: '/dashboard/orders',
-      details: '/dashboard/orders/:orderId',
+      details: '/dashboard/orders/register',
     },
     products: {
       index: '/dashboard/products',

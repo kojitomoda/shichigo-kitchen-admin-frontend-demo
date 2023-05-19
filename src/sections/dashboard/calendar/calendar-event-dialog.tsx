@@ -190,60 +190,116 @@ export const CalendarEventDialog: FC<CalendarEventDialogProps> = (props) => {
   }, [dispatch, event, onDeleteComplete])
 
   return (
-    <Dialog fullWidth
-maxWidth='sm'
-onClose={onClose}
-open={open}>
+    <Dialog fullWidth maxWidth='sm' onClose={onClose} open={open}>
       <form onSubmit={formik.handleSubmit}>
         <Box sx={{ p: 3 }}>
-          <Typography align='center'
-gutterBottom
-variant='h5'>
-            {event ? 'Edit Event' : 'Add Event'}
+          <Typography align='center' gutterBottom variant='h5'>
+            {event ? 'Edit Event' : 'ゴミの日登録'}
           </Typography>
         </Box>
-        <Stack spacing={2}
-sx={{ p: 3 }}>
+        <Stack spacing={2} sx={{ p: 3 }}>
           <TextField
             error={!!(formik.touched.title && formik.errors.title)}
             fullWidth
             helperText={formik.touched.title && formik.errors.title}
-            label='Title'
+            label='ゴミの種類を選択してください'
             name='title'
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.title}
           />
-          <TextField
-            error={!!(formik.touched.description && formik.errors.description)}
-            fullWidth
-            helperText={formik.touched.description && formik.errors.description}
-            label='Description'
-            name='description'
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            value={formik.values.description}
-          />
-          <FormControlLabel
-            control={
-              <Switch checked={formik.values.allDay}
-name='allDay'
-onChange={formik.handleChange} />
-            }
-            label='All day'
-          />
+          <Box>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={formik.values.allDay}
+                  name='allDay'
+                  onChange={formik.handleChange}
+                />
+              }
+              label='月'
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={formik.values.allDay}
+                  name='allDay'
+                  onChange={formik.handleChange}
+                />
+              }
+              label='火'
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={formik.values.allDay}
+                  name='allDay'
+                  onChange={formik.handleChange}
+                />
+              }
+              label='水'
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={formik.values.allDay}
+                  name='allDay'
+                  onChange={formik.handleChange}
+                />
+              }
+              label='水'
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={formik.values.allDay}
+                  name='allDay'
+                  onChange={formik.handleChange}
+                />
+              }
+              label='木'
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={formik.values.allDay}
+                  name='allDay'
+                  onChange={formik.handleChange}
+                />
+              }
+              label='金'
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={formik.values.allDay}
+                  name='allDay'
+                  onChange={formik.handleChange}
+                />
+              }
+              label='土'
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={formik.values.allDay}
+                  name='allDay'
+                  onChange={formik.handleChange}
+                />
+              }
+              label='日'
+            />
+          </Box>
           <DateTimePicker
-            label='Start date'
+            label='指定日'
             onChange={handleStartDateChange}
-            renderInput={(inputProps) => <TextField fullWidth
-{...inputProps} />}
+            renderInput={(inputProps) => <TextField fullWidth {...inputProps} />}
             value={formik.values.start}
           />
           <DateTimePicker
-            label='End date'
+            label='指定日'
             onChange={handleEndDateChange}
-            renderInput={(inputProps) => <TextField fullWidth
-{...inputProps} />}
+            renderInput={(inputProps) => <TextField fullWidth {...inputProps} />}
             value={formik.values.end}
           />
           {!!(formik.touched.end && formik.errors.end) && (
@@ -251,10 +307,7 @@ onChange={formik.handleChange} />
           )}
         </Stack>
         <Divider />
-        <Stack alignItems='center'
-direction='row'
-spacing={1}
-sx={{ p: 2 }}>
+        <Stack alignItems='center' direction='row' spacing={1} sx={{ p: 2 }}>
           {event && (
             <IconButton onClick={(): Promise<void> => handleDelete()}>
               <SvgIcon>
@@ -263,14 +316,11 @@ sx={{ p: 2 }}>
             </IconButton>
           )}
           <Box sx={{ flexGrow: 1 }} />
-          <Button color='inherit'
-onClick={onClose}>
-            Cancel
+          <Button color='inherit' onClick={onClose}>
+            キャンセル
           </Button>
-          <Button disabled={formik.isSubmitting}
-type='submit'
-variant='contained'>
-            Confirm
+          <Button disabled={formik.isSubmitting} type='submit' variant='contained'>
+            登録する
           </Button>
         </Stack>
       </form>

@@ -27,7 +27,7 @@ export const TenantPopover: FC<TenantPopoverProps> = (props) => {
       keepMounted
       onClose={onClose}
       open={open}
-      PaperProps={{ sx: { width: 180 } }}
+      PaperProps={{ sx: { width: 300 } }}
       {...other}
     >
       {tenants.map((tenant) => (

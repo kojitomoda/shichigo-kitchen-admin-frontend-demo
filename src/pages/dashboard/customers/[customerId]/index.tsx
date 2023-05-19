@@ -35,6 +35,8 @@ import { CustomerLogs } from '../../../../sections/dashboard/customer/customer-l
 import type { Customer } from '../../../../types/customer'
 import { CustomerInvoice, CustomerLog } from '../../../../types/customer'
 import { getInitials } from '../../../../utils/get-initials'
+import { CustomerDetailList } from '@/sections/dashboard/customer/cutomer-detail-list'
+import { SeverityPill } from '@/components/severity-pill'
 
 const tabs = [
   { label: 'Details', value: 'details' },
@@ -152,7 +154,7 @@ const Page: NextPage = () => {
         }}
       >
         <Container maxWidth='xl'>
-          <Stack spacing={4}>
+          <Stack spacing={4} style={{ marginBottom: '30px' }}>
             <Stack spacing={4}>
               <div>
                 <Link
@@ -168,7 +170,7 @@ const Page: NextPage = () => {
                   <SvgIcon sx={{ mr: 1 }}>
                     <ArrowLeftIcon />
                   </SvgIcon>
-                  <Typography variant='subtitle2'>Customers</Typography>
+                  <Typography variant='subtitle2'>部屋一覧</Typography>
                 </Link>
               </div>
               <Stack
@@ -180,81 +182,30 @@ const Page: NextPage = () => {
                 justifyContent='space-between'
                 spacing={4}
               >
-                <Stack alignItems='center'
-direction='row'
-spacing={2}>
-                  <Avatar
-                    src={customer.avatar}
-                    sx={{
-                      height: 64,
-                      width: 64,
+                <Stack>
+                  <Stack
+                    alignItems='center'
+                    direction={{
+                      xs: 'row',
+                      md: 'row',
                     }}
+                    spacing={3}
                   >
-                    {getInitials(customer.name)}
-                  </Avatar>
-                  <Stack spacing={1}>
-                    <Typography variant='h4'>{customer.email}</Typography>
-                    <Stack alignItems='center'
-direction='row'
-spacing={1}>
-                      <Typography variant='subtitle2'>user_id:</Typography>
-                      <Chip label={customer.id}
-size='small' />
-                    </Stack>
+                    <Typography variant='h4'>1201</Typography>
+                    <SeverityPill color='info'>入居中</SeverityPill>
                   </Stack>
                 </Stack>
-                <Stack alignItems='center'
-direction='row'
-spacing={2}>
-                  <Button
-                    color='inherit'
-                    component={NextLink}
-                    endIcon={
-                      <SvgIcon>
-                        <Edit02Icon />
-                      </SvgIcon>
-                    }
-                    href={paths.dashboard.customers.edit}
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    endIcon={
-                      <SvgIcon>
-                        <ChevronDownIcon />
-                      </SvgIcon>
-                    }
-                    variant='contained'
-                  >
-                    Actions
-                  </Button>
-                </Stack>
+
+                <Stack alignItems='center' direction='row' spacing={2}></Stack>
               </Stack>
               <div>
-                <Tabs
-                  indicatorColor='primary'
-                  onChange={handleTabsChange}
-                  scrollButtons='auto'
-                  sx={{ mt: 3 }}
-                  textColor='primary'
-                  value={currentTab}
-                  variant='scrollable'
-                >
-                  {tabs.map((tab) => (
-                    <Tab key={tab.value}
-label={tab.label}
-value={tab.value} />
-                  ))}
-                </Tabs>
                 <Divider />
               </div>
             </Stack>
             {currentTab === 'details' && (
               <div>
-                <Grid container
-spacing={4}>
-                  <Grid xs={12}
-lg={4}>
+                <Grid container spacing={4}>
+                  <Grid xs={12} lg={4}>
                     <CustomerBasicDetails
                       address1={customer.address1}
                       address2={customer.address2}
@@ -265,11 +216,8 @@ lg={4}>
                       state={customer.state}
                     />
                   </Grid>
-                  <Grid xs={12}
-lg={8}>
+                  <Grid xs={12} lg={8}>
                     <Stack spacing={4}>
-                      <CustomerPayment />
-                      <CustomerEmailsSummary />
                       <CustomerDataManagement />
                     </Stack>
                   </Grid>
@@ -279,6 +227,15 @@ lg={8}>
             {currentTab === 'invoices' && <CustomerInvoices invoices={invoices} />}
             {currentTab === 'logs' && <CustomerLogs logs={logs} />}
           </Stack>
+          <div style={{ marginBottom: '20px' }}>
+            <Divider />
+          </div>
+          <Stack alignItems='center' direction='row' spacing={2}>
+            <Stack spacing={1} style={{ marginBottom: '30px' }}>
+              <Typography variant='h4'>入居者履歴</Typography>
+            </Stack>
+          </Stack>
+          <CustomerDetailList></CustomerDetailList>
         </Container>
       </Box>
     </>

@@ -82,98 +82,88 @@ export const ChatThreadToolbar: FC<ChatThreadToolbarProps> = (props) => {
         }}
         {...other}
       >
-        <Stack alignItems='center'
-direction='row'
-spacing={2}>
-          <AvatarGroup
-            max={2}
-            sx={{
-              ...(recipients.length > 1 && {
-                '& .MuiAvatar-root': {
-                  height: 30,
-                  width: 30,
-                  '&:nth-of-type(2)': {
-                    mt: '10px',
-                  },
-                },
-              }),
-            }}
-          >
-            {recipients.map((recipient) => (
-              <Avatar key={recipient.id}
-src={recipient.avatar || undefined} />
-            ))}
-          </AvatarGroup>
+        <Stack alignItems='center' direction='row' spacing={2}>
+          {/*<AvatarGroup*/}
+          {/*  max={2}*/}
+          {/*  sx={{*/}
+          {/*    ...(recipients.length > 1 && {*/}
+          {/*      '& .MuiAvatar-root': {*/}
+          {/*        height: 30,*/}
+          {/*        width: 30,*/}
+          {/*        '&:nth-of-type(2)': {*/}
+          {/*          mt: '10px',*/}
+          {/*        },*/}
+          {/*      },*/}
+          {/*    }),*/}
+          {/*  }}*/}
+          {/*>*/}
+          {/*  {recipients.map((recipient) => (*/}
+          {/*    <Avatar key={recipient.id} src={undefined} />*/}
+          {/*  ))}*/}
+          {/*</AvatarGroup>*/}
           <div>
-            <Typography variant='subtitle2'>{displayName}</Typography>
-            {lastActive && (
-              <Typography color='text.secondary'
-variant='caption'>
-                Last active {lastActive}
-              </Typography>
-            )}
+            <Typography variant='subtitle1'>{displayName}</Typography>
+            {/*{lastActive && (*/}
+            {/*  <Typography color='text.secondary' variant='caption'>*/}
+            {/*    Last active {lastActive}*/}
+            {/*  </Typography>*/}
+            {/*)}*/}
           </div>
         </Stack>
-        <Stack alignItems='center'
-direction='row'
-spacing={1}>
-          <IconButton>
-            <SvgIcon>
-              <PhoneIcon />
-            </SvgIcon>
-          </IconButton>
-          <IconButton>
-            <SvgIcon>
-              <Camera01Icon />
-            </SvgIcon>
-          </IconButton>
-          <Tooltip title='More options'>
-            <IconButton onClick={handleMenuOpen}
-ref={moreRef}>
-              <SvgIcon>
-                <DotsHorizontalIcon />
-              </SvgIcon>
-            </IconButton>
-          </Tooltip>
+        <Stack alignItems='center' direction='row' spacing={1}>
+          {/*<IconButton>*/}
+          {/*  <SvgIcon>*/}
+          {/*    <PhoneIcon />*/}
+          {/*  </SvgIcon>*/}
+          {/*</IconButton>*/}
+          {/*<IconButton>*/}
+          {/*  <SvgIcon>*/}
+          {/*    <Camera01Icon />*/}
+          {/*  </SvgIcon>*/}
+          {/*</IconButton>*/}
+          {/*<Tooltip title='More options'>*/}
+          {/*  <IconButton onClick={handleMenuOpen} ref={moreRef}>*/}
+          {/*    <SvgIcon>*/}
+          {/*      <DotsHorizontalIcon />*/}
+          {/*    </SvgIcon>*/}
+          {/*  </IconButton>*/}
+          {/*</Tooltip>*/}
         </Stack>
       </Stack>
-      <Menu anchorEl={moreRef.current}
-keepMounted
-onClose={handleMenuClose}
-open={openMenu}>
-        <MenuItem>
-          <ListItemIcon>
-            <SvgIcon>
-              <SlashCircle01Icon />
-            </SvgIcon>
-          </ListItemIcon>
-          <ListItemText primary='Block' />
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <SvgIcon>
-              <Trash02Icon />
-            </SvgIcon>
-          </ListItemIcon>
-          <ListItemText primary='Delete' />
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <SvgIcon>
-              <ArchiveIcon />
-            </SvgIcon>
-          </ListItemIcon>
-          <ListItemText primary='Archive' />
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <SvgIcon>
-              <Bell01Icon />
-            </SvgIcon>
-          </ListItemIcon>
-          <ListItemText primary='Mute' />
-        </MenuItem>
-      </Menu>
+      {/*<Menu anchorEl={moreRef.current} keepMounted onClose={handleMenuClose} open={openMenu}>*/}
+      {/*  <MenuItem>*/}
+      {/*    <ListItemIcon>*/}
+      {/*      <SvgIcon>*/}
+      {/*        <SlashCircle01Icon />*/}
+      {/*      </SvgIcon>*/}
+      {/*    </ListItemIcon>*/}
+      {/*    <ListItemText primary='Block' />*/}
+      {/*  </MenuItem>*/}
+      {/*  <MenuItem>*/}
+      {/*    <ListItemIcon>*/}
+      {/*      <SvgIcon>*/}
+      {/*        <Trash02Icon />*/}
+      {/*      </SvgIcon>*/}
+      {/*    </ListItemIcon>*/}
+      {/*    <ListItemText primary='Delete' />*/}
+      {/*  </MenuItem>*/}
+      {/*  <MenuItem>*/}
+      {/*    <ListItemIcon>*/}
+      {/*      <SvgIcon>*/}
+      {/*        <ArchiveIcon />*/}
+      {/*      </SvgIcon>*/}
+      {/*    </ListItemIcon>*/}
+      {/*    <ListItemText primary='Archive' />*/}
+      {/*  </MenuItem>*/}
+      {/*  <MenuItem>*/}
+      {/*    <ListItemIcon>*/}
+      {/*      <SvgIcon>*/}
+      {/*        <Bell01Icon />*/}
+      {/*      </SvgIcon>*/}
+      {/*    </ListItemIcon>*/}
+      {/*    <ListItemText primary='Mute' />*/}
+      {/*  </MenuItem>*/}
+      {/*</Menu>*/}
     </>
   )
 }

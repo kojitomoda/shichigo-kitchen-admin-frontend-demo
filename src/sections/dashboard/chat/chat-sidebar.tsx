@@ -131,25 +131,21 @@ export const ChatSidebar: FC<ChatSidebarProps> = (props) => {
 
   const content = (
     <div>
-      <Stack alignItems='center'
-direction='row'
-spacing={2}
-sx={{ p: 2 }}>
-        <Typography variant='h5'
-sx={{ flexGrow: 1 }}>
-          Chats
+      <Stack alignItems='center' direction='row' spacing={2} sx={{ p: 2 }}>
+        <Typography variant='h5' sx={{ flexGrow: 1 }}>
+          個別メッセージ
         </Typography>
-        <Button
-          onClick={handleCompose}
-          startIcon={
-            <SvgIcon>
-              <PlusIcon />
-            </SvgIcon>
-          }
-          variant='contained'
-        >
-          Group
-        </Button>
+        {/*<Button*/}
+        {/*  onClick={handleCompose}*/}
+        {/*  startIcon={*/}
+        {/*    <SvgIcon>*/}
+        {/*      <PlusIcon />*/}
+        {/*    </SvgIcon>*/}
+        {/*  }*/}
+        {/*  variant='contained'*/}
+        {/*>*/}
+        {/*  Group*/}
+        {/*</Button>*/}
         {!mdUp && (
           <IconButton onClick={onClose}>
             <SvgIcon>

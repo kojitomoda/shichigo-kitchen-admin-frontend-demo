@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import SearchMdIcon from '@untitled-ui/icons-react/build/esm/SearchMd'
 import {
   Box,
+  Button,
   Divider,
   InputAdornment,
   OutlinedInput,
@@ -14,6 +15,7 @@ import {
   TextField,
 } from '@mui/material'
 import { useUpdateEffect } from '../../../hooks/use-update-effect'
+import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus'
 
 interface Filters {
   query?: string
@@ -121,36 +123,28 @@ export const OrderListSearch: FC<OrderListSearchProps> = (props) => {
 
   return (
     <div>
-      <Tabs
-        indicatorColor='primary'
-        onChange={handleTabsChange}
-        scrollButtons='auto'
-        sx={{ px: 3 }}
-        textColor='primary'
-        value={currentTab}
-        variant='scrollable'
-      >
-        {tabOptions.map((tab) => (
-          <Tab key={tab.value}
-label={tab.label}
-value={tab.value} />
-        ))}
-      </Tabs>
+      {/*<Tabs*/}
+      {/*  indicatorColor='primary'*/}
+      {/*  onChange={handleTabsChange}*/}
+      {/*  scrollButtons='auto'*/}
+      {/*  sx={{ px: 3 }}*/}
+      {/*  textColor='primary'*/}
+      {/*  value={currentTab}*/}
+      {/*  variant='scrollable'*/}
+      {/*>*/}
+      {/*  {tabOptions.map((tab) => (*/}
+      {/*    <Tab key={tab.value} label={tab.label} value={tab.value} />*/}
+      {/*  ))}*/}
+      {/*</Tabs>*/}
       <Divider />
-      <Stack alignItems='center'
-direction='row'
-flexWrap='wrap'
-gap={3}
-sx={{ p: 3 }}>
-        <Box component='form'
-onSubmit={handleQueryChange}
-sx={{ flexGrow: 1 }}>
+      <Stack alignItems='center' direction='row' flexWrap='wrap' gap={3} sx={{ p: 3 }}>
+        <Box component='form' onSubmit={handleQueryChange} sx={{ flexGrow: 1 }}>
           <OutlinedInput
             defaultValue=''
             fullWidth
             inputProps={{ ref: queryRef }}
             name='orderNumber'
-            placeholder='Search by order number'
+            placeholder='建物名を入力する'
             startAdornment={
               <InputAdornment position='start'>
                 <SvgIcon>
@@ -160,21 +154,30 @@ sx={{ flexGrow: 1 }}>
             }
           />
         </Box>
-        <TextField
-          label='Sort By'
-          name='sort'
-          onChange={handleSortChange}
-          select
-          SelectProps={{ native: true }}
-          value={sortDir}
+        <Button
+          startIcon={
+            <SvgIcon>
+              <SearchMdIcon />
+            </SvgIcon>
+          }
+          variant='contained'
         >
-          {sortOptions.map((option) => (
-            <option key={option.value}
-value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextField>
+          検索
+        </Button>
+        {/*<TextField*/}
+        {/*  label='Sort By'*/}
+        {/*  name='sort'*/}
+        {/*  onChange={handleSortChange}*/}
+        {/*  select*/}
+        {/*  SelectProps={{ native: true }}*/}
+        {/*  value={sortDir}*/}
+        {/*>*/}
+        {/*  {sortOptions.map((option) => (*/}
+        {/*    <option key={option.value} value={option.value}>*/}
+        {/*      {option.label}*/}
+        {/*    </option>*/}
+        {/*  ))}*/}
+        {/*</TextField>*/}
       </Stack>
     </div>
   )

@@ -6,7 +6,7 @@ import { Scrollbar } from '../../components/scrollbar'
 import type { Section } from './config'
 import { SideNavSection } from './side-nav-section'
 
-const TOP_NAV_HEIGHT: number = 64
+const TOP_NAV_HEIGHT: number = 40
 const SIDE_NAV_WIDTH: number = 280
 
 interface DesktopSideNavProps {
@@ -39,9 +39,7 @@ export const DesktopSideNav: FC<DesktopSideNavProps> = (props) => {
           },
         }}
       >
-        <Stack component='nav'
-spacing={3}
-sx={{ p: 2 }}>
+        <Stack component='nav' spacing={3} sx={{ p: 2 }}>
           {sections.map((section, index) => (
             <SideNavSection
               items={section.items}

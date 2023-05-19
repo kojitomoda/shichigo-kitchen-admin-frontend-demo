@@ -10,10 +10,12 @@ import {
   Card,
   CardContent,
   Container,
+  FormControlLabel,
   IconButton,
   Link,
   Stack,
   SvgIcon,
+  Switch,
   TextField,
   Typography,
   Unstable_Grid2 as Grid,
@@ -56,84 +58,30 @@ const Page: NextPage = () => {
         }}
       >
         <Container maxWidth='xl'>
-          <Stack spacing={1}>
-            <Typography variant='h3'>Create a new post</Typography>
+          <Stack spacing={1} style={{ marginBottom: '30px' }}>
+            <Typography variant='h4'>お知らせ登録</Typography>
             <Breadcrumbs separator={<BreadcrumbsSeparator />}>
-              <Link
-                color='text.primary'
-                component={NextLink}
-                href={paths.dashboard.index}
-                variant='subtitle2'
-              >
-                Dashboard
-              </Link>
               <Link
                 color='text.primary'
                 component={NextLink}
                 href={paths.dashboard.blog.index}
                 variant='subtitle2'
               >
-                Blog
+                お知らせ一覧
               </Link>
-              <Typography color='text.secondary'
-variant='subtitle2'>
-                Create
-              </Typography>
             </Breadcrumbs>
           </Stack>
-          <Card
-            elevation={16}
-            sx={{
-              alignItems: 'center',
-              borderRadius: 1,
-              display: 'flex',
-              justifyContent: 'space-between',
-              mb: 8,
-              mt: 6,
-              px: 3,
-              py: 2,
-            }}
-          >
-            <Typography variant='subtitle1'>Hello, Admin</Typography>
-            <Stack alignItems='center'
-direction='row'
-spacing={2}>
-              <Button color='inherit'
-component={NextLink}
-href={paths.dashboard.blog.index}>
-                Cancel
-              </Button>
-              <Button
-                component={NextLink}
-                href={paths.dashboard.blog.postDetails}
-                variant='contained'
-              >
-                Publish changes
-              </Button>
-              <IconButton>
-                <SvgIcon>
-                  <DotsHorizontalIcon />
-                </SvgIcon>
-              </IconButton>
-            </Stack>
-          </Card>
           <Stack spacing={3}>
             <Card>
               <CardContent>
-                <Grid container
-spacing={3}>
-                  <Grid xs={12}
-md={4}>
-                    <Typography variant='h6'>Basic details</Typography>
+                <Grid container spacing={3}>
+                  <Grid xs={12} md={4}>
+                    <Typography variant='h6'>基本情報</Typography>
                   </Grid>
-                  <Grid xs={12}
-md={8}>
+                  <Grid xs={12} md={8}>
                     <Stack spacing={3}>
-                      <TextField fullWidth
-label='Post title'
-name='title' />
-                      <TextField fullWidth
-label='Short description' />
+                      <TextField fullWidth label='タイトル' name='title' />
+                      <TextField fullWidth label='配信日' />
                     </Stack>
                   </Grid>
                 </Grid>
@@ -141,14 +89,11 @@ label='Short description' />
             </Card>
             <Card>
               <CardContent>
-                <Grid container
-spacing={3}>
-                  <Grid xs={12}
-md={4}>
-                    <Typography variant='h6'>Post cover</Typography>
+                <Grid container spacing={3}>
+                  <Grid xs={12} md={4}>
+                    <Typography variant='h6'>サムネイル</Typography>
                   </Grid>
-                  <Grid xs={12}
-md={8}>
+                  <Grid xs={12} md={8}>
                     <Stack spacing={3}>
                       {cover ? (
                         <Box
@@ -177,9 +122,7 @@ md={8}>
                             p: 3,
                           }}
                         >
-                          <Typography align='center'
-color='text.secondary'
-variant='h6'>
+                          <Typography align='center' color='text.secondary' variant='h6'>
                             Select a cover image
                           </Typography>
                           <Typography
@@ -193,17 +136,15 @@ variant='h6'>
                         </Box>
                       )}
                       <div>
-                        <Button color='inherit'
-disabled={!cover}
-onClick={handleCoverRemove}>
-                          Remove photo
+                        <Button color='inherit' disabled={!cover} onClick={handleCoverRemove}>
+                          削除する
                         </Button>
                       </div>
                       <FileDropzone
                         accept={{ 'image/*': [] }}
                         maxFiles={1}
                         onDrop={handleCoverDrop}
-                        caption='(SVG, JPG, PNG, or gif maximum 900x400)'
+                        caption='(JPG, PNG maximum 900x400)'
                       />
                     </Stack>
                   </Grid>
@@ -212,38 +153,45 @@ onClick={handleCoverRemove}>
             </Card>
             <Card>
               <CardContent>
-                <Grid container
-spacing={3}>
-                  <Grid xs={12}
-md={4}>
-                    <Typography variant='h6'>Content</Typography>
+                <Grid container spacing={3}>
+                  <Grid xs={12} md={4}>
+                    <Typography variant='h6'>内容</Typography>
                   </Grid>
-                  <Grid xs={12}
-md={8}>
-                    <QuillEditor placeholder='Write something'
-sx={{ height: 330 }} />
+                  <Grid xs={12} md={8}>
+                    <QuillEditor placeholder='Write something' sx={{ height: 330 }} />
                   </Grid>
                 </Grid>
               </CardContent>
             </Card>
             <Card>
               <CardContent>
-                <Grid container
-spacing={3}>
-                  <Grid xs={12}
-md={4}>
-                    <Typography variant='h6'>Meta</Typography>
+                <Grid container spacing={3}>
+                  <Grid xs={12} md={4}>
+                    <Typography variant='h6'>その他の配信先</Typography>
                   </Grid>
-                  <Grid xs={12}
-lg={8}>
-                    <Stack spacing={3}>
-                      <TextField fullWidth
-label='SEO title'
-name='title' />
-                      <TextField fullWidth
-label='SEO description' />
-                    </Stack>
-                  </Grid>
+                  <Box>
+                    <FormControlLabel
+                      control={<Switch name='allDay' />}
+                      label='パークホームズ柏たなか'
+                    />
+                    <FormControlLabel control={<Switch name='allDay' />} label='幕張ベイパーク' />
+                    <FormControlLabel
+                      control={<Switch name='allDay' />}
+                      label='パークホームズ昭島中神'
+                    />
+                    <FormControlLabel
+                      control={<Switch name='allDay' />}
+                      label='ガーデンズ稲毛海岸'
+                    />
+                    <FormControlLabel
+                      control={<Switch name='allDay' />}
+                      label='パークタワー西新宿'
+                    />
+                    <FormControlLabel
+                      control={<Switch name='allDay' />}
+                      label='パークシティ高田馬場'
+                    />
+                  </Box>
                 </Grid>
               </CardContent>
             </Card>
@@ -264,6 +212,30 @@ label='SEO description' />
               Publish changes
             </Button>
           </Box>
+          <Card
+            elevation={16}
+            sx={{
+              alignItems: 'center',
+              borderRadius: 1,
+              display: 'flex',
+              justifyContent: 'space-between',
+              mb: 8,
+              mt: 6,
+              px: 3,
+              py: 2,
+            }}
+          >
+            <Typography variant='subtitle1'></Typography>
+            <Stack alignItems='center' direction='row' spacing={2}>
+              <Button
+                component={NextLink}
+                href={paths.dashboard.blog.postDetails}
+                variant='contained'
+              >
+                登録する
+              </Button>
+            </Stack>
+          </Card>
         </Container>
       </Box>
     </>

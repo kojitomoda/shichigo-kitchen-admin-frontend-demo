@@ -73,28 +73,27 @@ const Page: NextPage = () => {
       >
         <Container maxWidth='xl'>
           <Stack spacing={1}>
-            <Typography variant='h3'>Blog</Typography>
+            <Typography variant='h4'>お知らせ一覧</Typography>
             <Breadcrumbs separator={<BreadcrumbsSeparator />}>
-              <Link
-                color='text.primary'
-                component={NextLink}
-                href={paths.dashboard.index}
-                variant='subtitle2'
-              >
-                Dashboard
-              </Link>
-              <Link
-                color='text.primary'
-                component={NextLink}
-                href={paths.dashboard.blog.index}
-                variant='subtitle2'
-              >
-                Blog
-              </Link>
-              <Typography color='text.secondary'
-variant='subtitle2'>
-                List
-              </Typography>
+              {/*<Link*/}
+              {/*  color='text.primary'*/}
+              {/*  component={NextLink}*/}
+              {/*  href={paths.dashboard.index}*/}
+              {/*  variant='subtitle2'*/}
+              {/*>*/}
+              {/*  Dashboard*/}
+              {/*</Link>*/}
+              {/*<Link*/}
+              {/*  color='text.primary'*/}
+              {/*  component={NextLink}*/}
+              {/*  href={paths.dashboard.blog.index}*/}
+              {/*  variant='subtitle2'*/}
+              {/*>*/}
+              {/*  Blog*/}
+              {/*</Link>*/}
+              {/*<Typography color='text.secondary' variant='subtitle2'>*/}
+              {/*  List*/}
+              {/*</Typography>*/}
             </Breadcrumbs>
           </Stack>
           <Card
@@ -110,30 +109,22 @@ variant='subtitle2'>
               py: 2,
             }}
           >
-            <Typography variant='subtitle1'>Hello, Admin</Typography>
-            <Button component={NextLink}
-href={paths.dashboard.blog.postCreate}
-variant='contained'>
-              New Post
+            <Typography variant='subtitle1'></Typography>
+            <Button component={NextLink} href={paths.dashboard.blog.postCreate} variant='contained'>
+              登録する
             </Button>
           </Card>
-          <Typography variant='h4'>Recent Articles</Typography>
-          <Typography color='text.secondary'
-sx={{ mt: 2 }}
-variant='body1'>
-            Discover the latest news, tips and user research insights from Acme.
-          </Typography>
-          <Typography color='text.secondary'
-variant='body1'>
-            You will learn about web infrastructure, design systems and devops APIs best practices.
-          </Typography>
+          <Typography variant='h4'>最新のお知らせ</Typography>
+          {/*<Typography color='text.secondary' sx={{ mt: 2 }} variant='body1'>*/}
+          {/*  Discover the latest news, tips and user research insights from Acme.*/}
+          {/*</Typography>*/}
+          {/*<Typography color='text.secondary' variant='body1'>*/}
+          {/*  You will learn about web infrastructure, design systems and devops APIs best practices.*/}
+          {/*</Typography>*/}
           <Divider sx={{ my: 4 }} />
-          <Grid container
-spacing={4}>
+          <Grid container spacing={4}>
             {posts.map((post) => (
-              <Grid key={post.title}
-xs={12}
-md={6}>
+              <Grid key={post.title} xs={12} md={6}>
                 <PostCard
                   authorAvatar={post.author.avatar}
                   authorName={post.author.name}
@@ -178,9 +169,9 @@ md={6}>
               Older posts
             </Button>
           </Stack>
-          <Box sx={{ mt: 8 }}>
-            <PostNewsletter />
-          </Box>
+          {/*<Box sx={{ mt: 8 }}>*/}
+          {/*  <PostNewsletter />*/}
+          {/*</Box>*/}
         </Container>
       </Box>
     </>

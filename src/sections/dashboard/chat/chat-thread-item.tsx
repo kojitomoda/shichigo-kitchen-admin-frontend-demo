@@ -24,7 +24,7 @@ const getDisplayContent = (userId: string, lastMessage?: Message): string => {
   }
 
   const author = lastMessage.authorId === userId ? 'Me: ' : ''
-  const message = lastMessage.contentType === 'image' ? 'Sent a photo' : lastMessage.body
+  const message = lastMessage.contentType === 'image' ? '写真を送信しました' : lastMessage.body
 
   return `${author}${message}`
 }
@@ -79,28 +79,28 @@ export const ChatThreadItem: FC<ChatThreadItemProps> = (props) => {
       {...other}
     >
       <div>
-        <AvatarGroup
-          max={2}
-          sx={{
-            [`& .${avatarClasses.root}`]: groupThread
-              ? {
-                  height: 26,
-                  width: 26,
-                  '&:nth-of-type(2)': {
-                    mt: '10px',
-                  },
-                }
-              : {
-                  height: 36,
-                  width: 36,
-                },
-          }}
-        >
-          {recipients.map((recipient) => (
-            <Avatar key={recipient.id}
-src={recipient.avatar || undefined} />
-          ))}
-        </AvatarGroup>
+        {/*        <AvatarGroup*/}
+        {/*          max={2}*/}
+        {/*          sx={{*/}
+        {/*            [`& .${avatarClasses.root}`]: groupThread*/}
+        {/*              ? {*/}
+        {/*                  height: 26,*/}
+        {/*                  width: 26,*/}
+        {/*                  '&:nth-of-type(2)': {*/}
+        {/*                    mt: '10px',*/}
+        {/*                  },*/}
+        {/*                }*/}
+        {/*              : {*/}
+        {/*                  height: 36,*/}
+        {/*                  width: 36,*/}
+        {/*                },*/}
+        {/*          }}*/}
+        {/*        >*/}
+        {/*          {recipients.map((recipient) => (*/}
+        {/*            <Avatar key={recipient.id}*/}
+        {/*src={recipient.avatar || undefined} />*/}
+        {/*          ))}*/}
+        {/*        </AvatarGroup>*/}
       </div>
       <Box
         sx={{
@@ -108,13 +108,10 @@ src={recipient.avatar || undefined} />
           overflow: 'hidden',
         }}
       >
-        <Typography noWrap
-variant='subtitle2'>
+        <Typography noWrap variant='subtitle2'>
           {displayName}
         </Typography>
-        <Stack alignItems='center'
-direction='row'
-spacing={1}>
+        <Stack alignItems='center' direction='row' spacing={1}>
           {isUnread && (
             <Box
               sx={{
@@ -125,19 +122,14 @@ spacing={1}>
               }}
             />
           )}
-          <Typography color='text.secondary'
-noWrap
-sx={{ flexGrow: 1 }}
-variant='subtitle2'>
+          <Typography color='text.secondary' noWrap sx={{ flexGrow: 1 }} variant='subtitle2'>
             {displayContent}
           </Typography>
         </Stack>
       </Box>
       {lastActivity && (
-        <Typography color='text.secondary'
-sx={{ whiteSpace: 'nowrap' }}
-variant='caption'>
-          {lastActivity}
+        <Typography color='text.secondary' sx={{ whiteSpace: 'nowrap' }} variant='caption'>
+          {'2023/05/15 13:10:00'}
         </Typography>
       )}
     </Stack>

@@ -38,7 +38,7 @@ const useSearch = () => {
       isReturning: undefined,
     },
     page: 0,
-    rowsPerPage: 5,
+    rowsPerPage: 10,
     sortBy: 'updatedAt',
     sortDir: 'desc',
   })
@@ -62,7 +62,6 @@ const useCustomers = (search: Search): { customers: Customer[]; customersCount: 
   const getCustomers = useCallback(async () => {
     try {
       const response = await customersApi.getCustomers(search)
-
       if (isMounted()) {
         setState({
           customers: response.data,
@@ -146,51 +145,10 @@ const Page: NextPage = () => {
       >
         <Container maxWidth='xl'>
           <Stack spacing={4}>
-            <Stack direction='row'
-justifyContent='space-between'
-spacing={4}>
+            <Stack direction='row' justifyContent='space-between' spacing={4}>
               <Stack spacing={1}>
-                <Typography variant='h4'>Customers</Typography>
-                <Stack alignItems='center'
-direction='row'
-spacing={1}>
-                  <Button
-                    color='inherit'
-                    size='small'
-                    startIcon={
-                      <SvgIcon>
-                        <Upload01Icon />
-                      </SvgIcon>
-                    }
-                  >
-                    Import
-                  </Button>
-                  <Button
-                    color='inherit'
-                    size='small'
-                    startIcon={
-                      <SvgIcon>
-                        <Download01Icon />
-                      </SvgIcon>
-                    }
-                  >
-                    Export
-                  </Button>
-                </Stack>
-              </Stack>
-              <Stack alignItems='center'
-direction='row'
-spacing={3}>
-                <Button
-                  startIcon={
-                    <SvgIcon>
-                      <PlusIcon />
-                    </SvgIcon>
-                  }
-                  variant='contained'
-                >
-                  Add
-                </Button>
+                <Typography variant='h4'>部屋一覧</Typography>
+                <Stack alignItems='center' direction='row' spacing={1}></Stack>
               </Stack>
             </Stack>
             <Card>

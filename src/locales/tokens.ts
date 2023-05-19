@@ -50,5 +50,6 @@ export const tokens = {
     resetPassword: 'nav.resetPassword',
     socialMedia: 'nav.socialMedia',
     verifyCode: 'nav.verifyCode',
+    minutes: 'nav.minutes'
   },
 }

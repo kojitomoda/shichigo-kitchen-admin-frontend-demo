@@ -1,10 +1,8 @@
 import type { ChangeEvent, FC, MouseEvent } from 'react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import NextLink from 'next/link'
-import numeral from 'numeral'
 import PropTypes from 'prop-types'
 import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight'
-import Edit02Icon from '@untitled-ui/icons-react/build/esm/Edit02'
 import {
   Avatar,
   Box,
@@ -26,6 +24,8 @@ import { Scrollbar } from '../../../components/scrollbar'
 import { paths } from '../../../paths'
 import type { Customer } from '../../../types/customer'
 import { getInitials } from '../../../utils/get-initials'
+import { SeverityPill } from '@/components/severity-pill'
+import { useRouter } from 'next/navigation'
 
 interface SelectionModel {
   deselectAll: () => void
@@ -82,6 +82,7 @@ interface CustomerListTableProps {
 }
 
 export const CustomerListTable: FC<CustomerListTableProps> = (props) => {
+  const router = useRouter()
   const {
     customers,
     customersCount,
@@ -111,8 +112,7 @@ export const CustomerListTable: FC<CustomerListTableProps> = (props) => {
   const enableBulkActions = selected.length > 0
 
   return (
-    <Box sx={{ position: 'relative' }}
-{...other}>
+    <Box sx={{ position: 'relative' }} {...other}>
       {enableBulkActions && (
         <Stack
           direction='row'
@@ -131,15 +131,11 @@ export const CustomerListTable: FC<CustomerListTableProps> = (props) => {
             zIndex: 10,
           }}
         >
-          <Checkbox checked={selectedAll}
-indeterminate={selectedSome}
-onChange={handleToggleAll} />
-          <Button color='inherit'
-size='small'>
+          <Checkbox checked={selectedAll} indeterminate={selectedSome} onChange={handleToggleAll} />
+          <Button color='inherit' size='small'>
             Delete
           </Button>
-          <Button color='inherit'
-size='small'>
+          <Button color='inherit' size='small'>
             Edit
           </Button>
         </Stack>
@@ -148,88 +144,34 @@ size='small'>
         <Table sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
-              <TableCell padding='checkbox'>
-                <Checkbox
-                  checked={selectedAll}
-                  indeterminate={selectedSome}
-                  onChange={handleToggleAll}
-                />
-              </TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Location</TableCell>
-              <TableCell>Orders</TableCell>
-              <TableCell>Spent</TableCell>
-              <TableCell align='right'>Actions</TableCell>
+              <TableCell>部屋番号</TableCell>
+              <TableCell>状態</TableCell>
+              <TableCell align='right'>詳細</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {customers.map((customer) => {
               const isSelected = selected.includes(customer.id)
-              const location = `${customer.city}, ${customer.state}, ${customer.country}`
-              const totalSpent = numeral(customer.totalSpent).format(`${customer.currency}0,0.00`)
+              const statusColor =
+                customer.status === '退去済'
+                  ? 'warning'
+                  : customer.status === '空室'
+                  ? 'success'
+                  : 'info'
 
               return (
-                <TableRow hover
-key={customer.id}
-selected={isSelected}>
-                  <TableCell padding='checkbox'>
-                    <Checkbox
-                      checked={isSelected}
-                      onChange={(event: ChangeEvent<HTMLInputElement>): void => {
-                        const { checked } = event.target
-
-                        if (checked) {
-                          selectOne(customer.id)
-                        } else {
-                          deselectOne(customer.id)
-                        }
-                      }}
-                      value={isSelected}
-                    />
-                  </TableCell>
+                <TableRow
+                  hover
+                  key={customer.id}
+                  selected={isSelected}
+                  onClick={() => router.push('customers/:customerId')}
+                >
+                  <TableCell>{customer.roomNumber}</TableCell>
                   <TableCell>
-                    <Stack alignItems='center'
-direction='row'
-spacing={1}>
-                      <Avatar
-                        src={customer.avatar}
-                        sx={{
-                          height: 42,
-                          width: 42,
-                        }}
-                      >
-                        {getInitials(customer.name)}
-                      </Avatar>
-                      <div>
-                        <Link
-                          color='inherit'
-                          component={NextLink}
-                          href={paths.dashboard.customers.details}
-                          variant='subtitle2'
-                        >
-                          {customer.name}
-                        </Link>
-                        <Typography color='text.secondary'
-variant='body2'>
-                          {customer.email}
-                        </Typography>
-                      </div>
-                    </Stack>
-                  </TableCell>
-                  <TableCell>{location}</TableCell>
-                  <TableCell>{customer.totalOrders}</TableCell>
-                  <TableCell>
-                    <Typography variant='subtitle2'>{totalSpent}</Typography>
+                    <SeverityPill color={statusColor}>{customer.status}</SeverityPill>
                   </TableCell>
                   <TableCell align='right'>
-                    <IconButton component={NextLink}
-href={paths.dashboard.customers.edit}>
-                      <SvgIcon>
-                        <Edit02Icon />
-                      </SvgIcon>
-                    </IconButton>
-                    <IconButton component={NextLink}
-href={paths.dashboard.customers.details}>
+                    <IconButton component={NextLink} href={paths.dashboard.customers.details}>
                       <SvgIcon>
                         <ArrowRightIcon />
                       </SvgIcon>
@@ -241,15 +183,6 @@ href={paths.dashboard.customers.details}>
           </TableBody>
         </Table>
       </Scrollbar>
-      <TablePagination
-        component='div'
-        count={customersCount}
-        onPageChange={onPageChange}
-        onRowsPerPageChange={onRowsPerPageChange}
-        page={page}
-        rowsPerPage={rowsPerPage}
-        rowsPerPageOptions={[5, 10, 25]}
-      />
     </Box>
   )
 }

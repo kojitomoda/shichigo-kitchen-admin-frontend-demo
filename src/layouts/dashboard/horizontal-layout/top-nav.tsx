@@ -187,9 +187,7 @@ export const TopNav: FC<TopNavProps> = (props) => {
           py: 1,
         }}
       >
-        <Stack alignItems='center'
-direction='row'
-spacing={2}>
+        <Stack alignItems='center' direction='row' spacing={2}>
           {!mdUp && (
             <IconButton onClick={onMobileNav}>
               <SvgIcon>
@@ -215,12 +213,10 @@ spacing={2}>
           </Box>
           <TenantSwitch />
         </Stack>
-        <Stack alignItems='center'
-direction='row'
-spacing={2}>
-          <LanguageSwitch />
-          <NotificationsButton />
-          <ContactsButton />
+        <Stack alignItems='center' direction='row' spacing={2}>
+          {/*<LanguageSwitch />*/}
+          {/*<NotificationsButton />*/}
+          {/*<ContactsButton />*/}
           <AccountButton />
         </Stack>
       </Stack>

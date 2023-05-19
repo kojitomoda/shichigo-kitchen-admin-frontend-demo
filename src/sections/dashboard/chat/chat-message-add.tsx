@@ -55,21 +55,21 @@ export const ChatMessageAdd: FC<ChatMessageAddProps> = (props) => {
       }}
       {...other}
     >
-      <Avatar
-        sx={{
-          display: {
-            xs: 'none',
-            sm: 'inline',
-          },
-        }}
-        src={user.avatar}
-      />
+      {/*<Avatar*/}
+      {/*  sx={{*/}
+      {/*    display: {*/}
+      {/*      xs: 'none',*/}
+      {/*      sm: 'inline',*/}
+      {/*    },*/}
+      {/*  }}*/}
+      {/*  src={user.avatar}*/}
+      {/*/>*/}
       <OutlinedInput
         disabled={disabled}
         fullWidth
         onChange={handleChange}
         onKeyUp={handleKeyUp}
-        placeholder='Leave a message'
+        placeholder='メッセージを入力してください'
         size='small'
         value={body}
       />
@@ -111,9 +111,7 @@ export const ChatMessageAdd: FC<ChatMessageAddProps> = (props) => {
               m: 1,
             }}
           >
-            <IconButton disabled={disabled}
-edge='end'
-onClick={handleAttach}>
+            <IconButton disabled={disabled} edge='end' onClick={handleAttach}>
               <SvgIcon>
                 <Camera01Icon />
               </SvgIcon>
@@ -130,9 +128,7 @@ onClick={handleAttach}>
               m: 1,
             }}
           >
-            <IconButton disabled={disabled}
-edge='end'
-onClick={handleAttach}>
+            <IconButton disabled={disabled} edge='end' onClick={handleAttach}>
               <SvgIcon>
                 <Attachment01Icon />
               </SvgIcon>
@@ -140,9 +136,7 @@ onClick={handleAttach}>
           </Box>
         </Tooltip>
       </Box>
-      <input hidden
-ref={fileInputRef}
-type='file' />
+      <input hidden ref={fileInputRef} type='file' />
     </Stack>
   )
 }

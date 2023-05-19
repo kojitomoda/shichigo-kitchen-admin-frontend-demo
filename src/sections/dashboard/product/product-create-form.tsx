@@ -30,28 +30,24 @@ interface CategoryOption {
 
 const categoryOptions: CategoryOption[] = [
   {
-    label: 'Healthcare',
+    label: 'マンション',
     value: 'healthcare',
   },
   {
-    label: 'Makeup',
+    label: 'アパート',
     value: 'makeup',
   },
   {
-    label: 'Dress',
+    label: '団地',
     value: 'dress',
   },
   {
-    label: 'Skincare',
+    label: 'ハイツ',
     value: 'skincare',
   },
   {
-    label: 'Jewelry',
+    label: 'コンドミニアム',
     value: 'jewelry',
-  },
-  {
-    label: 'Blouse',
-    value: 'blouse',
   },
 ]
 
@@ -128,140 +124,156 @@ export const ProductCreateForm: FC = (props) => {
   }, [])
 
   return (
-    <form onSubmit={formik.handleSubmit}
-{...props}>
+    <form onSubmit={formik.handleSubmit} {...props}>
       <Stack spacing={4}>
         <Card>
           <CardContent>
-            <Grid container
-spacing={3}>
-              <Grid xs={12}
-md={4}>
-                <Typography variant='h6'>Basic details</Typography>
+            <Grid container spacing={3}>
+              <Grid xs={12} md={4}>
+                <Typography variant='h6'>基本情報</Typography>
               </Grid>
-              <Grid xs={12}
-md={8}>
+              <Grid xs={12} md={8}>
                 <Stack spacing={3}>
                   <TextField
                     error={!!(formik.touched.name && formik.errors.name)}
                     fullWidth
                     helperText={formik.touched.name && formik.errors.name}
-                    label='Product Name'
+                    label='名前'
                     name='name'
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.name}
                   />
-                  <div>
-                    <Typography color='text.secondary'
-sx={{ mb: 2 }}
-variant='subtitle2'>
-                      Description
-                    </Typography>
-                    <QuillEditor
-                      onChange={(value: string): void => {
-                        formik.setFieldValue('description', value)
-                      }}
-                      placeholder='Write something'
-                      sx={{ height: 400 }}
-                      value={formik.values.description}
-                    />
-                    {!!(formik.touched.description && formik.errors.description) && (
-                      <Box sx={{ mt: 2 }}>
-                        <FormHelperText error>{formik.errors.description}</FormHelperText>
-                      </Box>
-                    )}
-                  </div>
-                </Stack>
-              </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent>
-            <Grid container
-spacing={3}>
-              <Grid xs={12}
-md={4}>
-                <Stack spacing={1}>
-                  <Typography variant='h6'>Images</Typography>
-                  <Typography color='text.secondary'
-variant='body2'>
-                    Images will appear in the store front of your website.
-                  </Typography>
-                </Stack>
-              </Grid>
-              <Grid xs={12}
-md={8}>
-                <FileDropzone
-                  accept={{ 'image/*': [] }}
-                  caption='(SVG, JPG, PNG, or gif maximum 900x400)'
-                  files={files}
-                  onDrop={handleFilesDrop}
-                  onRemove={handleFileRemove}
-                  onRemoveAll={handleFilesRemoveAll}
-                />
-              </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent>
-            <Grid container
-spacing={3}>
-              <Grid xs={12}
-md={4}>
-                <Typography variant='h6'>Pricing</Typography>
-              </Grid>
-              <Grid xs={12}
-md={8}>
-                <Stack spacing={3}>
                   <TextField
-                    error={!!(formik.touched.oldPrice && formik.errors.oldPrice)}
+                    error={!!(formik.touched.name && formik.errors.name)}
                     fullWidth
-                    label='Old price'
-                    name='oldPrice'
+                    helperText={formik.touched.name && formik.errors.name}
+                    label='名前(カナ)'
+                    name='name'
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
-                    type='number'
-                    value={formik.values.oldPrice}
+                    value={formik.values.name}
                   />
                   <TextField
-                    error={!!(formik.touched.newPrice && formik.errors.newPrice)}
+                    error={!!(formik.touched.name && formik.errors.name)}
                     fullWidth
-                    label='New Price'
-                    name='newPrice'
+                    helperText={formik.touched.name && formik.errors.name}
+                    label='郵便番号'
+                    name='name'
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
-                    type='number'
-                    value={formik.values.newPrice}
+                    value={formik.values.name}
                   />
-                  <div>
-                    <FormControlLabel
-                      control={<Switch defaultChecked />}
-                      label='Keep selling when stock is empty'
-                    />
-                  </div>
+                  <TextField
+                    error={!!(formik.touched.name && formik.errors.name)}
+                    fullWidth
+                    helperText={formik.touched.name && formik.errors.name}
+                    label='都道府県'
+                    name='name'
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values.name}
+                  />
+                  <TextField
+                    error={!!(formik.touched.name && formik.errors.name)}
+                    fullWidth
+                    helperText={formik.touched.name && formik.errors.name}
+                    label='市町村区'
+                    name='name'
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values.name}
+                  />
+                  <TextField
+                    error={!!(formik.touched.name && formik.errors.name)}
+                    fullWidth
+                    helperText={formik.touched.name && formik.errors.name}
+                    label='番地'
+                    name='name'
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values.name}
+                  />
                 </Stack>
               </Grid>
             </Grid>
           </CardContent>
         </Card>
+        {/*<Card>*/}
+        {/*  <CardContent>*/}
+        {/*    <Grid container spacing={3}>*/}
+        {/*      <Grid xs={12} md={4}>*/}
+        {/*        <Stack spacing={1}>*/}
+        {/*          <Typography variant='h6'>Images</Typography>*/}
+        {/*          <Typography color='text.secondary' variant='body2'>*/}
+        {/*            Images will appear in the store front of your website.*/}
+        {/*          </Typography>*/}
+        {/*        </Stack>*/}
+        {/*      </Grid>*/}
+        {/*      <Grid xs={12} md={8}>*/}
+        {/*        <FileDropzone*/}
+        {/*          accept={{ 'image/*': [] }}*/}
+        {/*          caption='(JPG, PNG maximum 900x400)'*/}
+        {/*          files={files}*/}
+        {/*          onDrop={handleFilesDrop}*/}
+        {/*          onRemove={handleFileRemove}*/}
+        {/*          onRemoveAll={handleFilesRemoveAll}*/}
+        {/*        />*/}
+        {/*      </Grid>*/}
+        {/*    </Grid>*/}
+        {/*  </CardContent>*/}
+        {/*</Card>*/}
+        {/*<Card>*/}
+        {/*  <CardContent>*/}
+        {/*    <Grid container spacing={3}>*/}
+        {/*      <Grid xs={12} md={4}>*/}
+        {/*        <Typography variant='h6'>Pricing</Typography>*/}
+        {/*      </Grid>*/}
+        {/*      <Grid xs={12} md={8}>*/}
+        {/*        <Stack spacing={3}>*/}
+        {/*          <TextField*/}
+        {/*            error={!!(formik.touched.oldPrice && formik.errors.oldPrice)}*/}
+        {/*            fullWidth*/}
+        {/*            label='Old price'*/}
+        {/*            name='oldPrice'*/}
+        {/*            onBlur={formik.handleBlur}*/}
+        {/*            onChange={formik.handleChange}*/}
+        {/*            type='number'*/}
+        {/*            value={formik.values.oldPrice}*/}
+        {/*          />*/}
+        {/*          <TextField*/}
+        {/*            error={!!(formik.touched.newPrice && formik.errors.newPrice)}*/}
+        {/*            fullWidth*/}
+        {/*            label='New Price'*/}
+        {/*            name='newPrice'*/}
+        {/*            onBlur={formik.handleBlur}*/}
+        {/*            onChange={formik.handleChange}*/}
+        {/*            type='number'*/}
+        {/*            value={formik.values.newPrice}*/}
+        {/*          />*/}
+        {/*          <div>*/}
+        {/*            <FormControlLabel*/}
+        {/*              control={<Switch defaultChecked />}*/}
+        {/*              label='Keep selling when stock is empty'*/}
+        {/*            />*/}
+        {/*          </div>*/}
+        {/*        </Stack>*/}
+        {/*      </Grid>*/}
+        {/*    </Grid>*/}
+        {/*  </CardContent>*/}
+        {/*</Card>*/}
         <Card>
           <CardContent>
-            <Grid container
-spacing={3}>
-              <Grid xs={12}
-md={4}>
-                <Typography variant='h6'>Category</Typography>
+            <Grid container spacing={3}>
+              <Grid xs={12} md={4}>
+                <Typography variant='h6'>その他</Typography>
               </Grid>
-              <Grid xs={12}
-md={8}>
+              <Grid xs={12} md={8}>
                 <Stack spacing={3}>
                   <TextField
                     error={!!(formik.touched.category && formik.errors.category)}
                     fullWidth
-                    label='Category'
+                    label='分類'
                     name='category'
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
@@ -269,8 +281,7 @@ md={8}>
                     value={formik.values.category}
                   >
                     {categoryOptions.map((option) => (
-                      <MenuItem key={option.value}
-value={option.value}>
+                      <MenuItem key={option.value} value={option.value}>
                         {option.label}
                       </MenuItem>
                     ))}
@@ -279,8 +290,8 @@ value={option.value}>
                     disabled
                     error={!!(formik.touched.barcode && formik.errors.barcode)}
                     fullWidth
-                    label='Barcode'
-                    name='barcode'
+                    label='xxx'
+                    name=''
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.barcode}
@@ -289,8 +300,8 @@ value={option.value}>
                     disabled
                     error={!!(formik.touched.sku && formik.errors.sku)}
                     fullWidth
-                    label='SKU'
-                    name='sku'
+                    label='△△△'
+                    name=''
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.sku}
@@ -300,14 +311,9 @@ value={option.value}>
             </Grid>
           </CardContent>
         </Card>
-        <Stack alignItems='center'
-direction='row'
-justifyContent='flex-end'
-spacing={1}>
-          <Button color='inherit'>Cancel</Button>
-          <Button type='submit'
-variant='contained'>
-            Create
+        <Stack alignItems='center' direction='row' justifyContent='flex-end' spacing={1}>
+          <Button type='submit' variant='contained'>
+            更新する
           </Button>
         </Stack>
       </Stack>

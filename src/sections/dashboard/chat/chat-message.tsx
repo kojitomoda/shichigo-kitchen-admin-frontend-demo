@@ -36,7 +36,7 @@ export const ChatMessage: FC<ChatMessageProps> = (props) => {
         }}
       >
         <Avatar
-          src={authorAvatar || undefined}
+          src={undefined}
           sx={{
             height: 32,
             width: 32,
@@ -52,11 +52,11 @@ export const ChatMessage: FC<ChatMessageProps> = (props) => {
             }}
           >
             <Box sx={{ mb: 1 }}>
-              <Link color='inherit'
-sx={{ cursor: 'pointer' }}
-variant='subtitle2'>
-                {authorName}
-              </Link>
+              {/*              <Link color='inherit'*/}
+              {/*sx={{ cursor: 'pointer' }}*/}
+              {/*variant='subtitle2'>*/}
+              {/*                {authorName}*/}
+              {/*              </Link>*/}
             </Box>
             {contentType === 'image' && (
               <CardMedia
@@ -69,8 +69,7 @@ variant='subtitle2'>
               />
             )}
             {contentType === 'text' && (
-              <Typography color='inherit'
-variant='body1'>
+              <Typography color='inherit' variant='body1'>
                 {body}
               </Typography>
             )}
@@ -83,9 +82,7 @@ variant='body1'>
               px: 2,
             }}
           >
-            <Typography color='text.secondary'
-noWrap
-variant='caption'>
+            <Typography color='text.secondary' noWrap variant='caption'>
               {ago} ago
             </Typography>
           </Box>

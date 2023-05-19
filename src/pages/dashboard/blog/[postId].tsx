@@ -118,7 +118,7 @@ const Page: NextPage = () => {
       >
         <Container maxWidth='xl'>
           <Stack spacing={1}>
-            <Typography variant='h3'>Post</Typography>
+            <Typography variant='h3'>お知らせ</Typography>
             <Breadcrumbs separator={<BreadcrumbsSeparator />}>
               <Link
                 color='text.primary'
@@ -126,24 +126,23 @@ const Page: NextPage = () => {
                 href={paths.dashboard.index}
                 variant='subtitle2'
               >
-                Dashboard
+                お知らせ一覧
               </Link>
-              <Link
-                color='text.primary'
-                component={NextLink}
-                href={paths.dashboard.blog.index}
-                variant='subtitle2'
-              >
-                Blog
-              </Link>
-              <Typography color='text.secondary'
-variant='subtitle2'>
-                Details
-              </Typography>
+              {/*<Link*/}
+              {/*  color='text.primary'*/}
+              {/*  component={NextLink}*/}
+              {/*  href={paths.dashboard.blog.index}*/}
+              {/*  variant='subtitle2'*/}
+              {/*>*/}
+              {/*  Blog*/}
+              {/*</Link>*/}
+              {/*<Typography color='text.secondary' variant='subtitle2'>*/}
+              {/*  Details*/}
+              {/*</Typography>*/}
             </Breadcrumbs>
           </Stack>
           <Card
-            elevation={16}
+            // elevation={16}
             sx={{
               alignItems: 'center',
               borderRadius: 1,
@@ -155,35 +154,26 @@ variant='subtitle2'>
               py: 2,
             }}
           >
-            <Typography variant='subtitle1'>Hello, Admin</Typography>
-            <Button component={NextLink}
-href={paths.dashboard.blog.postCreate}
-variant='contained'>
-              Edit Post
+            <Typography variant='subtitle1'></Typography>
+            <Button component={NextLink} href={paths.dashboard.blog.postCreate} variant='contained'>
+              編集する
             </Button>
           </Card>
           <Stack spacing={3}>
-            <div>
-              <Chip label={post.category} />
-            </div>
+            {/*<div>*/}
+            {/*  <Chip label={post.category} />*/}
+            {/*</div>*/}
             <Typography variant='h3'>{post.title}</Typography>
-            <Typography color='text.secondary'
-variant='subtitle1'>
-              {post.shortDescription}
-            </Typography>
-            <Stack alignItems='center'
-direction='row'
-spacing={2}
-sx={{ mt: 3 }}>
-              <Avatar src={post.author.avatar} />
+            {/*<Typography color='text.secondary' variant='subtitle1'>*/}
+            {/*  {post.shortDescription}*/}
+            {/*</Typography>*/}
+            <Stack alignItems='center' direction='row' spacing={2} sx={{ mt: 3 }}>
+              {/*<Avatar src={post.author.avatar} />*/}
               <div>
-                <Typography variant='subtitle2'>
-                  By {post.author.name} • {publishedAt}
-                </Typography>
-                <Typography color='text.secondary'
-variant='body2'>
-                  {post.readTime} read
-                </Typography>
+                {/*<Typography variant='subtitle2'>{post.author.name}</Typography>*/}
+                {/*<Typography color='text.secondary' variant='body2'>*/}
+                {/*  {post.readTime} read*/}
+                {/*</Typography>*/}
               </div>
             </Stack>
           </Stack>
@@ -203,17 +193,14 @@ variant='body2'>
             </Container>
           )}
           <Divider sx={{ my: 3 }} />
-          <Stack spacing={2}>
-            {comments.map((comment) => (
-              <PostComment key={comment.id}
-{...comment} />
-            ))}
-          </Stack>
+          {/*<Stack spacing={2}>*/}
+          {/*  {comments.map((comment) => (*/}
+          {/*    <PostComment key={comment.id} {...comment} />*/}
+          {/*  ))}*/}
+          {/*</Stack>*/}
           <Divider sx={{ my: 3 }} />
-          <PostCommentAdd />
-          <Box sx={{ mt: 8 }}>
-            <PostNewsletter />
-          </Box>
+          {/*<PostCommentAdd />*/}
+          <Box sx={{ mt: 8 }}>{/*<PostNewsletter />*/}</Box>
         </Container>
       </Box>
     </>

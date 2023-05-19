@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 import PropTypes from 'prop-types'
-import { Button, Card, CardActions, CardHeader } from '@mui/material'
+import { Button, Card, CardActions, CardHeader, TableCell } from '@mui/material'
 import { PropertyList } from '../../../components/property-list'
 import { PropertyListItem } from '../../../components/property-list-item'
 
@@ -19,33 +19,19 @@ export const CustomerBasicDetails: FC<CustomerBasicDetailsProps> = (props) => {
 
   return (
     <Card {...other}>
-      <CardHeader title='Basic Details' />
+      <CardHeader title='現在' />
       <PropertyList>
-        <PropertyListItem divider
-label='Email'
-value={email} />
-        <PropertyListItem divider
-label='Phone'
-value={phone} />
-        <PropertyListItem divider
-label='Country'
-value={country} />
-        <PropertyListItem divider
-label='State/Region'
-value={state} />
-        <PropertyListItem divider
-label='Address 1'
-value={state} />
-        <PropertyListItem divider
-label='Address 2'
-value={address2} />
+        <PropertyListItem divider label='入居日' value={'2017/12/31'} />
+        {/*<PropertyListItem divider label='退去予定日' value={'　'} />*/}
+        <PropertyListItem divider label='退去日' value={'　'} />
+        <PropertyListItem divider label='最終ログイン日' value={'2023/05/12 12:33:40'} />
+        <TableCell
+          align='center'
+          style={{ display: 'block', textDecoration: 'underline', color: 'blue' }}
+        >
+          QRコードダウンロード
+        </TableCell>
       </PropertyList>
-      <CardActions>
-        <Button color='inherit'
-size='small'>
-          Reset Password
-        </Button>
-      </CardActions>
     </Card>
   )
 }

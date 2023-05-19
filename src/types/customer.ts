@@ -21,6 +21,13 @@ export interface Customer {
   updatedAt?: number
   vatRate?: number
   zipCode?: string
+  loginDate?: string
+  loginId?: string
+  role?: string
+  userId?: string
+  roomNumber?: number
+  inMoveDay?: string
+  status?: string
 }
 
 export interface CustomerLog {

@@ -101,13 +101,8 @@ export const TopNav: FC<TopNavProps> = (props) => {
           }),
         }}
       >
-        <Stack direction='row'
-spacing={2}
-sx={{ height: TOP_NAV_HEIGHT }}>
-          <Stack alignItems='center'
-direction='row'
-spacing={1}
-sx={{ flexGrow: 1 }}>
+        <Stack direction='row' spacing={2} sx={{ height: TOP_NAV_HEIGHT }}>
+          <Stack alignItems='center' direction='row' spacing={1} sx={{ flexGrow: 1 }}>
             <Stack
               alignItems='center'
               component={NextLink}
@@ -123,9 +118,7 @@ sx={{ flexGrow: 1 }}>
                   height: 24,
                   width: 24,
                 }}
-              >
-                <Logo />
-              </Box>
+              ></Box>
               {mdUp && (
                 <Box
                   sx={{
@@ -140,78 +133,11 @@ sx={{ flexGrow: 1 }}>
                     },
                   }}
                 >
-                  Devias Kit <span>PRO</span>
+                  NOBISHIRO回覧版<span></span>
                 </Box>
               )}
             </Stack>
-            <Chip label='v6.0.0'
-size='small' />
-          </Stack>
-          {mdUp && (
-            <Stack alignItems='center'
-direction='row'
-spacing={2}>
-              <Box component='nav'
-sx={{ height: '100%' }}>
-                <Stack
-                  component='ul'
-                  alignItems='center'
-                  justifyContent='center'
-                  direction='row'
-                  spacing={1}
-                  sx={{
-                    height: '100%',
-                    listStyle: 'none',
-                    m: 0,
-                    p: 0,
-                  }}
-                >
-                  <>
-                    {items.map((item) => {
-                      const checkPath = !!(item.path && pathname)
-                      const partialMatch = checkPath ? pathname.includes(item.path!) : false
-                      const exactMatch = checkPath ? pathname === item.path : false
-                      const active = item.children ? partialMatch : exactMatch
-
-                      return (
-                        <TopNavItem
-                          active={active}
-                          key={item.title}
-                          path={item.path}
-                          title={item.title}
-                        >
-                          {item.children}
-                        </TopNavItem>
-                      )
-                    })}
-                  </>
-                </Stack>
-              </Box>
-            </Stack>
-          )}
-          <Stack
-            alignItems='center'
-            direction='row'
-            justifyContent='flex-end'
-            spacing={2}
-            sx={{ flexGrow: 1 }}
-          >
-            <Button
-              component='a'
-              size={mdUp ? 'medium' : 'small'}
-              href='https://mui.com/store/items/devias-kit-pro'
-              target='_blank'
-              variant='contained'
-            >
-              Purchase Now
-            </Button>
-            {!mdUp && (
-              <IconButton onClick={onMobileNavOpen}>
-                <SvgIcon fontSize='small'>
-                  <Menu01Icon />
-                </SvgIcon>
-              </IconButton>
-            )}
+            <Chip label='クライアント管理画面' size='small' />
           </Stack>
         </Stack>
       </Container>

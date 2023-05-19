@@ -34,7 +34,7 @@ export const orders: Order[] = [
         unitAmount: 5.0,
       },
     ],
-    number: 'DEV-102',
+    number: '友田 晃司',
     paymentMethod: 'CreditCard',
     status: 'pending',
     totalAmount: 500.0,
@@ -404,4 +404,4 @@ export const order: Order = {
   promotionCode: 'PROMO1',
   status: 'pending',
   totalAmount: 500.0,
-};
+}

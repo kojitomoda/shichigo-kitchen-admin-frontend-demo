@@ -18,10 +18,6 @@ const Page: NextPage = () => {
       </Head>
       <main>
         <HomeHero />
-        <HomeFeatures />
-        <HomeReviews />
-        <HomeCta />
-        <HomeFaqs />
       </main>
     </>
   )
