@@ -110,7 +110,7 @@ const useCustomers = (search: Search): { customers: Customer[]; customersCount: 
       hasAcceptedMarketing: false,
       isProspect: false,
       isReturning: false,
-      name: 'Jie Yan Song',
+      name: '山田　太朗',
       state: 'Ohio',
       totalSpent: 5600.0,
       totalOrders: 6,
