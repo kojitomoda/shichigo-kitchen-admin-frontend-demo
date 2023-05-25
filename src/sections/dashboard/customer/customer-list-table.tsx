@@ -146,6 +146,8 @@ export const CustomerListTable: FC<CustomerListTableProps> = (props) => {
             <TableRow>
               <TableCell>部屋番号</TableCell>
               <TableCell>状態</TableCell>
+              <TableCell>最終ログイン日時</TableCell>
+              <TableCell>メッセージ関連未読期間</TableCell>
               <TableCell align='right'>詳細</TableCell>
             </TableRow>
           </TableHead>
@@ -170,6 +172,8 @@ export const CustomerListTable: FC<CustomerListTableProps> = (props) => {
                   <TableCell>
                     <SeverityPill color={statusColor}>{customer.status}</SeverityPill>
                   </TableCell>
+                  <TableCell>{customer.loginDate}</TableCell>
+                  <TableCell>{customer.unreadPeriod}</TableCell>
                   <TableCell align='right'>
                     <IconButton component={NextLink} href={paths.dashboard.customers.details}>
                       <SvgIcon>

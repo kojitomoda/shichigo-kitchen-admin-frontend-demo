@@ -49,7 +49,7 @@ const tabs: TabOption[] = [
   },
 ]
 
-type SortValue = 'updatedAt|desc' | 'updatedAt|asc' | 'totalOrders|desc' | 'totalOrders|asc'
+type SortValue = '未読期間|古い順' | '未読期間|新しい順' | 'totalOrders|desc' | 'totalOrders|asc'
 
 interface SortOption {
   label: string
@@ -58,19 +58,19 @@ interface SortOption {
 
 const sortOptions: SortOption[] = [
   {
-    label: 'Last update (newest)',
-    value: 'updatedAt|desc',
+    label: '未読期間 | 古い順',
+    value: '未読期間|古い順',
   },
   {
-    label: 'Last update (oldest)',
-    value: 'updatedAt|asc',
+    label: '未読期間 | 新しい順',
+    value: '未読期間|新しい順',
   },
   {
-    label: 'Total orders (highest)',
+    label: '最終ログイン日時 | 古い順',
     value: 'totalOrders|desc',
   },
   {
-    label: 'Total orders (lowest)',
+    label: '最終ログイン日時 | 新しい順',
     value: 'totalOrders|asc',
   },
 ]
@@ -168,6 +168,20 @@ export const CustomerListSearch: FC<CustomerListSearchProps> = (props) => {
             }
           />
         </Box>
+        <TextField
+          label='Sort By'
+          name='sort'
+          onChange={handleSortChange}
+          select
+          SelectProps={{ native: true }}
+          value={sortDir}
+        >
+          {sortOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
         <Button
           startIcon={
             <SvgIcon>

@@ -28,6 +28,7 @@ export interface Customer {
   roomNumber?: number
   inMoveDay?: string
   status?: string
+  unreadPeriod?: string
 }
 
 export interface CustomerLog {

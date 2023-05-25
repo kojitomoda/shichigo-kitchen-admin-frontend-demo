@@ -16,7 +16,7 @@ export const posts: Post[] = [
     readTime: '5 min',
     shortDescription:
       'Aliquam dapibus elementum nulla at malesuada. Ut mi nisl, aliquet non mollis vel, feugiat non nibh.',
-    title: 'Why I Still Lisp, and You Should Too',
+    title: '【自治会】プロカメラマン撮影会　ボランティア募集',
   },
   {
     id: 'a9c19d0caf2ca91020aacd1f',
@@ -102,5 +102,5 @@ Suspendisse pharetra dolor in massa molestie, vel molestie nunc accumsan. Cras v
   readTime: '5 min',
   shortDescription:
     'Aliquam dapibus elementum nulla at malesuada. Ut mi nisl, aliquet non mollis vel, feugiat non nibh.',
-  title: 'Why I Still Lisp, and You Should Too',
+  title: '【自治会】プロカメラマン撮影会　ボランティア募集',
 }

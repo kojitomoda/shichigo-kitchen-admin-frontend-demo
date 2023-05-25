@@ -40,7 +40,7 @@ const posts: Post[] = [
     readTime: '5 min',
     shortDescription:
       'Aliquam dapibus elementum nulla at malesuada. Ut mi nisl, aliquet non mollis vel, feugiat non nibh. Vivamus sit amet tristique dui. Praesent in bibendum arcu, at placerat augue. Nam varius fermentum diam, at tristique libero ultrices non. Praesent scelerisque diam vitae posuere dignissim. In et purus ac sapien posuere accumsan sit amet id diam. Pellentesque sit amet nulla ante. Maecenas nec leo vitae quam volutpat pretium id vitae augue.',
-    title: 'Why I Still Lisp, and You Should Too',
+    title: '【自治会】プロカメラマン撮影会　ボランティア募集',
   },
   {
     id: 'a9c19d0caf2ca91020aacd1f',
@@ -79,12 +79,9 @@ export const GridList1: FC = () => (
       p: 3,
     }}
   >
-    <Grid container
-spacing={3}>
+    <Grid container spacing={3}>
       {posts.map((post) => (
-        <Grid key={post.id}
-xs={12}
-md={4}>
+        <Grid key={post.id} xs={12} md={4}>
           <Card
             sx={{
               height: '100%',
@@ -109,8 +106,7 @@ md={4}>
             </Box>
             <Box sx={{ mt: 2 }}>
               <div>
-                <Chip label={post.category}
-variant='outlined' />
+                <Chip label={post.category} variant='outlined' />
               </div>
               <Box
                 sx={{
@@ -122,14 +118,12 @@ variant='outlined' />
                 <Avatar src={post.author.avatar} />
                 <Box sx={{ ml: 2 }}>
                   <Typography variant='subtitle2'>{post.author.name}</Typography>
-                  <Typography color='text.secondary'
-variant='caption'>
+                  <Typography color='text.secondary' variant='caption'>
                     {`${format(post.publishedAt, 'dd MMM')} · ${post.readTime} read`}
                   </Typography>
                 </Box>
               </Box>
-              <Link color='text.primary'
-variant='h6'>
+              <Link color='text.primary' variant='h6'>
                 {post.title}
               </Link>
               <Typography

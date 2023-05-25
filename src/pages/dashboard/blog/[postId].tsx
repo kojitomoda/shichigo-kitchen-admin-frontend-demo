@@ -147,7 +147,7 @@ const Page: NextPage = () => {
               alignItems: 'center',
               borderRadius: 1,
               display: 'flex',
-              justifyContent: 'space-between',
+              justifyContent: 'end',
               mb: 8,
               mt: 6,
               px: 3,
@@ -155,6 +155,14 @@ const Page: NextPage = () => {
             }}
           >
             <Typography variant='subtitle1'></Typography>
+            <Button
+              component={NextLink}
+              href={'detail'}
+              variant='contained'
+              style={{ marginRight: '20px' }}
+            >
+              既読者を確認する
+            </Button>
             <Button component={NextLink} href={paths.dashboard.blog.postCreate} variant='contained'>
               編集する
             </Button>
