@@ -166,30 +166,7 @@ export const OrderListTable2: FC<CustomerListTableProps> = (props) => {
                   onClick={() => onOrderSelect?.('5ecb8a6d9f53bfae09e16115')}
                 >
                   <TableCell>{customer.loginId}</TableCell>
-                  <TableCell>
-                    <Stack alignItems='center' direction='row' spacing={1}>
-                      <Avatar
-                        src={customer.avatar}
-                        sx={{
-                          height: 42,
-                          width: 42,
-                        }}
-                      >
-                        {getInitials(customer.name)}
-                      </Avatar>
-                      <div>
-                        <Link
-                          color='inherit'
-                          component={NextLink}
-                          href={paths.dashboard.customers.details}
-                          variant='subtitle2'
-                        >
-                          {customer.name}
-                        </Link>
-                        <Typography color='text.secondary' variant='body2'></Typography>
-                      </div>
-                    </Stack>
-                  </TableCell>
+                  <TableCell>{customer.name}</TableCell>
                   <TableCell>{customer.role}</TableCell>
                   <TableCell>{customer.email}</TableCell>
                 </TableRow>

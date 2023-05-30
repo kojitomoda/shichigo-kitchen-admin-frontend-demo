@@ -58,7 +58,7 @@ export const TopNav: FC<TopNavProps> = (props) => {
           )}
         </Stack>
         <Stack alignItems='center' direction='row' spacing={2}>
-          <AccountButton />
+          {/*<AccountButton />*/}
         </Stack>
       </Stack>
     </Box>
