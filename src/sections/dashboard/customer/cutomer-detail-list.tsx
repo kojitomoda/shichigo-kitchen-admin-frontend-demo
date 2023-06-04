@@ -4,7 +4,7 @@ import NextLink from 'next/link'
 import numeral from 'numeral'
 import PropTypes from 'prop-types'
 import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight'
-import Edit02Icon from '@untitled-ui/icons-react/build/esm/Edit02'
+import DownloadIcon from '@mui/icons-material/Download'
 import {
   Avatar,
   Box,
@@ -69,6 +69,7 @@ export const CustomerDetailList: FC = () => {
           <TableRow>
             <TableCell>入居日</TableCell>
             <TableCell>退去日</TableCell>
+            <TableCell>QRコードダウンロード</TableCell>
             <TableCell>個別チャット</TableCell>
           </TableRow>
         </TableHead>
@@ -78,6 +79,9 @@ export const CustomerDetailList: FC = () => {
               <TableRow hover key={room.id} onClick={() => console.log('')}>
                 <TableCell>{room.in}</TableCell>
                 <TableCell>{room.out}</TableCell>
+                <TableCell align='left'>
+                  <DownloadIcon />
+                </TableCell>
                 <TableCell>
                   <IconButton
                     component={NextLink}

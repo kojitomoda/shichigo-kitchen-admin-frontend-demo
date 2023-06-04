@@ -8,24 +8,17 @@ import {
   Breadcrumbs,
   Button,
   Card,
-  CardContent,
   Container,
   Divider,
   FormControlLabel,
-  FormHelperText,
-  IconButton,
   Link,
   Stack,
-  SvgIcon,
   Switch,
   TextField,
   Typography,
-  Unstable_Grid2 as Grid,
 } from '@mui/material'
 import { BreadcrumbsSeparator } from '../../components/breadcrumbs-separator'
 import type { File } from '../../components/file-dropzone'
-import { FileDropzone } from '../../components/file-dropzone'
-import { QuillEditor } from '../../components/quill-editor'
 import { usePageView } from '../../hooks/use-page-view'
 import { Layout as DashboardLayout } from '../../layouts/dashboard'
 import { paths } from '../../paths'
@@ -58,7 +51,7 @@ const Page: NextPage = () => {
         component='main'
         sx={{
           flexGrow: 1,
-          py: 8,
+          py: 1,
         }}
       >
         <Container maxWidth='xl'>
@@ -103,6 +96,13 @@ const Page: NextPage = () => {
             <Stack alignItems='center' direction='row' spacing={2}>
               <Stack spacing={4} sx={{ p: 3 }}>
                 <Box>
+                  <FormControlLabel control={<Switch name='allDay' />} label='第１' />
+                  <FormControlLabel control={<Switch name='allDay' />} label='第２' />
+                  <FormControlLabel control={<Switch name='allDay' />} label='第３' />
+                  <FormControlLabel control={<Switch name='allDay' />} label='第４' />
+                  <FormControlLabel control={<Switch name='allDay' />} label='第５' />
+                </Box>
+                <Box>
                   <FormControlLabel control={<Switch name='allDay' />} label='月' checked />
                   <FormControlLabel control={<Switch name='allDay' />} label='火' />
                   <FormControlLabel control={<Switch name='allDay' />} label='水' />
@@ -112,7 +112,7 @@ const Page: NextPage = () => {
                   <FormControlLabel control={<Switch name='allDay' />} label='土' />
                   <FormControlLabel control={<Switch name='allDay' />} label='日' />
                 </Box>
-                <Stack spacing={2} sx={{ p: 3 }}>
+                <Stack spacing={2} sx={{ py: 3 }}>
                   <DateTimePicker
                     label='指定日'
                     onChange={() => {}}
@@ -141,6 +141,14 @@ const Page: NextPage = () => {
                     value={'2022/04/25'}
                   />
                 </Stack>
+                <TextField
+                  label='補足説明'
+                  fullWidth
+                  multiline
+                  rows={6}
+                  variant='outlined'
+                  style={{ marginBottom: '30px' }}
+                />
               </Stack>
               <Divider />
             </Stack>

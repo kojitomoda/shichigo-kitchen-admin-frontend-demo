@@ -62,16 +62,8 @@ const sortOptions: SortOption[] = [
     value: '未読期間|古い順',
   },
   {
-    label: '未読期間 | 新しい順',
-    value: '未読期間|新しい順',
-  },
-  {
     label: '最終ログイン日時 | 古い順',
     value: 'totalOrders|desc',
-  },
-  {
-    label: '最終ログイン日時 | 新しい順',
-    value: 'totalOrders|asc',
   },
 ]
 
@@ -168,6 +160,8 @@ export const CustomerListSearch: FC<CustomerListSearchProps> = (props) => {
             }
           />
         </Box>
+        <TextField label='未読期間' name='a' value=''></TextField>
+        <span style={{ marginLeft: '5px', fontSize: '12px' }}>日以上</span>
         <TextField
           label='Sort By'
           name='sort'

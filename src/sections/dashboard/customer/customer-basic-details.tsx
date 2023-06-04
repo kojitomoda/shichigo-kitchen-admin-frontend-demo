@@ -25,12 +25,6 @@ export const CustomerBasicDetails: FC<CustomerBasicDetailsProps> = (props) => {
         {/*<PropertyListItem divider label='退去予定日' value={'　'} />*/}
         <PropertyListItem divider label='退去日' value={'　'} />
         <PropertyListItem divider label='最終ログイン日' value={'2023/05/12 12:33:40'} />
-        <TableCell
-          align='center'
-          style={{ display: 'block', textDecoration: 'underline', color: 'blue' }}
-        >
-          QRコードダウンロード
-        </TableCell>
       </PropertyList>
     </Card>
   )

@@ -150,7 +150,7 @@ const Page: NextPage = () => {
         component='main'
         sx={{
           flexGrow: 1,
-          py: 8,
+          py: 1,
         }}
       >
         <Container maxWidth='xl'>
@@ -160,18 +160,17 @@ const Page: NextPage = () => {
                 <Link
                   color='text.primary'
                   component={NextLink}
-                  href={paths.dashboard.customers.index}
+                  href={'/dashboard/customers'}
                   sx={{
                     alignItems: 'center',
                     display: 'inline-flex',
+                    marginRight: '20px',
                   }}
-                  underline='hover'
+                  underline={'always'}
                 >
-                  <SvgIcon sx={{ mr: 1 }}>
-                    <ArrowLeftIcon />
-                  </SvgIcon>
-                  <Typography variant='subtitle2'>部屋一覧</Typography>
+                  &gt; 部屋一覧
                 </Link>
+                <span style={{ marginLeft: '5px' }}>&gt; 1201</span>
               </div>
               <Stack
                 alignItems='flex-start'
@@ -191,8 +190,21 @@ const Page: NextPage = () => {
                     }}
                     spacing={3}
                   >
-                    <Typography variant='h4'>1201</Typography>
-                    <SeverityPill color='info'>入居中</SeverityPill>
+                    <div>
+                      <Typography variant='h4'>1201</Typography>
+                      <SeverityPill color='info'>入居中</SeverityPill>
+                    </div>
+                    <div style={{ marginLeft: '100px' }}>
+                      <Button
+                        variant='contained'
+                        component={NextLink}
+                        href={'/dashboard/customers/:customerId/register'}
+                        style={{ marginRight: '20px' }}
+                        color={'info'}
+                      >
+                        入居者登録
+                      </Button>
+                    </div>
                   </Stack>
                 </Stack>
 
