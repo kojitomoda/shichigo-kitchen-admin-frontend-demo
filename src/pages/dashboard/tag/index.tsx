@@ -8,15 +8,18 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Calendar from '@fullcalendar/react'
 import { Box, Card, Container, Stack, useMediaQuery } from '@mui/material'
-import { usePageView } from '../../hooks/use-page-view'
-import { Layout as DashboardLayout } from '../../layouts/dashboard'
-import { CalendarToolbar } from '../../sections/dashboard/calendar/calendar-toolbar'
-import { CalendarContainer } from '../../sections/dashboard/calendar/calendar-container'
-import { useDispatch, useSelector } from '../../store'
-import { thunks } from '../../thunks/calendar'
-import type { CalendarEvent, CalendarView } from '../../types/calendar'
+import { usePageView } from '@/hooks/use-page-view'
+import { Layout as DashboardLayout } from '@/layouts/dashboard'
+import { CalendarToolbar } from '@/sections/dashboard/calendar/calendar-toolbar'
+import { CalendarContainer } from '@/sections/dashboard/calendar/calendar-container'
+import { useDispatch, useSelector } from '@/store'
+import { thunks } from '@/thunks/calendar'
+import type { CalendarEvent, CalendarView } from '@/types/calendar'
 import { CalenderListTable } from '@/sections/dashboard/calendar/calender-list-table'
 import { CalenderEventTrashDialog } from '@/sections/dashboard/calendar/calender-event-trash-dialog'
+import { TagListTable } from '@/sections/dashboard/tag/tag-list-table'
+import { TagToolbar } from '@/sections/dashboard/tag/tag-toolbar'
+import { TagEventTrashDialog } from '@/sections/dashboard/tag/tag-event-trash-dialog'
 
 interface DialogState {
   isOpen: boolean
@@ -180,7 +183,7 @@ const Page: NextPage = () => {
       >
         <Container maxWidth='xl'>
           <Stack spacing={3}>
-            <CalendarToolbar
+            <TagToolbar
               date={date}
               onAddClick={handleAddClick}
               onAddClickTrashCategory={onAddClickTrashCategory}
@@ -192,13 +195,13 @@ const Page: NextPage = () => {
             />
             <Card>
               <CalendarContainer>
-                <CalenderListTable />
+                <TagListTable />
               </CalendarContainer>
             </Card>
           </Stack>
         </Container>
       </Box>
-      <CalenderEventTrashDialog
+      <TagEventTrashDialog
         event={currentEvent}
         onAddComplete={handleCloseDialogTrash}
         onClose={handleCloseDialogTrash}

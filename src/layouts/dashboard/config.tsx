@@ -10,6 +10,8 @@ import ReceiptCheckIcon from '../../icons/untitled-ui/duocolor/receipt-check'
 import Users03Icon from '../../icons/untitled-ui/duocolor/users-03'
 import { tokens } from '../../locales/tokens'
 import { paths } from '../../paths'
+import { XSquare } from '@untitled-ui/icons-react'
+import XSquare1 from '@/icons/untitled-ui/duocolor/x-square-1'
 
 interface Item {
   disabled?: boolean
@@ -135,6 +137,21 @@ export const getSections = (t: TFunction): Section[] => [
           {
             title: t(tokens.nav.details),
             path: paths.dashboard.orders.details,
+          },
+        ],
+      },
+      {
+        title: 'タグ',
+        path: paths.dashboard.products.index,
+        icon: (
+          <SvgIcon fontSize='small'>
+            <XSquare1 />
+          </SvgIcon>
+        ),
+        items: [
+          {
+            title: '一覧',
+            path: '/dashboard/tag',
           },
         ],
       },
