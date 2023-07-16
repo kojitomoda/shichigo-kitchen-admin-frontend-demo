@@ -95,6 +95,13 @@ export const OrderDetails: FC<OrderDetailsProps> = (props) => {
             align={align}
             disableGutters
             divider
+            label='お届け日'
+            value={'2023/07/17'}
+          />
+          <PropertyListItem
+            align={align}
+            disableGutters
+            divider
             label='注文日時'
             value={'2023/07/14 09:30'}
           />

@@ -78,7 +78,7 @@ export const OrderListTable: FC<OrderListTableProps> = (props) => {
                     }}
                   >
                     <Typography align='center' variant='subtitle2'>
-                      2023/07/{createdAtDay}
+                      2023/07/17
                     </Typography>
                   </Box>
                 </TableCell>

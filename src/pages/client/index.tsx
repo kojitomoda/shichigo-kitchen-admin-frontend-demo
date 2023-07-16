@@ -21,6 +21,7 @@ import { Scrollbar } from '@/components/scrollbar'
 import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight'
 import { useRouter } from 'next/router'
 import { clients } from '@/utils/constants'
+import DownloadIcon from '@mui/icons-material/Download'
 const Page: NextPage = () => {
   const router = useRouter()
 
@@ -65,6 +66,7 @@ const Page: NextPage = () => {
                       <TableRow>
                         <TableCell>名前</TableCell>
                         <TableCell>会員数</TableCell>
+                        <TableCell>QRコードダウンロード</TableCell>
                         <TableCell align='right'>詳細</TableCell>
                       </TableRow>
                     </TableHead>
@@ -78,6 +80,9 @@ const Page: NextPage = () => {
                           >
                             <TableCell>{client.name}</TableCell>
                             <TableCell>{client.userCount}</TableCell>
+                            <TableCell align='left'>
+                              <DownloadIcon />
+                            </TableCell>
                             <TableCell align='right'>
                               <IconButton component={NextLink} href={`/client/${client.id}`}>
                                 <SvgIcon>

@@ -15,7 +15,7 @@ export const orders: Order[] = [
       city: 'San Diego',
       country: 'USA',
       email: 'miron.vitold@devias.io',
-      name: 'Miron Vitold',
+      name: '山田 健太郎',
     },
     items: [
       {
@@ -51,7 +51,7 @@ export const orders: Order[] = [
       city: 'San Diego',
       country: 'USA',
       email: 'miron.vitold@devias.io',
-      name: 'Miron Vitold',
+      name: '田中 陽子',
     },
     items: [
       {
@@ -87,7 +87,7 @@ export const orders: Order[] = [
       city: 'San Diego',
       country: 'USA',
       email: 'miron.vitold@devias.io',
-      name: 'Miron Vitold',
+      name: '佐藤 美香子',
     },
     items: [
       {
@@ -123,7 +123,7 @@ export const orders: Order[] = [
       city: 'San Diego',
       country: 'USA',
       email: 'miron.vitold@devias.io',
-      name: 'Miron Vitold',
+      name: '鈴木 太一',
     },
     items: [
       {
@@ -159,7 +159,7 @@ export const orders: Order[] = [
       city: 'San Diego',
       country: 'USA',
       email: 'miron.vitold@devias.io',
-      name: 'Miron Vitold',
+      name: '高橋 さやか',
     },
     items: [
       {
@@ -195,7 +195,7 @@ export const orders: Order[] = [
       city: 'San Diego',
       country: 'USA',
       email: 'miron.vitold@devias.io',
-      name: 'Miron Vitold',
+      name: '伊藤 裕太',
     },
     items: [
       {
@@ -231,7 +231,7 @@ export const orders: Order[] = [
       city: 'San Diego',
       country: 'USA',
       email: 'miron.vitold@devias.io',
-      name: 'Miron Vitold',
+      name: '渡辺 由美子',
     },
     items: [
       {
@@ -267,7 +267,7 @@ export const orders: Order[] = [
       city: 'San Diego',
       country: 'USA',
       email: 'miron.vitold@devias.io',
-      name: 'Miron Vitold',
+      name: '中村 光男',
     },
     items: [
       {
@@ -303,7 +303,7 @@ export const orders: Order[] = [
       city: 'San Diego',
       country: 'USA',
       email: 'miron.vitold@devias.io',
-      name: 'Miron Vitold',
+      name: '高橋 さやか',
     },
     items: [
       {
@@ -339,7 +339,7 @@ export const orders: Order[] = [
       city: 'San Diego',
       country: 'USA',
       email: 'miron.vitold@devias.io',
-      name: 'Miron Vitold',
+      name: '小林 あかり',
     },
     items: [
       {
@@ -378,7 +378,7 @@ export const order: Order = {
     city: 'San Diego',
     country: 'USA',
     email: 'miron.vitold@devias.io',
-    name: 'Miron Vitold',
+    name: '加藤 拓也',
   },
   items: [
     {

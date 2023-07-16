@@ -5,15 +5,7 @@ import ChevronDownIcon from '@untitled-ui/icons-react/build/esm/ChevronDown'
 import { Box, IconButton, Stack, SvgIcon, Typography } from '@mui/material'
 import { TenantPopover } from './tenant-popover'
 
-const tenants: string[] = [
-  'パークホームズ柏たなか',
-  '幕張ベイパーク',
-  'パークホームズ昭島中神',
-  'ザ・ガーデンズ稲毛海岸',
-  'パークタワー西新宿',
-  '三田ガーデンヒルズ',
-  'パークシティ高田馬場',
-]
+const tenants: string[] = ['シチゴウキッチン 仙台店', 'ジーバーFOOD  仙台本店']
 
 export const TenantSwitch: FC = (props) => {
   const anchorRef = useRef<HTMLButtonElement | null>(null)

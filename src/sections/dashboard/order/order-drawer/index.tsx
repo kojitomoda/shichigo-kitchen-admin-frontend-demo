@@ -43,7 +43,7 @@ export const OrderDrawer: FC<OrderDrawerProps> = (props) => {
           }}
         >
           <Typography color='inherit' variant='h6'>
-            {'2023/07/08　　 アイリスオーヤマ'}
+            {'2023/07/17　　 アイリスオーヤマ'}
           </Typography>
           <IconButton color='inherit' onClick={onClose}>
             <SvgIcon>
