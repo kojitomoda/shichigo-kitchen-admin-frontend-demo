@@ -53,6 +53,14 @@ export const OrderListTable: FC<OrderListTableProps> = (props) => {
             const createdAtDay = format(order.createdAt, 'd')
             const totalAmount = numeral(order.totalAmount).format(`${order.currency}0,0.00`)
             const statusColor = statusMap[order.status] || 'warning'
+            const orderState =
+              order.status === 'pending'
+                ? '未処理'
+                : order.status === 'canceled'
+                ? 'キャンセル'
+                : order.status === 'complete'
+                ? '完了'
+                : '拒否'
 
             return (
               <TableRow
@@ -86,7 +94,7 @@ export const OrderListTable: FC<OrderListTableProps> = (props) => {
                 <TableCell>{order.customer.name}</TableCell>
                 <TableCell>{order.totalAmount}円</TableCell>
                 <TableCell align='right'>
-                  <SeverityPill color={statusColor}>{order.status}</SeverityPill>
+                  <SeverityPill color={statusColor}>{orderState}</SeverityPill>
                 </TableCell>
               </TableRow>
             )

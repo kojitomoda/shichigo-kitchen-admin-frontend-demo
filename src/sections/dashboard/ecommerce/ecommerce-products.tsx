@@ -37,8 +37,7 @@ export const EcommerceProducts: FC<EcommerceProductsProps> = (props) => {
 
   return (
     <Card>
-      <CardHeader action={<MoreMenu />}
-title='Top Selling Products' />
+      <CardHeader action={<MoreMenu />} title='売上ランキング' />
       <Scrollbar>
         <Table sx={{ minWidth: 300 }}>
           <TableBody>
@@ -46,12 +45,9 @@ title='Top Selling Products' />
               const sales = numeral(product.sales).format('0,0')
 
               return (
-                <TableRow hover
-key={product.id}>
+                <TableRow hover key={product.id}>
                   <TableCell>
-                    <Stack alignItems='center'
-direction='row'
-spacing={2}>
+                    <Stack alignItems='center' direction='row' spacing={2}>
                       {product.image ? (
                         <Box
                           sx={{
@@ -88,23 +84,15 @@ spacing={2}>
                       )}
                       <div>
                         <Typography variant='subtitle2'>{product.name}</Typography>
-                        <Typography color='text.secondary'
-variant='body2'>
-                          in {product.category}
-                        </Typography>
+                        <Typography color='text.secondary' variant='body2'></Typography>
                       </div>
                     </Stack>
                   </TableCell>
                   <TableCell>
-                    <Typography color='success.main'
-variant='subtitle2'>
+                    <Typography color='success.main' variant='subtitle2'>
                       {sales}
                     </Typography>
-                    <Typography color='text.secondary'
-noWrap
-variant='body2'>
-                      in sales
-                    </Typography>
+                    <Typography color='text.secondary' noWrap variant='body2'></Typography>
                   </TableCell>
                   <TableCell align='right'>
                     <Box

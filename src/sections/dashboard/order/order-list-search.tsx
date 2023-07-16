@@ -36,7 +36,7 @@ const tabOptions: TabOption[] = [
     value: 'all',
   },
   {
-    label: '未確認',
+    label: '未処理',
     value: 'pending',
   },
   {
@@ -153,6 +153,7 @@ export const OrderListSearch: FC<OrderListSearchProps> = (props) => {
             select
             SelectProps={{ native: true }}
           >
+            <option>{'取引先を絞らない'}</option>
             {clients.map((option) => (
               <option key={option.id} value={option.name}>
                 {option.name}

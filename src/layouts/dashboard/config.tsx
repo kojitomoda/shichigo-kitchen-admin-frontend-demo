@@ -6,6 +6,7 @@ import Users03Icon from '../../icons/untitled-ui/duocolor/users-03'
 import ShoppingBag03Icon from '../../icons/untitled-ui/duocolor/shopping-bag-03'
 import ShoppingCart01Icon from '../../icons/untitled-ui/duocolor/shopping-cart-01'
 import File01Icon from '../../icons/untitled-ui/duocolor/file-01'
+import BarChartSquare02Icon from '../../icons/untitled-ui/duocolor/bar-chart-square-02'
 
 interface Item {
   disabled?: boolean
@@ -95,6 +96,15 @@ export const getSections = (t: TFunction): Section[] => [
           </SvgIcon>
         ),
         path: '/time-limit',
+      },
+      {
+        title: '売上分析',
+        icon: (
+          <SvgIcon fontSize='small'>
+            <BarChartSquare02Icon />
+          </SvgIcon>
+        ),
+        path: '/dashboard/ecommerce',
       },
     ],
   },

@@ -103,7 +103,7 @@ export const OrderDetails: FC<OrderDetailsProps> = (props) => {
             disableGutters
             divider
             label='注文日時'
-            value={'2023/07/14 09:30'}
+            value={'2023/07/17 08:27'}
           />
           {/*<PropertyListItem*/}
           {/*  align={align}*/}
@@ -158,7 +158,7 @@ export const OrderDetails: FC<OrderDetailsProps> = (props) => {
         }}
       >
         <Button onClick={onApprove} size='small' variant='contained'>
-          承認
+          完了
         </Button>
         <Button color='error' onClick={onReject} size='small' variant='outlined'>
           キャンセル

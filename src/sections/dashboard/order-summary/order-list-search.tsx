@@ -36,7 +36,7 @@ const tabOptions: TabOption[] = [
     value: 'all',
   },
   {
-    label: '未確認',
+    label: '未処理',
     value: 'pending',
   },
   {

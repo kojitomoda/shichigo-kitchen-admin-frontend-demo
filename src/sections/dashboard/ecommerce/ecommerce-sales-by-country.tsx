@@ -40,7 +40,7 @@ export const EcommerceSalesByCountry: FC<EcommerceSalesByCountryProps> = (props)
 
   return (
     <Card>
-      <CardHeader title='Sales by Country' />
+      <CardHeader title='取引先別売上高' />
       <Stack
         alignItems={{
           md: 'center',
@@ -62,12 +62,12 @@ export const EcommerceSalesByCountry: FC<EcommerceSalesByCountryProps> = (props)
             flexShrink: 1,
             flexBasis: {
               xs: '100%',
-              md: '50%',
-              lg: '60%',
+              md: '30%',
+              lg: '30%',
             },
           }}
         >
-          <EcommerceWorldMap markerColor={markerColor} />
+          {/*<EcommerceWorldMap markerColor={markerColor} />*/}
         </Box>
         <Box
           sx={{
@@ -75,19 +75,17 @@ export const EcommerceSalesByCountry: FC<EcommerceSalesByCountryProps> = (props)
             flexShrink: 1,
             flexBasis: {
               xs: '100%',
-              md: '50%',
-              lg: '40%',
+              md: '70%',
+              lg: '70%',
             },
           }}
         >
-          <Typography color='text.secondary'
-variant='body2'>
-            Total
-          </Typography>
-          <Typography sx={{ mb: 3 }}
-variant='h5'>
-            $152K
-          </Typography>
+          {/*<Typography color='text.secondary' variant='body2'>*/}
+          {/*  Total*/}
+          {/*</Typography>*/}
+          {/*<Typography sx={{ mb: 3 }} variant='h5'>*/}
+          {/*  $152K*/}
+          {/*</Typography>*/}
           <Stack
             component='ul'
             spacing={2}
@@ -101,24 +99,18 @@ variant='h5'>
               const flag = flagMap[sale.id]
 
               return (
-                <Stack alignItems='center'
-direction='row'
-key={sale.id}
-spacing={1}>
-                  <Box
-                    sx={{
-                      height: 48,
-                      width: 48,
-                    }}
-                  >
-                    <img src={flag} />
-                  </Box>
-                  <Stack spacing={1}
-sx={{ flexGrow: 1 }}>
+                <Stack alignItems='center' direction='row' key={sale.id} spacing={1}>
+                  {/*<Box*/}
+                  {/*  sx={{*/}
+                  {/*    height: 48,*/}
+                  {/*    width: 48,*/}
+                  {/*  }}*/}
+                  {/*>*/}
+                  {/*  <img src={flag} />*/}
+                  {/*</Box>*/}
+                  <Stack spacing={1} sx={{ flexGrow: 1 }}>
                     <Typography variant='subtitle2'>{sale.country}</Typography>
-                    <Stack alignItems='center'
-direction='row'
-spacing={3}>
+                    <Stack alignItems='center' direction='row' spacing={3}>
                       <LinearProgress
                         sx={{ flexGrow: 1 }}
                         value={sale.amount}

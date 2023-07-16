@@ -145,7 +145,7 @@ export const orders: Order[] = [
     ],
     number: 'DEV-99',
     paymentMethod: 'PayPal',
-    status: 'rejected',
+    status: 'complete',
     totalAmount: 700,
   },
   {
@@ -289,7 +289,7 @@ export const orders: Order[] = [
     ],
     number: 'DEV-95',
     paymentMethod: 'PayPal',
-    status: 'rejected',
+    status: 'complete',
     totalAmount: 800,
   },
   {

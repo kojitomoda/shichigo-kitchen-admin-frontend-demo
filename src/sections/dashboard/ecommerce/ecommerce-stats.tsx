@@ -25,13 +25,10 @@ export const EcommerceStats: FC<EcommerceStatsProps> = (props) => {
 
   return (
     <Card>
-      <CardHeader title="Today's Stats"
-sx={{ pb: 0 }} />
+      <CardHeader title='本日の売上' sx={{ pb: 0 }} />
       <CardContent>
-        <Grid container
-spacing={3}>
-          <Grid xs={12}
-md={4}>
+        <Grid container spacing={3}>
+          <Grid xs={12} md={4}>
             <Stack
               alignItems='center'
               direction='row'
@@ -47,8 +44,8 @@ md={4}>
               <Box
                 sx={{
                   flexShrink: 0,
-                  height: 48,
-                  width: 48,
+                  height: 32,
+                  width: 32,
                   '& img': {
                     width: '100%',
                   },
@@ -57,16 +54,14 @@ md={4}>
                 <img src='/assets/iconly/iconly-glass-chart.svg' />
               </Box>
               <div>
-                <Typography color='text.secondary'
-variant='body2'>
-                  Sales
+                <Typography color='text.secondary' variant='body2'>
+                  売上
                 </Typography>
-                <Typography variant='h5'>{formattedSales}</Typography>
+                <Typography variant='h5'>85,800円</Typography>
               </div>
             </Stack>
           </Grid>
-          <Grid xs={12}
-md={4}>
+          <Grid xs={12} md={4}>
             <Stack
               alignItems='center'
               direction='row'
@@ -92,16 +87,14 @@ md={4}>
                 <img src='/assets/iconly/iconly-glass-discount.svg' />
               </Box>
               <div>
-                <Typography color='text.secondary'
-variant='body2'>
-                  Cost
+                <Typography color='text.secondary' variant='body2'>
+                  個数
                 </Typography>
-                <Typography variant='h5'>{formattedCost}</Typography>
+                <Typography variant='h5'>230個</Typography>
               </div>
             </Stack>
           </Grid>
-          <Grid xs={12}
-md={4}>
+          <Grid xs={12} md={4}>
             <Stack
               alignItems='center'
               direction='row'
@@ -127,11 +120,10 @@ md={4}>
                 <img src='/assets/iconly/iconly-glass-tick.svg' />
               </Box>
               <div>
-                <Typography color='text.secondary'
-variant='body2'>
-                  Profit
+                <Typography color='text.secondary' variant='body2'>
+                  客単価
                 </Typography>
-                <Typography variant='h5'>{formattedProfit}</Typography>
+                <Typography variant='h5'>740円</Typography>
               </div>
             </Stack>
           </Grid>

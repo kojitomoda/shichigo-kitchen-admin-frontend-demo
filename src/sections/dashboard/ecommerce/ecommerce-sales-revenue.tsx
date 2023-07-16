@@ -11,7 +11,7 @@ const createCategories = (): string[] => {
   const categories: string[] = []
 
   for (let i = 12; i >= 0; i--) {
-    categories.push(format(subDays(now, i), 'dd MMM'))
+    categories.push(format(subDays(now, i), 'dd'))
   }
 
   return categories
@@ -104,7 +104,7 @@ const useChartOptions = (): ApexOptions => {
           show: false,
         },
         labels: {
-          show: false,
+          show: true,
         },
       },
       {
@@ -137,12 +137,9 @@ export const EcommerceSalesRevenue: FC<EcommerceSalesRevenueProps> = (props) => 
 
   return (
     <Card>
-      <CardHeader title='Sales Revenue' />
+      <CardHeader title='売上推移' />
       <CardContent sx={{ pt: 0 }}>
-        <Chart height={320}
-options={chartOptions}
-series={chartSeries}
-type='line' />
+        <Chart height={320} options={chartOptions} series={chartSeries} type='line' />
       </CardContent>
     </Card>
   )

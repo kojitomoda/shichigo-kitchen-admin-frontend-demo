@@ -80,13 +80,9 @@ export const EcommerceCostBreakdown: FC<EcommerceCostBreakdownProps> = (props) =
 
   return (
     <Card>
-      <CardHeader title='Cost Breakdown'
-subheader='Based on selected period' />
+      <CardHeader title='カテゴリー別売上高' />
       <CardContent>
-        <Chart height={240}
-options={chartOptions}
-series={chartSeries}
-type='donut' />
+        <Chart height={240} options={chartOptions} series={chartSeries} type='donut' />
         <Table>
           <TableHead
             sx={{
@@ -96,8 +92,8 @@ type='donut' />
             }}
           >
             <TableRow>
-              <TableCell>Top Channels</TableCell>
-              <TableCell align='right'>Value</TableCell>
+              <TableCell>カテゴリー</TableCell>
+              <TableCell align='right'>売上</TableCell>
             </TableRow>
           </TableHead>
           <TableBody
@@ -132,8 +128,7 @@ type='donut' />
                     </Box>
                   </TableCell>
                   <TableCell align='right'>
-                    <Typography color='text.secondary'
-variant='body2'>
+                    <Typography color='text.secondary' variant='body2'>
                       {amount}
                     </Typography>
                   </TableCell>
