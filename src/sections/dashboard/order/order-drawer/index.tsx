@@ -42,12 +42,10 @@ export const OrderDrawer: FC<OrderDrawerProps> = (props) => {
             py: 2,
           }}
         >
-          <Typography color='inherit'
-variant='h6'>
-            {order.number}
+          <Typography color='inherit' variant='h6'>
+            {'2023/07/08　　 アイリスオーヤマ'}
           </Typography>
-          <IconButton color='inherit'
-onClick={onClose}>
+          <IconButton color='inherit' onClick={onClose}>
             <SvgIcon>
               <XIcon />
             </SvgIcon>
@@ -67,9 +65,7 @@ onClick={onClose}>
               order={order}
             />
           ) : (
-            <OrderEdit onCancel={handleEditCancel}
-onSave={handleEditCancel}
-order={order} />
+            <OrderEdit onCancel={handleEditCancel} onSave={handleEditCancel} order={order} />
           )}
         </Box>
       </div>

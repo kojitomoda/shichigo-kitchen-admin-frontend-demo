@@ -1,17 +1,11 @@
 import type { ReactNode } from 'react'
 import type { TFunction } from 'react-i18next'
 import { SvgIcon } from '@mui/material'
-import Building04Icon from '../../icons/untitled-ui/duocolor/building-04'
 import CalendarIcon from '../../icons/untitled-ui/duocolor/calendar'
-import LayoutAlt02Icon from '../../icons/untitled-ui/duocolor/layout-alt-02'
-import Mail04Icon from '../../icons/untitled-ui/duocolor/mail-04'
-import MessageChatSquareIcon from '../../icons/untitled-ui/duocolor/message-chat-square'
-import ReceiptCheckIcon from '../../icons/untitled-ui/duocolor/receipt-check'
 import Users03Icon from '../../icons/untitled-ui/duocolor/users-03'
-import { tokens } from '../../locales/tokens'
-import { paths } from '../../paths'
-import { XSquare } from '@untitled-ui/icons-react'
-import XSquare1 from '@/icons/untitled-ui/duocolor/x-square-1'
+import ShoppingBag03Icon from '../../icons/untitled-ui/duocolor/shopping-bag-03'
+import ShoppingCart01Icon from '../../icons/untitled-ui/duocolor/shopping-cart-01'
+import File01Icon from '../../icons/untitled-ui/duocolor/file-01'
 
 interface Item {
   disabled?: boolean
@@ -31,129 +25,76 @@ export const getSections = (t: TFunction): Section[] => [
   {
     items: [
       {
-        title: t(tokens.nav.customers),
-        path: paths.dashboard.customers.index,
-        icon: (
-          <SvgIcon fontSize='small'>
-            <ReceiptCheckIcon />
-          </SvgIcon>
-        ),
-        items: [
-          {
-            title: t(tokens.nav.list),
-            path: paths.dashboard.customers.index,
-          },
-        ],
-      },
-      {
-        title: t(tokens.nav.blog),
-        path: paths.dashboard.blog.index,
-        icon: (
-          <SvgIcon fontSize='small'>
-            <Mail04Icon />
-          </SvgIcon>
-        ),
-        items: [
-          {
-            title: '一覧',
-            path: paths.dashboard.blog.index,
-          },
-          {
-            title: '登録',
-            path: paths.dashboard.blog.postCreate,
-          },
-        ],
-      },
-      {
-        title: t(tokens.nav.minutes),
-        path: paths.dashboard.minutes.index,
-        icon: (
-          <SvgIcon fontSize='small'>
-            <LayoutAlt02Icon />
-          </SvgIcon>
-        ),
-        items: [
-          {
-            title: '一覧',
-            path: paths.dashboard.minutes.index,
-          },
-          {
-            title: '登録',
-            path: paths.dashboard.minutes.postCreate,
-          },
-        ],
-      },
-      {
-        title: t(tokens.nav.chat),
-        path: paths.dashboard.chat,
-        icon: (
-          <SvgIcon fontSize='small'>
-            <MessageChatSquareIcon />
-          </SvgIcon>
-        ),
-      },
-      {
-        title: t(tokens.nav.calendar),
-        path: paths.dashboard.calendar,
-        icon: (
-          <SvgIcon fontSize='small'>
-            <CalendarIcon />
-          </SvgIcon>
-        ),
-      },
-      {
-        title: '建物管理',
-        path: paths.dashboard.products.index,
-        icon: (
-          <SvgIcon fontSize='small'>
-            <Building04Icon />
-          </SvgIcon>
-        ),
-        items: [
-          {
-            title: '詳細',
-            path: paths.dashboard.products.create,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    subheader: '管理者設定',
-    items: [
-      {
-        title: t(tokens.nav.orderList),
+        title: '取引先管理',
         icon: (
           <SvgIcon fontSize='small'>
             <Users03Icon />
           </SvgIcon>
         ),
-        path: paths.dashboard.orders.index,
         items: [
           {
-            title: t(tokens.nav.list),
-            path: paths.dashboard.orders.index,
+            title: '一覧',
+            path: '/client',
           },
           {
-            title: t(tokens.nav.details),
-            path: paths.dashboard.orders.details,
+            title: '登録',
+            path: '/client/register',
           },
         ],
       },
       {
-        title: 'タグ',
-        path: paths.dashboard.products.index,
+        title: '商品管理',
         icon: (
           <SvgIcon fontSize='small'>
-            <XSquare1 />
+            <ShoppingBag03Icon />
           </SvgIcon>
         ),
         items: [
           {
             title: '一覧',
-            path: '/dashboard/tag',
+            path: '/product',
+          },
+          {
+            title: '登録',
+            path: '/product/register',
           },
         ],
+      },
+      {
+        title: '注文管理',
+        icon: (
+          <SvgIcon fontSize='small'>
+            <ShoppingCart01Icon />
+          </SvgIcon>
+        ),
+        items: [
+          {
+            title: '一覧',
+            path: '/order',
+          },
+          {
+            title: '集計',
+            path: '/order/summary',
+          },
+        ],
+      },
+      {
+        title: '在庫管理',
+        icon: (
+          <SvgIcon fontSize='small'>
+            <File01Icon />
+          </SvgIcon>
+        ),
+        path: '/stock',
+      },
+      {
+        title: '注文締切時間設定',
+        icon: (
+          <SvgIcon fontSize='small'>
+            <CalendarIcon />
+          </SvgIcon>
+        ),
+        path: '/time-limit',
       },
     ],
   },

@@ -22,34 +22,8 @@ import type { File } from '../../../components/file-dropzone'
 import { FileDropzone } from '../../../components/file-dropzone'
 import { QuillEditor } from '../../../components/quill-editor'
 import { paths } from '../../../paths'
-
-interface CategoryOption {
-  label: string
-  value: string
-}
-
-const categoryOptions: CategoryOption[] = [
-  {
-    label: 'マンション',
-    value: 'healthcare',
-  },
-  {
-    label: 'アパート',
-    value: 'makeup',
-  },
-  {
-    label: '団地',
-    value: 'dress',
-  },
-  {
-    label: 'ハイツ',
-    value: 'skincare',
-  },
-  {
-    label: 'コンドミニアム',
-    value: 'jewelry',
-  },
-]
+import { usePageView } from '@/hooks/use-page-view'
+import { fileToBase64 } from '@/utils/file-to-base64'
 
 interface Values {
   barcode: string
@@ -86,6 +60,7 @@ const validationSchema = Yup.object({
   sku: Yup.string().max(255),
 })
 
+const initialCover = '/assets/covers/abstract-1-4x3-large.png'
 export const ProductCreateForm: FC = (props) => {
   const router = useRouter()
   const [files, setFiles] = useState<File[]>([])
@@ -123,6 +98,19 @@ export const ProductCreateForm: FC = (props) => {
     setFiles([])
   }, [])
 
+  const [cover, setCover] = useState<string | null>(initialCover)
+
+  usePageView()
+
+  const handleCoverDrop = useCallback(async ([file]: File[]) => {
+    const data = (await fileToBase64(file)) as string
+    setCover(data)
+  }, [])
+
+  const handleCoverRemove = useCallback((): void => {
+    setCover(null)
+  }, [])
+
   return (
     <form onSubmit={formik.handleSubmit} {...props}>
       <Stack spacing={4}>
@@ -138,7 +126,7 @@ export const ProductCreateForm: FC = (props) => {
                     error={!!(formik.touched.name && formik.errors.name)}
                     fullWidth
                     helperText={formik.touched.name && formik.errors.name}
-                    label='名前'
+                    label='商品名'
                     name='name'
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
@@ -148,8 +136,8 @@ export const ProductCreateForm: FC = (props) => {
                     error={!!(formik.touched.name && formik.errors.name)}
                     fullWidth
                     helperText={formik.touched.name && formik.errors.name}
-                    label='名前(カナ)'
-                    name='name'
+                    label='金額'
+                    name='pirce'
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.name}
@@ -158,8 +146,10 @@ export const ProductCreateForm: FC = (props) => {
                     error={!!(formik.touched.name && formik.errors.name)}
                     fullWidth
                     helperText={formik.touched.name && formik.errors.name}
-                    label='郵便番号'
-                    name='name'
+                    label='商品説明'
+                    name='description'
+                    multiline // 複数行入力を有効にする
+                    rows={4}
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.name}
@@ -168,28 +158,8 @@ export const ProductCreateForm: FC = (props) => {
                     error={!!(formik.touched.name && formik.errors.name)}
                     fullWidth
                     helperText={formik.touched.name && formik.errors.name}
-                    label='都道府県'
-                    name='name'
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    value={formik.values.name}
-                  />
-                  <TextField
-                    error={!!(formik.touched.name && formik.errors.name)}
-                    fullWidth
-                    helperText={formik.touched.name && formik.errors.name}
-                    label='市町村区'
-                    name='name'
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    value={formik.values.name}
-                  />
-                  <TextField
-                    error={!!(formik.touched.name && formik.errors.name)}
-                    fullWidth
-                    helperText={formik.touched.name && formik.errors.name}
-                    label='番地'
-                    name='name'
+                    label='標準在庫数'
+                    name='stock'
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.name}
@@ -266,45 +236,60 @@ export const ProductCreateForm: FC = (props) => {
           <CardContent>
             <Grid container spacing={3}>
               <Grid xs={12} md={4}>
-                <Typography variant='h6'>その他</Typography>
+                <Typography variant='h6'>商品画像</Typography>
               </Grid>
               <Grid xs={12} md={8}>
                 <Stack spacing={3}>
-                  <TextField
-                    error={!!(formik.touched.category && formik.errors.category)}
-                    fullWidth
-                    label='分類'
-                    name='category'
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    select
-                    value={formik.values.category}
-                  >
-                    {categoryOptions.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                  <TextField
-                    disabled
-                    error={!!(formik.touched.barcode && formik.errors.barcode)}
-                    fullWidth
-                    label='xxx'
-                    name=''
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    value={formik.values.barcode}
-                  />
-                  <TextField
-                    disabled
-                    error={!!(formik.touched.sku && formik.errors.sku)}
-                    fullWidth
-                    label='△△△'
-                    name=''
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    value={formik.values.sku}
+                  {cover ? (
+                    <Box
+                      sx={{
+                        backgroundImage: `url(${cover})`,
+                        backgroundPosition: 'center',
+                        backgroundSize: 'cover',
+                        borderRadius: 1,
+                        height: 230,
+                        mt: 3,
+                      }}
+                    />
+                  ) : (
+                    <Box
+                      sx={{
+                        alignItems: 'center',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        border: 1,
+                        borderRadius: 1,
+                        borderStyle: 'dashed',
+                        borderColor: 'divider',
+                        height: 230,
+                        mt: 3,
+                        p: 3,
+                      }}
+                    >
+                      <Typography align='center' color='text.secondary' variant='h6'>
+                        Select a cover image
+                      </Typography>
+                      <Typography
+                        align='center'
+                        color='text.secondary'
+                        sx={{ mt: 1 }}
+                        variant='subtitle1'
+                      >
+                        Image used for the blog post cover and also for Open Graph meta
+                      </Typography>
+                    </Box>
+                  )}
+                  <div>
+                    <Button color='inherit' disabled={!cover} onClick={handleCoverRemove}>
+                      削除する
+                    </Button>
+                  </div>
+                  <FileDropzone
+                    accept={{ 'image/*': [] }}
+                    maxFiles={1}
+                    onDrop={handleCoverDrop}
+                    caption='(JPG, PNG maximum 900x400)'
                   />
                 </Stack>
               </Grid>
@@ -313,7 +298,7 @@ export const ProductCreateForm: FC = (props) => {
         </Card>
         <Stack alignItems='center' direction='row' justifyContent='flex-end' spacing={1}>
           <Button type='submit' variant='contained'>
-            更新する
+            登録する
           </Button>
         </Stack>
       </Stack>

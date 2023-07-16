@@ -66,7 +66,7 @@ const Page: NextPage = () => {
         await signIn(values.email, values.password)
 
         if (isMounted()) {
-          router.push(returnTo || paths.dashboard.index)
+          router.push('/products')
         }
       } catch (err) {
         console.error(err)
@@ -90,14 +90,12 @@ const Page: NextPage = () => {
       <div>
         <Card elevation={16}>
           <CardHeader
-            subheader={<Typography color='text.secondary'
-variant='body2' />}
+            subheader={<Typography color='text.secondary' variant='body2' />}
             sx={{ pb: 0 }}
             title='Log in'
           />
           <CardContent>
-            <form noValidate
-onSubmit={formik.handleSubmit}>
+            <form noValidate onSubmit={formik.handleSubmit}>
               <Stack spacing={3}>
                 <TextField
                   autoFocus
@@ -124,8 +122,7 @@ onSubmit={formik.handleSubmit}>
                 />
               </Stack>
               {formik.errors.submit && (
-                <FormHelperText error
-sx={{ mt: 3 }}>
+                <FormHelperText error sx={{ mt: 3 }}>
                   {formik.errors.submit as string}
                 </FormHelperText>
               )}

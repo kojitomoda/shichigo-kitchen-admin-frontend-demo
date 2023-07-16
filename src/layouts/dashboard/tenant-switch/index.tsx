@@ -35,11 +35,9 @@ export const TenantSwitch: FC = (props) => {
     <>
       <Stack alignItems='center' direction='row' spacing={2} {...props}>
         <Box sx={{ flexGrow: 1 }}>
-          <Typography color='inherit' variant='h6'>
-            三井不動産
-          </Typography>
+          <Typography color='inherit'>シチゴウキッチン</Typography>
           <Typography color='neutral.400' variant='body2'>
-            三田ガーデンヒルズ
+            本店
           </Typography>
         </Box>
         <IconButton onClick={handlePopoverOpen} ref={anchorRef}>

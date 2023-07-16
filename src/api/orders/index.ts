@@ -63,7 +63,7 @@ class OrdersApi {
     }
 
     if (typeof page !== 'undefined' && typeof rowsPerPage !== 'undefined') {
-      data = applyPagination(data, page, rowsPerPage)
+      data = applyPagination(data, page, 10)
     }
 
     return Promise.resolve({

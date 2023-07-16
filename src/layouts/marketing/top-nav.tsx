@@ -133,11 +133,11 @@ export const TopNav: FC<TopNavProps> = (props) => {
                     },
                   }}
                 >
-                  NOBISHIRO回覧版<span></span>
+                  シチゴウキッチン<span></span>
                 </Box>
               )}
             </Stack>
-            <Chip label='クライアント管理画面' size='small' />
+            <Chip label='運営管理画面' size='small' />
           </Stack>
         </Stack>
       </Container>

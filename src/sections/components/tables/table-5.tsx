@@ -57,7 +57,7 @@ const products: Product[] = [
     category: 'dress',
     currency: '$',
     createdAt: subDays(now, 1).getTime(),
-    image: '/assets/products/product-1.png',
+    image: '/assets/products/product-1.jpeg',
     inventoryType: 'in_stock',
     isAvailable: true,
     isShippable: false,
@@ -73,7 +73,7 @@ const products: Product[] = [
     category: 'dress',
     currency: '$',
     createdAt: subDays(now, 3).getTime(),
-    image: '/assets/products/product-2.png',
+    image: '/assets/products/product-2.jpeg',
     inventoryType: 'out_of_stock',
     isAvailable: false,
     isShippable: true,
@@ -208,11 +208,7 @@ export const Table5: FC = () => (
     }}
   >
     <Card>
-      <Stack alignItems='center'
-direction='row'
-flexWrap='wrap'
-gap={2}
-sx={{ p: 3 }}>
+      <Stack alignItems='center' direction='row' flexWrap='wrap' gap={2} sx={{ p: 3 }}>
         <OutlinedInput
           placeholder='Search products'
           startAdornment={
@@ -238,8 +234,7 @@ sx={{ p: 3 }}>
           }}
         >
           {sortOptions.map((option) => (
-            <option key={option.value}
-value={option.value}>
+            <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
@@ -255,8 +250,7 @@ value={option.value}>
           }}
         >
           {categoryOptions.map((option) => (
-            <option key={option.value}
-value={option.value}>
+            <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
@@ -272,19 +266,16 @@ value={option.value}>
           }}
         >
           {availabilityOptions.map((option) => (
-            <option key={option.value}
-value={option.value}>
+            <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
         </TextField>
         <div>
-          <FormControlLabel control={<Switch name='inStock' />}
-label='In Stock' />
+          <FormControlLabel control={<Switch name='inStock' />} label='In Stock' />
         </div>
         <div>
-          <FormControlLabel control={<Switch name='Shippable' />}
-label='Shippable' />
+          <FormControlLabel control={<Switch name='Shippable' />} label='Shippable' />
         </div>
       </Stack>
       <Scrollbar>
@@ -308,8 +299,7 @@ label='Shippable' />
               const hasManyVariants = product.variants > 1
 
               return (
-                <TableRow hover
-key={product.id}>
+                <TableRow hover key={product.id}>
                   <TableCell padding='checkbox'>
                     <Checkbox />
                   </TableCell>
@@ -336,8 +326,7 @@ key={product.id}>
                             },
                           }}
                         >
-                          <img alt='Product'
-src={product.image} />
+                          <img alt='Product' src={product.image} />
                         </Box>
                       ) : (
                         <Box

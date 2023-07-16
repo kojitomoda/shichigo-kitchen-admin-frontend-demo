@@ -1,50 +1,16 @@
 import type { ChangeEvent, FC, ReactNode } from 'react'
-import { useCallback, useMemo } from 'react'
+import { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { format } from 'date-fns'
 import ChevronLeftIcon from '@untitled-ui/icons-react/build/esm/ChevronLeft'
 import ChevronRightIcon from '@untitled-ui/icons-react/build/esm/ChevronRight'
-import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus'
-import {
-  Button,
-  IconButton,
-  Stack,
-  SvgIcon,
-  TextField,
-  Typography,
-  useMediaQuery,
-} from '@mui/material'
+import { IconButton, Stack, SvgIcon, Typography } from '@mui/material'
 import type { CalendarView } from '../../../types/calendar'
-
-interface ViewOption {
-  label: string
-  value: CalendarView
-}
-
-const viewOptions: ViewOption[] = [
-  {
-    label: 'Month',
-    value: 'dayGridMonth',
-  },
-  {
-    label: 'Week',
-    value: 'timeGridWeek',
-  },
-  {
-    label: 'Day',
-    value: 'timeGridDay',
-  },
-  {
-    label: 'Agenda',
-    value: 'listWeek',
-  },
-]
 
 interface CalendarToolbarProps {
   children?: ReactNode
   date: Date
   onAddClick?: () => void
-  onAddClickTrashCategory?: () => void
   onDateNext?: () => void
   onDatePrev?: () => void
   onDateToday?: () => void
@@ -53,17 +19,8 @@ interface CalendarToolbarProps {
 }
 
 export const CalendarToolbar: FC<CalendarToolbarProps> = (props) => {
-  const {
-    date,
-    onAddClick,
-    onAddClickTrashCategory,
-    onDateNext,
-    onDatePrev,
-    onDateToday,
-    onViewChange,
-    view,
-    ...other
-  } = props
+  const { date, onAddClick, onDateNext, onDatePrev, onDateToday, onViewChange, view, ...other } =
+    props
 
   const handleViewChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>): void => {
@@ -72,10 +29,8 @@ export const CalendarToolbar: FC<CalendarToolbarProps> = (props) => {
     [onViewChange],
   )
 
-  const dateMonth = format(date, 'MMMM')
+  const dateMonth = format(date, 'MM')
   const dateDay = format(date, 'y')
-
-  // On mobile allow only timeGridDay and agenda views
 
   return (
     <Stack
@@ -86,28 +41,28 @@ export const CalendarToolbar: FC<CalendarToolbarProps> = (props) => {
         xs: 'column',
         md: 'row',
       }}
-      spacing={2}
+      spacing={3}
       sx={{ px: 3 }}
       {...other}
     >
       <Stack alignItems='center' direction='row' spacing={1}>
-        <Typography variant='h4'>ゴミの日管理</Typography>
+        <Typography variant='h4'>注文締切時間設定</Typography>
+        <Typography sx={{ fontWeight: 400 }} variant='h6'>
+          {dateDay}
+        </Typography>
+        <Typography variant='h6'>{dateMonth}月</Typography>
       </Stack>
       <Stack alignItems='center' direction='row' spacing={1}>
-        <IconButton onClick={onDatePrev}></IconButton>
-        <IconButton onClick={onDateNext}></IconButton>
-        <Button
-          onClick={onAddClickTrashCategory}
-          sx={{
-            width: {
-              xs: '100%',
-              md: 'auto',
-            },
-          }}
-          variant='contained'
-        >
-          ゴミの種類を登録する
-        </Button>
+        <IconButton onClick={onDatePrev}>
+          <SvgIcon>
+            <ChevronLeftIcon />
+          </SvgIcon>
+        </IconButton>
+        <IconButton onClick={onDateNext}>
+          <SvgIcon>
+            <ChevronRightIcon />
+          </SvgIcon>
+        </IconButton>
       </Stack>
     </Stack>
   )
@@ -117,7 +72,6 @@ CalendarToolbar.propTypes = {
   children: PropTypes.node,
   date: PropTypes.instanceOf(Date).isRequired,
   onAddClick: PropTypes.func,
-  onAddClickTrashCategory: PropTypes.func,
   onDateNext: PropTypes.func,
   onDatePrev: PropTypes.func,
   onDateToday: PropTypes.func,

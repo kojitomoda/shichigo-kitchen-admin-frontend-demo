@@ -45,15 +45,11 @@ const Page: NextPage = () => {
             }}
           >
             <Grid xs={12}>
-              <Stack direction='row'
-justifyContent='space-between'
-spacing={4}>
+              <Stack direction='row' justifyContent='space-between' spacing={4}>
                 <div>
                   <Typography variant='h4'>E-Commerce</Typography>
                 </div>
-                <Stack alignItems='center'
-direction='row'
-spacing={2}>
+                <Stack alignItems='center' direction='row' spacing={2}>
                   <Button
                     startIcon={
                       <SvgIcon>
@@ -67,17 +63,14 @@ spacing={2}>
                 </Stack>
               </Stack>
             </Grid>
-            <Grid xs={12}
-lg={8}>
+            <Grid xs={12} lg={8}>
               <Stack
                 spacing={{
                   xs: 3,
                   lg: 4,
                 }}
               >
-                <EcommerceStats cost={99700}
-profit={32100}
-sales={152000} />
+                <EcommerceStats cost={99700} profit={32100} sales={152000} />
                 <EcommerceSalesRevenue
                   chartSeries={[
                     {
@@ -123,8 +116,7 @@ sales={152000} />
                 />
               </Stack>
             </Grid>
-            <Grid xs={12}
-lg={4}>
+            <Grid xs={12} lg={4}>
               <Stack
                 spacing={{
                   xs: 3,
@@ -136,14 +128,14 @@ lg={4}>
                     {
                       id: '5eff2512c6f8737d08325676',
                       category: 'Accessories',
-                      image: '/assets/products/product-1.png',
+                      image: '/assets/products/product-1.jpeg',
                       name: 'Healthcare Erbology',
                       sales: 13153,
                     },
                     {
                       id: '5eff2516247f9a6fcca9f151',
                       category: 'Accessories',
-                      image: '/assets/products/product-2.png',
+                      image: '/assets/products/product-2.jpeg',
                       name: 'Makeup Lancome Rouge',
                       sales: 10300,
                     },

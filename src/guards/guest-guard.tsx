@@ -17,7 +17,7 @@ export const GuestGuard: FC<GuestGuardProps> = (props) => {
 
   const check = useCallback(() => {
     if (isAuthenticated) {
-      router.replace(paths.dashboard.index)
+      router.replace('/product')
     } else {
       setChecked(true)
     }

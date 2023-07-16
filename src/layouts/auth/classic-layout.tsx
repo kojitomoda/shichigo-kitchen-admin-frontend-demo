@@ -71,7 +71,7 @@ export const Layout: FC<LayoutProps> = (props) => {
                   },
                 }}
               >
-                NOBISHIRO回覧板<span>クライアント管理画面</span>
+                シチゴウキッチン<span>運営管理画面</span>
               </Box>
             </Stack>
           </Stack>

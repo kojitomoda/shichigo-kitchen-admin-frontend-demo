@@ -15,7 +15,8 @@ import {
   TextField,
 } from '@mui/material'
 import { useUpdateEffect } from '../../../hooks/use-update-effect'
-import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { clients } from '@/utils/constants'
 
 interface Filters {
   query?: string
@@ -31,24 +32,20 @@ interface TabOption {
 
 const tabOptions: TabOption[] = [
   {
-    label: 'All',
+    label: 'すべて',
     value: 'all',
   },
   {
-    label: 'Canceled',
-    value: 'canceled',
-  },
-  {
-    label: 'Completed',
-    value: 'complete',
-  },
-  {
-    label: 'Pending',
+    label: '未確認',
     value: 'pending',
   },
   {
-    label: 'Rejected',
-    value: 'rejected',
+    label: '完了',
+    value: 'complete',
+  },
+  {
+    label: 'キャンセル',
+    value: 'canceled',
   },
 ]
 
@@ -123,38 +120,48 @@ export const OrderListSearch: FC<OrderListSearchProps> = (props) => {
 
   return (
     <div>
-      {/*<Tabs*/}
-      {/*  indicatorColor='primary'*/}
-      {/*  onChange={handleTabsChange}*/}
-      {/*  scrollButtons='auto'*/}
-      {/*  sx={{ px: 3 }}*/}
-      {/*  textColor='primary'*/}
-      {/*  value={currentTab}*/}
-      {/*  variant='scrollable'*/}
-      {/*>*/}
-      {/*  {tabOptions.map((tab) => (*/}
-      {/*    <Tab key={tab.value} label={tab.label} value={tab.value} />*/}
-      {/*  ))}*/}
-      {/*</Tabs>*/}
+      <Tabs
+        indicatorColor='primary'
+        onChange={handleTabsChange}
+        scrollButtons='auto'
+        sx={{ px: 3 }}
+        textColor='primary'
+        value={currentTab}
+        variant='scrollable'
+      >
+        {tabOptions.map((tab) => (
+          <Tab key={tab.value} label={tab.label} value={tab.value} />
+        ))}
+      </Tabs>
       <Divider />
       <Stack alignItems='center' direction='row' flexWrap='wrap' gap={3} sx={{ p: 3 }}>
-        <Box component='form' onSubmit={handleQueryChange} sx={{ flexGrow: 1 }}>
-          <OutlinedInput
-            defaultValue=''
-            fullWidth
-            inputProps={{ ref: queryRef }}
-            name='orderNumber'
-            placeholder='建物名を入力する'
-            startAdornment={
-              <InputAdornment position='start'>
-                <SvgIcon>
-                  <SearchMdIcon />
-                </SvgIcon>
-              </InputAdornment>
-            }
+        <div>
+          <DatePicker
+            inputFormat='yyyy/MM/dd'
+            label='お届け日'
+            onChange={() => {}}
+            renderInput={(inputProps) => <TextField {...inputProps} />}
+            value={new Date()}
           />
+        </div>
+        <Box sx={{ flexGrow: 1 }}>
+          <TextField
+            defaultValue='web'
+            fullWidth
+            label='取引先'
+            name='platform'
+            select
+            SelectProps={{ native: true }}
+          >
+            {clients.map((option) => (
+              <option key={option.id} value={option.name}>
+                {option.name}
+              </option>
+            ))}
+          </TextField>
         </Box>
         <Button
+          size='large'
           startIcon={
             <SvgIcon>
               <SearchMdIcon />
@@ -164,20 +171,6 @@ export const OrderListSearch: FC<OrderListSearchProps> = (props) => {
         >
           検索
         </Button>
-        {/*<TextField*/}
-        {/*  label='Sort By'*/}
-        {/*  name='sort'*/}
-        {/*  onChange={handleSortChange}*/}
-        {/*  select*/}
-        {/*  SelectProps={{ native: true }}*/}
-        {/*  value={sortDir}*/}
-        {/*>*/}
-        {/*  {sortOptions.map((option) => (*/}
-        {/*    <option key={option.value} value={option.value}>*/}
-        {/*      {option.label}*/}
-        {/*    </option>*/}
-        {/*  ))}*/}
-        {/*</TextField>*/}
       </Stack>
     </div>
   )

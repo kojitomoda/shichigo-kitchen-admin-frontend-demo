@@ -47,7 +47,7 @@ export const paths = {
     },
   },
   dashboard: {
-    index: '/dashboard',
+    index: '/product',
     academy: {
       index: '/dashboard/academy',
       courseDetails: '/dashboard/academy/courses/:courseId',

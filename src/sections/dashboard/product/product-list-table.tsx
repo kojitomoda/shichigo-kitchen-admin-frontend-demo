@@ -1,11 +1,7 @@
 import type { ChangeEvent, FC, MouseEvent } from 'react'
 import { Fragment, useCallback, useState } from 'react'
-import numeral from 'numeral'
 import PropTypes from 'prop-types'
 import { toast } from 'react-hot-toast'
-import ChevronDownIcon from '@untitled-ui/icons-react/build/esm/ChevronDown'
-import ChevronRightIcon from '@untitled-ui/icons-react/build/esm/ChevronRight'
-import DotsHorizontalIcon from '@untitled-ui/icons-react/build/esm/DotsHorizontal'
 import Image01Icon from '@untitled-ui/icons-react/build/esm/Image01'
 import {
   Box,
@@ -32,6 +28,8 @@ import {
 import { Scrollbar } from '../../../components/scrollbar'
 import { SeverityPill } from '../../../components/severity-pill'
 import type { Product } from '../../../types/product'
+import NextLink from 'next/link'
+import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight'
 
 interface CategoryOption {
   label: string
@@ -115,49 +113,43 @@ export const ProductListTable: FC<ProductListTableProps> = (props) => {
         <Table sx={{ minWidth: 1200 }}>
           <TableHead>
             <TableRow>
-              <TableCell />
-              <TableCell width='25%'>Name</TableCell>
-              <TableCell width='25%'>Stock</TableCell>
-              <TableCell>Price</TableCell>
-              <TableCell>sku</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell align='right'>Actions</TableCell>
+              <TableCell>商品名</TableCell>
+              <TableCell>商品画像</TableCell>
+              <TableCell>金額</TableCell>
+              <TableCell>標準在庫数</TableCell>
+              <TableCell>編集</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {products.map((product) => {
               const isCurrent = product.id === currentProduct
-              const price = numeral(product.price).format(`${product.currency}0,0.00`)
-              const quantityColor = product.quantity >= 10 ? 'success' : 'error'
-              const statusColor = product.status === 'published' ? 'success' : 'info'
-              const hasManyVariants = product.variants > 1
 
               return (
                 <Fragment key={product.id}>
-                  <TableRow hover
-key={product.id}>
-                    <TableCell
-                      padding='checkbox'
-                      sx={{
-                        ...(isCurrent && {
-                          position: 'relative',
-                          '&:after': {
-                            position: 'absolute',
-                            content: '" "',
-                            top: 0,
-                            left: 0,
-                            backgroundColor: 'primary.main',
-                            width: 3,
-                            height: 'calc(100% + 1px)',
-                          },
-                        }),
-                      }}
-                      width='25%'
-                    >
-                      <IconButton onClick={() => handleProductToggle(product.id)}>
-                        <SvgIcon>{isCurrent ? <ChevronDownIcon /> : <ChevronRightIcon />}</SvgIcon>
-                      </IconButton>
-                    </TableCell>
+                  <TableRow hover key={product.id}>
+                    <TableCell>{product.name}</TableCell>
+                    {/*<TableCell*/}
+                    {/*  padding='checkbox'*/}
+                    {/*  sx={{*/}
+                    {/*    ...(isCurrent && {*/}
+                    {/*      position: 'relative',*/}
+                    {/*      '&:after': {*/}
+                    {/*        position: 'absolute',*/}
+                    {/*        content: '" "',*/}
+                    {/*        top: 0,*/}
+                    {/*        left: 0,*/}
+                    {/*        backgroundColor: 'primary.main',*/}
+                    {/*        width: 3,*/}
+                    {/*        height: 'calc(100% + 1px)',*/}
+                    {/*      },*/}
+                    {/*    }),*/}
+                    {/*  }}*/}
+                    {/*  width='25%'*/}
+                    {/*>*/}
+                    {/*  <IconButton onClick={() => handleProductToggle(product.id)}>*/}
+                    {/*    <SvgIcon>{isCurrent ? <ChevronDownIcon /> : <ChevronRightIcon />}</SvgIcon>*/}
+                    {/*  </IconButton>*/}
+                    {/*</TableCell>*/}
                     <TableCell width='25%'>
                       <Box
                         sx={{
@@ -198,45 +190,17 @@ key={product.id}>
                             </SvgIcon>
                           </Box>
                         )}
-                        <Box
-                          sx={{
-                            cursor: 'pointer',
-                            ml: 2,
-                          }}
-                        >
-                          <Typography variant='subtitle2'>{product.name}</Typography>
-                          <Typography color='text.secondary'
-variant='body2'>
-                            in {product.category}
-                          </Typography>
-                        </Box>
                       </Box>
                     </TableCell>
-                    <TableCell width='25%'>
-                      <LinearProgress
-                        value={product.quantity}
-                        variant='determinate'
-                        color={quantityColor}
-                        sx={{
-                          height: 8,
-                          width: 36,
-                        }}
-                      />
-                      <Typography color='text.secondary'
-variant='body2'>
-                        {product.quantity} in stock
-                        {hasManyVariants && ` in ${product.variants} variants`}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>{price}</TableCell>
-                    <TableCell>{product.sku}</TableCell>
+                    <TableCell>{product.price}円</TableCell>
+                    <TableCell>{product.quantity}</TableCell>
+                    {/*<TableCell>*/}
+                    {/*  <SeverityPill color={statusColor}>{product.status}</SeverityPill>*/}
+                    {/*</TableCell>*/}
                     <TableCell>
-                      <SeverityPill color={statusColor}>{product.status}</SeverityPill>
-                    </TableCell>
-                    <TableCell align='right'>
-                      <IconButton>
+                      <IconButton component={NextLink} href={`/client/${product.id}`}>
                         <SvgIcon>
-                          <DotsHorizontalIcon />
+                          <ArrowRightIcon />
                         </SvgIcon>
                       </IconButton>
                     </TableCell>
@@ -260,18 +224,12 @@ variant='body2'>
                         }}
                       >
                         <CardContent>
-                          <Grid container
-spacing={3}>
-                            <Grid item
-md={6}
-xs={12}>
+                          <Grid container spacing={3}>
+                            <Grid item md={6} xs={12}>
                               <Typography variant='h6'>Basic details</Typography>
                               <Divider sx={{ my: 2 }} />
-                              <Grid container
-spacing={3}>
-                                <Grid item
-md={6}
-xs={12}>
+                              <Grid container spacing={3}>
+                                <Grid item md={6} xs={12}>
                                   <TextField
                                     defaultValue={product.name}
                                     fullWidth
@@ -279,9 +237,7 @@ xs={12}>
                                     name='name'
                                   />
                                 </Grid>
-                                <Grid item
-md={6}
-xs={12}>
+                                <Grid item md={6} xs={12}>
                                   <TextField
                                     defaultValue={product.sku}
                                     disabled
@@ -290,9 +246,7 @@ xs={12}>
                                     name='sku'
                                   />
                                 </Grid>
-                                <Grid item
-md={6}
-xs={12}>
+                                <Grid item md={6} xs={12}>
                                   <TextField
                                     defaultValue={product.category}
                                     fullWidth
@@ -300,16 +254,13 @@ xs={12}>
                                     select
                                   >
                                     {categoryOptions.map((option) => (
-                                      <MenuItem key={option.value}
-value={option.value}>
+                                      <MenuItem key={option.value} value={option.value}>
                                         {option.label}
                                       </MenuItem>
                                     ))}
                                   </TextField>
                                 </Grid>
-                                <Grid item
-md={6}
-xs={12}>
+                                <Grid item md={6} xs={12}>
                                   <TextField
                                     defaultValue={product.id}
                                     disabled
@@ -320,16 +271,11 @@ xs={12}>
                                 </Grid>
                               </Grid>
                             </Grid>
-                            <Grid item
-md={6}
-xs={12}>
+                            <Grid item md={6} xs={12}>
                               <Typography variant='h6'>Pricing and stocks</Typography>
                               <Divider sx={{ my: 2 }} />
-                              <Grid container
-spacing={3}>
-                                <Grid item
-md={6}
-xs={12}>
+                              <Grid container spacing={3}>
+                                <Grid item md={6} xs={12}>
                                   <TextField
                                     defaultValue={product.price}
                                     fullWidth
@@ -345,9 +291,7 @@ xs={12}>
                                     type='number'
                                   />
                                 </Grid>
-                                <Grid item
-md={6}
-xs={12}>
+                                <Grid item md={6} xs={12}>
                                   <TextField
                                     defaultValue={product.price}
                                     fullWidth
@@ -386,22 +330,16 @@ xs={12}>
                           justifyContent='space-between'
                           sx={{ p: 2 }}
                         >
-                          <Stack alignItems='center'
-direction='row'
-spacing={2}>
-                            <Button onClick={handleProductUpdate}
-type='submit'
-variant='contained'>
+                          <Stack alignItems='center' direction='row' spacing={2}>
+                            <Button onClick={handleProductUpdate} type='submit' variant='contained'>
                               Update
                             </Button>
-                            <Button color='inherit'
-onClick={handleProductClose}>
+                            <Button color='inherit' onClick={handleProductClose}>
                               Cancel
                             </Button>
                           </Stack>
                           <div>
-                            <Button onClick={handleProductDelete}
-color='error'>
+                            <Button onClick={handleProductDelete} color='error'>
                               Delete product
                             </Button>
                           </div>

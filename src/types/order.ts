@@ -38,4 +38,5 @@ export interface Order {
   promotionCode?: string
   status: OrderStatus
   totalAmount?: number
+  company: string
 }

@@ -35,7 +35,7 @@ const products: Product[] = [
     id: '5eff2512c6f8737d08325676',
     conversionRate: 93,
     currency: '$',
-    image: '/assets/products/product-1.png',
+    image: '/assets/products/product-1.jpeg',
     name: 'Healthcare Erbology',
     profit: 53500,
     sales: 13153,
@@ -44,7 +44,7 @@ const products: Product[] = [
     id: '5eff2516247f9a6fcca9f151',
     conversionRate: 76,
     currency: '$',
-    image: '/assets/products/product-2.png',
+    image: '/assets/products/product-2.jpeg',
     name: 'Makeup Lancome Rouge',
     profit: 45763,
     sales: 10300,
@@ -104,12 +104,9 @@ export const GroupedList5: FC = () => (
               const profit = numeral(product.profit).format(`${product.currency}0,0.00`)
 
               return (
-                <TableRow hover
-key={product.id}>
+                <TableRow hover key={product.id}>
                   <TableCell>
-                    <Stack alignItems='center'
-direction='row'
-spacing={2}>
+                    <Stack alignItems='center' direction='row' spacing={2}>
                       {product.image ? (
                         <Box
                           sx={{
@@ -145,12 +142,8 @@ spacing={2}>
                       )}
                       <div>
                         <Typography variant='subtitle2'>{product.name}</Typography>
-                        <Typography color='text.secondary'
-noWrap
-variant='body2'>
-                          <Typography color='success.main'
-component='span'
-variant='subtitle2'>
+                        <Typography color='text.secondary' noWrap variant='body2'>
+                          <Typography color='success.main' component='span' variant='subtitle2'>
                             {sales}
                           </Typography>{' '}
                           Sales
@@ -160,9 +153,7 @@ variant='subtitle2'>
                   </TableCell>
                   <TableCell>
                     <Typography variant='subtitle2'>Profit</Typography>
-                    <Typography color='text.secondary'
-noWrap
-variant='body2'>
+                    <Typography color='text.secondary' noWrap variant='body2'>
                       {profit}
                     </Typography>
                   </TableCell>
@@ -174,12 +165,10 @@ variant='body2'>
                       spacing={2}
                     >
                       <div>
-                        <Typography align='right'
-variant='subtitle2'>
+                        <Typography align='right' variant='subtitle2'>
                           {product.conversionRate}%
                         </Typography>
-                        <Typography color='text.secondary'
-variant='body2'>
+                        <Typography color='text.secondary' variant='body2'>
                           Conversion Rate
                         </Typography>
                       </div>

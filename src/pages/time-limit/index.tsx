@@ -6,17 +6,23 @@ import '@fullcalendar/timeline/main.css'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import type { DateSelectArg, EventClickArg, EventDropArg } from '@fullcalendar/react'
 import Calendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import type { EventResizeDoneArg } from '@fullcalendar/interaction'
+import interactionPlugin from '@fullcalendar/interaction'
+import listPlugin from '@fullcalendar/list'
+import timeGridPlugin from '@fullcalendar/timegrid'
+import timelinePlugin from '@fullcalendar/timeline'
 import { Box, Card, Container, Stack, useMediaQuery } from '@mui/material'
 import { usePageView } from '../../hooks/use-page-view'
 import { Layout as DashboardLayout } from '../../layouts/dashboard'
+import { CalendarEventDialog } from '../../sections/dashboard/calendar/calendar-event-dialog'
 import { CalendarToolbar } from '../../sections/dashboard/calendar/calendar-toolbar'
 import { CalendarContainer } from '../../sections/dashboard/calendar/calendar-container'
 import { useDispatch, useSelector } from '../../store'
 import { thunks } from '../../thunks/calendar'
 import type { CalendarEvent, CalendarView } from '../../types/calendar'
-import { CalenderListTable } from '@/sections/dashboard/calendar/calender-list-table'
-import { CalenderEventTrashDialog } from '@/sections/dashboard/calendar/calender-event-trash-dialog'
 
 interface DialogState {
   isOpen: boolean
@@ -66,12 +72,8 @@ const Page: NextPage = () => {
   const calendarRef = useRef<Calendar | null>(null)
   const events = useEvents()
   const [date, setDate] = useState<Date>(new Date())
-  const [view, setView] = useState<CalendarView>('timeGridDay')
+  const [view, setView] = useState<CalendarView>('dayGridMonth')
   const [dialog, setDialog] = useState<DialogState>({
-    isOpen: false,
-    data: undefined,
-  })
-  const [dialogTrash, setDialogTrash] = useState<DialogState>({
     isOpen: false,
     data: undefined,
   })
@@ -148,20 +150,82 @@ const Page: NextPage = () => {
       isOpen: true,
     })
   }, [])
-  const onAddClickTrashCategory = useCallback((): void => {
-    setDialogTrash({
+
+  const handleRangeSelect = useCallback((arg: DateSelectArg): void => {
+    const calendarEl = calendarRef.current
+
+    if (calendarEl) {
+      const calendarApi = calendarEl.getApi()
+
+      calendarApi.unselect()
+    }
+
+    setDialog({
       isOpen: true,
+      data: {
+        range: {
+          start: arg.start.getTime(),
+          end: arg.end.getTime(),
+        },
+      },
     })
   }, [])
+
+  const handleEventSelect = useCallback((arg: EventClickArg): void => {
+    setDialog({
+      isOpen: true,
+      data: {
+        eventId: arg.event.id,
+      },
+    })
+  }, [])
+
+  const handleEventResize = useCallback(
+    async (arg: EventResizeDoneArg): Promise<void> => {
+      const { event } = arg
+
+      try {
+        await dispatch(
+          thunks.updateEvent({
+            eventId: event.id,
+            update: {
+              allDay: event.allDay,
+              start: event.start?.getTime(),
+              end: event.end?.getTime(),
+            },
+          }),
+        )
+      } catch (err) {
+        console.error(err)
+      }
+    },
+    [dispatch],
+  )
+
+  const handleEventDrop = useCallback(
+    async (arg: EventDropArg): Promise<void> => {
+      const { event } = arg
+
+      try {
+        await dispatch(
+          thunks.updateEvent({
+            eventId: event.id,
+            update: {
+              allDay: event.allDay,
+              start: event.start?.getTime(),
+              end: event.end?.getTime(),
+            },
+          }),
+        )
+      } catch (err) {
+        console.error(err)
+      }
+    },
+    [dispatch],
+  )
 
   const handleCloseDialog = useCallback((): void => {
     setDialog({
-      isOpen: false,
-    })
-  }, [])
-
-  const handleCloseDialogTrash = useCallback((): void => {
-    setDialogTrash({
       isOpen: false,
     })
   }, [])
@@ -175,7 +239,7 @@ const Page: NextPage = () => {
         component='main'
         sx={{
           flexGrow: 1,
-          py: 1,
+          py: 8,
         }}
       >
         <Container maxWidth='xl'>
@@ -183,7 +247,6 @@ const Page: NextPage = () => {
             <CalendarToolbar
               date={date}
               onAddClick={handleAddClick}
-              onAddClickTrashCategory={onAddClickTrashCategory}
               onDateNext={handleDateNext}
               onDatePrev={handleDatePrev}
               onDateToday={handleDateToday}
@@ -192,20 +255,47 @@ const Page: NextPage = () => {
             />
             <Card>
               <CalendarContainer>
-                <CalenderListTable />
+                <Calendar
+                  allDayMaintainDuration
+                  dayMaxEventRows={3}
+                  droppable
+                  editable
+                  eventClick={handleEventSelect}
+                  eventDisplay='block'
+                  eventDrop={handleEventDrop}
+                  eventResizableFromStart
+                  eventResize={handleEventResize}
+                  events={events}
+                  headerToolbar={false}
+                  height={800}
+                  initialDate={date}
+                  initialView={view}
+                  plugins={[
+                    dayGridPlugin,
+                    interactionPlugin,
+                    listPlugin,
+                    timeGridPlugin,
+                    timelinePlugin,
+                  ]}
+                  ref={calendarRef}
+                  rerenderDelay={10}
+                  select={handleRangeSelect}
+                  selectable
+                  weekends
+                />
               </CalendarContainer>
             </Card>
           </Stack>
         </Container>
       </Box>
-      <CalenderEventTrashDialog
+      <CalendarEventDialog
         event={currentEvent}
-        onAddComplete={handleCloseDialogTrash}
-        onClose={handleCloseDialogTrash}
-        onDeleteComplete={handleCloseDialogTrash}
-        onEditComplete={handleCloseDialogTrash}
-        open={dialogTrash.isOpen}
-        range={dialogTrash.data?.range}
+        onAddComplete={handleCloseDialog}
+        onClose={handleCloseDialog}
+        onDeleteComplete={handleCloseDialog}
+        onEditComplete={handleCloseDialog}
+        open={dialog.isOpen}
+        range={dialog.data?.range}
       />
     </>
   )

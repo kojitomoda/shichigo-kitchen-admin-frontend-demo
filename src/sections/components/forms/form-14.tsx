@@ -28,14 +28,14 @@ interface Product {
 const products: Product[] = [
   {
     id: '97375399bf10f57d0f0f7fd9',
-    image: '/assets/products/product-1.png',
+    image: '/assets/products/product-1.jpeg',
     name: 'Healthcare Erbology',
     price: 23.99,
     quantity: 1,
   },
   {
     id: 'ece4069546ff025047b97735',
-    image: '/assets/products/product-2.png',
+    image: '/assets/products/product-2.jpeg',
     name: 'Makeup Lancome Rouge',
     price: 95.0,
     quantity: 1,
@@ -50,16 +50,14 @@ export const Form14: FC = () => {
   return (
     <Box sx={{ p: 3 }}>
       <form onSubmit={(event) => event.preventDefault()}>
-        <Card sx={{ p: 3 }}
-variant='outlined'>
+        <Card sx={{ p: 3 }} variant='outlined'>
           <Typography variant='h6'>Order Summary</Typography>
           <List sx={{ mt: 2 }}>
             {products.map((product) => {
               const price = numeral(product.price).format('$00.00')
 
               return (
-                <ListItem disableGutters
-key={product.id}>
+                <ListItem disableGutters key={product.id}>
                   <ListItemAvatar sx={{ pr: 2 }}>
                     <Box
                       sx={{
@@ -75,28 +73,23 @@ key={product.id}>
                         },
                       }}
                     >
-                      <img alt={product.name}
-src={product.image} />
+                      <img alt={product.name} src={product.image} />
                     </Box>
                   </ListItemAvatar>
                   <ListItemText
                     primary={
-                      <Typography sx={{ fontWeight: 'fontWeightBold' }}
-variant='subtitle2'>
+                      <Typography sx={{ fontWeight: 'fontWeightBold' }} variant='subtitle2'>
                         {product.name}
                       </Typography>
                     }
                     secondary={
-                      <Typography color='text.secondary'
-sx={{ mt: 1 }}
-variant='body1'>
+                      <Typography color='text.secondary' sx={{ mt: 1 }} variant='body1'>
                         {price}
                       </Typography>
                     }
                   />
                   <ListItemSecondaryAction>
-                    <FormControl size='small'
-variant='outlined'>
+                    <FormControl size='small' variant='outlined'>
                       <Select value={product.quantity}>
                         <MenuItem value={1}>1</MenuItem>
                         <MenuItem value={2}>2</MenuItem>
@@ -162,9 +155,7 @@ variant='outlined'>
             mt: 3,
           }}
         >
-          <Button color='primary'
-type='submit'
-variant='contained'>
+          <Button color='primary' type='submit' variant='contained'>
             Complete order
           </Button>
         </Box>

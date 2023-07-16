@@ -78,19 +78,13 @@ export const OrderListTable: FC<OrderListTableProps> = (props) => {
                     }}
                   >
                     <Typography align='center' variant='subtitle2'>
-                      {createdAtMonth}
-                    </Typography>
-                    <Typography align='center' variant='h6'>
-                      {createdAtDay}
-                    </Typography>
-                  </Box>
-                  <Box sx={{ ml: 2 }}>
-                    <Typography variant='subtitle2'>{order.number}</Typography>
-                    <Typography color='text.secondary' variant='body2'>
-                      Total of {totalAmount}
+                      2023/07/{createdAtDay}
                     </Typography>
                   </Box>
                 </TableCell>
+                <TableCell>{order.company}</TableCell>
+                <TableCell>{order.customer.name}</TableCell>
+                <TableCell>{order.totalAmount}円</TableCell>
                 <TableCell align='right'>
                   <SeverityPill color={statusColor}>{order.status}</SeverityPill>
                 </TableCell>
@@ -106,7 +100,7 @@ export const OrderListTable: FC<OrderListTableProps> = (props) => {
         onRowsPerPageChange={onRowsPerPageChange}
         page={page}
         rowsPerPage={rowsPerPage}
-        rowsPerPageOptions={[5, 10, 25]}
+        rowsPerPageOptions={[10]}
       />
     </div>
   )
