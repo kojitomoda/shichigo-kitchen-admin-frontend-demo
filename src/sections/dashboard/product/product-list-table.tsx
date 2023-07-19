@@ -16,17 +16,18 @@ import {
   Stack,
   SvgIcon,
   Switch,
+  Tab,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TablePagination,
   TableRow,
+  Tabs,
   TextField,
   Typography,
 } from '@mui/material'
 import { Scrollbar } from '../../../components/scrollbar'
-import { SeverityPill } from '../../../components/severity-pill'
 import type { Product } from '../../../types/product'
 import NextLink from 'next/link'
 import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight'
@@ -128,28 +129,6 @@ export const ProductListTable: FC<ProductListTableProps> = (props) => {
                 <Fragment key={product.id}>
                   <TableRow hover key={product.id}>
                     <TableCell>{product.name}</TableCell>
-                    {/*<TableCell*/}
-                    {/*  padding='checkbox'*/}
-                    {/*  sx={{*/}
-                    {/*    ...(isCurrent && {*/}
-                    {/*      position: 'relative',*/}
-                    {/*      '&:after': {*/}
-                    {/*        position: 'absolute',*/}
-                    {/*        content: '" "',*/}
-                    {/*        top: 0,*/}
-                    {/*        left: 0,*/}
-                    {/*        backgroundColor: 'primary.main',*/}
-                    {/*        width: 3,*/}
-                    {/*        height: 'calc(100% + 1px)',*/}
-                    {/*      },*/}
-                    {/*    }),*/}
-                    {/*  }}*/}
-                    {/*  width='25%'*/}
-                    {/*>*/}
-                    {/*  <IconButton onClick={() => handleProductToggle(product.id)}>*/}
-                    {/*    <SvgIcon>{isCurrent ? <ChevronDownIcon /> : <ChevronRightIcon />}</SvgIcon>*/}
-                    {/*  </IconButton>*/}
-                    {/*</TableCell>*/}
                     <TableCell width='25%'>
                       <Box
                         sx={{
@@ -198,7 +177,7 @@ export const ProductListTable: FC<ProductListTableProps> = (props) => {
                     {/*  <SeverityPill color={statusColor}>{product.status}</SeverityPill>*/}
                     {/*</TableCell>*/}
                     <TableCell>
-                      <IconButton component={NextLink} href={`/client/${product.id}`}>
+                      <IconButton>
                         <SvgIcon>
                           <ArrowRightIcon />
                         </SvgIcon>

@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus'
-import { Box, Button, Divider, Stack, SvgIcon, Typography } from '@mui/material'
+import { Box, Button, Divider, Stack, SvgIcon, Tab, Tabs, Typography } from '@mui/material'
 import { ordersApi } from '../../api/orders'
 import { useMounted } from '../../hooks/use-mounted'
 import { usePageView } from '../../hooks/use-page-view'
@@ -82,6 +82,22 @@ const useOrders = (search: Search): { orders: Order[]; ordersCount: number } => 
 
   return state
 }
+
+interface TabOption {
+  label: string
+  value: string
+}
+
+const tabOptions: TabOption[] = [
+  {
+    label: '定番メニュー',
+    value: 'constant',
+  },
+  {
+    label: '日替わりメニュー',
+    value: 'change',
+  },
+]
 
 const Page: NextPage = () => {
   const rootRef = useRef<HTMLDivElement | null>(null)

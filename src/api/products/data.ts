@@ -3,11 +3,11 @@ import { subDays, subHours } from 'date-fns'
 
 const now = new Date()
 
-export const products: Product[] = [
+export const data: Product[] = [
   {
     id: '5ece2c077e39da27658aa8a9',
     attributes: ['Healthcare'],
-    category: 'healthcare',
+    category: 'constant',
     createdAt: subDays(now, 1).getTime(),
     currency: '$',
     image: '/assets/products/product-1.jpeg',
@@ -25,7 +25,7 @@ export const products: Product[] = [
   {
     id: '5ece2c0d16f70bff2cf86cd8',
     attributes: ['Makeup'],
-    category: 'makeup',
+    category: 'change',
     createdAt: subDays(now, 3).getTime(),
     currency: '$',
     image: '/assets/products/product-2.jpeg',
@@ -43,7 +43,7 @@ export const products: Product[] = [
   {
     id: '5ece2c123fad30cbbff8d060',
     attributes: ['Variety of styles'],
-    category: 'jewelry',
+    category: 'constant',
     createdAt: subDays(now, 6).getTime(),
     currency: '$',
     image: '/assets/products/product-3.jpeg',
@@ -61,7 +61,7 @@ export const products: Product[] = [
   {
     id: '5ece2c1be7996d1549d94e34',
     attributes: ['Skincare'],
-    category: 'skincare',
+    category: 'change',
     createdAt: subDays(now, 12).getTime(),
     currency: '$',
     image: '/assets/products/product-4.jpeg',

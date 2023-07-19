@@ -89,13 +89,13 @@ export const getSections = (t: TFunction): Section[] => [
         path: '/stock',
       },
       {
-        title: '注文締切時間設定',
+        title: 'システム設定',
         icon: (
           <SvgIcon fontSize='small'>
             <CalendarIcon />
           </SvgIcon>
         ),
-        path: '/time-limit',
+        path: '/system-setting',
       },
       {
         title: '売上分析',

@@ -101,23 +101,6 @@ export const OrderListSearch: FC<OrderListSearchProps> = (props) => {
     }))
   }, [])
 
-  const handleQueryChange = useCallback((event: FormEvent<HTMLFormElement>): void => {
-    event.preventDefault()
-    const query = queryRef.current?.value || ''
-    setFilters((prevState) => ({
-      ...prevState,
-      query,
-    }))
-  }, [])
-
-  const handleSortChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>): void => {
-      const sortDir = event.target.value as SortDir
-      onSortChange?.(sortDir)
-    },
-    [onSortChange],
-  )
-
   return (
     <div>
       <Tabs

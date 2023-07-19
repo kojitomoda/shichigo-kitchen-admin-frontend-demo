@@ -63,7 +63,7 @@ const ClientRegister: NextPage = () => {
         component='main'
         sx={{
           flexGrow: 1,
-          py: 8,
+          py: 4,
         }}
       >
         <Container maxWidth='xl'>
@@ -82,9 +82,7 @@ const ClientRegister: NextPage = () => {
                       <Grid item xs={12} sm={6} md={6}>
                         <Stack spacing={3} sx={{ marginBottom: '4rem' }}>
                           <TextField
-                            error={!!(formik.touched.name && formik.errors.name)}
                             fullWidth
-                            helperText={formik.touched.name && formik.errors.name}
                             label='会社名'
                             name='name'
                             onBlur={formik.handleBlur}
@@ -92,9 +90,7 @@ const ClientRegister: NextPage = () => {
                             value={formik.values.name}
                           />
                           <TextField
-                            error={!!(formik.touched.phoneNumber && formik.errors.phoneNumber)}
                             fullWidth
-                            helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
                             label='電話番号'
                             name='phoneNumber'
                             onBlur={formik.handleBlur}
@@ -102,9 +98,7 @@ const ClientRegister: NextPage = () => {
                             value={formik.values.phoneNumber}
                           />
                           <TextField
-                            error={!!(formik.touched.postalCode && formik.errors.postalCode)}
                             fullWidth
-                            helperText={formik.touched.postalCode && formik.errors.postalCode}
                             label='郵便番号　ハイフンなし'
                             name='postalCode'
                             onBlur={formik.handleBlur}
@@ -113,7 +107,6 @@ const ClientRegister: NextPage = () => {
                           />
                           {prefectures && (
                             <TextField
-                              error={!!(formik.touched.prefectureId && formik.errors.prefectureId)}
                               onChange={formik.handleChange}
                               label='都道府県'
                               name='prefectureId'
@@ -129,9 +122,7 @@ const ClientRegister: NextPage = () => {
                             </TextField>
                           )}
                           <TextField
-                            error={!!(formik.touched.city && formik.errors.city)}
                             fullWidth
-                            helperText={formik.touched.city && formik.errors.city}
                             label='市町村'
                             name='city'
                             onBlur={formik.handleBlur}
@@ -139,9 +130,7 @@ const ClientRegister: NextPage = () => {
                             value={formik.values.city}
                           />
                           <TextField
-                            error={!!(formik.touched.address && formik.errors.address)}
                             fullWidth
-                            helperText={formik.touched.address && formik.errors.address}
                             label='番地以下'
                             name='address'
                             onBlur={formik.handleBlur}

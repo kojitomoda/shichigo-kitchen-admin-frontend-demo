@@ -2,13 +2,12 @@ import { ChangeEvent, MouseEvent, useCallback, useEffect, useState } from 'react
 import type { NextPage } from '../../../next'
 import Head from 'next/head'
 import NextLink from 'next/link'
-import { Box, Button, Card, Container, Stack, SvgIcon, Typography } from '@mui/material'
-import { productsApi } from '../../api/products'
-import { useMounted } from '../../hooks/use-mounted'
-import { usePageView } from '../../hooks/use-page-view'
+import { Box, Button, Card, Container, Stack, SvgIcon, Tab, Tabs, Typography } from '@mui/material'
+
 import { Layout as DashboardLayout } from '../../layouts/dashboard'
 import { ProductListTable } from '../../sections/dashboard/product/product-list-table'
 import type { Product } from '../../types/product'
+import { data } from '@/api/products/data'
 
 interface Filters {
   name?: string
@@ -22,6 +21,22 @@ interface Search {
   page: number
   rowsPerPage: number
 }
+
+interface TabOption {
+  label: string
+  value: string
+}
+
+const tabOptions: TabOption[] = [
+  {
+    label: '定番メニュー',
+    value: 'constant',
+  },
+  {
+    label: '日替わりメニュー',
+    value: 'change',
+  },
+]
 
 const useSearch = () => {
   const [search, setSearch] = useState<Search>({
@@ -41,57 +56,14 @@ const useSearch = () => {
   }
 }
 
-const useProducts = (search: Search): { products: Product[]; productsCount: number } => {
-  const isMounted = useMounted()
-  const [state, setState] = useState<{
-    products: Product[]
-    productsCount: number
-  }>({
-    products: [],
-    productsCount: 0,
-  })
-
-  const getProducts = useCallback(async () => {
-    try {
-      const response = await productsApi.getProducts(search)
-
-      if (isMounted()) {
-        setState({
-          products: response.data,
-          productsCount: response.count,
-        })
-      }
-    } catch (err) {
-      console.error(err)
-    }
-  }, [search, isMounted])
-
-  useEffect(
-    () => {
-      getProducts()
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [search],
-  )
-
-  return state
-}
-
 const ProductList: NextPage = () => {
   const { search, updateSearch } = useSearch()
-  const { products, productsCount } = useProducts(search)
+  const [products, setProducts] = useState<Product[]>(data)
+  const [currentTab, setCurrentTab] = useState('constant')
 
-  usePageView()
-
-  const handleFiltersChange = useCallback(
-    (filters: Filters): void => {
-      updateSearch((prevState) => ({
-        ...prevState,
-        filters,
-      }))
-    },
-    [updateSearch],
-  )
+  const handleTabsChange = useCallback((event: ChangeEvent<{}>, tab: string): void => {
+    setCurrentTab(tab)
+  }, [])
 
   const handlePageChange = useCallback(
     (event: MouseEvent<HTMLButtonElement> | null, page: number): void => {
@@ -113,6 +85,11 @@ const ProductList: NextPage = () => {
     [updateSearch],
   )
 
+  useEffect(() => {
+    const newProducts = data.filter((product) => product.category === currentTab)
+    setProducts(newProducts)
+  }, [currentTab])
+
   return (
     <>
       <Head>
@@ -122,7 +99,7 @@ const ProductList: NextPage = () => {
         component='main'
         sx={{
           flexGrow: 1,
-          py: 8,
+          py: 4,
         }}
       >
         <Container maxWidth='xl'>
@@ -137,13 +114,27 @@ const ProductList: NextPage = () => {
                 </Button>
               </Stack>
             </Stack>
+
             <Card>
+              <Tabs
+                indicatorColor='primary'
+                onChange={handleTabsChange}
+                scrollButtons='auto'
+                sx={{ px: 3 }}
+                textColor='primary'
+                value={currentTab}
+                variant='scrollable'
+              >
+                {tabOptions.map((tab) => (
+                  <Tab key={tab.value} label={tab.label} value={tab.value} />
+                ))}
+              </Tabs>
               <ProductListTable
                 onPageChange={handlePageChange}
                 onRowsPerPageChange={handleRowsPerPageChange}
                 page={search.page}
                 products={products}
-                productsCount={productsCount}
+                productsCount={4}
                 rowsPerPage={search.rowsPerPage}
               />
             </Card>

@@ -67,6 +67,24 @@ const events: CalendarEvent[] = [
     start: setHours(setMinutes(now, 30), 15).getTime(),
     title: '09:30',
   },
+  {
+    id: '5e88830672d089c53c46ece3',
+    allDay: true,
+    color: '#F04438',
+    description: 'Get a new quote for the payment processor',
+    end: setHours(setMinutes(now, 30), 17).getTime(),
+    start: setHours(setMinutes(now, 30), 15).getTime(),
+    title: '',
+  },
+  {
+    id: '5e88830672d089c53c46ece3',
+    allDay: true,
+    color: '#F04438',
+    description: 'Get a new quote for the payment processor',
+    end: setHours(setMinutes(now, 30), 17).getTime(),
+    start: setHours(setMinutes(now, 30), 15).getTime(),
+    title: 'おにぎり鮭',
+  },
 ]
 
 export const data = {

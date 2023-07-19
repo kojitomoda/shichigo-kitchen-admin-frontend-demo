@@ -1,7 +1,7 @@
 import type { Product } from '../../types/product'
 import { applyPagination } from '../../utils/apply-pagination'
 import { deepCopy } from '../../utils/deep-copy'
-import { products } from './data'
+import { data as da } from './data'
 
 type GetProductsRequest = {
   filters?: {
@@ -23,7 +23,7 @@ class ProductsApi {
   getProducts(request: GetProductsRequest = {}): GetProductsResponse {
     const { filters, page, rowsPerPage } = request
 
-    let data = deepCopy(products) as Product[]
+    let data = deepCopy(da) as Product[]
     let count = data.length
 
     if (typeof filters !== 'undefined') {

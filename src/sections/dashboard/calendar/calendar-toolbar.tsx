@@ -1,11 +1,44 @@
 import type { ChangeEvent, FC, ReactNode } from 'react'
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { format } from 'date-fns'
 import ChevronLeftIcon from '@untitled-ui/icons-react/build/esm/ChevronLeft'
 import ChevronRightIcon from '@untitled-ui/icons-react/build/esm/ChevronRight'
-import { IconButton, Stack, SvgIcon, Typography } from '@mui/material'
+import PlusIcon from '@untitled-ui/icons-react/build/esm/Plus'
+import {
+  Button,
+  IconButton,
+  Stack,
+  SvgIcon,
+  TextField,
+  Typography,
+  useMediaQuery,
+} from '@mui/material'
 import type { CalendarView } from '../../../types/calendar'
+
+interface ViewOption {
+  label: string
+  value: CalendarView
+}
+
+const viewOptions: ViewOption[] = [
+  {
+    label: 'Month',
+    value: 'dayGridMonth',
+  },
+  {
+    label: 'Week',
+    value: 'timeGridWeek',
+  },
+  {
+    label: 'Day',
+    value: 'timeGridDay',
+  },
+  {
+    label: 'Agenda',
+    value: 'listWeek',
+  },
+]
 
 interface CalendarToolbarProps {
   children?: ReactNode
@@ -29,8 +62,12 @@ export const CalendarToolbar: FC<CalendarToolbarProps> = (props) => {
     [onViewChange],
   )
 
-  const dateMonth = format(date, 'MM')
+  const dateMonth = format(date, 'MMMM')
   const dateDay = format(date, 'y')
+
+  // On mobile allow only timeGridDay and agenda views
+
+  const availableViewOptions = viewOptions
 
   return (
     <Stack
@@ -46,11 +83,10 @@ export const CalendarToolbar: FC<CalendarToolbarProps> = (props) => {
       {...other}
     >
       <Stack alignItems='center' direction='row' spacing={1}>
-        <Typography variant='h4'>注文締切時間設定</Typography>
-        <Typography sx={{ fontWeight: 400 }} variant='h6'>
+        <Typography variant='h5'>{dateMonth}</Typography>
+        <Typography sx={{ fontWeight: 400 }} variant='h5'>
           {dateDay}
         </Typography>
-        <Typography variant='h6'>{dateMonth}月</Typography>
       </Stack>
       <Stack alignItems='center' direction='row' spacing={1}>
         <IconButton onClick={onDatePrev}>
@@ -63,6 +99,45 @@ export const CalendarToolbar: FC<CalendarToolbarProps> = (props) => {
             <ChevronRightIcon />
           </SvgIcon>
         </IconButton>
+        <TextField
+          label='View'
+          name='view'
+          onChange={handleViewChange}
+          select
+          SelectProps={{ native: true }}
+          size='small'
+          sx={{
+            minWidth: 120,
+            order: {
+              xs: -1,
+              md: 0,
+            },
+          }}
+          value={view}
+        >
+          {availableViewOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
+        <Button
+          onClick={onAddClick}
+          startIcon={
+            <SvgIcon>
+              <PlusIcon />
+            </SvgIcon>
+          }
+          sx={{
+            width: {
+              xs: '100%',
+              md: 'auto',
+            },
+          }}
+          variant='contained'
+        >
+          New Event
+        </Button>
       </Stack>
     </Stack>
   )

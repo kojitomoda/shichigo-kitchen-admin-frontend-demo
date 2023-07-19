@@ -24,6 +24,7 @@ import { QuillEditor } from '../../../components/quill-editor'
 import { paths } from '../../../paths'
 import { usePageView } from '@/hooks/use-page-view'
 import { fileToBase64 } from '@/utils/file-to-base64'
+import { prefectures } from '@/utils/constants'
 
 interface Values {
   barcode: string
@@ -35,6 +36,7 @@ interface Values {
   oldPrice: number
   sku: string
   submit: null
+  categoryId: number
 }
 
 const initialValues: Values = {
@@ -47,6 +49,7 @@ const initialValues: Values = {
   oldPrice: 0,
   sku: 'IYV-8745',
   submit: null,
+  categoryId: 1,
 }
 
 const validationSchema = Yup.object({
@@ -59,6 +62,17 @@ const validationSchema = Yup.object({
   oldPrice: Yup.number().min(0),
   sku: Yup.string().max(255),
 })
+
+const menuCategory = [
+  {
+    id: 1,
+    name: '定番メニュー',
+  },
+  {
+    id: 2,
+    name: '日替わりメニュー',
+  },
+]
 
 const initialCover = '/assets/covers/abstract-1-4x3-large.png'
 export const ProductCreateForm: FC = (props) => {
@@ -123,19 +137,14 @@ export const ProductCreateForm: FC = (props) => {
               <Grid xs={12} md={8}>
                 <Stack spacing={3}>
                   <TextField
-                    error={!!(formik.touched.name && formik.errors.name)}
-                    fullWidth
-                    helperText={formik.touched.name && formik.errors.name}
-                    label='商品名'
+                    label=''
                     name='name'
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.name}
                   />
                   <TextField
-                    error={!!(formik.touched.name && formik.errors.name)}
                     fullWidth
-                    helperText={formik.touched.name && formik.errors.name}
                     label='金額'
                     name='pirce'
                     onBlur={formik.handleBlur}
@@ -143,9 +152,7 @@ export const ProductCreateForm: FC = (props) => {
                     value={formik.values.name}
                   />
                   <TextField
-                    error={!!(formik.touched.name && formik.errors.name)}
                     fullWidth
-                    helperText={formik.touched.name && formik.errors.name}
                     label='商品説明'
                     name='description'
                     multiline // 複数行入力を有効にする
@@ -155,15 +162,29 @@ export const ProductCreateForm: FC = (props) => {
                     value={formik.values.name}
                   />
                   <TextField
-                    error={!!(formik.touched.name && formik.errors.name)}
                     fullWidth
-                    helperText={formik.touched.name && formik.errors.name}
                     label='標準在庫数'
                     name='stock'
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.name}
                   />
+                  {menuCategory && (
+                    <TextField
+                      onChange={formik.handleChange}
+                      label='メニューカテゴリー'
+                      name='prefectureId'
+                      select
+                      fullWidth
+                      value={formik.values.categoryId}
+                    >
+                      {menuCategory.map((menu) => (
+                        <MenuItem key={menu.id} value={menu.id}>
+                          {menu.name}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  )}
                 </Stack>
               </Grid>
             </Grid>
