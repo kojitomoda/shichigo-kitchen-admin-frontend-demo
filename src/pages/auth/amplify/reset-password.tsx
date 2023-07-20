@@ -95,21 +95,16 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Reset Password | Devias Kit PRO</title>
+        <title>Reset Password | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <div>
         <Card elevation={16}>
-          <CardHeader sx={{ pb: 0 }}
-title='Reset Password' />
+          <CardHeader sx={{ pb: 0 }} title='Reset Password' />
           <CardContent>
-            <form noValidate
-onSubmit={formik.handleSubmit}>
+            <form noValidate onSubmit={formik.handleSubmit}>
               <Stack spacing={3}>
                 {username ? (
-                  <TextField disabled
-fullWidth
-label='Email'
-value={username} />
+                  <TextField disabled fullWidth label='Email' value={username} />
                 ) : (
                   <TextField
                     autoFocus
@@ -173,8 +168,7 @@ value={username} />
                 />
               </Stack>
               {formik.errors.submit && (
-                <FormHelperText error
-sx={{ mt: 3 }}>
+                <FormHelperText error sx={{ mt: 3 }}>
                   {formik.errors.submit as string}
                 </FormHelperText>
               )}

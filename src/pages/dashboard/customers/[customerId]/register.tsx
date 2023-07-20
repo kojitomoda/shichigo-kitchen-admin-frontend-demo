@@ -22,7 +22,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Customer Details | Devias Kit PRO</title>
+        <title>Dashboard: Customer Details | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'

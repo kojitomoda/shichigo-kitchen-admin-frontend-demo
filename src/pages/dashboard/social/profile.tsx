@@ -151,7 +151,7 @@ export const SocialProfile: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Social Profile | Devias Kit PRO</title>
+        <title>Dashboard: Social Profile | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -207,13 +207,8 @@ export const SocialProfile: NextPage = () => {
                 Change Cover
               </Button>
             </Box>
-            <Stack alignItems='center'
-direction='row'
-spacing={2}
-sx={{ mt: 5 }}>
-              <Stack alignItems='center'
-direction='row'
-spacing={2}>
+            <Stack alignItems='center' direction='row' spacing={2} sx={{ mt: 5 }}>
+              <Stack alignItems='center' direction='row' spacing={2}>
                 <Avatar
                   src={profile.avatar}
                   sx={{
@@ -222,8 +217,7 @@ spacing={2}>
                   }}
                 />
                 <div>
-                  <Typography color='text.secondary'
-variant='overline'>
+                  <Typography color='text.secondary' variant='overline'>
                     {profile.bio}
                   </Typography>
                   <Typography variant='h6'>{profile.name}</Typography>
@@ -298,15 +292,12 @@ variant='overline'>
             variant='scrollable'
           >
             {tabs.map((tab) => (
-              <Tab key={tab.value}
-label={tab.label}
-value={tab.value} />
+              <Tab key={tab.value} label={tab.label} value={tab.value} />
             ))}
           </Tabs>
           <Divider />
           <Box sx={{ mt: 3 }}>
-            {currentTab === 'timeline' && <SocialTimeline posts={posts}
-profile={profile} />}
+            {currentTab === 'timeline' && <SocialTimeline posts={posts} profile={profile} />}
             {currentTab === 'connections' && (
               <SocialConnections
                 connections={connections}

@@ -24,7 +24,7 @@ const faqs: FaqType[] = [
       'Yes, you can check out our open source dashboard template which should give you an overview of the code quality and folder structure. Keep in mind that some aspects may differ from this Paid version.',
   },
   {
-    question: 'How many projects can I build with Devias Kit PRO?',
+    question: 'How many projects can I build with シチゴウキッチン | 運営画面デモ?',
     answer:
       "The license is per project (domain), but if you intend to develop an unknown number of projects feel free to contact us and we'll find a solution.",
   },
@@ -60,16 +60,12 @@ const Faq: FC<FaqProps> = (props) => {
       spacing={2}
       sx={{ cursor: 'pointer' }}
     >
-      <Stack alignItems='center'
-direction='row'
-justifyContent='space-between'
-spacing={2}>
+      <Stack alignItems='center' direction='row' justifyContent='space-between' spacing={2}>
         <Typography variant='subtitle1'>{question}</Typography>
         <SvgIcon>{expanded ? <ChevronDownIcon /> : <ChevronRightIcon />}</SvgIcon>
       </Stack>
       <Collapse in={expanded}>
-        <Typography color='text.secondary'
-variant='body2'>
+        <Typography color='text.secondary' variant='body2'>
           {answer}
         </Typography>
       </Collapse>
@@ -81,24 +77,19 @@ export const HomeFaqs: FC = () => {
   return (
     <Box sx={{ py: '120px' }}>
       <Container maxWidth='lg'>
-        <Grid container
-spacing={4}>
-          <Grid xs={12}
-md={6}>
+        <Grid container spacing={4}>
+          <Grid xs={12} md={6}>
             <Stack spacing={2}>
               <Typography variant='h3'>Everything you need to know</Typography>
-              <Typography color='text.secondary'
-variant='subtitle2'>
+              <Typography color='text.secondary' variant='subtitle2'>
                 Frequently asked questions
               </Typography>
             </Stack>
           </Grid>
-          <Grid xs={12}
-md={6}>
+          <Grid xs={12} md={6}>
             <Stack spacing={4}>
               {faqs.map((faq, index) => (
-                <Faq key={index}
-{...faq} />
+                <Faq key={index} {...faq} />
               ))}
             </Stack>
           </Grid>

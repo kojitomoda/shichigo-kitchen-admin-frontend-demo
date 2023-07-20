@@ -61,15 +61,13 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Forgot Password | Devias Kit PRO</title>
+        <title>Forgot Password | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <div>
         <Card elevation={16}>
-          <CardHeader sx={{ pb: 0 }}
-title='Forgot password' />
+          <CardHeader sx={{ pb: 0 }} title='Forgot password' />
           <CardContent>
-            <form noValidate
-onSubmit={formik.handleSubmit}>
+            <form noValidate onSubmit={formik.handleSubmit}>
               <TextField
                 autoFocus
                 error={!!(formik.touched.email && formik.errors.email)}
@@ -83,8 +81,7 @@ onSubmit={formik.handleSubmit}>
                 value={formik.values.email}
               />
               {formik.errors.submit && (
-                <FormHelperText error
-sx={{ mt: 3 }}>
+                <FormHelperText error sx={{ mt: 3 }}>
                   {formik.errors.submit as string}
                 </FormHelperText>
               )}

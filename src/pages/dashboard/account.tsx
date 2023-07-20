@@ -36,7 +36,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Account | Devias Kit PRO</title>
+        <title>Dashboard: Account | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -46,8 +46,7 @@ const Page: NextPage = () => {
         }}
       >
         <Container maxWidth='xl'>
-          <Stack spacing={3}
-sx={{ mb: 3 }}>
+          <Stack spacing={3} sx={{ mb: 3 }}>
             <Typography variant='h4'>Account</Typography>
             <div>
               <Tabs
@@ -59,9 +58,7 @@ sx={{ mb: 3 }}>
                 variant='scrollable'
               >
                 {tabs.map((tab) => (
-                  <Tab key={tab.value}
-label={tab.label}
-value={tab.value} />
+                  <Tab key={tab.value} label={tab.label} value={tab.value} />
                 ))}
               </Tabs>
               <Divider />

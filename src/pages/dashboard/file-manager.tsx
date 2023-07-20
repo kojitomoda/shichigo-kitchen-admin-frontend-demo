@@ -228,7 +228,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: File Manager | Devias Kit PRO</title>
+        <title>Dashboard: File Manager | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -246,15 +246,11 @@ const Page: NextPage = () => {
             }}
           >
             <Grid xs={12}>
-              <Stack direction='row'
-justifyContent='space-between'
-spacing={4}>
+              <Stack direction='row' justifyContent='space-between' spacing={4}>
                 <div>
                   <Typography variant='h4'>File Manager</Typography>
                 </div>
-                <Stack alignItems='center'
-direction='row'
-spacing={2}>
+                <Stack alignItems='center' direction='row' spacing={2}>
                   <Button
                     onClick={handleUploaderOpen}
                     startIcon={
@@ -269,8 +265,7 @@ spacing={2}>
                 </Stack>
               </Stack>
             </Grid>
-            <Grid xs={12}
-md={8}>
+            <Grid xs={12} md={8}>
               <Stack
                 spacing={{
                   xs: 3,
@@ -299,8 +294,7 @@ md={8}>
                 />
               </Stack>
             </Grid>
-            <Grid xs={12}
-md={4}>
+            <Grid xs={12} md={4}>
               <StorageStats />
             </Grid>
           </Grid>
@@ -313,8 +307,7 @@ md={4}>
         onFavorite={handleFavorite}
         open={itemDrawer.isOpen}
       />
-      <FileUploader onClose={handleUploaderClose}
-open={openFileUploader} />
+      <FileUploader onClose={handleUploaderClose} open={openFileUploader} />
     </>
   )
 }

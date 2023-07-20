@@ -113,7 +113,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Checkout | Devias Kit PRO</title>
+        <title>Checkout | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'

@@ -86,7 +86,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Company Details | Devias Kit PRO</title>
+        <title>Dashboard: Company Details | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -96,8 +96,7 @@ const Page: NextPage = () => {
         }}
       >
         <Container maxWidth='lg'>
-          <Grid container
-spacing={4}>
+          <Grid container spacing={4}>
             <Grid xs={12}>
               <div>
                 <Link
@@ -117,17 +116,13 @@ spacing={4}>
                 </Link>
               </div>
             </Grid>
-            <Grid xs={12}
-lg={8}>
+            <Grid xs={12} lg={8}>
               <Card>
                 <CardHeader
                   disableTypography
                   title={
-                    <Stack alignItems='flex-start'
-direction='row'
-spacing={2}>
-                      <Avatar src={company.logo}
-variant='rounded'>
+                    <Stack alignItems='flex-start' direction='row' spacing={2}>
+                      <Avatar src={company.logo} variant='rounded'>
                         {getInitials(company.name)}
                       </Avatar>
                       <Stack spacing={1}>
@@ -148,9 +143,7 @@ variant='rounded'>
                   variant='scrollable'
                 >
                   {tabs.map((tab) => (
-                    <Tab key={tab.value}
-label={tab.label}
-value={tab.value} />
+                    <Tab key={tab.value} label={tab.label} value={tab.value} />
                   ))}
                 </Tabs>
                 <Divider />
@@ -170,8 +163,7 @@ value={tab.value} />
                 </CardContent>
               </Card>
             </Grid>
-            <Grid xs={12}
-lg={4}>
+            <Grid xs={12} lg={4}>
               <CompanySummary company={company} />
             </Grid>
           </Grid>

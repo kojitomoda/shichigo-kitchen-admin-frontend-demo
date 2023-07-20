@@ -33,7 +33,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Crypto | Devias Kit PRO</title>
+        <title>Dashboard: Crypto | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -52,15 +52,11 @@ const Page: NextPage = () => {
             }}
           >
             <Grid xs={12}>
-              <Stack direction='row'
-justifyContent='space-between'
-spacing={4}>
+              <Stack direction='row' justifyContent='space-between' spacing={4}>
                 <div>
                   <Typography variant='h4'>Crypto</Typography>
                 </div>
-                <Stack alignItems='center'
-direction='row'
-spacing={2}>
+                <Stack alignItems='center' direction='row' spacing={2}>
                   <Button
                     startIcon={
                       <SvgIcon>
@@ -74,10 +70,8 @@ spacing={2}>
                 </Stack>
               </Stack>
             </Grid>
-            <Grid xs={12}
-md={7}>
-              <Stack direction='row'
-spacing={3}>
+            <Grid xs={12} md={7}>
+              <Stack direction='row' spacing={3}>
                 <CryptoWallet
                   chartColor={theme.palette.primary.main}
                   chartSeries={[
@@ -114,8 +108,7 @@ spacing={3}>
                 />
               </Stack>
             </Grid>
-            <Grid xs={12}
-md={5}>
+            <Grid xs={12} md={5}>
               <CryptoCards
                 cards={[
                   {
@@ -135,8 +128,7 @@ md={5}>
                 ]}
               />
             </Grid>
-            <Grid xs={12}
-md={8}>
+            <Grid xs={12} md={8}>
               <Stack
                 spacing={{
                   xs: 3,
@@ -171,8 +163,7 @@ md={8}>
                 />
               </Stack>
             </Grid>
-            <Grid xs={12}
-md={4}>
+            <Grid xs={12} md={4}>
               <Stack
                 spacing={{
                   xs: 3,

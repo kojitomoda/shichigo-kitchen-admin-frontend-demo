@@ -57,10 +57,9 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Academy Dashboard | Devias Kit PRO</title>
+        <title>Dashboard: Academy Dashboard | シチゴウキッチン | 運営画面デモ</title>
       </Head>
-      <Box component='main'
-sx={{ flexGrow: 1 }}>
+      <Box component='main' sx={{ flexGrow: 1 }}>
         <Box
           sx={{
             backgroundColor: 'primary.darkest',
@@ -69,12 +68,10 @@ sx={{ flexGrow: 1 }}>
           }}
         >
           <Container maxWidth='xl'>
-            <Typography color='inherit'
-variant='h5'>
+            <Typography color='inherit' variant='h5'>
               Find unparalleled knowledge
             </Typography>
-            <Typography color='inherit'
-sx={{ mt: 1, mb: 6 }}>
+            <Typography color='inherit' sx={{ mt: 1, mb: 6 }}>
               Learn from the top-tier creatives and leading experts in AI
             </Typography>
             <CourseSearch />
@@ -91,19 +88,14 @@ sx={{ mt: 1, mb: 6 }}>
             >
               <Grid xs={12}>
                 <Typography variant='h6'>Welcome back, Anika</Typography>
-                <Typography color='text.secondary'
-sx={{ mt: 1 }}
-variant='body2'>
+                <Typography color='text.secondary' sx={{ mt: 1 }} variant='body2'>
                   Nice progress so far, keep it up!
                 </Typography>
               </Grid>
-              <Grid xs={12}
-md={9}>
-                <AcademyDailyProgress timeCurrent={20}
-timeGoal={35} />
+              <Grid xs={12} md={9}>
+                <AcademyDailyProgress timeCurrent={20} timeGoal={35} />
               </Grid>
-              <Grid xs={12}
-md={3}>
+              <Grid xs={12} md={3}>
                 <AcademyFind />
               </Grid>
               <Grid xs={12}>
@@ -127,9 +119,7 @@ md={3}>
                 </Stack>
               </Grid>
               {courses.map((course) => (
-                <Grid key={course.id}
-xs={12}
-md={4}>
+                <Grid key={course.id} xs={12} md={4}>
                   <CourseCard course={course} />
                 </Grid>
               ))}

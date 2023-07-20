@@ -14,7 +14,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Blank | Devias Kit PRO</title>
+        <title>Dashboard: Blank | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -30,15 +30,12 @@ const Page: NextPage = () => {
               lg: 4,
             }}
           >
-            <Stack direction='row'
-justifyContent='space-between'
-spacing={4}>
+            <Stack direction='row' justifyContent='space-between' spacing={4}>
               <div>
                 <Typography variant='h4'>Blank</Typography>
               </div>
               <div>
-                <Stack direction='row'
-spacing={4}>
+                <Stack direction='row' spacing={4}>
                   <Button
                     startIcon={
                       <SvgIcon>

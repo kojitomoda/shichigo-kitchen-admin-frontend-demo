@@ -103,14 +103,13 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Register | Devias Kit PRO</title>
+        <title>Register | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <div>
         <Card elevation={16}>
           <CardHeader
             subheader={
-              <Typography color='text.secondary'
-variant='body2'>
+              <Typography color='text.secondary' variant='body2'>
                 Already have an account? &nbsp;
                 <Link
                   component={NextLink}
@@ -126,8 +125,7 @@ variant='body2'>
             title='Register'
           />
           <CardContent>
-            <form noValidate
-onSubmit={formik.handleSubmit}>
+            <form noValidate onSubmit={formik.handleSubmit}>
               <Box
                 sx={{
                   flexGrow: 1,
@@ -166,9 +164,7 @@ onSubmit={formik.handleSubmit}>
                   <Box sx={{ flexGrow: 1 }}>
                     <Divider orientation='horizontal' />
                   </Box>
-                  <Typography color='text.secondary'
-sx={{ m: 2 }}
-variant='body1'>
+                  <Typography color='text.secondary' sx={{ m: 2 }} variant='body1'>
                     OR
                   </Typography>
                   <Box sx={{ flexGrow: 1 }}>
@@ -213,11 +209,9 @@ variant='body1'>
                   name='policy'
                   onChange={formik.handleChange}
                 />
-                <Typography color='text.secondary'
-variant='body2'>
+                <Typography color='text.secondary' variant='body2'>
                   I have read the{' '}
-                  <Link component='a'
-href='#'>
+                  <Link component='a' href='#'>
                     Terms and Conditions
                   </Link>
                 </Typography>
@@ -226,8 +220,7 @@ href='#'>
                 <FormHelperText error>{formik.errors.policy}</FormHelperText>
               )}
               {formik.errors.submit && (
-                <FormHelperText error
-sx={{ mt: 3 }}>
+                <FormHelperText error sx={{ mt: 3 }}>
                   {formik.errors.submit as string}
                 </FormHelperText>
               )}

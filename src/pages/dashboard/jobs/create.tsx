@@ -11,7 +11,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Job Create | Devias Kit PRO</title>
+        <title>Dashboard: Job Create | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -20,8 +20,7 @@ const Page: NextPage = () => {
           flexGrow: 1,
         }}
       >
-        <Grid container
-sx={{ flexGrow: 1 }}>
+        <Grid container sx={{ flexGrow: 1 }}>
           <Grid
             xs={12}
             sm={4}
@@ -47,8 +46,7 @@ sx={{ flexGrow: 1 }}>
               },
             }}
           >
-            <Stack maxWidth='sm'
-spacing={3}>
+            <Stack maxWidth='sm' spacing={3}>
               <Typography variant='h4'>Create Job Ad</Typography>
               <JobCreateForm />
             </Stack>

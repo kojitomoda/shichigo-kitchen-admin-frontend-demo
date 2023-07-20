@@ -115,7 +115,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Chat | Devias Kit PRO</title>
+        <title>Dashboard: Chat | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Divider />
       <Box

@@ -22,10 +22,9 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Pricing | Devias Kit PRO</title>
+        <title>Pricing | シチゴウキッチン | 運営画面デモ</title>
       </Head>
-      <Box component='main'
-sx={{ flexGrow: 1 }}>
+      <Box component='main' sx={{ flexGrow: 1 }}>
         <Box
           sx={{
             backgroundColor: (theme) =>
@@ -44,25 +43,17 @@ sx={{ flexGrow: 1 }}>
               }}
             >
               <Typography variant='h3'>Start today. Boost up your services!</Typography>
-              <Typography color='text.secondary'
-sx={{ my: 2 }}
-variant='body1'>
+              <Typography color='text.secondary' sx={{ my: 2 }} variant='body1'>
                 Join 6,000+ developers &amp; designers using Devias to power modern web projects.
               </Typography>
-              <Stack alignItems='center'
-direction='row'
-spacing={1}>
+              <Stack alignItems='center' direction='row' spacing={1}>
                 <Switch checked />
                 <Typography variant='body1'>Yearly Payment</Typography>
-                <Chip color='primary'
-label='25% OFF'
-size='small' />
+                <Chip color='primary' label='25% OFF' size='small' />
               </Stack>
             </Box>
-            <Grid container
-spacing={4}>
-              <Grid xs={12}
-md={4}>
+            <Grid container spacing={4}>
+              <Grid xs={12} md={4}>
                 <PricingPlan
                   cta='Start Free Trial'
                   currency='$'
@@ -78,8 +69,7 @@ md={4}>
                   }}
                 />
               </Grid>
-              <Grid xs={12}
-md={4}>
+              <Grid xs={12} md={4}>
                 <PricingPlan
                   cta='Start Free Trial'
                   currency='$'
@@ -101,8 +91,7 @@ md={4}>
                   }}
                 />
               </Grid>
-              <Grid xs={12}
-md={4}>
+              <Grid xs={12} md={4}>
                 <PricingPlan
                   cta='Contact Us'
                   currency='$'
@@ -126,10 +115,7 @@ md={4}>
               </Grid>
             </Grid>
             <Box sx={{ mt: 4 }}>
-              <Typography align='center'
-color='text.secondary'
-component='p'
-variant='caption'>
+              <Typography align='center' color='text.secondary' component='p' variant='caption'>
                 30% of our income goes into Whale Charity
               </Typography>
             </Box>

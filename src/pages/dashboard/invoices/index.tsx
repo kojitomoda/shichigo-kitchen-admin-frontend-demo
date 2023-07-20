@@ -140,7 +140,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Invoice List | Devias Kit PRO</title>
+        <title>Dashboard: Invoice List | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Divider />
       <Box
@@ -183,9 +183,7 @@ const Page: NextPage = () => {
                 <div>
                   <Typography variant='h4'>Invoices</Typography>
                 </div>
-                <Stack alignItems='center'
-direction='row'
-spacing={1}>
+                <Stack alignItems='center' direction='row' spacing={1}>
                   <Button
                     color='inherit'
                     startIcon={

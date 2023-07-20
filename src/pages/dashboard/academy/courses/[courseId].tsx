@@ -84,7 +84,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Academy Course | Devias Kit PRO</title>
+        <title>Dashboard: Academy Course | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -94,10 +94,8 @@ const Page: NextPage = () => {
         }}
       >
         <Container maxWidth='xl'>
-          <Grid container
-spacing={4}>
-            <Grid xs={12}
-md={4}>
+          <Grid container spacing={4}>
+            <Grid xs={12} md={4}>
               <Stack spacing={3}>
                 <div>
                   <Link
@@ -116,12 +114,10 @@ md={4}>
                     <Typography variant='subtitle2'>Academy</Typography>
                   </Link>
                 </div>
-                <CourseSummary activeChapter={activeChapter}
-course={course} />
+                <CourseSummary activeChapter={activeChapter} course={course} />
               </Stack>
             </Grid>
-            <Grid xs={12}
-md={8}>
+            <Grid xs={12} md={8}>
               {chapter && <CourseChapter chapter={chapter} />}
             </Grid>
           </Grid>

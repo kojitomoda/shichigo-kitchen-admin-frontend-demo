@@ -28,7 +28,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Analytics | Devias Kit PRO</title>
+        <title>Dashboard: Analytics | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -46,15 +46,11 @@ const Page: NextPage = () => {
             }}
           >
             <Grid xs={12}>
-              <Stack direction='row'
-justifyContent='space-between'
-spacing={4}>
+              <Stack direction='row' justifyContent='space-between' spacing={4}>
                 <Stack spacing={1}>
                   <Typography variant='h4'>Analytics</Typography>
                 </Stack>
-                <Stack alignItems='center'
-direction='row'
-spacing={2}>
+                <Stack alignItems='center' direction='row' spacing={2}>
                   <Button
                     startIcon={
                       <SvgIcon>
@@ -68,8 +64,7 @@ spacing={2}>
                 </Stack>
               </Stack>
             </Grid>
-            <Grid xs={12}
-md={4}>
+            <Grid xs={12} md={4}>
               <AnalyticsStats
                 action={
                   <Button
@@ -93,8 +88,7 @@ md={4}>
                 value='36,6K'
               />
             </Grid>
-            <Grid xs={12}
-md={4}>
+            <Grid xs={12} md={4}>
               <AnalyticsStats
                 action={
                   <Button
@@ -118,8 +112,7 @@ md={4}>
                 value='19K'
               />
             </Grid>
-            <Grid xs={12}
-md={4}>
+            <Grid xs={12} md={4}>
               <AnalyticsStats
                 action={
                   <Button
@@ -143,8 +136,7 @@ md={4}>
                 value='$41.2K'
               />
             </Grid>
-            <Grid xs={12}
-lg={8}>
+            <Grid xs={12} lg={8}>
               <AnalyticsTrafficSources
                 chartSeries={[
                   {
@@ -158,8 +150,7 @@ lg={8}>
                 ]}
               />
             </Grid>
-            <Grid xs={12}
-lg={4}>
+            <Grid xs={12} lg={4}>
               <AnalyticsVisitsByCountry
                 visits={[
                   {
@@ -201,8 +192,7 @@ lg={4}>
                 ]}
               />
             </Grid>
-            <Grid xs={12}
-lg={8}>
+            <Grid xs={12} lg={8}>
               <AnalyticsMostVisited
                 pages={[
                   {
@@ -244,8 +234,7 @@ lg={8}>
                 ]}
               />
             </Grid>
-            <Grid xs={12}
-lg={4}>
+            <Grid xs={12} lg={4}>
               <AnalyticsSocialSources
                 chartSeries={[10, 10, 20]}
                 labels={['Linkedin', 'Facebook', 'Instagram']}

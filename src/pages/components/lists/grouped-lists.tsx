@@ -70,7 +70,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Components: Grouped Lists | Devias Kit PRO</title>
+        <title>Components: Grouped Lists | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -82,8 +82,7 @@ const Page: NextPage = () => {
         <Container maxWidth='lg'>
           <Stack spacing={8}>
             {components.map((component) => (
-              <Previewer key={component.title}
-title={component.title}>
+              <Previewer key={component.title} title={component.title}>
                 {component.element}
               </Previewer>
             ))}

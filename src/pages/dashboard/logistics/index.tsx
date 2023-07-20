@@ -29,7 +29,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Logistics Dashboard | Devias Kit PRO</title>
+        <title>Dashboard: Logistics Dashboard | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -47,15 +47,12 @@ const Page: NextPage = () => {
             }}
           >
             <Grid xs={12}>
-              <Stack direction='row'
-justifyContent='space-between'
-spacing={4}>
+              <Stack direction='row' justifyContent='space-between' spacing={4}>
                 <div>
                   <Typography variant='h4'>Logistics</Typography>
                 </div>
                 <div>
-                  <Stack direction='row'
-spacing={4}>
+                  <Stack direction='row' spacing={4}>
                     <Button
                       startIcon={
                         <SvgIcon>
@@ -70,34 +67,26 @@ spacing={4}>
                 </div>
               </Stack>
             </Grid>
-            <Grid xs={12}
-md={3}>
+            <Grid xs={12} md={3}>
               <LogisticsRouteVehicles amount={38} />
             </Grid>
-            <Grid xs={12}
-md={3}>
+            <Grid xs={12} md={3}>
               <LogisticsErrorVehicles amount={2} />
             </Grid>
-            <Grid xs={12}
-md={3}>
+            <Grid xs={12} md={3}>
               <LogisticsDeviatedVehicles amount={1} />
             </Grid>
-            <Grid xs={12}
-md={3}>
+            <Grid xs={12} md={3}>
               <LogisticsLateVehicles amount={2} />
             </Grid>
-            <Grid xs={12}
-lg={6}>
+            <Grid xs={12} lg={6}>
               <LogisticsVehiclesOverview
                 chartSeries={[38, 50, 12]}
                 labels={['Available', 'Out of service', 'On route']}
               />
             </Grid>
-            <Grid xs={12}
-lg={6}>
-              <LogisticsVehiclesCondition bad={12}
-excellent={181}
-good={24} />
+            <Grid xs={12} lg={6}>
+              <LogisticsVehiclesCondition bad={12} excellent={181} good={24} />
             </Grid>
             <Grid xs={12}>
               <LogisticsVehiclesList

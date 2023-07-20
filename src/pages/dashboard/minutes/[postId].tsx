@@ -107,7 +107,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Blog: Post Details | Devias Kit PRO</title>
+        <title>Blog: Post Details | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -136,8 +136,7 @@ const Page: NextPage = () => {
               >
                 Blog
               </Link>
-              <Typography color='text.secondary'
-variant='subtitle2'>
+              <Typography color='text.secondary' variant='subtitle2'>
                 Details
               </Typography>
             </Breadcrumbs>
@@ -156,9 +155,7 @@ variant='subtitle2'>
             }}
           >
             <Typography variant='subtitle1'>Hello, Admin</Typography>
-            <Button component={NextLink}
-href={paths.dashboard.blog.postCreate}
-variant='contained'>
+            <Button component={NextLink} href={paths.dashboard.blog.postCreate} variant='contained'>
               Edit Post
             </Button>
           </Card>
@@ -167,21 +164,16 @@ variant='contained'>
               <Chip label={post.category} />
             </div>
             <Typography variant='h3'>{post.title}</Typography>
-            <Typography color='text.secondary'
-variant='subtitle1'>
+            <Typography color='text.secondary' variant='subtitle1'>
               {post.shortDescription}
             </Typography>
-            <Stack alignItems='center'
-direction='row'
-spacing={2}
-sx={{ mt: 3 }}>
+            <Stack alignItems='center' direction='row' spacing={2} sx={{ mt: 3 }}>
               <Avatar src={post.author.avatar} />
               <div>
                 <Typography variant='subtitle2'>
                   By {post.author.name} • {publishedAt}
                 </Typography>
-                <Typography color='text.secondary'
-variant='body2'>
+                <Typography color='text.secondary' variant='body2'>
                   {post.readTime} read
                 </Typography>
               </div>
@@ -205,8 +197,7 @@ variant='body2'>
           <Divider sx={{ my: 3 }} />
           <Stack spacing={2}>
             {comments.map((comment) => (
-              <PostComment key={comment.id}
-{...comment} />
+              <PostComment key={comment.id} {...comment} />
             ))}
           </Stack>
           <Divider sx={{ my: 3 }} />

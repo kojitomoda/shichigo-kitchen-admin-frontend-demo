@@ -66,7 +66,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Invoice Details | Devias Kit PRO</title>
+        <title>Dashboard: Invoice Details | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -76,8 +76,7 @@ const Page: NextPage = () => {
         }}
       >
         <Container maxWidth='lg'>
-          <Stack divider={<Divider />}
-spacing={4}>
+          <Stack divider={<Divider />} spacing={4}>
             <Stack spacing={4}>
               <div>
                 <Link
@@ -102,9 +101,7 @@ spacing={4}>
                 justifyContent='space-between'
                 spacing={4}
               >
-                <Stack alignItems='center'
-direction='row'
-spacing={2}>
+                <Stack alignItems='center' direction='row' spacing={2}>
                   <Avatar
                     sx={{
                       height: 42,
@@ -115,17 +112,13 @@ spacing={2}>
                   </Avatar>
                   <div>
                     <Typography variant='h4'>{invoice.number}</Typography>
-                    <Typography color='text.secondary'
-variant='body2'>
+                    <Typography color='text.secondary' variant='body2'>
                       {invoice.customer.name}
                     </Typography>
                   </div>
                 </Stack>
-                <Stack alignItems='center'
-direction='row'
-spacing={2}>
-                  <Button color='inherit'
-onClick={(): void => setOpenPdf(true)}>
+                <Stack alignItems='center' direction='row' spacing={2}>
+                  <Button color='inherit' onClick={(): void => setOpenPdf(true)}>
                     Preview
                   </Button>
                   <PDFDownloadLink
@@ -133,8 +126,7 @@ onClick={(): void => setOpenPdf(true)}>
                     fileName='invoice'
                     style={{ textDecoration: 'none' }}
                   >
-                    <Button color='primary'
-variant='contained'>
+                    <Button color='primary' variant='contained'>
                       Download
                     </Button>
                   </PDFDownloadLink>
@@ -145,9 +137,7 @@ variant='contained'>
           </Stack>
         </Container>
       </Box>
-      <InvoicePdfDialog invoice={invoice}
-onClose={(): void => setOpenPdf(false)}
-open={openPdf} />
+      <InvoicePdfDialog invoice={invoice} onClose={(): void => setOpenPdf(false)} open={openPdf} />
     </>
   )
 }

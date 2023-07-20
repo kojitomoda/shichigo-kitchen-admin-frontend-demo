@@ -45,7 +45,7 @@ const SocialFeed: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Social Feed | Devias Kit PRO</title>
+        <title>Dashboard: Social Feed | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -56,14 +56,12 @@ const SocialFeed: NextPage = () => {
       >
         <Container maxWidth='lg'>
           <Stack spacing={1}>
-            <Typography color='text.secondary'
-variant='overline'>
+            <Typography color='text.secondary' variant='overline'>
               Social Feed
             </Typography>
             <Typography variant='h4'>Here&apos;s what your connections posted</Typography>
           </Stack>
-          <Stack spacing={3}
-sx={{ mt: 3 }}>
+          <Stack spacing={3} sx={{ mt: 3 }}>
             <SocialPostAdd />
             {posts.map((post) => (
               <SocialPostCard

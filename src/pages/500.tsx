@@ -15,7 +15,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Error: Server Error | Devias Kit PRO</title>
+        <title>Error: Server Error | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -45,13 +45,10 @@ const Page: NextPage = () => {
               }}
             />
           </Box>
-          <Typography align='center'
-variant={mdUp ? 'h1' : 'h4'}>
+          <Typography align='center' variant={mdUp ? 'h1' : 'h4'}>
             500: Internal Server Error
           </Typography>
-          <Typography align='center'
-color='text.secondary'
-sx={{ mt: 0.5 }}>
+          <Typography align='center' color='text.secondary' sx={{ mt: 0.5 }}>
             You either tried some shady route or you came here by mistake. Whichever it is, try
             using the navigation.
           </Typography>
@@ -62,8 +59,7 @@ sx={{ mt: 0.5 }}>
               mt: 6,
             }}
           >
-            <Button component={NextLink}
-href={paths.index}>
+            <Button component={NextLink} href={paths.index}>
               Back to Home
             </Button>
           </Box>

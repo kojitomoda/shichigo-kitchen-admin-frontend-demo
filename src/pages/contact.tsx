@@ -20,7 +20,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Contact | Devias Kit PRO</title>
+        <title>Contact | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -40,8 +40,7 @@ const Page: NextPage = () => {
             py: 8,
           }}
         >
-          <Container maxWidth='md'
-sx={{ pl: { lg: 15 } }}>
+          <Container maxWidth='md' sx={{ pl: { lg: 15 } }}>
             <Stack spacing={3}>
               <div>
                 <Link
@@ -84,18 +83,14 @@ sx={{ pl: { lg: 15 } }}>
               </Avatar>
               <Typography variant='overline'>Contact sales</Typography>
             </Stack>
-            <Typography sx={{ mb: 3 }}
-variant='h1'>
+            <Typography sx={{ mb: 3 }} variant='h1'>
               Talk to our account expert
             </Typography>
-            <Typography sx={{ mb: 3 }}
-variant='body1'>
+            <Typography sx={{ mb: 3 }} variant='body1'>
               Have questions about integrating our APIs? Fill out the form and a senior web expert
               will be in touch shortly.
             </Typography>
-            <Typography color='primary'
-sx={{ mb: 3 }}
-variant='h6'>
+            <Typography color='primary' sx={{ mb: 3 }} variant='h6'>
               Join 6,000+ forward-thinking companies:
             </Typography>
             <Stack
@@ -134,8 +129,7 @@ variant='h6'>
               },
             }}
           >
-            <Typography sx={{ pb: 3 }}
-variant='h6'>
+            <Typography sx={{ pb: 3 }} variant='h6'>
               Fill the form below
             </Typography>
             <ContactForm />

@@ -14,7 +14,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Devias Kit PRO</title>
+        <title>シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <main>
         <HomeHero />

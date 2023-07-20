@@ -100,14 +100,13 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Login | Devias Kit PRO</title>
+        <title>Login | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <div>
         <Card elevation={16}>
           <CardHeader
             subheader={
-              <Typography color='text.secondary'
-variant='body2'>
+              <Typography color='text.secondary' variant='body2'>
                 Don&apos;t have an account? &nbsp;
                 <Link
                   component={NextLink}
@@ -123,8 +122,7 @@ variant='body2'>
             title='Log in'
           />
           <CardContent>
-            <form noValidate
-onSubmit={formik.handleSubmit}>
+            <form noValidate onSubmit={formik.handleSubmit}>
               <Box
                 sx={{
                   flexGrow: 1,
@@ -163,9 +161,7 @@ onSubmit={formik.handleSubmit}>
                   <Box sx={{ flexGrow: 1 }}>
                     <Divider orientation='horizontal' />
                   </Box>
-                  <Typography color='text.secondary'
-sx={{ m: 2 }}
-variant='body1'>
+                  <Typography color='text.secondary' sx={{ m: 2 }} variant='body1'>
                     OR
                   </Typography>
                   <Box sx={{ flexGrow: 1 }}>
@@ -198,8 +194,7 @@ variant='body1'>
                 />
               </Stack>
               {formik.errors.submit && (
-                <FormHelperText error
-sx={{ mt: 3 }}>
+                <FormHelperText error sx={{ mt: 3 }}>
                   {formik.errors.submit as string}
                 </FormHelperText>
               )}
@@ -217,8 +212,7 @@ sx={{ mt: 3 }}>
             </form>
           </CardContent>
         </Card>
-        <Stack spacing={3}
-sx={{ mt: 3 }}>
+        <Stack spacing={3} sx={{ mt: 3 }}>
           <Alert severity='error'>
             <div>
               You can use <b>demo@devias.io</b> and password <b>Password123!</b>

@@ -62,7 +62,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Blog: Post List | Devias Kit PRO</title>
+        <title>Blog: Post List | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'

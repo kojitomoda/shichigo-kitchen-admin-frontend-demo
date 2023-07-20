@@ -44,7 +44,7 @@ const App = (props: AppProps) => {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>Devias Kit PRO</title>
+        <title>シチゴウキッチン | 運営画面デモ</title>
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
       <ReduxProvider store={store}>

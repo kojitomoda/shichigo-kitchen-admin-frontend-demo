@@ -13,7 +13,7 @@ export const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Components: Typography | Devias Kit PRO</title>
+        <title>Components: Typography | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'

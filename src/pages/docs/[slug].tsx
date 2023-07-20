@@ -63,10 +63,9 @@ const Page: NextPage<PageProps> = (props) => {
   return (
     <>
       <Head>
-        <title>{`Docs: ${article.title} | Devias Kit PRO`}</title>
+        <title>{`Docs: ${article.title} | シチゴウキッチン | 運営画面デモ`}</title>
       </Head>
-      <Container maxWidth='lg'
-sx={{ pb: '120px' }}>
+      <Container maxWidth='lg' sx={{ pb: '120px' }}>
         <ArticleContent content={article.content || ''} />
       </Container>
     </>

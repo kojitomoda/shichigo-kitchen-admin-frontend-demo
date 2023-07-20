@@ -175,7 +175,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Mail | Devias Kit PRO</title>
+        <title>Dashboard: Mail | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Divider />
       <Box
@@ -208,12 +208,10 @@ const Page: NextPage = () => {
           />
           <MailContainer open={sidebar.isOpen}>
             {view === 'details' && (
-              <MailThread currentLabelId={currentLabelId}
-emailId={emailId!} />
+              <MailThread currentLabelId={currentLabelId} emailId={emailId!} />
             )}
             {view === 'list' && (
-              <MailList currentLabelId={currentLabelId}
-onSidebarToggle={sidebar.handleToggle} />
+              <MailList currentLabelId={currentLabelId} onSidebarToggle={sidebar.handleToggle} />
             )}
           </MailContainer>
         </Box>

@@ -58,7 +58,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Job Browse | Devias Kit PRO</title>
+        <title>Dashboard: Job Browse | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -79,15 +79,11 @@ const Page: NextPage = () => {
               py: 8,
             }}
           >
-            <Grid xs={12}
-sm={7}>
-              <Typography color='inherit'
-variant='h3'>
+            <Grid xs={12} sm={7}>
+              <Typography color='inherit' variant='h3'>
                 Reach 50k+ potential candidates.
               </Typography>
-              <Typography color='neutral.500'
-sx={{ mt: 2 }}
-variant='body1'>
+              <Typography color='neutral.500' sx={{ mt: 2 }} variant='body1'>
                 Post your job today for free. Promotions start at $99.
               </Typography>
               <Button
@@ -114,12 +110,10 @@ variant='body1'>
               <img src='/assets/iconly/iconly-glass-shield.svg' />
             </Grid>
           </Grid>
-          <Stack spacing={4}
-sx={{ mt: 4 }}>
+          <Stack spacing={4} sx={{ mt: 4 }}>
             <JobListSearch />
             {companies.map((company) => (
-              <CompanyCard key={company.id}
-company={company} />
+              <CompanyCard key={company.id} company={company} />
             ))}
             <Stack
               alignItems='center'

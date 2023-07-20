@@ -180,7 +180,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Calendar | Devias Kit PRO</title>
+        <title>Dashboard: Calendar | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'

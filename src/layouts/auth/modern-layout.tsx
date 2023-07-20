@@ -51,17 +51,14 @@ export const Layout: FC<LayoutProps> = (props) => {
         }}
       >
         <Box maxWidth='md'>
-          <Typography sx={{ mb: 1 }}
-variant='h4'>
-            Welcome to Devias Kit PRO
+          <Typography sx={{ mb: 1 }} variant='h4'>
+            Welcome to シチゴウキッチン | 運営画面デモ
           </Typography>
-          <Typography color='text.secondary'
-sx={{ mb: 4 }}>
+          <Typography color='text.secondary' sx={{ mb: 4 }}>
             A professional kit that comes with ready-to-use MUI components developed with one common
             goal in mind, help you build faster & beautiful applications.
           </Typography>
-          <Typography variant='subtitle2'
-sx={{ mb: 2 }}>
+          <Typography variant='subtitle2' sx={{ mb: 2 }}>
             Join 6,000+ forward-thinking companies:
           </Typography>
           <Stack

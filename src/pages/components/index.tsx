@@ -145,7 +145,7 @@ const Page: NextPage = () => {
   return (
     <Box>
       <Head>
-        <title>Components | Devias Kit PRO</title>
+        <title>Components | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         sx={{
@@ -157,8 +157,7 @@ const Page: NextPage = () => {
         <Container maxWidth='lg'>
           <Stack spacing={1}>
             <Typography variant='h1'>Browse components</Typography>
-            <Typography color='text.secondary'
-variant='body1'>
+            <Typography color='text.secondary' variant='body1'>
               Browse through over 100 individual components and over 35 screens
             </Typography>
           </Stack>
@@ -172,28 +171,18 @@ variant='body1'>
         }}
       >
         <Container maxWidth='lg'>
-          <Stack divider={<Divider />}
-spacing={4}>
+          <Stack divider={<Divider />} spacing={4}>
             {sections.map((section) => (
-              <Grid key={section.title}
-container
-spacing={4}>
-                <Grid xs={12}
-lg={3}>
-                  <Typography sx={{ fontWeight: 600 }}
-variant='h5'>
+              <Grid key={section.title} container spacing={4}>
+                <Grid xs={12} lg={3}>
+                  <Typography sx={{ fontWeight: 600 }} variant='h5'>
                     {section.title}
                   </Typography>
                 </Grid>
-                <Grid xs={12}
-lg={9}>
-                  <Grid container
-spacing={4}>
+                <Grid xs={12} lg={9}>
+                  <Grid container spacing={4}>
                     {section.items.map((item) => (
-                      <Grid key={item.title}
-xs={12}
-sm={6}
-md={4}>
+                      <Grid key={item.title} xs={12} sm={6} md={4}>
                         <Card
                           component={NextLink}
                           href={item.path}
@@ -235,14 +224,12 @@ md={4}>
                             >
                               <Typography variant='subtitle2'>{item.title}</Typography>
                               {item.newTab && (
-                                <SvgIcon color='action'
-sx={{ ml: 1.5 }}>
+                                <SvgIcon color='action' sx={{ ml: 1.5 }}>
                                   <ArrowDownIcon />
                                 </SvgIcon>
                               )}
                             </Box>
-                            <Typography color='text.secondary'
-variant='body2'>
+                            <Typography color='text.secondary' variant='body2'>
                               {item.subtitle}
                             </Typography>
                           </Box>

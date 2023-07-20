@@ -179,7 +179,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard: Kanban | Devias Kit PRO</title>
+        <title>Dashboard: Kanban | シチゴウキッチン | 運営画面デモ</title>
       </Head>
       <Box
         component='main'
@@ -206,9 +206,7 @@ const Page: NextPage = () => {
               py: 3,
             }}
           >
-            <Stack alignItems='flex-start'
-direction='row'
-spacing={3}>
+            <Stack alignItems='flex-start' direction='row' spacing={3}>
               {columnsIds.map((columnId: string) => (
                 <ColumnCard
                   key={columnId}
